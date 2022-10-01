@@ -4,5 +4,17 @@ The repository for the StarTU App developed by a team of software developers and
 
 # Requirements:
  - Node.js:
- 
+
    Install [here](https://nodejs.org/en/download/)
+
+ - Yarn:
+
+   ```sh
+    npm install --global yarn
+   ```
+
+ - Typescript:
+
+   ```sh
+    npm install -g typescript
+   ```
