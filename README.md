@@ -3,5 +3,6 @@ The repository for the StarTU App developed by a team of software developers and
 
 
 # Requirements:
- - Node.js
+ - Node.js:
+ 
    Install [here](https://nodejs.org/en/download/)
