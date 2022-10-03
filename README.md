@@ -21,7 +21,7 @@ The repository for the StarTU App developed by a team of software developers and
 
 # Development:
  - Typechecking the project:
-  ```sh
+   ```sh
     yarn tsc
    ```
 
