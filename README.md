@@ -18,3 +18,15 @@ The repository for the StarTU App developed by a team of software developers and
    ```sh
     npm install -g typescript
    ```
+
+# Development:
+ - Typechecking the project:
+  ```sh
+    yarn tsc
+   ```
+
+ - Running Expo Server
+   ```sh
+    yarn start
+   ```
+  
