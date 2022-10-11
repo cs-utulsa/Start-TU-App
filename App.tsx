@@ -1,12 +1,12 @@
 import React from 'react';
-import { Text, View, StyleSheet, Pressable } from 'react-native';
+import { Text, View, StyleSheet, Button, Alert } from 'react-native';
 
-export default function Button(props: { onPress: any; title?: "Save" | undefined; }) {
-  const { onPress, title = 'Save' } = props;
+export default function App() {
   return (
-    <Pressable style={styles.button} onPress={onPress}>
-      <Text style={styles.text}>{title}</Text>
-    </Pressable>
+    <Button 
+      title="Press me"
+      onPress={() => Alert.alert('Simple Button Pressed')}  
+    />
   );
 }
 
