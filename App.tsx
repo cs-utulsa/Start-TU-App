@@ -1,16 +1,35 @@
 import React from 'react';
 import { Text, View, StyleSheet, Button, Alert } from 'react-native';
+import { isPropertySignature } from 'typescript';
+
+interface GreetingProps {
+  name: string
+}
 
 export default function App() {
   return (
-    <Button 
-      title="Press me"
-      onPress={() => Alert.alert('Simple Button Pressed')}  
-    />
+    <View style={styles.right}>
+      <Greeting name='Ben'/>
+    </View>
   );
 }
 
+const Greeting = (props: any) => {
+  return (<View style={{top: 250}}>
+    <Text> Hello {props.name}</Text>
+  </View>)
+}
+
 const styles = StyleSheet.create({
+  center: {
+    alignItems: 'center'
+  },
+  left: {
+    alignItems: 'flex-start'
+  },
+  right: {
+    alignItems: 'flex-end'
+  },
   button: {
     alignItems: 'center',
     justifyContent: 'center',
