@@ -5,6 +5,7 @@ import * as FileSystem from 'expo-file-system';
 import { Asset } from 'expo-asset';
 
 
+//For now, I'm testing the pathfile and database on my machine.
 var databasePath = 'C:\\Users\\luker\\source\\repos\\Start-TU-App\\Start-TU-App\\Database';
 var databaseName = 'TU_Database.db';
 
@@ -26,9 +27,9 @@ export default function App() {
         tx.executeSql(
           "CREATE TABLE IF NOT EXISTS Person"
           + "(" 
-          + "TU_Email NVARCHAR(18) PRIMARY KEY NOT NULL"
-          + ", Name TEXT"
-          + ", Password TEXT"
+          + "TU_Email VARCHAR(18) PRIMARY KEY NOT NULL"
+          + ", Name VARCHAR(30)"
+          + ", Password VARCHAR(30)"
           + ");"
       );
       })
