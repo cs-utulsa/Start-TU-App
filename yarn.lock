@@ -8340,6 +8340,11 @@
   "resolved" "https://registry.npmjs.org/requires-port/-/requires-port-1.0.0.tgz"
   "version" "1.0.0"
 
+"res@^0.4.0":
+  "integrity" "sha512-GIpSc5wCvGw8uCLubn2RuQ2vBAqSv5uNtzDGpWuw6HVSRiUnHYcWf/5oac8FPglifVOgvV6bWNJpeSLmqZdYLA=="
+  "resolved" "https://registry.npmjs.org/res/-/res-0.4.0.tgz"
+  "version" "0.4.0"
+
 "reselect@^4.0.0":
   "integrity" "sha512-ZovIuXqto7elwnxyXbBtCPo9YFEr3uJqj2rRbcOOog1bmu2Ag85M4hixSwFWyaBMKXNgvPaJ9OSu9SkBPIeJHQ=="
   "resolved" "https://registry.npmjs.org/reselect/-/reselect-4.1.6.tgz"
