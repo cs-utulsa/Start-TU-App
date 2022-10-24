@@ -2,14 +2,29 @@ import React from 'react';
 import { Text, View, StyleSheet, Button, Alert } from 'react-native';
 import { isPropertySignature } from 'typescript';
 
+
 interface GreetingProps {
   name: string
 }
 
 export default function App() {
   return (
-    <View style={styles.right}>
-      <Greeting name='Ben'/>
+    <View style={{padding: 10, flex: 1}}>
+      <Text style={{color: 'green'}}>{"test"}</Text>
+      <View style={styles.classesButton}>
+        <Button
+          title="Classes"
+          onPress={() => Alert.alert('No implementation for classes yet')}
+          color='blue'
+        />
+      </View>
+      <View style={styles.mapButton}>
+        <Button
+          title="Map"
+          onPress={() => Alert.alert('No Map yet, either')}
+          color='black'
+          />
+      </View>
     </View>
   );
 }
@@ -21,23 +36,37 @@ const Greeting = (props: any) => {
 }
 
 const styles = StyleSheet.create({
-  center: {
-    alignItems: 'center'
+  mainView: {
+    bottom: 0,
+    position: 'absolute',
   },
-  left: {
-    alignItems: 'flex-start'
-  },
-  right: {
-    alignItems: 'flex-end'
-  },
-  button: {
+  classesButton: {
+    flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
-    paddingVertical: 12,
-    paddingHorizontal: 32,
+    justifyContent: 'flex-start',
+    position: 'absolute',
+    bottom: 0,
+    height: 100,
+    width: 200,
     borderRadius: 4,
+    borderWidth: 1,
     elevation: 3,
-    backgroundColor: 'black',
+    backgroundColor: 'gold',
+    borderColor: '#000',
+  },
+  mapButton: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+    position: 'absolute',
+    bottom: 0,
+    height: 100,
+    width: 200,
+    borderRadius: 4,
+    borderWidth: 1,
+    elevation: 3,
+    backgroundColor: 'gold',
+    borderColor: '#000',
   },
   text: {
     fontSize: 16,
