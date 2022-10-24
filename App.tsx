@@ -1,31 +1,32 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
-import { openDatabaseFromLocalMachine } from './Database/TU_DB';
+import { downloadDatabase_Machine_To_Expo, downloadDatabase_Expo_To_Machine } from './Database/TU_DB';
 
 export default function App() {
-  const databasePath: string = "";
-  const databaseName: string = "";
-  openDatabaseFromLocalMachine(databasePath, databaseName).then(
-    (db) => {
-      db.transaction((tx)=> {
-        const sqlCommand:string = "CREATE TABLE IF NOT EXISTS Person"
-        + "(" 
-        + "TU_Email VARCHAR(18) PRIMARY KEY NOT NULL"
-        + ", Name VARCHAR(30)"
-        + ", Password VARCHAR(30)"
-        + ");";
-        tx.executeSql(sqlCommand);
-      }, 
-      (test) => {
-        console.log(test.message);
-      },
-      () => {
-        console.log('Success');
-      });
+  const databasePath: string = "C:\\Users\\luker\\source\\repos\\Start-TU-App\\Start-TU-App\\Database";
+  const databaseName: string = "TU_Database.db";
+  downloadDatabase_Expo_To_Machine();
+  // downloadDatabase_Machine_To_Expo().then(
+  //   (db) => {
+  //     db.transaction((tx)=> {
+  //       const sqlCommand:string = "CREATE TABLE IF NOT EXISTS Person"
+  //       + "(" 
+  //       + "TU_Email VARCHAR(18) PRIMARY KEY NOT NULL"
+  //       + ", Name VARCHAR(30)"
+  //       + ", Password VARCHAR(30)"
+  //       + ");";
+  //       tx.executeSql(sqlCommand);
+  //     }, 
+  //     (test) => {
+  //       console.log(test.message);
+  //     },
+  //     () => {
+  //       console.log('Success');
+  //     });
 
       
-    }
-  ); 
+  //   }
+  // ); 
 
   console.log(databasePath);
   console.log(databaseName);
