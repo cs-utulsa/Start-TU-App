@@ -27,6 +27,20 @@ export async function deleteDatabaseFile() {
   await FileSystem.deleteAsync(FileSystem.documentDirectory + 'SQLite/' + databaseName);
 }
 
+
+export interface Person_Data {
+  TU_Email: string,
+  Name: string,
+  Password: string
+}
+
+export interface Location_Data {
+  Name: string,
+  Address: string,
+  Latitude: number,
+  Longitude: number
+}
+
 class TU_DB {
   DB: SQLite.WebSQLDatabase;
 
@@ -37,7 +51,9 @@ class TU_DB {
   createPersonTable() {
     this.DB.readTransaction(
       (tx) => {
-        const sqlCommand:string = "CREATE TABLE IF NOT EXISTS Person"
+        const sqlCommand:string = 
+        
+        "CREATE TABLE IF NOT EXISTS Person"
         + "(" 
         + "TU_Email VARCHAR(18) PRIMARY KEY NOT NULL"
         + ", Name VARCHAR(30)"
@@ -55,6 +71,31 @@ class TU_DB {
       }
          
     );
-    
+  }
+
+  createLocationTable() {
+    this.DB.readTransaction(
+      (tx) => {
+        const sqlCommand:string = 
+        
+        "CREATE TABLE IF NOT EXISTS Location"
+        + "(" 
+        + "Name VARCHAR(18) PRIMARY KEY NOT NULL,"
+        + "Address VARCHAR(100),"
+        + "Latitude REAL,"
+        + "Longitude REAL"
+        + ");";
+
+        tx.executeSql(sqlCommand);
+      },
+      (error) => {
+        console.log(error.message);
+      },
+      () => {
+        console.log('Successfully created the location database');
+      }
+    );
   }
 }
+
+export const db: TU_DB = new TU_DB(databaseName);

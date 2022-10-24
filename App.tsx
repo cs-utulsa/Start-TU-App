@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
-import { downloadDatabase_Machine_To_Expo, downloadDatabase_Expo_To_Machine } from './Database/TU_DB';
+import { downloadDatabase_Machine_To_Expo, downloadDatabase_Expo_To_Machine, db } from './Database/TU_DB';
 
 export default function App() {
   const databasePath: string = "C:\\Users\\luker\\source\\repos\\Start-TU-App\\Start-TU-App\\Database";
@@ -27,6 +27,10 @@ export default function App() {
       
   //   }
   // ); 
+
+  db.createLocationTable();
+  downloadDatabase_Expo_To_Machine();
+
 
   console.log(databasePath);
   console.log(databaseName);
