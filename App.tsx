@@ -1,11 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
-import { downloadDatabase_Machine_To_Expo, downloadDatabase_Expo_To_Machine, db } from './Database/TU_DB';
+import {db, Person_Data, Location_Data, downloadDatabase_Expo_To_Machine} from './Database/TU_DB';
 
 export default function App() {
   const databasePath: string = "C:\\Users\\luker\\source\\repos\\Start-TU-App\\Start-TU-App\\Database";
   const databaseName: string = "TU_Database.db";
-  downloadDatabase_Expo_To_Machine();
+  // downloadDatabase_Expo_To_Machine();
+
   // downloadDatabase_Machine_To_Expo().then(
   //   (db) => {
   //     db.transaction((tx)=> {
@@ -23,15 +24,20 @@ export default function App() {
   //     () => {
   //       console.log('Success');
   //     });
-
-      
   //   }
   // ); 
 
-  db.createLocationTable();
-  downloadDatabase_Expo_To_Machine();
+  // db.createPersonTable();
+  // db.createLocationTable();
 
+  const test: Person_Data = {
+    TU_Email: 'lar9482@utulsa',
+    Name: 'Luke Runnels',
+    Password: 'password123'
+  }
+  db.insertIntoPersonTable(test);
 
+  
   console.log(databasePath);
   console.log(databaseName);
 
