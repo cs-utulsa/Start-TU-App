@@ -1,42 +1,75 @@
-import React from 'react';
-import { Text, View, StyleSheet, Button, Alert } from 'react-native';
-import { isPropertySignature } from 'typescript';
+import React, { useState } from 'react';
+import { Text, View, StyleSheet, Button, Alert, Image, TouchableOpacity, Switch } from 'react-native';
+import {StatusBar} from 'expo-status-bar';
+import { getTokenSourceMapRange, isPropertySignature } from 'typescript';
+// import logo from './assets/icon.png';
 
+const TU_GOLD = '#C2A01E'
+const TU_BLUE = '#102240'
+var mapImage = [require('./assets/TUmap.png'), require('./assets/TUmapinv.png')];
+var mapImageType = 0
+const images = {
+  mainButtons: {
+    map: require('./assets/TUmap.png'),
+  },
+};
+const invert = () => mapImageType = 1;
 
-interface GreetingProps {
-  name: string
-}
 
 export default function App() {
+  
+  const[invImage, setInvImage] = useState(true);
+  
+  const changeImage = () => {
+    setInvImage(invImage => !invImage);
+  }
+
   return (
-    <View style={{padding: 10, flex: 1}}>
-      <Text style={{color: 'green'}}>{"test"}</Text>
-      <View style={styles.classesButton}>
-        <Button
-          title="Classes"
-          onPress={() => Alert.alert('No implementation for classes yet')}
-          color='blue'
+    <View style={{flex: 1, backgroundColor: TU_BLUE}}>
+      <View style={{paddingTop:20, padding: 5}}>
+        <Image
+          style={{width: 50, height: 50}}
+          source={require('./assets/TUlogo.png')}
         />
       </View>
-      <View style={styles.mapButton}>
-        <Button
-          title="Map"
-          onPress={() => Alert.alert('No Map yet, either')}
-          color='black'
-          />
+      <View style={{flex: 1}}>
+        <StatusBar style="light"/>
+        <ClassesPane></ClassesPane>
+        <BottomButtons onPress={changeImage} invImage={invImage}></BottomButtons>
       </View>
     </View>
   );
 }
 
-const Greeting = (props: any) => {
-  return (<View style={{top: 250}}>
-    <Text> Hello {props.name}</Text>
-  </View>)
-}
+
+const BottomButtons = (props: any) => (
+  <View style={styles.bottomButtons}>
+    <TouchableOpacity onPress={props.onPress} activeOpacity = {0.75} style={{padding: 5}}>
+      {props.invImage && <Image style={{width: 50, height: 50}} source={require('./assets/TUmap.png')} />}
+      {!props.invImage && <Image style={{width: 50, height: 50}} source={require('./assets/TUmapinv.png')} />}
+    </TouchableOpacity>
+  </View>
+);
+
+const ClassesPane = () => (
+  <View style={styles.classesPane}>
+    {/* <Text style={{color: 'green'}}>{"test"}</Text> */}
+    {/* <View style={styles.classesButton}> */}
+    {/* </View> */}
+  </View>
+);
 
 const styles = StyleSheet.create({
-  mainView: {
+  classesPane: {
+    flex: 9,
+    backgroundColor: 'white',
+  },
+  bottomButtons: {
+    flex: 1,
+    backgroundColor: TU_GOLD,
+    alignItems: 'center'
+  },
+  mainPane: {
     bottom: 0,
     position: 'absolute',
   },
@@ -51,28 +84,7 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     borderWidth: 1,
     elevation: 3,
-    backgroundColor: 'gold',
+    backgroundColor: 'white',
     borderColor: '#000',
-  },
-  mapButton: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-    position: 'absolute',
-    bottom: 0,
-    height: 100,
-    width: 200,
-    borderRadius: 4,
-    borderWidth: 1,
-    elevation: 3,
-    backgroundColor: 'gold',
-    borderColor: '#000',
-  },
-  text: {
-    fontSize: 16,
-    lineHeight: 21,
-    fontWeight: 'bold',
-    letterSpacing: 0.25,
-    color: 'white',
   },
 });
