@@ -4,6 +4,10 @@ import {StatusBar} from 'expo-status-bar';
 import { getTokenSourceMapRange, isPropertySignature } from 'typescript';
 // import logo from './assets/icon.png';
 
+const DARK_BLACK = '#171D28'
+const LIGHT_BLUE = '#C0E2F6'
+const DARK_BLUE = '#315796'
+const PANK = '#C490EB'
 const TU_GOLD = '#C2A01E'
 const TU_BLUE = '#102240'
 var mapImage = [require('./assets/TUmap.png'), require('./assets/TUmapinv.png')];
@@ -30,6 +34,10 @@ export default function App() {
         <Image
           style={{width: 50, height: 50}}
           source={require('./assets/TUlogo.png')}
+        />
+        <Button
+          title="Press me"
+          onPress={() => Alert.alert('Simple Button pressed')}
         />
       </View>
       <View style={{flex: 1}}>
@@ -62,11 +70,11 @@ const ClassesPane = () => (
 const styles = StyleSheet.create({
   classesPane: {
     flex: 9,
-    backgroundColor: 'white',
+    backgroundColor: LIGHT_BLUE,
   },
   bottomButtons: {
     flex: 1,
-    backgroundColor: TU_GOLD,
+    backgroundColor: TU_BLUE,
     alignItems: 'center'
   },
   mainPane: {
