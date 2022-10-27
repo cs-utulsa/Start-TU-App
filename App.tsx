@@ -10,6 +10,11 @@ const DARK_BLUE = '#315796'
 const PANK = '#C490EB'
 const TU_GOLD = '#C2A01E'
 const TU_BLUE = '#102240'
+const USER_STATE = 0
+const CLASSES_STATE = 1
+const MAP_STATE = 2
+const CALENDER_STATE = 3
+const EMAIL_STATE = 4
 var mapImage = [require('./assets/TUmap.png'), require('./assets/TUmapinv.png')];
 var mapImageType = 0
 const images = {
@@ -23,9 +28,10 @@ const invert = () => mapImageType = 1;
 export default function App() {
   
   const[invImage, setInvImage] = useState(true);
+  const[paneState, setPaneState] = useState(MAP_STATE);
   
-  const changeImage = () => {
-    setInvImage(invImage => !invImage);
+  const changeState = (state: any) => {
+      setPaneState(CLASSES_STATE);
   }
 
   return (
@@ -35,51 +41,114 @@ export default function App() {
           style={{width: 50, height: 50}}
           source={require('./assets/TUlogo.png')}
         />
-        <Button
-          title="Press me"
-          onPress={() => Alert.alert('Simple Button pressed')}
-        />
       </View>
       <View style={{flex: 1}}>
         <StatusBar style="light"/>
-        <ClassesPane></ClassesPane>
-        <BottomButtons onPress={changeImage} invImage={invImage}></BottomButtons>
+        {paneState == USER_STATE && <UserPane></UserPane>}
+        {paneState == CLASSES_STATE && <ClassesPane></ClassesPane>}
+        {paneState == MAP_STATE && <MapPane></MapPane>}
+        {paneState == CALENDER_STATE && <CalenderPane></CalenderPane>}
+        {paneState == EMAIL_STATE && <EmailPane></EmailPane>}
+        <BottomButtons state={paneState} changeState={setPaneState}></BottomButtons>
       </View>
     </View>
   );
 }
 
 
-const BottomButtons = (props: any) => (
-  <View style={styles.bottomButtons}>
-    <TouchableOpacity onPress={props.onPress} activeOpacity = {0.75} style={{padding: 5}}>
-      {props.invImage && <Image style={{width: 50, height: 50}} source={require('./assets/TUmap.png')} />}
-      {!props.invImage && <Image style={{width: 50, height: 50}} source={require('./assets/TUmapinv.png')} />}
+const BottomButtons = ({state, changeState}: any) => (
+  <View style={styles.bottomButtonRow}>
+    <TouchableOpacity onPress={() => changeState(0)} activeOpacity = {0.75} style={styles.bottomButton}>
+      {state == USER_STATE && <Image style={styles.icon} source={require('./assets/TUuser.png')} />}
+      {state != USER_STATE && <Image style={styles.icon} source={require('./assets/TUicon.png')} />}
     </TouchableOpacity>
+    <TouchableOpacity onPress={() => changeState(1)} activeOpacity = {0.75} style={styles.bottomButton}>
+      {state == CLASSES_STATE && <Image style={styles.icon} source={require('./assets/TUuser.png')} />}
+      {state != CLASSES_STATE && <Image style={styles.icon} source={require('./assets/TUicon.png')} />}
+    </TouchableOpacity>
+    <TouchableOpacity onPress={() => changeState(2)} activeOpacity = {0.75} style={styles.bottomButton}>
+      {state == MAP_STATE && <Image style={styles.icon} source={require('./assets/TUmapinv.png')} />}
+      {state != MAP_STATE && <Image style={styles.icon} source={require('./assets/TUmap.png')} />}
+    </TouchableOpacity>
+    <TouchableOpacity onPress={() => changeState(3)} activeOpacity = {0.75} style={styles.bottomButton}>
+      {state == CALENDER_STATE && <Image style={styles.icon} source={require('./assets/TUuser.png')} />}
+      {state != CALENDER_STATE && <Image style={styles.icon} source={require('./assets/TUicon.png')} />}
+    </TouchableOpacity>
+    <TouchableOpacity onPress={() => changeState(4)} activeOpacity = {0.75} style={styles.bottomButton}>
+      {state == EMAIL_STATE && <Image style={styles.icon} source={require('./assets/TUuser.png')} />}
+      {state != EMAIL_STATE && <Image style={styles.icon} source={require('./assets/TUicon.png')} />}
+    </TouchableOpacity>
+      
   </View>
 );
 
+const UserPane = () => (
+  <View style={styles.userPane}>
+    <Text> USERS ARE NOT YET IMPLEMENTED</Text>
+  </View>
+)
+
 const ClassesPane = () => (
   <View style={styles.classesPane}>
-    {/* <Text style={{color: 'green'}}>{"test"}</Text> */}
-    {/* <View style={styles.classesButton}> */}
-    {/* </View> */}
+    <Text> CLASSES ARE NOT YET IMPLEMENTED</Text>
+  </View>
+);
+
+const MapPane= () => (
+  <View style={styles.mapPane}>
+  </View>
+);
+
+const CalenderPane = () => (
+  <View style={styles.classesPane}>
+    <Text> CALENDER IS NOT YET IMPLEMENTED</Text>
+  </View>
+);
+
+const EmailPane = () => (
+  <View style={styles.classesPane}>
+    <Text> EMAIL IS NOT YET IMPLEMENTED</Text>
   </View>
 );
 
 const styles = StyleSheet.create({
+  userPane: {
+    flex: 9,
+    backgroundColor: LIGHT_BLUE,
+  },
   classesPane: {
     flex: 9,
     backgroundColor: LIGHT_BLUE,
   },
-  bottomButtons: {
+  mapPane: {
+    flex: 9,
+    backgroundColor: DARK_BLUE,
+  },
+  calenderPane: {
+    flex: 9,
+    backgroundColor: DARK_BLUE,
+  },
+  emailPane: {
+    flex: 9,
+    backgroundColor: DARK_BLUE,
+  },
+  bottomButtonRow: {
     flex: 1,
     backgroundColor: TU_BLUE,
-    alignItems: 'center'
+    flexDirection: 'row',
+    justifyContent: 'flex-end'
   },
-  mainPane: {
-    bottom: 0,
-    position: 'absolute',
+  bottomButton: {
+    flex: 1,
+    backgroundColor: 'white',
+    alignItems: 'center',
+    padding: 5
+  },
+  icon: {
+    height: 50,
+    width: 50,
+    alignItems: 'center',
+    padding: 5
   },
   classesButton: {
     flex: 1,
