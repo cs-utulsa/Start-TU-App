@@ -1,10 +1,11 @@
+import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Button, Alert, Image, TouchableOpacity, Switch } from 'react-native';
 import {db, Person_Data, Location_Data, downloadDatabase_Expo_To_Machine} from './Database/TU_DB';
 
+const TU_BLUE = '#102240';
+
 export default function App() {
-  const databasePath: string = "C:\\Users\\luker\\source\\repos\\Start-TU-App\\Start-TU-App\\Database";
-  const databaseName: string = "TU_Database.db";
   // downloadDatabase_Expo_To_Machine();
 
   // downloadDatabase_Machine_To_Expo().then(
@@ -37,17 +38,26 @@ export default function App() {
   }
   db.insertIntoPersonTable(test);
 
-  
-  console.log(databasePath);
-  console.log(databaseName);
-
   return (
     <View style={styles.container}>
       <Text>Start of TU APP. This is our senior project for 2022-2023.</Text>
       <StatusBar style="auto" />
+      <DatabaseButton dbString = {test123}></DatabaseButton>
     </View>
   );
 }
+
+const DatabaseButton = (props: any) => (
+ <View>
+    <TouchableOpacity onPress={props.dbString}>
+    </TouchableOpacity>
+ </View>
+);
+
+const test123 = () => {
+  console.log("Hello from button");
+}
+
 
 const styles = StyleSheet.create({
   container: {
@@ -55,5 +65,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+
+  bottomButtons: {
+    flex: 1,
+    backgroundColor: TU_BLUE,
+    alignItems: 'center'
   },
 });
