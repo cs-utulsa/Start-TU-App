@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Button, Alert, Image, TouchableOpacity, Switch } from 'react-native';
-import {db, Person_Data, Location_Data, downloadDatabase_Expo_To_Machine} from './Database/TU_DB';
+// import {db, Person_Data, Location_Data, downloadDatabase_Expo_To_Machine} from './Database/TU_DB';
 
 const TU_BLUE = '#102240';
 
@@ -10,12 +10,12 @@ export default function App() {
   // db.createPersonTable();
   // db.createLocationTable();
 
-  const test: Person_Data = {
-    TU_Email: 'lar9482@utulsa.edu',
-    Name: 'Luke Runnels',
-    Password: 'password123'
-  }
-  db.insertIntoPersonTable(test);
+  // const test: Person_Data = {
+  //   TU_Email: 'lar9482@utulsa.edu',
+  //   Name: 'Luke Runnels',
+  //   Password: 'password123'
+  // }
+  // db.insertIntoPersonTable(test);
 
   return (
     <View style={styles.container}>
