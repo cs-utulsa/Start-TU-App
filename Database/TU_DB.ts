@@ -1,28 +1,4 @@
 import * as SQLite from 'expo-sqlite'
-import * as FileSystem from 'expo-file-system';
-import * as Share from 'expo-sharing';
-import { Asset } from 'expo-asset';
-
-// export async function downloadDatabase_Machine_To_Expo(databasePath: string, databaseName: string) {
-//   if (!(await FileSystem.getInfoAsync(FileSystem.documentDirectory + 'SQLite')).exists) {
-//     await FileSystem.makeDirectoryAsync(FileSystem.documentDirectory + 'SQLite');
-//   }
-//   var fullPath: string = databasePath + "\\" + databaseName;
-//   await FileSystem.downloadAsync(
-//     Asset.fromModule(require(fullPath)).uri,
-//     FileSystem.documentDirectory + 'SQLite/' + databaseName
-//   );
-//   return SQLite.openDatabase(databaseName);
-// }
-
-
-export async function downloadDatabase_Expo_To_Machine(databaseName: string = 'TU_DB.db') {
-  await Share.shareAsync(FileSystem.documentDirectory + 'SQLite/' + databaseName);
-}
-
-export async function deleteDatabaseFile(databaseName: string = 'TU_DB.db') {
-  await FileSystem.deleteAsync(FileSystem.documentDirectory + 'SQLite/' + databaseName);
-}
 
 interface Person_Data {
   TU_Email: string,
