@@ -5,11 +5,8 @@ import {db_name} from './DB_Name';
 class Person_Entity {
     DB: SQLite.WebSQLDatabase;
 
-    queryAllAttributes_Set: Person_Data[];
-
     constructor(database_name: string) {
         this.DB = SQLite.openDatabase(database_name);
-        this.queryAllAttributes_Set = [];
     }
 
     createPersonTable() {
