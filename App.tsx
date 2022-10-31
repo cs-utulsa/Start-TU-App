@@ -66,24 +66,24 @@ export default function App() {
 const BottomButtons = ({state, changeState}: any) => (
   <View style={styles.bottomButtonRow}>
     <TouchableOpacity onPress={() => changeState(0)} activeOpacity = {0.75} style={styles.bottomButton}>
-      {state == USER_STATE && <Image style={styles.icon} source={require('./assets/TUuser.png')} />}
-      {state != USER_STATE && <Image style={styles.icon} source={require('./assets/TUicon.png')} />}
+      {state == USER_STATE && <Image style={styles.icon} source={require('./assets/TUuserinv.png')} />}
+      {state != USER_STATE && <Image style={styles.icon} source={require('./assets/TUuser.png')} />}
     </TouchableOpacity>
     <TouchableOpacity onPress={() => changeState(1)} activeOpacity = {0.75} style={styles.bottomButton}>
-      {state == CLASSES_STATE && <Image style={styles.icon} source={require('./assets/TUuser.png')} />}
-      {state != CLASSES_STATE && <Image style={styles.icon} source={require('./assets/TUicon.png')} />}
+      {state == CLASSES_STATE && <Image style={styles.icon} source={require('./assets/TUclassesinv.png')} />}
+      {state != CLASSES_STATE && <Image style={styles.icon} source={require('./assets/TUclasses.png')} />}
     </TouchableOpacity>
     <TouchableOpacity onPress={() => changeState(2)} activeOpacity = {0.75} style={styles.bottomButton}>
       {state == MAP_STATE && <Image style={styles.icon} source={require('./assets/TUmapinv.png')} />}
       {state != MAP_STATE && <Image style={styles.icon} source={require('./assets/TUmap.png')} />}
     </TouchableOpacity>
     <TouchableOpacity onPress={() => changeState(3)} activeOpacity = {0.75} style={styles.bottomButton}>
-      {state == CALENDER_STATE && <Image style={styles.icon} source={require('./assets/TUuser.png')} />}
-      {state != CALENDER_STATE && <Image style={styles.icon} source={require('./assets/TUicon.png')} />}
+      {state == CALENDER_STATE && <Image style={styles.icon} source={require('./assets/TUcalenderinv.png')} />}
+      {state != CALENDER_STATE && <Image style={styles.icon} source={require('./assets/TUcalender.png')} />}
     </TouchableOpacity>
     <TouchableOpacity onPress={() => changeState(4)} activeOpacity = {0.75} style={styles.bottomButton}>
-      {state == EMAIL_STATE && <Image style={styles.icon} source={require('./assets/TUuser.png')} />}
-      {state != EMAIL_STATE && <Image style={styles.icon} source={require('./assets/TUicon.png')} />}
+      {state == EMAIL_STATE && <Image style={styles.icon} source={require('./assets/TUemailinv.png')} />}
+      {state != EMAIL_STATE && <Image style={styles.icon} source={require('./assets/TUemail.png')} />}
     </TouchableOpacity>
       
   </View>
