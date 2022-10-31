@@ -63,7 +63,32 @@ class Location_Entity {
         () => {
         console.log('Successfully inserted entry into Location table');
         }
-    );
+       );
+    }
+
+    async queryAllAttributes_Async(): Promise<Location_Data[]> {
+      return new Promise((resolve) => {
+        let Location_Data: Location_Data[] = [];
+
+        this.DB.readTransaction(
+          (tx) => {
+            const sqlCommand: string = 
+            "SELECT *" + 
+            "FROM Location";
+            tx.executeSql(sqlCommand, [] ,
+              (tx, results) => {
+                Location_Data = results.rows._array
+              }
+            );
+          },
+          (error) => {
+            console.log(error.message);
+          },
+          () => {
+            resolve(Location_Data);
+          }
+        );
+      })
     }
 }
 

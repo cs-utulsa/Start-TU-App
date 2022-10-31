@@ -73,7 +73,6 @@ class Person_Entity {
     }
 
     async queryAllAttributes_Async(): Promise<Person_Data[]> {
-      
       return new Promise((resolve) => {
         let Person_Data: Person_Data[] = [];
 
@@ -89,7 +88,7 @@ class Person_Entity {
             );
           },
           (error) => {
-
+            console.log(error.message);
           },
           () => {
             resolve(Person_Data);
