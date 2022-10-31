@@ -1,11 +1,15 @@
 import * as SQLite from 'expo-sqlite'
+import { resolveModuleName } from 'typescript';
 import {db_name} from './DB_Name';
 
-export class Person_Entity {
+class Person_Entity {
     DB: SQLite.WebSQLDatabase;
+
+    queryAllAttributes_Set: Person_Data[];
 
     constructor(database_name: string) {
         this.DB = SQLite.openDatabase(database_name);
+        this.queryAllAttributes_Set = [];
     }
 
     createPersonTable() {
@@ -15,7 +19,7 @@ export class Person_Entity {
             
             "CREATE TABLE IF NOT EXISTS Person"
             + "(" 
-            + "TU_Email VARCHAR(18) PRIMARY KEY NOT NULL"
+            + "TU_Email VARCHAR(30) PRIMARY KEY NOT NULL"
             + ", Name VARCHAR(30)"
             + ", Password VARCHAR(30)"
             + ");";
@@ -27,13 +31,30 @@ export class Person_Entity {
             console.log(error.message);
           },
           () => {
-            console.log('Successfully created the person database');
+            console.log('Successfully created the person table');
           }
              
         );
-      }
+    }
+
+    dropPersonTable() {
+        this.DB.transaction(
+
+            (tx) => {
+                const sqlCommand:string = "DROP TABLE Person";
+                tx.executeSql(sqlCommand);
+            },
+
+            (error) => {
+                console.log(error.message);
+              },
+              () => {
+                console.log('Successfully drop the Person table');
+              }
+        );
+    }
     
-      insertIntoPersonTable(Person_Data: Person_Data) {
+    insertIntoPersonTable(Person_Data: Person_Data) {
         this.DB.transaction(
           (tx) => {
             const sqlCommand:string = 
@@ -49,7 +70,33 @@ export class Person_Entity {
             console.log('Successfully inserted entry into Person table');
           }
         );
-      }
+    }
+
+    async queryAllAttributes_Async(): Promise<Person_Data[]> {
+      
+      return new Promise((resolve) => {
+        let Person_Data: Person_Data[] = [];
+
+        this.DB.readTransaction(
+          (tx) => {
+            const sqlCommand: string = 
+            "SELECT *" + 
+            "FROM Person";
+            tx.executeSql(sqlCommand, [] ,
+              (tx, results) => {
+                Person_Data = results.rows._array
+              }
+            );
+          },
+          (error) => {
+
+          },
+          () => {
+            resolve(Person_Data);
+          }
+        );
+      })
+    }
 }
 
 export interface Person_Data {

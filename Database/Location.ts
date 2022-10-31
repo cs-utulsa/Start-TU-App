@@ -1,7 +1,7 @@
 import * as SQLite from 'expo-sqlite'
 import {db_name} from './DB_Name';
 
-export class Location_Entity {
+class Location_Entity {
     DB: SQLite.WebSQLDatabase;
 
     constructor(database_name: string) {
@@ -29,25 +29,42 @@ export class Location_Entity {
             console.log('Successfully created the location database');
           }
         );
-      }
-    
-      insertIntoLocation(Location_Data: Location_Data) {
-        this.DB.transaction(
+    }
+
+    dropLocationTable() {
+      this.DB.transaction(
+
           (tx) => {
-            const sqlCommand:string = 
-            
-            "INSERT INTO Location (Name, Address, Latitude, Longitude) values "
-            + "(?, ?, ?, ?)";
-            tx.executeSql(sqlCommand, [Location_Data.Name, Location_Data.Address, Location_Data.Latitude, Location_Data.Longitude]);
+              const sqlCommand:string = "DROP TABLE Location";
+              tx.executeSql(sqlCommand);
           },
+
           (error) => {
-            console.log(error.message);
-          },
-          () => {
-            console.log('Successfully inserted entry into Location table');
-          }
-        );
-      }
+              console.log(error.message);
+            },
+            () => {
+              console.log('Successfully drop the Person table');
+            }
+      );
+  }
+    
+    insertIntoLocationTable(Location_Data: Location_Data) {
+        this.DB.transaction(
+        (tx) => {
+        const sqlCommand:string = 
+            
+        "INSERT INTO Location (Name, Address, Latitude, Longitude) values "
+        + "(?, ?, ?, ?)";
+        tx.executeSql(sqlCommand, [Location_Data.Name, Location_Data.Address, Location_Data.Latitude, Location_Data.Longitude]);
+        },
+        (error) => {
+        console.log(error.message);
+        },
+        () => {
+        console.log('Successfully inserted entry into Location table');
+        }
+    );
+    }
 }
 
 export interface Location_Data {
