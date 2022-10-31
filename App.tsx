@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Text, View, StyleSheet, Button, Alert, Image, TouchableOpacity, Switch } from 'react-native';
 import {StatusBar} from 'expo-status-bar';
 import { getTokenSourceMapRange, isPropertySignature } from 'typescript';
+import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
+
 // import logo from './assets/icon.png';
 
 const DARK_BLACK = '#171D28'
@@ -36,13 +38,10 @@ export default function App() {
 
   return (
     <View style={{flex: 1, backgroundColor: TU_BLUE}}>
-      {/* <MapView style={{height: '50%', width: '100%'}}/>  */}
       <View style={{paddingTop:20, padding: 5}}>
-        <Text> Icon </Text>
       </View>
       <View style={{flex: 1}}>
         <StatusBar style="light"/>
-        <Text> Hello</Text>
       <View style={{paddingTop:20, padding: 5}}>
         <Image
           style={{width: 50, height: 50}}
@@ -104,6 +103,20 @@ const ClassesPane = () => (
 
 const MapPane= () => (
   <View style={styles.mapPane}>
+    <MapView 
+      initialRegion={{
+        latitude: 36.15236,
+        longitude: -95.94575,
+        latitudeDelta: 0.01,
+        longitudeDelta: 0.0125,}} 
+      style = {{height: '100%', width: '100%'}}>
+    <Marker
+      key={"Ben"}
+      coordinate={{latitude: 36.15397648540907, longitude: -95.94203871549036}}
+      title={"Ben's Marker"}
+      description={"This is where Ben's Marker is"}
+    />
+    </MapView> 
   </View>
 );
 
