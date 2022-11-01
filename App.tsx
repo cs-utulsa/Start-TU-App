@@ -15,7 +15,6 @@ var mapImageType = 0
 // };
 const invert = () => mapImageType = 1;
 
-
 export default function App() {
   return (
     <View style={{flex: 1, backgroundColor: TU_BLUE}}>
