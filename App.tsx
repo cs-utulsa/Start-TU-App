@@ -33,7 +33,11 @@ export default function App() {
   const[paneState, setPaneState] = useState(MAP_STATE);
   
   const changeState = (state: any) => {
-      setPaneState(CLASSES_STATE);
+    setPaneState(CLASSES_STATE);
+  }
+
+  const filterPins = (props: any) => {
+
   }
 
   return (
@@ -65,23 +69,23 @@ export default function App() {
 
 const BottomButtons = ({state, changeState}: any) => (
   <View style={styles.bottomButtonRow}>
-    <TouchableOpacity onPress={() => changeState(0)} activeOpacity = {0.75} style={styles.bottomButton}>
+    <TouchableOpacity onPress={() => changeState(0)} activeOpacity = {1} style={styles.bottomButton}>
       {state == USER_STATE && <Image style={styles.icon} source={require('./assets/TUuserinv.png')} />}
       {state != USER_STATE && <Image style={styles.icon} source={require('./assets/TUuser.png')} />}
     </TouchableOpacity>
-    <TouchableOpacity onPress={() => changeState(1)} activeOpacity = {0.75} style={styles.bottomButton}>
+    <TouchableOpacity onPress={() => changeState(1)} activeOpacity = {1} style={styles.bottomButton}>
       {state == CLASSES_STATE && <Image style={styles.icon} source={require('./assets/TUclassesinv.png')} />}
       {state != CLASSES_STATE && <Image style={styles.icon} source={require('./assets/TUclasses.png')} />}
     </TouchableOpacity>
-    <TouchableOpacity onPress={() => changeState(2)} activeOpacity = {0.75} style={styles.bottomButton}>
+    <TouchableOpacity onPress={() => changeState(2)} activeOpacity = {1} style={styles.bottomButton}>
       {state == MAP_STATE && <Image style={styles.icon} source={require('./assets/TUmapinv.png')} />}
       {state != MAP_STATE && <Image style={styles.icon} source={require('./assets/TUmap.png')} />}
     </TouchableOpacity>
-    <TouchableOpacity onPress={() => changeState(3)} activeOpacity = {0.75} style={styles.bottomButton}>
+    <TouchableOpacity onPress={() => changeState(3)} activeOpacity = {1} style={styles.bottomButton}>
       {state == CALENDER_STATE && <Image style={styles.icon} source={require('./assets/TUcalenderinv.png')} />}
       {state != CALENDER_STATE && <Image style={styles.icon} source={require('./assets/TUcalender.png')} />}
     </TouchableOpacity>
-    <TouchableOpacity onPress={() => changeState(4)} activeOpacity = {0.75} style={styles.bottomButton}>
+    <TouchableOpacity onPress={() => changeState(4)} activeOpacity = {1} style={styles.bottomButton}>
       {state == EMAIL_STATE && <Image style={styles.icon} source={require('./assets/TUemailinv.png')} />}
       {state != EMAIL_STATE && <Image style={styles.icon} source={require('./assets/TUemail.png')} />}
     </TouchableOpacity>
@@ -155,34 +159,24 @@ const styles = StyleSheet.create({
   },
   bottomButtonRow: {
     flex: 1,
-    backgroundColor: TU_BLUE,
+    backgroundColor: TU_GOLD,
     flexDirection: 'row',
     justifyContent: 'flex-end'
   },
   bottomButton: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: TU_GOLD,
     alignItems: 'center',
     padding: 5
   },
   icon: {
     height: 50,
     width: 50,
+    borderWidth: 1,
+    borderRadius: 5,
+    borderColor: DARK_BLUE,
+    backgroundColor: TU_GOLD,
     alignItems: 'center',
     padding: 5
-  },
-  classesButton: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'flex-start',
-    position: 'absolute',
-    bottom: 0,
-    height: 100,
-    width: 200,
-    borderRadius: 4,
-    borderWidth: 1,
-    elevation: 3,
-    backgroundColor: 'white',
-    borderColor: '#000',
   },
 });
