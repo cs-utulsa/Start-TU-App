@@ -1,1 +1,22 @@
-node_modules
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
+node_modules/
+.expo/
+dist/
+npm-debug.*
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
+web-build/
+
+# macOS
+<<<<<<< Updated upstream
+.DS_Store
+=======
+.DS_Store
+>>>>>>> Stashed changes
