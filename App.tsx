@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Text, View, StyleSheet, Button, Alert, Image, TouchableOpacity, Switch } from 'react-native';
+import { Text, View, StyleSheet, Button, Alert, Image, TouchableOpacity, Switch, TextInput } from 'react-native';
 import {StatusBar} from 'expo-status-bar';
-import { getTokenSourceMapRange, isPropertySignature } from 'typescript';
+import { getTokenSourceMapRange, isPropertySignature, setTextRange } from 'typescript';
 import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 
 // import logo from './assets/icon.png';
@@ -12,11 +12,15 @@ const DARK_BLUE = '#315796'
 const PANK = '#C490EB'
 const TU_GOLD = '#C2A01E'
 const TU_BLUE = '#102240'
+
 const USER_STATE = 0
 const CLASSES_STATE = 1
 const MAP_STATE = 2
 const CALENDER_STATE = 3
 const EMAIL_STATE = 4
+const LOGIN_STATE = 5
+const USER_PASSWORD = "password"
+
 var mapImage = [require('./assets/TUmap.png'), require('./assets/TUmapinv.png')];
 var mapImageType = 0
 const images = {
@@ -31,6 +35,7 @@ export default function App() {
   
   const[invImage, setInvImage] = useState(true);
   const[paneState, setPaneState] = useState(MAP_STATE);
+  const[login, setLogin] = useState(false);
   
   const changeState = (state: any) => {
     setPaneState(CLASSES_STATE);
@@ -42,26 +47,25 @@ export default function App() {
 
   return (
     <View style={{flex: 1, backgroundColor: TU_BLUE}}>
-      <View style={{paddingTop:20, padding: 5}}>
-      </View>
+      <View style={{paddingTop:20, padding: 5}}></View>
       <View style={{flex: 1}}>
         <StatusBar style="light"/>
-      <View style={{paddingTop:20, padding: 5}}>
-        <Image
-          style={{width: 50, height: 50}}
-          source={require('./assets/TUlogo.png')}
-        />
+        <View style={{paddingTop:20, padding: 5}}>
+          <Image
+            style={{width: 50, height: 50}}
+            source={require('./assets/TUlogo.png')}
+          />
+        </View>
+        <View style={{flex: 1}}>
+          <StatusBar style="light"/>
+          {paneState == USER_STATE && <UserPane></UserPane>}
+          {paneState == CLASSES_STATE && <ClassesPane></ClassesPane>}
+          {paneState == MAP_STATE && <MapPane></MapPane>}
+          {paneState == CALENDER_STATE && <CalenderPane></CalenderPane>}
+          {paneState == EMAIL_STATE && <EmailPane></EmailPane>}
+          <BottomButtons state={paneState} changeState={setPaneState}></BottomButtons>
+        </View>
       </View>
-      <View style={{flex: 1}}>
-        <StatusBar style="light"/>
-        {paneState == USER_STATE && <UserPane></UserPane>}
-        {paneState == CLASSES_STATE && <ClassesPane></ClassesPane>}
-        {paneState == MAP_STATE && <MapPane></MapPane>}
-        {paneState == CALENDER_STATE && <CalenderPane></CalenderPane>}
-        {paneState == EMAIL_STATE && <EmailPane></EmailPane>}
-        <BottomButtons state={paneState} changeState={setPaneState}></BottomButtons>
-      </View>
-    </View>
     </View>
   );
 }
@@ -93,11 +97,36 @@ const BottomButtons = ({state, changeState}: any) => (
   </View>
 );
 
+/*
+const LoginPage = () => (
+  <View style={styles.loginPage}>
+    <input id = "username" placeholder = "ENTER USERNAME"></input>
+  </View>
+)
+
 const UserPane = () => (
   <View style={styles.userPane}>
     <Text> USERS ARE NOT YET IMPLEMENTED</Text>
   </View>
 )
+*/
+const UserPane = ({state, changeState}: any) => (
+  <View style={styles.loginPage}>
+    <Text>INPUT YOUR FUCKING TEXT</Text>
+    <TextInput
+      style = {{height: 40}}
+      placeholder = "username"
+      defaultValue = "text"
+    />
+    <Button
+      //style = {styles.loginButton}
+      title = "LOGIN"
+      onPress = {() => changeState(2)}
+      color = "#FFFFFF"
+    />
+  </View>
+)
+
 
 const ClassesPane = () => (
   <View style={styles.classesPane}>
@@ -137,6 +166,11 @@ const EmailPane = () => (
 );
 
 const styles = StyleSheet.create({
+  loginPage: {
+    padding: 10,
+    flex: 1,
+    backgroundColor: LIGHT_BLUE
+  },
   userPane: {
     flex: 9,
     backgroundColor: LIGHT_BLUE,
@@ -167,6 +201,13 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: TU_GOLD,
     alignItems: 'center',
+    padding: 5
+  },
+  loginButton: {
+    flex: 1,
+    backgroundColor: PANK,
+    borderColor: DARK_BLACK,
+    alignItems: "center",
     padding: 5
   },
   icon: {
