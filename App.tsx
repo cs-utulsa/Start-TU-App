@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Text, View, StyleSheet, Button, Alert, Image, TouchableOpacity, Switch } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { Text, View, StyleSheet, Button, Alert, Image, TouchableOpacity, Switch, TextInput} from 'react-native';
 import {StatusBar} from 'expo-status-bar';
 import { getTokenSourceMapRange, isPropertySignature } from 'typescript';
 import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
@@ -17,21 +17,24 @@ const CLASSES_STATE = 1
 const MAP_STATE = 2
 const CALENDER_STATE = 3
 const EMAIL_STATE = 4
-var mapImage = [require('./assets/TUmap.png'), require('./assets/TUmapinv.png')];
-var mapImageType = 0
 const images = {
   mainButtons: {
     map: require('./assets/TUmap.png'),
   },
 };
 
+
 export default function App() {
   
   const[paneState, setPaneState] = useState(MAP_STATE);
+  const [text, onChangeText] = React.useState("Useless Text");
+  const [regionState, setRegion] = useState({latitude: 36.15236, longitude: -95.94575, latitudeDelta: 0.01, longitudeDelta: 0.0125,})
+  const filterPins = (props: any) => {}
 
-  const filterPins = (props: any) => {
-    
-  }
+  function regionSet(latitude: any, longitude : any) {
+    console.log(latitude);
+    console.log(longitude);
+  };
 
   return (
     <View style={{flex: 1, backgroundColor: TU_BLUE}}>
@@ -49,7 +52,7 @@ export default function App() {
         <StatusBar style="light"/>
         {paneState == USER_STATE && <UserPane></UserPane>}
         {paneState == CLASSES_STATE && <ClassesPane></ClassesPane>}
-        {paneState == MAP_STATE && <MapPane></MapPane>}
+        {paneState == MAP_STATE && <MapPane setRegion = {regionSet} regionState = {regionState}></MapPane>}
         {paneState == CALENDER_STATE && <CalenderPane></CalenderPane>}
         {paneState == EMAIL_STATE && <EmailPane></EmailPane>}
         <BottomButtons state={paneState} changeState={setPaneState}></BottomButtons>
@@ -98,7 +101,7 @@ const ClassesPane = () => (
   </View>
 );
 
-const MapPane= () => (
+const MapPane= ({setRegion, regionState} : any) => (
   <View style={styles.mapPane}>
     <MapView 
       initialRegion={{
@@ -106,7 +109,9 @@ const MapPane= () => (
         longitude: -95.94575,
         latitudeDelta: 0.01,
         longitudeDelta: 0.0125,}} 
-      style = {{height: '100%', width: '100%'}}>
+      style = {{height: '100%', width: '100%'}}
+      onRegionChange={Region => setRegion(Region.latitude, Region.longitude)}
+      region = {regionState}>
     <Marker
       key={"Ben"}
       coordinate={{latitude: 36.15397648540907, longitude: -95.94203871549036}}
@@ -169,6 +174,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     borderColor: DARK_BLUE,
     backgroundColor: TU_GOLD,
+    paddingBottom: 5,
     alignItems: 'center',
     padding: 5
   },
