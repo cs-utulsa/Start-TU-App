@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Text, View, StyleSheet, Button, Alert, Image, TouchableOpacity, Switch, TextInput} from 'react-native';
 import {StatusBar} from 'expo-status-bar';
-import { getTokenSourceMapRange, isPropertySignature } from 'typescript';
+import { getTokenSourceMapRange, isPropertySignature, setTextRange } from 'typescript';
 import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
+import {MapOrEntries, useMap} from 'usehooks-ts';
 
 // import logo from './assets/icon.png';
 
@@ -28,13 +29,21 @@ export default function App() {
   
   const[paneState, setPaneState] = useState(MAP_STATE);
   const [text, onChangeText] = React.useState("Useless Text");
-  const [regionState, setRegion] = useState({latitude: 36.15236, longitude: -95.94575, latitudeDelta: 0.01, longitudeDelta: 0.0125,})
-  const filterPins = (props: any) => {}
+  const initialValues: MapOrEntries<String, Array<String | any>> = [["KEP", [{latitude: 36.153979761758876, longitude: -95.94205412959185}, "Keplinger Hall", "This is where Ben's Marker is"]]]
+  
+  let markerMap = new Map()
+  const possibleTags = ["all", "ens", "housing"]
+  const currentTags = ["all"]
+  const [filters, setFilters] = useState(currentTags)
 
-  function regionSet(latitude: any, longitude : any) {
-    console.log(latitude);
-    console.log(longitude);
-  };
+  const filterPins = (tag: string)  => {
+    // filters.map((filter) => filter == "ENS" ? {filter})
+    if (possibleTags.includes(tag)) {
+      setFilters([tag])
+      console.log(tag)
+    }
+    console.log(filters)
+  }
 
   return (
     <View style={{flex: 1, backgroundColor: TU_BLUE}}>
@@ -52,7 +61,7 @@ export default function App() {
         <StatusBar style="light"/>
         {paneState == USER_STATE && <UserPane></UserPane>}
         {paneState == CLASSES_STATE && <ClassesPane></ClassesPane>}
-        {paneState == MAP_STATE && <MapPane setRegion = {regionSet} regionState = {regionState}></MapPane>}
+        {paneState == MAP_STATE && <MapPane filters={filters} filterPins={filterPins} currentTags={currentTags}></MapPane>}
         {paneState == CALENDER_STATE && <CalenderPane></CalenderPane>}
         {paneState == EMAIL_STATE && <EmailPane></EmailPane>}
         <BottomButtons state={paneState} changeState={setPaneState}></BottomButtons>
@@ -61,7 +70,6 @@ export default function App() {
     </View>
   );
 }
-
 
 const BottomButtons = ({state, changeState}: any) => (
   <View style={styles.bottomButtonRow}>
@@ -101,23 +109,45 @@ const ClassesPane = () => (
   </View>
 );
 
-const MapPane= ({setRegion, regionState} : any) => (
+const MapPane= ({filters, filterPins, currentTags} : any) => (
   <View style={styles.mapPane}>
+    <TextInput onSubmitEditing={(e) => filterPins(e.nativeEvent.text.toLowerCase())}></TextInput>
     <MapView 
       initialRegion={{
         latitude: 36.15236,
         longitude: -95.94575,
         latitudeDelta: 0.01,
         longitudeDelta: 0.0125,}} 
-      style = {{height: '100%', width: '100%'}}
-      onRegionChange={Region => setRegion(Region.latitude, Region.longitude)}
-      region = {regionState}>
-    <Marker
-      key={"Ben"}
-      coordinate={{latitude: 36.15397648540907, longitude: -95.94203871549036}}
-      title={"Ben's Marker"}
-      description={"This is where Ben's Marker is"}
-    />
+      style = {{height: '100%', width: '100%'}}>
+      {(filters.includes("ens")  || filters.includes("all")) && <Marker
+        key={0}
+        coordinate={{latitude: 36.153979761758876, longitude: -95.94205412959185}}
+        title={"Keplinger Hall"}
+        description={"This is where Ben's Marker is"} />}
+      {(filters.includes("ens")  || filters.includes("all")) && <Marker
+        key={1}
+        coordinate={{latitude: 36.15312927984461, longitude: -95.94206106343141}}
+        title={"Stephenson Hall"}
+        description={"This is where Ben's Marker is"}
+      />}
+      {(filters.includes("housing")  || filters.includes("all")) && <Marker
+        key={2}
+        coordinate={{latitude: 36.15322236736723, longitude: -95.94873798075692}}
+        title={"John Mabee"}
+        description={"This is where Ben's Marker is"}
+      />}
+      {(filters.includes("ens")  || filters.includes("all")) && <Marker
+        key={3}
+        coordinate={{latitude: 36.15313162846364, longitude: -95.94272874465813}}
+        title={"Rayzor Hall"}
+        description={"This is where Ben's Marker is"}
+      />}
+      {filters.includes("all") && <Marker
+        key={4}
+        coordinate={{latitude: 36.153439180383586, longitude: -95.94357520929442}}
+        title={"Alan Chapman Student Union"}
+        description={"This is where Ben's Marker is"}
+      />}
     </MapView> 
   </View>
 );
