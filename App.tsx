@@ -35,7 +35,6 @@ export default function App() {
   
   const[invImage, setInvImage] = useState(true);
   const[paneState, setPaneState] = useState(MAP_STATE);
-  const[login, setLogin] = useState(false);
   
   const changeState = (state: any) => {
     setPaneState(CLASSES_STATE);
@@ -97,20 +96,8 @@ const BottomButtons = ({state, changeState}: any) => (
   </View>
 );
 
-/*
-const LoginPage = () => (
-  <View style={styles.loginPage}>
-    <input id = "username" placeholder = "ENTER USERNAME"></input>
-  </View>
-)
 
-const UserPane = () => (
-  <View style={styles.userPane}>
-    <Text> USERS ARE NOT YET IMPLEMENTED</Text>
-  </View>
-)
-*/
-const UserPane = ({state, changeState}: any) => (
+const LoginPage = () => (
   <View style={styles.loginPage}>
     <Text>INPUT YOUR FUCKING TEXT</Text>
     <TextInput
@@ -121,11 +108,18 @@ const UserPane = ({state, changeState}: any) => (
     <Button
       //style = {styles.loginButton}
       title = "LOGIN"
-      onPress = {() => changeState(2)}
+      //onPress = {() => changeState(2)}
       color = "#FFFFFF"
     />
   </View>
 )
+
+const UserPane = () => (
+  <View style={styles.userPane}>
+    <Text> USERS ARE NOT YET IMPLEMENTED</Text>
+  </View>
+)
+
 
 
 const ClassesPane = () => (
