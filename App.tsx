@@ -13,6 +13,7 @@ const DARK_BLUE = '#315796'
 const PANK = '#C490EB'
 const TU_GOLD = '#C2A01E'
 const TU_BLUE = '#102240'
+const TU_LIGHT_BLUE = '#004B8D'
 const USER_STATE = 0
 const CLASSES_STATE = 1
 const MAP_STATE = 2
