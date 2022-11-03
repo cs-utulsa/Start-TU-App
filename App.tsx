@@ -49,10 +49,10 @@ export default function App() {
       </View>
       <View style={{flex: 1}}>
         <StatusBar style="light"/>
-      <View style={{paddingTop:20, padding: 5}}>
+      <View style={{paddingTop:20}}>
         <Image
           style={{width: 50, height: 50}}
-          source={require('./assets/TUlogo.png')}
+          source={require('./assets/TUlogonormal.png')}
         />
       </View>
       <View style={{flex: 1}}>
@@ -109,7 +109,9 @@ const ClassesPane = () => (
 
 const MapPane= ({filters, filterPins, currentTags} : any) => (
   <View style={styles.mapPane}>
-    <TextInput onSubmitEditing={(e) => filterPins(e.nativeEvent.text.toLowerCase())}></TextInput>
+    <View style={{padding:5, paddingBottom:10, height: 50}}>
+    <TextInput onSubmitEditing={(e) => filterPins(e.nativeEvent.text.toLowerCase())} style={{fontSize: 25, height: 30, backgroundColor: DARK_BLUE, flex: 1}}></TextInput>
+    </View>
     <MapView 
       initialRegion={{
         latitude: 36.15236,
@@ -173,7 +175,7 @@ const styles = StyleSheet.create({
   },
   mapPane: {
     flex: 9,
-    backgroundColor: DARK_BLUE,
+    backgroundColor: TU_BLUE,
   },
   calenderPane: {
     flex: 9,
