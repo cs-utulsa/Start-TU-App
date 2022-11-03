@@ -40,9 +40,7 @@ export default function App() {
     // filters.map((filter) => filter == "ENS" ? {filter})
     if (possibleTags.includes(tag)) {
       setFilters([tag])
-      console.log(tag)
     }
-    console.log(filters)
   }
 
   return (
