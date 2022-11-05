@@ -75,7 +75,7 @@ class Location_Entity {
     }
 
     async queryAllAttributes_Async(): Promise<Location_Data[]> {
-      return new Promise((resolve) => {
+      return new Promise((resolve, reject) => {
         let Location_Data: Location_Data[] = [];
 
         this.DB.readTransaction(
@@ -90,13 +90,43 @@ class Location_Entity {
             );
           },
           (error) => {
-            console.log(error.message);
+            reject(error.message);
           },
           () => {
             resolve(Location_Data);
           }
         );
       })
+    }
+
+    async queryAttributes_Tag(tag: string = "all"): Promise<Location_Data[]> {
+      return new Promise((resolve, reject) => {
+        let Location_Data: Location_Data[] = [];
+
+        this.DB.transaction(
+          (tx) => {
+            const sqlCommand: string = 
+            "select L.Name, L.Description, L.Latitude, L.Longitude " +
+            "from Location as L join Location_Tag as LT on L.Name=LT.Location_Name " +
+            "where LT.Tag=?";
+
+            tx.executeSql(sqlCommand, [tag],
+              (tx, results) => {
+                Location_Data = results.rows._array;
+              }
+            );
+
+          },
+
+          (error) => {
+            reject(error.message);
+          },
+
+          () => {
+            resolve(Location_Data);
+          }
+        );
+      });
     }
 }
 

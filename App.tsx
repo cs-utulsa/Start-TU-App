@@ -13,15 +13,21 @@ export default function App() {
     //Person.dropPersonTable();
     //Location.dropLocationTable();
     
-    populate();
+    //populate();
 
-    //downloadDatabase_Expo_To_Machine();
+    const [locationData, setLocationData] = useState<Location_Data[]>();
+    const [locationDataQueryTag, setQueryTag] = useState();
+    
+    
+
     return(
     <View style={styles.container}>
       <Text>Database Testing Branch</Text>
       <StatusBar style="auto" />
       <QueryPerson queryFunction={Person.queryAllAttributes_Async()} title ={"Query Person"}></QueryPerson>
-      <QueryLocation queryFunction={Location.queryAllAttributes_Async()} title = {"Query Location"}></QueryLocation>
+
+      <QueryLocation queryFunction={Location.queryAttributes_Tag(locationDataQueryTag)} title = {"Query Location"} 
+      locationData = {locationData} setLocationData = {setLocationData} setQueryTag={setQueryTag}></QueryLocation>
     </View>
     );
 }
@@ -43,19 +49,23 @@ const QueryPerson = ({queryFunction, title}: any) => (
 );
 
 
-const QueryLocation = ({queryFunction, title}: any) => (
+const QueryLocation = ({queryFunction, title, locationData, setLocationData, setQueryTag}: any) => (
   <View>
     <Button onPress={() => queryFunction.then(
       (value: Location_Data[]) => 
       {
-        let allNames: string = "";
-        for (let i = 0; i < value.length; i++) {
-          allNames += value[i].Name;
-        }
-        alert(allNames)
+        setLocationData(value);
+        setQueryTag("ens");
       }
       )} 
       title = {title}/>
+      
+      
+      {locationData.map((item: Location_Data, index: number) => 
+        <Text key={index}>{item.Name}</Text>
+      )}
+      
+      
   </View>
 );
 
