@@ -5,6 +5,10 @@ import { getTokenSourceMapRange, isPropertySignature, setTextRange } from 'types
 import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import {MapOrEntries, useMap} from 'usehooks-ts';
 
+import {Person, Person_Data} from './Database/Person';
+import {Location, Location_Data} from './Database/Location';
+import { populate } from './Database/Populate_DB';
+
 // import logo from './assets/icon.png';
 
 const DARK_BLACK = '#171D28'
@@ -30,19 +34,21 @@ export default function App() {
   
   const[paneState, setPaneState] = useState(MAP_STATE);
   const [text, onChangeText] = React.useState("Useless Text");
-  const initialValues: MapOrEntries<String, Array<String | any>> = [["KEP", [{latitude: 36.153979761758876, longitude: -95.94205412959185}, "Keplinger Hall", "This is where Ben's Marker is"]]]
-  
-  let markerMap = new Map()
-  const possibleTags = ["all", "ens", "housing"]
-  const currentTags = ["all"]
-  const [filters, setFilters] = useState(currentTags)
+   
+  //Person.dropPersonTable();
+  //Location.dropLocationTable();
+  //populate();
 
-  const filterPins = (tag: string)  => {
-    // filters.map((filter) => filter == "ENS" ? {filter})
-    if (possibleTags.includes(tag)) {
-      setFilters([tag])
-    }
-  }
+  const [markerData, setMarkerData] = useState<Location_Data[]>([{
+      Name: "",
+      Description: "",
+      Latitude: 0,
+      Longitude: 0,
+      Tags: ["ens", "all"]
+  }]); 
+  const [markerTag, setMarkerTag] = useState<string>("all");
+  Location.queryAttributes_Tag(markerTag).then((value: Location_Data[]) => {setMarkerData(value)});
+
 
   return (
     <View style={{flex: 1, backgroundColor: TU_BLUE}}>
@@ -60,7 +66,14 @@ export default function App() {
         <StatusBar style="light"/>
         {paneState == USER_STATE && <UserPane></UserPane>}
         {paneState == CLASSES_STATE && <ClassesPane></ClassesPane>}
-        {paneState == MAP_STATE && <MapPane filters={filters} filterPins={filterPins} currentTags={currentTags}></MapPane>}
+
+        {
+          paneState == MAP_STATE && 
+          <MapPane query={Location.queryAttributes_Tag(markerTag)} markerData={markerData} 
+                   setMarkerData={setMarkerData} setMarkerTag={setMarkerTag}>
+          </MapPane>
+        }
+
         {paneState == CALENDER_STATE && <CalenderPane></CalenderPane>}
         {paneState == EMAIL_STATE && <EmailPane></EmailPane>}
         <BottomButtons state={paneState} changeState={setPaneState}></BottomButtons>
@@ -108,47 +121,39 @@ const ClassesPane = () => (
   </View>
 );
 
-const MapPane= ({filters, filterPins, currentTags} : any) => (
+const MapPane= ({query, markerData, setMarkerData, setMarkerTag} : any) => (
   <View style={styles.mapPane}>
     <View style={{padding:5, paddingBottom:10, height: 50}}>
-    <TextInput onSubmitEditing={(e) => filterPins(e.nativeEvent.text.toLowerCase())} style={{fontSize: 25, height: 30, backgroundColor: DARK_BLUE, flex: 1}}></TextInput>
+      <TextInput onSubmitEditing={
+        (e) => {
+          const tagInput: string = e.nativeEvent.text.toLowerCase();
+          setMarkerTag(tagInput);
+          query.then((value:Location_Data[]) => {
+              setMarkerData(value);
+            }
+          );
+        }
+      }   
+      style={{fontSize: 25, height: 30, backgroundColor: DARK_BLUE, flex: 1}}>
+      </TextInput>
     </View>
+
     <MapView 
-      initialRegion={{
-        latitude: 36.15236,
-        longitude: -95.94575,
-        latitudeDelta: 0.01,
-        longitudeDelta: 0.0125,}} 
-      style = {{height: '100%', width: '100%'}}>
-      {(filters.includes("ens")  || filters.includes("all")) && <Marker
-        key={0}
-        coordinate={{latitude: 36.153979761758876, longitude: -95.94205412959185}}
-        title={"Keplinger Hall"}
-        description={"This is where Ben's Marker is"} />}
-      {(filters.includes("ens")  || filters.includes("all")) && <Marker
-        key={1}
-        coordinate={{latitude: 36.15312927984461, longitude: -95.94206106343141}}
-        title={"Stephenson Hall"}
-        description={"This is where Ben's Marker is"}
-      />}
-      {(filters.includes("housing")  || filters.includes("all")) && <Marker
-        key={2}
-        coordinate={{latitude: 36.15322236736723, longitude: -95.94873798075692}}
-        title={"John Mabee"}
-        description={"This is where Ben's Marker is"}
-      />}
-      {(filters.includes("ens")  || filters.includes("all")) && <Marker
-        key={3}
-        coordinate={{latitude: 36.15313162846364, longitude: -95.94272874465813}}
-        title={"Rayzor Hall"}
-        description={"This is where Ben's Marker is"}
-      />}
-      {filters.includes("all") && <Marker
-        key={4}
-        coordinate={{latitude: 36.153439180383586, longitude: -95.94357520929442}}
-        title={"Alan Chapman Student Union"}
-        description={"This is where Ben's Marker is"}
-      />}
+        initialRegion={{
+          latitude: 36.15236,
+          longitude: -95.94575,
+          latitudeDelta: 0.01,
+          longitudeDelta: 0.0125,}} 
+        style = {{height: '100%', width: '100%'}}>
+         
+        {markerData.map((item: Location_Data, index:number) => (
+          <Marker
+            key={index}
+            coordinate={{latitude: item.Latitude, longitude: item.Longitude}}
+            title={item.Name}
+            description={item.Description}>
+          </Marker>
+        ))}
     </MapView> 
   </View>
 );
