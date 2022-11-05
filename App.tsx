@@ -10,8 +10,9 @@ import { downloadDatabase_Expo_To_Machine } from './Database/Utilities';
 
 export default function App() {
 
-    // Person.dropPersonTable();
-    // Location.dropLocationTable();
+    //Person.dropPersonTable();
+    //Location.dropLocationTable();
+    
     populate();
 
     //downloadDatabase_Expo_To_Machine();

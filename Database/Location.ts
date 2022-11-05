@@ -19,7 +19,7 @@ class Location_Entity {
             "CREATE TABLE IF NOT EXISTS Location"
             + "(" 
             + "Name VARCHAR(100) PRIMARY KEY NOT NULL,"
-            + "Description VARCHAR(MAX),"
+            + "Description VARCHAR(5000),"
             + "Latitude REAL,"
             + "Longitude REAL"
             + ");";

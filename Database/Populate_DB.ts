@@ -48,9 +48,6 @@ const John_Mabee: Location_Data = {
 };
 
 export function populate() {
-    Person.dropPersonTable();
-    Location.dropLocationTable();
-
     Person.createPersonTable();
     Location.createLocationTable();
 
