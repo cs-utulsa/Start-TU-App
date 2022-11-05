@@ -19,6 +19,7 @@ class Location_Entity {
             "CREATE TABLE IF NOT EXISTS Location"
             + "(" 
             + "Name VARCHAR(100) PRIMARY KEY NOT NULL,"
+            + "Description VARCHAR(MAX),"
             + "Latitude REAL,"
             + "Longitude REAL"
             + ");";
@@ -57,9 +58,9 @@ class Location_Entity {
         (tx) => {
           const sqlCommand:string = 
             
-          "INSERT INTO Location (Name, Latitude, Longitude) values "
-          + "(?, ?, ?)";
-          tx.executeSql(sqlCommand, [Location_Data.Name, Location_Data.Latitude, Location_Data.Longitude]);
+          "INSERT INTO Location (Name, Description, Latitude, Longitude) values "
+          + "(?, ?, ?, ?)";
+          tx.executeSql(sqlCommand, [Location_Data.Name, Location_Data.Description, Location_Data.Latitude, Location_Data.Longitude]);
 
           this.Tags_Table.insertIntoLocationTagTable(Location_Data);
         },
@@ -101,8 +102,9 @@ class Location_Entity {
 
 export interface Location_Data {
     Name: string,
+    Description: string,
     Latitude: number,
-    Longitude: number
+    Longitude: number,
     Tags: string[]
 }
 
