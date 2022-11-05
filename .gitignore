@@ -1,3 +1,7 @@
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 node_modules/
 .expo/
 dist/
@@ -11,4 +15,8 @@ npm-debug.*
 web-build/
 
 # macOS
+<<<<<<< Updated upstream
 .DS_Store
+=======
+.DS_Store
+>>>>>>> Stashed changes
