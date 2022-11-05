@@ -57,7 +57,7 @@ export class Location_Tag_Entity {
                 
                 "insert into Location_Tag (Tag, Location_Name) values "
                 + "(?, ?)";
-                tx.executeSql(sqlCommand, [Location_Data.Tags[i], Location_Data.Name]);
+                tx.executeSql(sqlCommand, [Location_Data.Tags[i].toLowerCase(), Location_Data.Name]);
               }
             },
     

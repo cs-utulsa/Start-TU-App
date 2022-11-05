@@ -4,37 +4,17 @@ import { StyleSheet, Text, View, Button, Alert, Image, TouchableOpacity, Switch 
 
 import {Person, Person_Data} from './Database/Person';
 import {Location, Location_Data} from './Database/Location';
+import { populate } from './Database/Populate_DB';
+
+import { downloadDatabase_Expo_To_Machine } from './Database/Utilities';
 
 export default function App() {
 
-    // const person1: Person_Data = {
-    //   TU_Email: "lar9482@utulsa.edu",
-    //   Name: "Luke Runnels",
-    //   Password: "password123"
-    // };
+    // Person.dropPersonTable();
+    // Location.dropLocationTable();
+    populate();
 
-    // const person2: Person_Data = {
-    //   TU_Email: "jdd9482@utulsa.edu",
-    //   Name: "John Doe",
-    //   Password: "password456"
-    // };
-
-    // const location1: Location_Data = {
-    //   Name: "Keplinger Hall",
-    //   Address: "TU Campus",
-    //   Latitude: 100,
-    //   Longitude: 200
-
-    // };
-
-    // Person.createPersonTable();
-    // Location.createLocationTable();
-
-    // Person.insertIntoPersonTable(person1);
-    // Person.insertIntoPersonTable(person2);
-    
-    // Location.insertIntoLocationTable(location1);
-
+    //downloadDatabase_Expo_To_Machine();
     return(
     <View style={styles.container}>
       <Text>Database Testing Branch</Text>

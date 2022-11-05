@@ -19,11 +19,12 @@ class Location_Entity {
             "CREATE TABLE IF NOT EXISTS Location"
             + "(" 
             + "Name VARCHAR(100) PRIMARY KEY NOT NULL,"
-            + "Address VARCHAR(100),"
             + "Latitude REAL,"
             + "Longitude REAL"
             + ");";
             tx.executeSql(sqlCommand);
+
+            this.Tags_Table.createLocationTagTable();
           },
           (error) => {
             console.log(error.message);
@@ -37,6 +38,7 @@ class Location_Entity {
     dropLocationTable() {
       this.DB.transaction(
           (tx) => {
+              this.Tags_Table.dropLocationTagTable();
               const sqlCommand:string = "DROP TABLE Location";
               tx.executeSql(sqlCommand);
           },
@@ -55,9 +57,9 @@ class Location_Entity {
         (tx) => {
           const sqlCommand:string = 
             
-          "INSERT INTO Location (Name, Address, Latitude, Longitude) values "
-          + "(?, ?, ?, ?)";
-          tx.executeSql(sqlCommand, [Location_Data.Name, Location_Data.Address, Location_Data.Latitude, Location_Data.Longitude]);
+          "INSERT INTO Location (Name, Latitude, Longitude) values "
+          + "(?, ?, ?)";
+          tx.executeSql(sqlCommand, [Location_Data.Name, Location_Data.Latitude, Location_Data.Longitude]);
 
           this.Tags_Table.insertIntoLocationTagTable(Location_Data);
         },
@@ -99,7 +101,6 @@ class Location_Entity {
 
 export interface Location_Data {
     Name: string,
-    Address: string,
     Latitude: number,
     Longitude: number
     Tags: string[]
