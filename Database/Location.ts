@@ -1,11 +1,14 @@
 import * as SQLite from 'expo-sqlite'
 import {db_name} from './DB_Name';
+import {Location_Tag_Entity} from './Location_Tag'
 
 class Location_Entity {
     DB: SQLite.WebSQLDatabase;
+    Tags_Table: Location_Tag_Entity;
 
     constructor(database_name: string) {
         this.DB = SQLite.openDatabase(database_name);
+        this.Tags_Table = new Location_Tag_Entity(database_name);
     }
 
     createLocationTable() {
@@ -33,7 +36,6 @@ class Location_Entity {
 
     dropLocationTable() {
       this.DB.transaction(
-
           (tx) => {
               const sqlCommand:string = "DROP TABLE Location";
               tx.executeSql(sqlCommand);
@@ -43,7 +45,7 @@ class Location_Entity {
               console.log(error.message);
             },
             () => {
-              console.log('Successfully drop the Person table');
+              console.log('Successfully drop the Location Tag table');
             }
       );
   }
@@ -51,17 +53,20 @@ class Location_Entity {
     insertIntoLocationTable(Location_Data: Location_Data) {
         this.DB.transaction(
         (tx) => {
-        const sqlCommand:string = 
+          const sqlCommand:string = 
             
-        "INSERT INTO Location (Name, Address, Latitude, Longitude) values "
-        + "(?, ?, ?, ?)";
-        tx.executeSql(sqlCommand, [Location_Data.Name, Location_Data.Address, Location_Data.Latitude, Location_Data.Longitude]);
+          "INSERT INTO Location (Name, Address, Latitude, Longitude) values "
+          + "(?, ?, ?, ?)";
+          tx.executeSql(sqlCommand, [Location_Data.Name, Location_Data.Address, Location_Data.Latitude, Location_Data.Longitude]);
+
+          this.Tags_Table.insertIntoLocationTagTable(Location_Data);
         },
+
         (error) => {
-        console.log(error.message);
+          console.log(error.message);
         },
         () => {
-        console.log('Successfully inserted entry into Location table');
+          console.log('Successfully inserted entry into Location table');
         }
        );
     }
@@ -97,6 +102,7 @@ export interface Location_Data {
     Address: string,
     Latitude: number,
     Longitude: number
+    Tags: string[]
 }
 
 export const Location: Location_Entity = new Location_Entity(db_name);

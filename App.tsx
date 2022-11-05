@@ -7,32 +7,33 @@ import {Location, Location_Data} from './Database/Location';
 
 export default function App() {
 
-    const person1: Person_Data = {
-      TU_Email: "lar9482@utulsa.edu",
-      Name: "Luke Runnels",
-      Password: "password123"
-    };
+    // const person1: Person_Data = {
+    //   TU_Email: "lar9482@utulsa.edu",
+    //   Name: "Luke Runnels",
+    //   Password: "password123"
+    // };
 
-    const person2: Person_Data = {
-      TU_Email: "jdd9482@utulsa.edu",
-      Name: "John Doe",
-      Password: "password456"
-    };
+    // const person2: Person_Data = {
+    //   TU_Email: "jdd9482@utulsa.edu",
+    //   Name: "John Doe",
+    //   Password: "password456"
+    // };
 
-    const location1: Location_Data = {
-      Name: "Keplinger Hall",
-      Address: "TU Campus",
-      Latitude: 100,
-      Longitude: 200
-    };
+    // const location1: Location_Data = {
+    //   Name: "Keplinger Hall",
+    //   Address: "TU Campus",
+    //   Latitude: 100,
+    //   Longitude: 200
 
-    Person.createPersonTable();
-    Location.createLocationTable();
+    // };
 
-    Person.insertIntoPersonTable(person1);
-    Person.insertIntoPersonTable(person2);
+    // Person.createPersonTable();
+    // Location.createLocationTable();
+
+    // Person.insertIntoPersonTable(person1);
+    // Person.insertIntoPersonTable(person2);
     
-    Location.insertIntoLocationTable(location1);
+    // Location.insertIntoLocationTable(location1);
 
     return(
     <View style={styles.container}>
