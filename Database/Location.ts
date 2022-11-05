@@ -51,7 +51,7 @@ class Location_Entity {
               console.log('Successfully drop the Location Tag table');
             }
       );
-  }
+    }
     
     insertIntoLocationTable(Location_Data: Location_Data) {
         this.DB.transaction(

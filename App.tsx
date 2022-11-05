@@ -15,10 +15,15 @@ export default function App() {
     
     //populate();
 
-    const [locationData, setLocationData] = useState<Location_Data[]>();
-    const [locationDataQueryTag, setQueryTag] = useState();
-    
-    
+    const [locationData, setLocationData] = useState<Location_Data[]>([{
+      Name: "",
+      Description: "",
+      Latitude: 0,
+      Longitude: 0,
+      Tags: ["ens", "all"]
+    }]);
+    const [locationDataQueryTag, setQueryTag] = useState("all");
+    Location.queryAttributes_Tag(locationDataQueryTag).then((value) => {setLocationData(value)});
 
     return(
     <View style={styles.container}>
@@ -62,7 +67,7 @@ const QueryLocation = ({queryFunction, title, locationData, setLocationData, set
       
       
       {locationData.map((item: Location_Data, index: number) => 
-        <Text key={index}>{item.Name}</Text>
+        <Text key={item.Name}>{item.Name}</Text>
       )}
       
       
