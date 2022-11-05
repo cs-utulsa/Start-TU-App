@@ -100,9 +100,6 @@ const QueryLocationTag = ({query, markerData, setMarkerData, setMarkerTag}: any)
 )
 
 
-
-
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
