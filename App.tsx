@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Button, Alert, Image, TouchableOpacity, Switch } from 'react-native';
+import { StyleSheet, Text, View, Button, Alert, Image, TouchableOpacity, Switch, TextInput} from 'react-native';
 
 import {Person, Person_Data} from './Database/Person';
 import {Location, Location_Data} from './Database/Location';
@@ -11,9 +11,7 @@ import { downloadDatabase_Expo_To_Machine } from './Database/Utilities';
 export default function App() {
 
     //Person.dropPersonTable();
-    //Location.dropLocationTable();
-    
-    //populate();
+    //Location.dropLocationTable();    
 
     const [locationData, setLocationData] = useState<Location_Data[]>([{
       Name: "",
@@ -31,8 +29,13 @@ export default function App() {
       <StatusBar style="auto" />
       <QueryPerson queryFunction={Person.queryAllAttributes_Async()} title ={"Query Person"}></QueryPerson>
 
-      <QueryLocation queryFunction={Location.queryAttributes_Tag(locationDataQueryTag)} title = {"Query Location"} 
-      locationData = {locationData} setLocationData = {setLocationData} setQueryTag={setQueryTag}></QueryLocation>
+      <QueryLocationTag 
+          query={Location.queryAttributes_Tag(locationDataQueryTag)} 
+          markerData={locationData}
+          setMarkerData={setLocationData}
+          setMarkerTag={setQueryTag}>    
+      </QueryLocationTag>
+
     </View>
     );
 }
@@ -64,8 +67,6 @@ const QueryLocation = ({queryFunction, title, locationData, setLocationData, set
       }
       )} 
       title = {title}/>
-      
-      
       {locationData.map((item: Location_Data, index: number) => 
         <Text key={item.Name}>{item.Name}</Text>
       )}
@@ -73,6 +74,33 @@ const QueryLocation = ({queryFunction, title, locationData, setLocationData, set
       
   </View>
 );
+
+const QueryLocationTag = ({query, markerData, setMarkerData, setMarkerTag}: any) => (
+  <View>
+    <TextInput onSubmitEditing = {(e) => {
+      const tagInput: string = e.nativeEvent.text.toLowerCase();
+      if (tagInput == "") {
+        setMarkerTag("all");
+      }
+      else {
+        setMarkerTag(e.nativeEvent.text.toLowerCase());
+      }
+      
+      query.then((value: Location_Data[]) => {
+        setMarkerData(value);
+      })
+    }}>
+    </TextInput>
+
+    {markerData.map((item: Location_Data, index: number) => 
+      <Text key={item.Name}>{item.Name}</Text>)}
+    
+    
+   </View>
+)
+
+
+
 
 
 const styles = StyleSheet.create({

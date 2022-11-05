@@ -44,13 +44,10 @@ const John_Mabee: Location_Data = {
     Description: "All Males' Dorm",
     Latitude: 36.15322236736723,
     Longitude: -95.94873798075692,
-    Tags: ["all"]
+    Tags: ["all", "housing"]
 };
 
 export function populate() {
-    Person.dropPersonTable();
-    Location.dropLocationTable();
-
     Person.createPersonTable();
     Location.createLocationTable();
 
