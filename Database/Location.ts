@@ -2,8 +2,13 @@ import * as SQLite from 'expo-sqlite'
 import {db_name} from './DB_Name';
 import {Location_Tag_Entity} from './Location_Tag'
 
+/**
+ * This class serves as a wrapper for all queries that return 'Location' attributes.
+ */
 class Location_Entity {
     DB: SQLite.WebSQLDatabase;
+
+    //The 'Location_Tag' table serves as a dependent of the 'Location' table.
     Tags_Table: Location_Tag_Entity;
 
     constructor(database_name: string) {
@@ -11,6 +16,15 @@ class Location_Entity {
         this.Tags_Table = new Location_Tag_Entity(database_name);
     }
 
+    /**
+     * This method will run a transaction to create the 'Location' Table
+     * - Name(PK): This is the unique name that's referenced to at a particular set of coordinates. 
+     * - Description: Description of the location for the user to see.
+     * - Latitude: Latitude of the location
+     * - Longitude: Longitude of the location
+     * 
+     * NOTE: 'Location_Tag' is also created within this method.
+     */
     createLocationTable() {
         this.DB.transaction(
           (tx) => {
@@ -25,6 +39,7 @@ class Location_Entity {
             + ");";
             tx.executeSql(sqlCommand);
 
+            //Location_Tag table is created as well.
             this.Tags_Table.createLocationTagTable();
           },
           (error) => {

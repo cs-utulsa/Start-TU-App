@@ -2,6 +2,9 @@ import * as SQLite from 'expo-sqlite'
 import { resolveModuleName } from 'typescript';
 import {db_name} from './DB_Name';
 
+/**
+ * This class serves a wrapper for all queries that return 'Person' attributes.
+ */
 class Person_Entity {
     DB: SQLite.WebSQLDatabase;
 
@@ -9,6 +12,14 @@ class Person_Entity {
         this.DB = SQLite.openDatabase(database_name);
     }
 
+    /**
+     * This method will run a transaction to create the 'Person' Table
+     * - PK: TU_Email (e.g lar9482@utulsa.edu)
+     * - Name: Name of the student
+     * - Password: Local student's password(
+     *   NOTE: Password is NOT the student's email password.
+     *         It's meant as a password for this application.
+     */
     createPersonTable() {
         this.DB.transaction(
           (tx) => {
@@ -24,9 +35,11 @@ class Person_Entity {
             tx.executeSql(sqlCommand);
           },
     
+          //Console is logged if the transaction fails.
           (error) => {
             console.log(error.message);
           },
+          //Console is logged if the transaction succeeds.
           () => {
             console.log('Successfully created the person table');
           }
@@ -34,23 +47,31 @@ class Person_Entity {
         );
     }
 
+    /**
+     * This method will run a transaction to drop the Person table.
+     */
     dropPersonTable() {
         this.DB.transaction(
-
             (tx) => {
                 const sqlCommand:string = "DROP TABLE Person";
                 tx.executeSql(sqlCommand);
             },
 
+            //Console is logged if the transaction fails.
             (error) => {
                 console.log(error.message);
-              },
-              () => {
-                console.log('Successfully drop the Person table');
-              }
+            },
+            //Console is logged if the transaction succeeds.
+            () => {
+              console.log('Successfully drop the Person table');
+            }
         );
     }
     
+    /**
+     * This method will insert 'Person_Data' instance data into the 'Person' Table
+     * @param Person_Data This interface instance is the data to be inserted into the 'Person' Table
+     */
     insertIntoPersonTable(Person_Data: Person_Data) {
         this.DB.transaction(
           (tx) => {
@@ -69,6 +90,10 @@ class Person_Entity {
         );
     }
 
+    /**
+     * This method makes a query to get all instances from the Person Table.
+     * @returns A promise(async operation) to return an array of Person_Data. 
+     */
     async queryAllAttributes_Async(): Promise<Person_Data[]> {
       return new Promise((resolve) => {
         let Person_Data: Person_Data[] = [];
@@ -95,6 +120,9 @@ class Person_Entity {
     }
 }
 
+/**
+ * This interface is a wrapper of data from the 'Person' Table to be accessed by the rest of the application.
+ */
 export interface Person_Data {
     TU_Email: string,
     Name: string,
