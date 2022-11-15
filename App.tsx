@@ -39,17 +39,6 @@ export default function App() {
   //Location.dropLocationTable();
   //populate();
 
-  const [markerData, setMarkerData] = useState<Location_Data[]>([{
-      Name: "",
-      Description: "",
-      Latitude: 0,
-      Longitude: 0,
-      Tags: ["ens", "all"]
-  }]); 
-  const [markerTag, setMarkerTag] = useState<string>("all");
-  Location.queryAttributes_Tag(markerTag).then((value: Location_Data[]) => {setMarkerData(value)});
-
-
   return (
     <View style={{flex: 1, backgroundColor: TU_BLUE}}>
       <View style={{padding: 0}}>
@@ -67,12 +56,7 @@ export default function App() {
         {paneState == USER_STATE && <UserPane></UserPane>}
         {paneState == CLASSES_STATE && <ClassesPane></ClassesPane>}
 
-        {
-          paneState == MAP_STATE && 
-          <MapPane query={Location.queryAttributes_Tag(markerTag)} markerData={markerData} 
-                   setMarkerData={setMarkerData} setMarkerTag={setMarkerTag}>
-          </MapPane>
-        }
+        {paneState == MAP_STATE && <MapPane></MapPane>}
 
         {paneState == CALENDER_STATE && <CalenderPane></CalenderPane>}
         {paneState == EMAIL_STATE && <EmailPane></EmailPane>}
@@ -121,14 +105,28 @@ const ClassesPane = () => (
   </View>
 );
 
-const MapPane= ({query, markerData, setMarkerData, setMarkerTag} : any) => (
-  <View style={styles.mapPane}>
+const MapPane = () => {
+  const [markerData, setMarkerData] = useState<Location_Data[]>([{
+    Name: "",
+    Description: "",
+    Latitude: 0,
+    Longitude: 0,
+    Tags: ["all"]
+  }]);
+  const [currentTag, setCurrentTag] = useState<string>("all");
+  Location.queryAttributes_Tag(currentTag).then((value:Location_Data[]) => {
+    setMarkerData(value);
+  });
+
+
+  return(
+    <View style={styles.mapPane}>
     <View style={{padding:5, paddingBottom:10, height: 50}}>
       <TextInput onSubmitEditing={
         (e) => {
           const tagInput: string = e.nativeEvent.text.toLowerCase();
-          setMarkerTag(tagInput);
-          query.then((value:Location_Data[]) => {
+          setCurrentTag(tagInput);
+          Location.queryAttributes_Tag(currentTag).then((value:Location_Data[]) => {
               setMarkerData(value);
             }
           );
@@ -156,7 +154,45 @@ const MapPane= ({query, markerData, setMarkerData, setMarkerTag} : any) => (
         ))}
     </MapView> 
   </View>
-);
+  );
+}
+
+// const MapPane= ({query, markerData, setMarkerData, setMarkerTag} : any) => (
+//   <View style={styles.mapPane}>
+//     <View style={{padding:5, paddingBottom:10, height: 50}}>
+//       <TextInput onSubmitEditing={
+//         (e) => {
+//           const tagInput: string = e.nativeEvent.text.toLowerCase();
+//           setMarkerTag(tagInput);
+//           query.then((value:Location_Data[]) => {
+//               setMarkerData(value);
+//             }
+//           );
+//         }
+//       }   
+//       style={{fontSize: 25, height: 30, backgroundColor: DARK_BLUE, flex: 1}}>
+//       </TextInput>
+//     </View>
+
+//     <MapView 
+//         initialRegion={{
+//           latitude: 36.15236,
+//           longitude: -95.94575,
+//           latitudeDelta: 0.01,
+//           longitudeDelta: 0.0125,}} 
+//         style = {{height: '100%', width: '100%'}}>
+         
+//         {markerData.map((item: Location_Data, index:number) => (
+//           <Marker
+//             key={index}
+//             coordinate={{latitude: item.Latitude, longitude: item.Longitude}}
+//             title={item.Name}
+//             description={item.Description}>
+//           </Marker>
+//         ))}
+//     </MapView> 
+//   </View>
+// );
 
 const CalenderPane = () => (
   <View style={styles.classesPane}>
