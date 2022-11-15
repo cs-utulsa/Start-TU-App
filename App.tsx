@@ -157,43 +157,6 @@ const MapPane = () => {
   );
 }
 
-// const MapPane= ({query, markerData, setMarkerData, setMarkerTag} : any) => (
-//   <View style={styles.mapPane}>
-//     <View style={{padding:5, paddingBottom:10, height: 50}}>
-//       <TextInput onSubmitEditing={
-//         (e) => {
-//           const tagInput: string = e.nativeEvent.text.toLowerCase();
-//           setMarkerTag(tagInput);
-//           query.then((value:Location_Data[]) => {
-//               setMarkerData(value);
-//             }
-//           );
-//         }
-//       }   
-//       style={{fontSize: 25, height: 30, backgroundColor: DARK_BLUE, flex: 1}}>
-//       </TextInput>
-//     </View>
-
-//     <MapView 
-//         initialRegion={{
-//           latitude: 36.15236,
-//           longitude: -95.94575,
-//           latitudeDelta: 0.01,
-//           longitudeDelta: 0.0125,}} 
-//         style = {{height: '100%', width: '100%'}}>
-         
-//         {markerData.map((item: Location_Data, index:number) => (
-//           <Marker
-//             key={index}
-//             coordinate={{latitude: item.Latitude, longitude: item.Longitude}}
-//             title={item.Name}
-//             description={item.Description}>
-//           </Marker>
-//         ))}
-//     </MapView> 
-//   </View>
-// );
-
 const CalenderPane = () => (
   <View style={styles.classesPane}>
     <Text> CALENDER IS NOT YET IMPLEMENTED</Text>
