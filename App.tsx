@@ -122,20 +122,20 @@ const MapPane = () => {
 
   const [origin, setOrigin] = useState<Location_Data>(
     {
-      Name: "Keplinger Hall",
-      Description: "Main Building for the College of Engineering & Natural Science",
-      Latitude: 36.153979761758876,
-      Longitude: -95.94205412959185,
-      Tags: ["ens", "all"]
-    });
-
-  const [destination, setDestination] = useState<Location_Data>(
-    {
       Name: "Mcfarlin Library",
       Description: "Main Academic Library",
       Latitude: 36.15232374393028,
       Longitude: -95.94599221560202,
       Tags: ["all", "Library"]
+    });
+
+  const [destination, setDestination] = useState<Location_Data>(
+    {
+      Name: "Keplinger Hall",
+      Description: "Main Building for the College of Engineering & Natural Science",
+      Latitude: 36.153979761758876,
+      Longitude: -95.94205412959185,
+      Tags: ["ens", "all"]
     }
   );
 
