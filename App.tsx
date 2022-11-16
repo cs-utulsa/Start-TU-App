@@ -3,6 +3,9 @@ import { Text, View, StyleSheet, Button, Alert, Image, TouchableOpacity, Switch,
 import {StatusBar} from 'expo-status-bar';
 import { getTokenSourceMapRange, isPropertySignature, setTextRange } from 'typescript';
 import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
+
+import MapViewDirections from 'react-native-maps-directions';
+
 import {MapOrEntries, useMap} from 'usehooks-ts';
 
 import {Person, Person_Data} from './Database/Person';
@@ -28,6 +31,9 @@ const images = {
     map: require('./assets/TUmap.png'),
   },
 };
+
+//A VALID API KEY IS NEEDED
+const GOOGLE_MAPS_API_KEY = '...'
 
 
 export default function App() {
@@ -143,7 +149,13 @@ const MapPane = () => {
           latitudeDelta: 0.01,
           longitudeDelta: 0.0125,}} 
         style = {{height: '100%', width: '100%'}}>
-         
+        
+        <MapViewDirections
+          origin={{latitude: 36.15232374393028, longitude: -95.94599221560202}}
+          destination={{latitude: 36.153979761758876, longitude: -95.94205412959185}}
+          apikey={GOOGLE_MAPS_API_KEY}
+          mode={"WALKING"}
+        />
         {markerData.map((item: Location_Data, index:number) => (
           <Marker
             key={index}
