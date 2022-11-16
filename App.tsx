@@ -117,8 +117,28 @@ const MapPane = () => {
     Description: "",
     Latitude: 0,
     Longitude: 0,
-    Tags: ["all"]
+    Tags: [""]
   }]);
+
+  const [origin, setOrigin] = useState<Location_Data>(
+    {
+      Name: "Keplinger Hall",
+      Description: "Main Building for the College of Engineering & Natural Science",
+      Latitude: 36.153979761758876,
+      Longitude: -95.94205412959185,
+      Tags: ["ens", "all"]
+    });
+
+  const [destination, setDestination] = useState<Location_Data>(
+    {
+      Name: "Mcfarlin Library",
+      Description: "Main Academic Library",
+      Latitude: 36.15232374393028,
+      Longitude: -95.94599221560202,
+      Tags: ["all", "Library"]
+    }
+  );
+
   const [currentTag, setCurrentTag] = useState<string>("all");
   Location.queryAttributes_Tag(currentTag).then((value:Location_Data[]) => {
     setMarkerData(value);
@@ -151,8 +171,8 @@ const MapPane = () => {
         style = {{height: '100%', width: '100%'}}>
         
         <MapViewDirections
-          origin={{latitude: 36.15232374393028, longitude: -95.94599221560202}}
-          destination={{latitude: 36.153979761758876, longitude: -95.94205412959185}}
+          origin={{latitude: origin.Latitude, longitude: origin.Longitude}}
+          destination={{latitude: destination.Latitude, longitude: destination.Longitude}}
           apikey={GOOGLE_MAPS_API_KEY}
           mode={"WALKING"}
         />
