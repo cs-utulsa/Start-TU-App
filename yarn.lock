@@ -10126,7 +10126,7 @@
     "lodash.isequal" "^4.5.0"
     "prop-types" "^15.6.0"
 
-"react-native-maps@>=1.0.0", "react-native-maps@0.31.1":
+"react-native-maps@^0.31.1", "react-native-maps@>=1.0.0":
   "integrity" "sha512-vipeOPykqLRMCLcLUCZEB+cTdNSlq88NLb0jChY4UGTY5fgOS7GYWkfswy6bW1ayTRLxJS3zpMGFDUY59/ZrXA=="
   "resolved" "https://registry.npmjs.org/react-native-maps/-/react-native-maps-0.31.1.tgz"
   "version" "0.31.1"

@@ -1,7 +1,3 @@
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
 node_modules/
 .expo/
 dist/
@@ -12,11 +8,8 @@ npm-debug.*
 *.key
 *.mobileprovision
 *.orig.*
+creds.ts
 web-build/
 
 # macOS
-<<<<<<< Updated upstream
 .DS_Store
-=======
-.DS_Store
->>>>>>> Stashed changes

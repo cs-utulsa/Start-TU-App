@@ -33,7 +33,7 @@ const images = {
 };
 
 //A VALID API KEY IS NEEDED
-const GOOGLE_MAPS_API_KEY = '...'
+import {GOOGLE_MAPS_API_KEY} from './creds';
 
 
 export default function App() {
@@ -43,7 +43,7 @@ export default function App() {
    
   //Person.dropPersonTable();
   //Location.dropLocationTable();
-  //populate();
+  populate();
 
   return (
     <View style={{flex: 1, backgroundColor: TU_BLUE}}>
@@ -147,45 +147,47 @@ const MapPane = () => {
 
   return(
     <View style={styles.mapPane}>
-    <View style={{padding:5, paddingBottom:10, height: 50}}>
-      <TextInput onSubmitEditing={
-        (e) => {
-          const tagInput: string = e.nativeEvent.text.toLowerCase();
-          setCurrentTag(tagInput);
-          Location.queryAttributes_Tag(currentTag).then((value:Location_Data[]) => {
-              setMarkerData(value);
-            }
-          );
-        }
-      }   
-      style={{fontSize: 25, height: 30, backgroundColor: DARK_BLUE, flex: 1}}>
-      </TextInput>
-    </View>
+      <View style={{padding:5, paddingBottom:10, height: 50}}>
+        <TextInput onSubmitEditing={
+          (e) => {
+            const tagInput: string = e.nativeEvent.text.toLowerCase();
+            setCurrentTag(tagInput);
+            Location.queryAttributes_Tag(currentTag).then((value:Location_Data[]) => {
+                setMarkerData(value);
+              }
+            );
+          }
+        }   
+        style={{fontSize: 25, height: 30, backgroundColor: DARK_BLUE, flex: 1}}>
+        </TextInput>
+      </View>
 
-    <MapView 
-        initialRegion={{
-          latitude: 36.15236,
-          longitude: -95.94575,
-          latitudeDelta: 0.01,
-          longitudeDelta: 0.0125,}} 
-        style = {{height: '100%', width: '100%'}}>
-        
-        <MapViewDirections
-          origin={{latitude: origin.Latitude, longitude: origin.Longitude}}
-          destination={{latitude: destination.Latitude, longitude: destination.Longitude}}
-          apikey={GOOGLE_MAPS_API_KEY}
-          mode={"WALKING"}
-        />
-        {markerData.map((item: Location_Data, index:number) => (
-          <Marker
-            key={index}
-            coordinate={{latitude: item.Latitude, longitude: item.Longitude}}
-            title={item.Name}
-            description={item.Description}>
-          </Marker>
-        ))}
-    </MapView> 
-  </View>
+      <MapView 
+          initialRegion={{
+            latitude: 36.15236,
+            longitude: -95.94575,
+            latitudeDelta: 0.01,
+            longitudeDelta: 0.0125,}} 
+          style = {{height: '100%', width: '100%'}}>
+          
+          <MapViewDirections
+            origin={{latitude: origin.Latitude, longitude: origin.Longitude}}
+            destination={{latitude: destination.Latitude, longitude: destination.Longitude}}
+            apikey={GOOGLE_MAPS_API_KEY}
+            mode={"WALKING"}
+            strokeColor={TU_LIGHT_BLUE}
+            strokeWidth={3}
+          />
+          {markerData.map((item: Location_Data, index:number) => (
+            <Marker
+              key={index}
+              coordinate={{latitude: item.Latitude, longitude: item.Longitude}}
+              title={item.Name}
+              description={item.Description}>
+            </Marker>
+          ))}
+      </MapView> 
+    </View>
   );
 }
 
