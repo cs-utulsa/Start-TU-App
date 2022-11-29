@@ -11,7 +11,7 @@ const LIGHT_BLUE = '#C0E2F6'
 const DARK_BLUE = '#315796'
 const PANK = '#C490EB'
 const TU_GOLD = '#C2A01E'
-const TU_BLUE = '#102240'
+const TU_BLUE = '#0A2240'
 const USER_STATE = 0
 const CLASSES_STATE = 1
 const MAP_STATE = 2
@@ -42,7 +42,7 @@ export default function App() {
 
   return (
     <View style={{flex: 1, backgroundColor: TU_BLUE}}>
-      <View style={{paddingTop:20, padding: 5}}>
+      <View style={{ padding: 0}}>
       </View>
       <View style={{flex: 1}}>
         <StatusBar style="light"/>
