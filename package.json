@@ -20,13 +20,9 @@
     "react": "18.0.0",
     "react-dom": "18.0.0",
     "react-native": "^0.69.6",
-<<<<<<< HEAD
-    "react-native-maps": "^0.31.1",
-=======
     "react-native-elements": "^3.4.2",
     "react-native-maps": "0.31.1",
     "react-native-permissions": "^3.6.1",
->>>>>>> 2cfd0d48b84865e9491ee783b617c95f62ad54a2
     "react-native-web": "~0.18.7",
     "res": "^0.4.0",
     "typescript": "^4.8.4",
