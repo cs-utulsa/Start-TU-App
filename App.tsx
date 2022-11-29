@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
-import { Text, View, StyleSheet, Button, Alert, Image, TouchableOpacity, Switch } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { Text, View, StyleSheet, Button, Alert, Image, TouchableOpacity, Switch, TextInput} from 'react-native';
 import {StatusBar} from 'expo-status-bar';
-import { getTokenSourceMapRange, isPropertySignature } from 'typescript';
+import { getTokenSourceMapRange, isPropertySignature, setTextRange } from 'typescript';
 import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
+import {MapOrEntries, useMap} from 'usehooks-ts';
 
 // import logo from './assets/icon.png';
 
@@ -11,52 +12,63 @@ const LIGHT_BLUE = '#C0E2F6'
 const DARK_BLUE = '#315796'
 const PANK = '#C490EB'
 const TU_GOLD = '#C2A01E'
+<<<<<<< HEAD
 const TU_BLUE = '#0A2240'
+=======
+const TU_BLUE = '#102240'
+const TU_LIGHT_BLUE = '#004B8D'
+>>>>>>> 2cfd0d48b84865e9491ee783b617c95f62ad54a2
 const USER_STATE = 0
 const CLASSES_STATE = 1
 const MAP_STATE = 2
 const CALENDER_STATE = 3
 const EMAIL_STATE = 4
-var mapImage = [require('./assets/TUmap.png'), require('./assets/TUmapinv.png')];
-var mapImageType = 0
 const images = {
   mainButtons: {
     map: require('./assets/TUmap.png'),
   },
 };
-const invert = () => mapImageType = 1;
 
 
 export default function App() {
   
-  const[invImage, setInvImage] = useState(true);
   const[paneState, setPaneState] = useState(MAP_STATE);
+  const [text, onChangeText] = React.useState("Useless Text");
+  const initialValues: MapOrEntries<String, Array<String | any>> = [["KEP", [{latitude: 36.153979761758876, longitude: -95.94205412959185}, "Keplinger Hall", "This is where Ben's Marker is"]]]
   
-  const changeState = (state: any) => {
-    setPaneState(CLASSES_STATE);
-  }
+  let markerMap = new Map()
+  const possibleTags = ["all", "ens", "housing"]
+  const currentTags = ["all"]
+  const [filters, setFilters] = useState(currentTags)
 
-  const filterPins = (props: any) => {
-
+  const filterPins = (tag: string)  => {
+    // filters.map((filter) => filter == "ENS" ? {filter})
+    if (possibleTags.includes(tag)) {
+      setFilters([tag])
+    }
   }
 
   return (
     <View style={{flex: 1, backgroundColor: TU_BLUE}}>
+<<<<<<< HEAD
       <View style={{ padding: 0}}>
+=======
+      <View style={{padding: 0}}>
+>>>>>>> 2cfd0d48b84865e9491ee783b617c95f62ad54a2
       </View>
       <View style={{flex: 1}}>
         <StatusBar style="light"/>
-      <View style={{paddingTop:20, padding: 5}}>
+      <View style={{paddingTop:20}}>
         <Image
           style={{width: 50, height: 50}}
-          source={require('./assets/TUlogo.png')}
+          source={require('./assets/TUlogonormal.png')}
         />
       </View>
       <View style={{flex: 1}}>
         <StatusBar style="light"/>
         {paneState == USER_STATE && <UserPane></UserPane>}
         {paneState == CLASSES_STATE && <ClassesPane></ClassesPane>}
-        {paneState == MAP_STATE && <MapPane></MapPane>}
+        {paneState == MAP_STATE && <MapPane filters={filters} filterPins={filterPins} currentTags={currentTags}></MapPane>}
         {paneState == CALENDER_STATE && <CalenderPane></CalenderPane>}
         {paneState == EMAIL_STATE && <EmailPane></EmailPane>}
         <BottomButtons state={paneState} changeState={setPaneState}></BottomButtons>
@@ -65,7 +77,6 @@ export default function App() {
     </View>
   );
 }
-
 
 const BottomButtons = ({state, changeState}: any) => (
   <View style={styles.bottomButtonRow}>
@@ -105,8 +116,11 @@ const ClassesPane = () => (
   </View>
 );
 
-const MapPane= () => (
+const MapPane= ({filters, filterPins, currentTags} : any) => (
   <View style={styles.mapPane}>
+    <View style={{padding:5, paddingBottom:10, height: 50}}>
+    <TextInput onSubmitEditing={(e) => filterPins(e.nativeEvent.text.toLowerCase())} style={{fontSize: 25, height: 30, backgroundColor: DARK_BLUE, flex: 1}}></TextInput>
+    </View>
     <MapView 
       initialRegion={{
         latitude: 36.15236,
@@ -114,12 +128,35 @@ const MapPane= () => (
         latitudeDelta: 0.01,
         longitudeDelta: 0.0125,}} 
       style = {{height: '100%', width: '100%'}}>
-    <Marker
-      key={"Ben"}
-      coordinate={{latitude: 36.15397648540907, longitude: -95.94203871549036}}
-      title={"Ben's Marker"}
-      description={"This is where Ben's Marker is"}
-    />
+      {(filters.includes("ens")  || filters.includes("all")) && <Marker
+        key={0}
+        coordinate={{latitude: 36.153979761758876, longitude: -95.94205412959185}}
+        title={"Keplinger Hall"}
+        description={"This is where Ben's Marker is"} />}
+      {(filters.includes("ens")  || filters.includes("all")) && <Marker
+        key={1}
+        coordinate={{latitude: 36.15312927984461, longitude: -95.94206106343141}}
+        title={"Stephenson Hall"}
+        description={"This is where Ben's Marker is"}
+      />}
+      {(filters.includes("housing")  || filters.includes("all")) && <Marker
+        key={2}
+        coordinate={{latitude: 36.15322236736723, longitude: -95.94873798075692}}
+        title={"John Mabee"}
+        description={"This is where Ben's Marker is"}
+      />}
+      {(filters.includes("ens")  || filters.includes("all")) && <Marker
+        key={3}
+        coordinate={{latitude: 36.15313162846364, longitude: -95.94272874465813}}
+        title={"Rayzor Hall"}
+        description={"This is where Ben's Marker is"}
+      />}
+      {filters.includes("all") && <Marker
+        key={4}
+        coordinate={{latitude: 36.153439180383586, longitude: -95.94357520929442}}
+        title={"Alan Chapman Student Union"}
+        description={"This is where Ben's Marker is"}
+      />}
     </MapView> 
   </View>
 );
@@ -147,7 +184,7 @@ const styles = StyleSheet.create({
   },
   mapPane: {
     flex: 9,
-    backgroundColor: DARK_BLUE,
+    backgroundColor: TU_BLUE,
   },
   calenderPane: {
     flex: 9,
@@ -176,6 +213,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     borderColor: DARK_BLUE,
     backgroundColor: TU_GOLD,
+    paddingBottom: 5,
     alignItems: 'center',
     padding: 5
   },
