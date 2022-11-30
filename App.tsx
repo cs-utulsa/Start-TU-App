@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Dispatch } from 'react';
 import { Text, View, StyleSheet, Button, Alert, Image, TouchableOpacity, Switch, TextInput} from 'react-native';
 import {StatusBar} from 'expo-status-bar';
 import { getTokenSourceMapRange, isPropertySignature, setTextRange } from 'typescript';
@@ -34,13 +34,11 @@ const images = {
 
 //A VALID API KEY IS NEEDED
 import {GOOGLE_MAPS_API_KEY} from './creds';
-import {DirectionButton} from './PaneComponents/DirectionButton';
+import {DirectionButton} from './PaneComponents/MapPaneComponents/DirectionButton';
 
 
 export default function App() {
-  
   const[paneState, setPaneState] = useState(MAP_STATE);
-  const [text, onChangeText] = React.useState("Useless Text");
    
   //Person.dropPersonTable();
   //Location.dropLocationTable();
@@ -114,33 +112,21 @@ const ClassesPane = () => (
 
 const MapPane = () => {
   const [markerData, setMarkerData] = useState<Location_Data[]>([{
-    Name: "",
-    Description: "",
-    Latitude: 0,
-    Longitude: 0,
-    Tags: [""]
+    Name: "", Description: "", Latitude: 0, Longitude: 0, Tags: [""]
   }]);
 
   const [origin, setOrigin] = useState<Location_Data>(
-    {
-      Name: "Mcfarlin Library",
-      Description: "Main Academic Library",
-      Latitude: 36.15232374393028,
-      Longitude: -95.94599221560202,
-      Tags: ["all", "Library"]
-    });
+    { Name: "Mcfarlin Library", Description: "Main Academic Library",
+      Latitude: 36.15232374393028, Longitude: -95.94599221560202, Tags: ["all", "Library"] });
 
   const [destination, setDestination] = useState<Location_Data>(
-    {
-      Name: "Keplinger Hall",
-      Description: "Main Building for the College of Engineering & Natural Science",
-      Latitude: 36.153979761758876,
-      Longitude: -95.94205412959185,
-      Tags: ["ens", "all"]
-    }
-  );
+    { Name: "Keplinger Hall", Description: "Main Building for the College of Engineering & Natural Science",
+      Latitude: 36.153979761758876, Longitude: -95.94205412959185, Tags: ["ens", "all"] });
 
   const [currentTag, setCurrentTag] = useState<string>("all");
+
+  const [selectingRoute, setSelectingRoute] = useState<boolean>(false);
+
   Location.queryAttributes_Tag(currentTag).then((value:Location_Data[]) => {
     setMarkerData(value);
   });
@@ -171,7 +157,9 @@ const MapPane = () => {
             longitudeDelta: 0.0125,}} 
           style = {{height: '100%', width: '100%'}}>
 
-          <DirectionButton></DirectionButton>
+          <DirectionButton 
+           buttonVisible={selectingRoute} 
+           setButtonVisible={setSelectingRoute}></DirectionButton>
 
           <MapViewDirections
             origin={{latitude: origin.Latitude, longitude: origin.Longitude}}
@@ -179,8 +167,7 @@ const MapPane = () => {
             apikey={GOOGLE_MAPS_API_KEY}
             mode={"WALKING"}
             strokeColor={TU_LIGHT_BLUE}
-            strokeWidth={3}
-          />
+            strokeWidth={3}/>
           {markerData.map((item: Location_Data, index:number) => (
             <Marker
               key={index}
