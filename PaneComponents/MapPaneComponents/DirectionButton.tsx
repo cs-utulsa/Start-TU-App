@@ -12,10 +12,10 @@ type DirectionButtonProps = {
 
 export const DirectionButton: FC<DirectionButtonProps> = ({selectingRoute, setSelectingRoute}) => {
     return(
-        <TouchableOpacity disabled = {selectingRoute} onPress = {() => {setSelectingRoute(true)}}
+        <TouchableOpacity disabled = {false} onPress = {() => {setSelectingRoute(!selectingRoute)}}
         activeOpacity = {1} style = {styles.button}>
           
-          { !selectingRoute && <Image style={styles.icon} source={require('../../assets/Directions.png')}></Image> }
+          <Image style={styles.icon} source={require('../../assets/Directions.png')}></Image>
         </TouchableOpacity>
     );
 } 

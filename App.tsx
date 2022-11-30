@@ -126,8 +126,6 @@ const MapPane = () => {
 
   const [currentTag, setCurrentTag] = useState<string>("all");
 
-  const [selectingRoute, setSelectingRoute] = useState<boolean>(false);
-
   Location.queryAttributes_Tag(currentTag).then((value:Location_Data[]) => {
     setMarkerData(value);
   });
@@ -159,8 +157,8 @@ const MapPane = () => {
           style = {{height: '100%', width: '100%'}}>
 
           <DirectionButton 
-           selectingRoute={selectingRoute} 
-           setSelectingRoute={setSelectingRoute}></DirectionButton>
+           selectingRoute={direction} 
+           setSelectingRoute={showDirection}></DirectionButton>
 
           {direction && <MapViewDirections
             origin={{latitude: origin.Latitude, longitude: origin.Longitude}}
@@ -169,6 +167,7 @@ const MapPane = () => {
             mode={"WALKING"}
             strokeColor={TU_LIGHT_BLUE}
             strokeWidth={3}/>
+          }
           {markerData.map((item: Location_Data, index:number) => (
             <Marker
             key={index}
