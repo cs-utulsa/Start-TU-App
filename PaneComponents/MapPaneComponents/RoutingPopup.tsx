@@ -1,5 +1,6 @@
 import React, { useState, useEffect, FC } from 'react';
 import {StyleSheet, TouchableOpacity, Image, Modal, Text, View, TextInput} from 'react-native'
+import {Location, Location_Data} from '../../Database/Location';
 
 type RoutingPopupProps = {
     popupVisible: boolean;

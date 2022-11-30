@@ -40,9 +40,9 @@ import {DirectionButton} from './PaneComponents/MapPaneComponents/DirectionButto
 export default function App() {
   const[paneState, setPaneState] = useState(MAP_STATE);
    
-  Person.dropPersonTable();
-  Location.dropLocationTable();
-  populate();
+  //Person.dropPersonTable();
+  //Location.dropLocationTable();
+  //populate();
 
   return (
     <View style={{flex: 1, backgroundColor: TU_BLUE}}>
@@ -165,8 +165,8 @@ const MapPane = () => {
           style = {{height: '100%', width: '100%'}}>
 
           <DirectionButton 
-           buttonVisible={selectingRoute} 
-           setButtonVisible={setSelectingRoute}></DirectionButton>
+           selectingRoute={selectingRoute} 
+           setSelectingRoute={setSelectingRoute}></DirectionButton>
 
           <MapViewDirections
             origin={{latitude: origin.Latitude, longitude: origin.Longitude}}

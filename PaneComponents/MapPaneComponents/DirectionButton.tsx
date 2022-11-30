@@ -1,46 +1,26 @@
 import React, { useState, useEffect, FC } from 'react';
 import {StyleSheet, TouchableOpacity, Image, Modal, Text, View, TextInput} from 'react-native'
+
 import { RoutingPopup } from './RoutingPopup';
+
+//The 'selectingRoute' state from 'MapPane' will toggle the visibility of the 'DirectionButton'
 type DirectionButtonProps = {
-  buttonVisible: boolean,
-  setButtonVisible: React.Dispatch<React.SetStateAction<boolean>>
+  selectingRoute: boolean,
+  setSelectingRoute: React.Dispatch<React.SetStateAction<boolean>>
 };
 
 
-export const DirectionButton: FC<DirectionButtonProps> = ({buttonVisible, setButtonVisible}) => {
-    
+export const DirectionButton: FC<DirectionButtonProps> = ({selectingRoute, setSelectingRoute}) => {
     return(
-        <TouchableOpacity disabled = {!buttonVisible} onPress = {() => {setButtonVisible(!buttonVisible)}}
+        <TouchableOpacity disabled = {selectingRoute} onPress = {() => {setSelectingRoute(true)}}
         activeOpacity = {1} style = {styles.button}>
           
-          { buttonVisible && <Image style={styles.icon} source={require('../assets/Directions.png')}></Image> }
+          { !selectingRoute && <Image style={styles.icon} source={require('../../assets/Directions.png')}></Image> }
         </TouchableOpacity>
     );
 } 
 
 const styles = StyleSheet.create({
-  centeredView: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: 22
-  },
-    modal:{
-      margin: 20,
-      justifyContent: "center",
-      backgroundColor: "white",
-      borderRadius: 20,
-      padding: 50,
-      alignItems: "center",
-      shadowColor: "#000",
-      shadowOffset: {
-        width: 0,
-        height: 2
-      },
-      shadowOpacity: 0.25,
-      shadowRadius: 4,
-      elevation: 5
-    },
     button: {
       position: 'absolute',
       top: 15,
