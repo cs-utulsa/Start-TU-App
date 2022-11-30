@@ -40,9 +40,9 @@ import {DirectionButton} from './PaneComponents/MapPaneComponents/DirectionButto
 export default function App() {
   const[paneState, setPaneState] = useState(MAP_STATE);
    
-  //Person.dropPersonTable();
-  //Location.dropLocationTable();
-  //populate();
+  Person.dropPersonTable();
+  Location.dropLocationTable();
+  populate();
 
   return (
     <View style={{flex: 1, backgroundColor: TU_BLUE}}>
@@ -74,9 +74,9 @@ export default function App() {
 
 const BottomButtons = ({state, changeState}: any) => (
   <View style={styles.bottomButtonRow}>
-    <TouchableOpacity onPress={() => changeState(0)} activeOpacity = {1} style={styles.bottomButton}>
-      {state == USER_STATE && <Image style={styles.icon} source={require('./assets/TUuserinv.png')} />}
-      {state != USER_STATE && <Image style={styles.icon} source={require('./assets/TUuser.png')} />}
+    <TouchableOpacity onPress={() => changeState(4)} activeOpacity = {1} style={styles.bottomButton}>
+      {state == EMAIL_STATE && <Image style={styles.icon} source={require('./assets/TUemailinv.png')} />}
+      {state != EMAIL_STATE && <Image style={styles.icon} source={require('./assets/TUemail.png')} />}
     </TouchableOpacity>
     <TouchableOpacity onPress={() => changeState(1)} activeOpacity = {1} style={styles.bottomButton}>
       {state == CLASSES_STATE && <Image style={styles.icon} source={require('./assets/TUclassesinv.png')} />}
@@ -90,9 +90,9 @@ const BottomButtons = ({state, changeState}: any) => (
       {state == CALENDER_STATE && <Image style={styles.icon} source={require('./assets/TUcalenderinv.png')} />}
       {state != CALENDER_STATE && <Image style={styles.icon} source={require('./assets/TUcalender.png')} />}
     </TouchableOpacity>
-    <TouchableOpacity onPress={() => changeState(4)} activeOpacity = {1} style={styles.bottomButton}>
-      {state == EMAIL_STATE && <Image style={styles.icon} source={require('./assets/TUemailinv.png')} />}
-      {state != EMAIL_STATE && <Image style={styles.icon} source={require('./assets/TUemail.png')} />}
+    <TouchableOpacity onPress={() => changeState(0)} activeOpacity = {1} style={styles.bottomButton}>
+      {state == USER_STATE && <Image style={styles.icon} source={require('./assets/TUuserinv.png')} />}
+      {state != USER_STATE && <Image style={styles.icon} source={require('./assets/TUuser.png')} />}
     </TouchableOpacity>
       
   </View>
@@ -100,7 +100,14 @@ const BottomButtons = ({state, changeState}: any) => (
 
 const UserPane = () => (
   <View style={styles.userPane}>
-    <Text> USERS ARE NOT YET IMPLEMENTED</Text>
+    <Text style={{fontSize: 50}}> Ben</Text>
+    <Text style={{fontSize: 20}}> Benjamin Hughes </Text>
+    <Text style={{fontSize: 5}}> {"\n"} </Text>
+    <Text style={{fontSize: 20}}> bmh7113@utulsa.edu</Text>
+    <Text style={{fontSize: 10}}> {"\n"} </Text>
+    <Text style={{fontSize: 30}}> Bachelor of Science</Text>
+    <Text style={{fontSize: 20}}> Major in Computer Science</Text>
+    <Text style={{fontSize: 20}}> Minor in Spanish</Text>
   </View>
 )
 
@@ -143,8 +150,8 @@ const MapPane = () => {
                 setMarkerData(value);
               }
             );
-          }
-        }   
+          }}
+          autoCorrect={false}
         style={{fontSize: 25, height: 30, backgroundColor: DARK_BLUE, flex: 1}}>
         </TextInput>
       </View>
@@ -232,7 +239,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 5,
     borderColor: DARK_BLUE,
-    backgroundColor: TU_GOLD,
+    backgroundColor: TU_BLUE,
     paddingBottom: 5,
     alignItems: 'center',
     padding: 5
