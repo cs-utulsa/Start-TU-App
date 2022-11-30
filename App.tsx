@@ -34,6 +34,7 @@ const images = {
 
 //A VALID API KEY IS NEEDED
 import {GOOGLE_MAPS_API_KEY} from './creds';
+import {DirectionButton} from './PaneComponents/DirectionButton';
 
 
 export default function App() {
@@ -43,7 +44,7 @@ export default function App() {
    
   //Person.dropPersonTable();
   //Location.dropLocationTable();
-  populate();
+  //populate();
 
   return (
     <View style={{flex: 1, backgroundColor: TU_BLUE}}>
@@ -176,7 +177,9 @@ const MapPane = () => {
             latitudeDelta: 0.01,
             longitudeDelta: 0.0125,}} 
           style = {{height: '100%', width: '100%'}}>
-          
+
+          <DirectionButton></DirectionButton>
+
           <MapViewDirections
             origin={{latitude: origin.Latitude, longitude: origin.Longitude}}
             destination={{latitude: destination.Latitude, longitude: destination.Longitude}}
