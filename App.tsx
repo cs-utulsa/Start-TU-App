@@ -34,6 +34,7 @@ const images = {
 
 //A VALID API KEY IS NEEDED
 import {GOOGLE_MAPS_API_KEY} from './creds';
+import {DirectionButton} from './PaneComponents/DirectionButton';
 
 
 export default function App() {
@@ -101,7 +102,14 @@ const BottomButtons = ({state, changeState}: any) => (
 
 const UserPane = () => (
   <View style={styles.userPane}>
-    <Text> USERS ARE NOT YET IMPLEMENTED</Text>
+    <Text style={{fontSize: 50}}> Ben</Text>
+    <Text style={{fontSize: 20}}> Benjamin Hughes </Text>
+    <Text style={{fontSize: 5}}> {"\n"} </Text>
+    <Text style={{fontSize: 20}}> bmh7113@utulsa.edu</Text>
+    <Text style={{fontSize: 10}}> {"\n"} </Text>
+    <Text style={{fontSize: 30}}> Bachelor of Science</Text>
+    <Text style={{fontSize: 20}}> Major in Computer Science</Text>
+    <Text style={{fontSize: 20}}> Minor in Spanish</Text>
   </View>
 )
 
@@ -169,7 +177,9 @@ const MapPane = () => {
             latitudeDelta: 0.01,
             longitudeDelta: 0.0125,}} 
           style = {{height: '100%', width: '100%'}}>
-          
+
+          <DirectionButton></DirectionButton>
+
           <MapViewDirections
             origin={{latitude: origin.Latitude, longitude: origin.Longitude}}
             destination={{latitude: destination.Latitude, longitude: destination.Longitude}}
