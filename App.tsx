@@ -35,6 +35,7 @@ const images = {
 //A VALID API KEY IS NEEDED
 import {GOOGLE_MAPS_API_KEY} from './creds';
 import {DirectionButton} from './PaneComponents/MapPaneComponents/DirectionButton';
+import { RoutingPopup } from './PaneComponents/MapPaneComponents/RoutingPopup';
 
 
 export default function App() {
@@ -159,6 +160,8 @@ const MapPane = () => {
           <DirectionButton 
            selectingRoute={direction} 
            setSelectingRoute={showDirection}></DirectionButton>
+
+           {/* <RoutingPopup></RoutingPopup> */}
 
           {direction && <MapViewDirections
             origin={{latitude: origin.Latitude, longitude: origin.Longitude}}
