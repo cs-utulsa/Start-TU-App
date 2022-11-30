@@ -88,7 +88,7 @@ const Lorton_Hall: Location_Data = {
 };
 
 const Mcfarlin_Library: Location_Data = {
-    Name: "Mcfarlin Library",
+    Name: "McFarlin Library",
     Description: "Main Academic Library",
     Latitude: 36.15232374393028,
     Longitude: -95.94599221560202,

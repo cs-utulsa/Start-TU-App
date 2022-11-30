@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import {StyleSheet, TouchableOpacity, Image} from 'react-native'
 
-export const DirectionButton = () => {
+export const DirectionButton = ({direction, showDirection}: any) => {
     return(
-        <TouchableOpacity activeOpacity = {1} style = {styles.button}>
+        <TouchableOpacity onPress={() => showDirection(!direction)} activeOpacity = {1} style = {styles.button}>
             <Image style={styles.icon} source={require('../assets/Directions.png')}></Image>
         </TouchableOpacity>
     );

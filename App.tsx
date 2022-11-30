@@ -100,26 +100,20 @@ const BottomButtons = ({state, changeState}: any) => (
   </View>
 );
 
-const UserPane = () => (
-  <View style={styles.userPane}>
-    <Text style={{fontSize: 50}}> Ben</Text>
-    <Text style={{fontSize: 20}}> Benjamin Hughes </Text>
-    <Text style={{fontSize: 5}}> {"\n"} </Text>
-    <Text style={{fontSize: 20}}> bmh7113@utulsa.edu</Text>
-    <Text style={{fontSize: 10}}> {"\n"} </Text>
-    <Text style={{fontSize: 30}}> Bachelor of Science</Text>
-    <Text style={{fontSize: 20}}> Major in Computer Science</Text>
-    <Text style={{fontSize: 20}}> Minor in Spanish</Text>
+const EmailPane = () => (
+  <View style={styles.emailPane}>
+    <Image style={{aspectRatio: 0.63, height: 595}} source={require('./assets/Outlook.png')} />
   </View>
-)
+);
 
 const ClassesPane = () => (
   <View style={styles.classesPane}>
-    <Text> CLASSES ARE NOT YET IMPLEMENTED</Text>
+    <Image style={{aspectRatio: 0.63, height: 595}} source={require('./assets/Harvey.png')} />
   </View>
 );
 
 const MapPane = () => {
+  const[direction, showDirection] = useState(false)
   const [markerData, setMarkerData] = useState<Location_Data[]>([{
     Name: "",
     Description: "",
@@ -127,32 +121,32 @@ const MapPane = () => {
     Longitude: 0,
     Tags: [""]
   }]);
-
+  
   const [origin, setOrigin] = useState<Location_Data>(
     {
-      Name: "Mcfarlin Library",
+      Name: "McFarlin Library",
       Description: "Main Academic Library",
       Latitude: 36.15232374393028,
       Longitude: -95.94599221560202,
       Tags: ["all", "Library"]
     });
-
-  const [destination, setDestination] = useState<Location_Data>(
-    {
-      Name: "Keplinger Hall",
-      Description: "Main Building for the College of Engineering & Natural Science",
-      Latitude: 36.153979761758876,
-      Longitude: -95.94205412959185,
-      Tags: ["ens", "all"]
-    }
+    
+    const [destination, setDestination] = useState<Location_Data>(
+      {
+        Name: "Keplinger Hall",
+        Description: "Main Building for the College of Engineering & Natural Science",
+        Latitude: 36.153979761758876,
+        Longitude: -95.94205412959185,
+        Tags: ["ens", "all"]
+      }
   );
-
+  
   const [currentTag, setCurrentTag] = useState<string>("all");
   Location.queryAttributes_Tag(currentTag).then((value:Location_Data[]) => {
     setMarkerData(value);
   });
-
-
+  
+  
   return(
     <View style={styles.mapPane}>
       <View style={{padding:5, paddingBottom:10, height: 50}}>
@@ -161,8 +155,8 @@ const MapPane = () => {
             const tagInput: string = e.nativeEvent.text.toLowerCase();
             setCurrentTag(tagInput);
             Location.queryAttributes_Tag(currentTag).then((value:Location_Data[]) => {
-                setMarkerData(value);
-              }
+              setMarkerData(value);
+            }
             );
           }}
           autoCorrect={false}
@@ -178,22 +172,22 @@ const MapPane = () => {
             longitudeDelta: 0.0125,}} 
           style = {{height: '100%', width: '100%'}}>
 
-          <DirectionButton></DirectionButton>
+          <DirectionButton direction={direction} showDirection={showDirection}></DirectionButton>
 
-          <MapViewDirections
+          {direction && <MapViewDirections
             origin={{latitude: origin.Latitude, longitude: origin.Longitude}}
             destination={{latitude: destination.Latitude, longitude: destination.Longitude}}
             apikey={GOOGLE_MAPS_API_KEY}
             mode={"WALKING"}
             strokeColor={TU_LIGHT_BLUE}
             strokeWidth={3}
-          />
+            /> }
           {markerData.map((item: Location_Data, index:number) => (
             <Marker
-              key={index}
-              coordinate={{latitude: item.Latitude, longitude: item.Longitude}}
-              title={item.Name}
-              description={item.Description}>
+            key={index}
+            coordinate={{latitude: item.Latitude, longitude: item.Longitude}}
+            title={item.Name}
+            description={item.Description}>
             </Marker>
           ))}
       </MapView> 
@@ -202,14 +196,21 @@ const MapPane = () => {
 }
 
 const CalenderPane = () => (
-  <View style={styles.classesPane}>
-    <Text> CALENDER IS NOT YET IMPLEMENTED</Text>
+  <View style={styles.calenderPane}>
+    <Image style={{aspectRatio: 0.85, height: 435}} source={require('./assets/Calendar.png')} />
   </View>
 );
 
-const EmailPane = () => (
-  <View style={styles.classesPane}>
-    <Text> EMAIL IS NOT YET IMPLEMENTED</Text>
+const UserPane = () => (
+  <View style={styles.userPane}>
+    <Text style={{fontSize: 50}}> Ben</Text>
+    <Text style={{fontSize: 20}}> Benjamin Hughes </Text>
+    <Text style={{fontSize: 5}}> {"\n"} </Text>
+    <Text style={{fontSize: 20}}> bmh7113@utulsa.edu</Text>
+    <Text style={{fontSize: 10}}> {"\n"} </Text>
+    <Text style={{fontSize: 30}}> Bachelor of Science</Text>
+    <Text style={{fontSize: 20}}> Major in Computer Science</Text>
+    <Text style={{fontSize: 20}}> Minor in Spanish</Text>
   </View>
 );
 
@@ -228,11 +229,12 @@ const styles = StyleSheet.create({
   },
   calenderPane: {
     flex: 9,
-    backgroundColor: DARK_BLUE,
+    backgroundColor: 'white',
+    paddingLeft: 3
   },
   emailPane: {
     flex: 9,
-    backgroundColor: DARK_BLUE,
+    backgroundColor: LIGHT_BLUE,
   },
   bottomButtonRow: {
     flex: 1,
