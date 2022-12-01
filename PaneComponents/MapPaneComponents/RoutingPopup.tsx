@@ -15,47 +15,60 @@ export const RoutingPopup = () => {
           toggleViewPopup(!viewPopup);
         }} activeOpacity = {1} style = {styles.button} >
           {!viewPopup && <Image style={styles.icon} source={require('../../assets/Directions.png')}></Image>}
+
           <Modal
             animationType="slide"
             transparent={true}
             visible={viewPopup}>
             
-            <View style={styles.centeredView}>
-              <View style={styles.modal}>
-                <Text>Testing Testing</Text>
-                {/* <TextInput></TextInput>
-                <TextInput></TextInput> */}
+            <View style={styles.popupView}>
+              <View style={styles.textInputViewTo}>
+                <TextInput placeholder="To:" style={styles.textInput}></TextInput>
+              </View>
+              <View style={styles.textInputViewFrom}>
+              <TextInput placeholder="From: " style={styles.textInput}></TextInput>
               </View>
             </View>
           </Modal>
-
         </TouchableOpacity>
     );
 }
 
 const styles = StyleSheet.create({
-    centeredView: {
-      flex: 1,
+    textInputViewTo: {
+      position: "relative",
+      alignContent: "flex-start",
+      top: -5,
+      paddingTop: 10,
+      paddingBottom: 10,
+      paddingRight: 195,
+    },
+    textInputViewFrom: {
+      position: "relative",
+      alignContent: "flex-start",
+      top: -15,
+      paddingTop: 10,
+      paddingBottom: 10,
+      paddingRight: 195,
+    },
+    textInput: {
+      alignSelf: 'flex-start',
+      width: 195,
+      backgroundColor: "#DADADA",
+    },
+    popupView: {
+      position: "relative",
+      top: 380,
       justifyContent: "center",
-      alignItems: "center",
-      marginTop: 22
+      alignSelf: "center",
+      width: 200,
+      height: 100,
+      backgroundColor: 'white',
+      borderRadius: 20,
+      borderColor: "black",
+      borderWidth: 2.5
     },
-    modal:{
-        margin: 20,
-        justifyContent: "center",
-        backgroundColor: "white",
-        borderRadius: 20,
-        padding: 50,
-        alignItems: "center",
-        shadowColor: "#000",
-        shadowOffset: {
-          width: 0,
-          height: 2
-        },
-        shadowOpacity: 0.25,
-        shadowRadius: 4,
-        elevation: 5
-    },
+
     button: {
       position: 'absolute',
       top: 15,
