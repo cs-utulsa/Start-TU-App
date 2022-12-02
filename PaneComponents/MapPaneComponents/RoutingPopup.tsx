@@ -21,20 +21,15 @@ const Chapman_Hall: Location_Data = {
   Tags: ["all", "a&s"]
 };
 
-const loadEmptyEndpoints = () => {
-
-}
 
 export const RoutingPopup: FC<RoutingPopupProps> = ({updateEndpoints}) => {
     const [viewPopup, toggleViewPopup] = useState<boolean>(false)
     const [origin, setOrigin] = useState<Location_Data>(Lorton_Hall);
     const [destination, setDestination] = useState<Location_Data>(Chapman_Hall);  
-    const [viewButton, toggleViewButton] = useState<boolean>(true);
 
     return(
         <Pressable disabled = {false} onPress = {() => {
           toggleViewPopup(!viewPopup);
-          toggleViewButton(!viewButton);
         }} style = {styles.button} >
 
         <Image source={require('../../assets/Directions.png')} style={styles.icon}></Image>
@@ -43,9 +38,7 @@ export const RoutingPopup: FC<RoutingPopupProps> = ({updateEndpoints}) => {
               transparent={true}
               visible={viewPopup}
               onDismiss ={() => {
-                
                 updateEndpoints(origin, destination);
-                toggleViewButton(!viewButton);
               }}>
               
               <View style={styles.popupView}>
