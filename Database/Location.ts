@@ -143,6 +143,33 @@ class Location_Entity {
         );
       });
     }
+
+    async queryAttributes_Name(Name: string): Promise<Location_Data> {
+      return new Promise((resolve, reject) => {
+        let Location_Data: Location_Data;
+
+        this.DB.transaction(
+          (tx) => {
+            const sqlCommand: string =
+            'select * ' +
+            'from Location ' +
+            'where Upper(Name) = Upper("?");';
+            
+            tx.executeSql(sqlCommand, [Name],
+              (tx, results) => {
+                Location_Data = results.rows._array[0];
+              }
+            );
+          },
+          (error) => {
+            reject(error.message);
+          },
+          () => {
+            resolve(Location_Data);
+          }
+        );
+      });
+    }
 }
 
 export interface Location_Data {

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, FC } from 'react';
-import {StyleSheet, TouchableOpacity, Image, Modal, Text, View, TextInput, Button, Pressable, ImageBackground} from 'react-native'
+import {StyleSheet, Image, Modal, Text, View, TextInput, Button, Pressable, ImageBackground} from 'react-native'
 import {Location, Location_Data} from '../../Database/Location';
 
 type RoutingPopupProps = {
@@ -42,24 +42,24 @@ export const RoutingPopup: FC<RoutingPopupProps> = ({updateEndpoints}) => {
                 updateEndpoints(Lorton_Hall, Chapman_Hall);
               }}>
               
-            <View style={styles.popupView}>
-              <View style={styles.textInputViewTo}>
-                <TextInput placeholder="To:" style={styles.textInput} onSubmitEditing = {(e) => {
-                  setTempOrigin(e.nativeEvent.text);
-                }}></TextInput>
-              </View>
+              <View style={styles.popupView}>
+                <View style={styles.textInputViewTo}>
+                  <TextInput placeholder="To:" style={styles.textInput} onSubmitEditing = {(e) => {
+                    setTempOrigin(e.nativeEvent.text);
+                  }}></TextInput>
+                </View>
 
-              <View style={styles.textInputViewFrom}>
-                <TextInput placeholder="From: " style={styles.textInput} onSubmitEditing = {(e) => {
-                  setTempDestination(e.nativeEvent.text)
-                }}></TextInput>
-              </View>
+                <View style={styles.textInputViewFrom}>
+                  <TextInput placeholder="From: " style={styles.textInput} onSubmitEditing = {(e) => {
+                    setTempDestination(e.nativeEvent.text)
+                  }}></TextInput>
+                </View>
 
-              <Pressable onPress={() => {toggleViewPopup(!viewPopup)}} style={styles.onPressRoute}>
-                <Text>Route</Text>
-              </Pressable>
-            </View>
-          </Modal>
+                <Pressable onPress={() => {toggleViewPopup(!viewPopup)}} style={styles.onPressRoute}>
+                  <Text>Route</Text>
+                </Pressable>
+              </View>
+            </Modal>
           
           </Pressable>
     
