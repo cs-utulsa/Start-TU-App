@@ -36,8 +36,6 @@ export const RoutingPopup: FC<RoutingPopupProps> = ({updateEndpoints}) => {
               transparent={true}
               visible={viewPopup}
               onDismiss ={() => {
-                console.log(origin);
-                console.log(destination);
                 updateEndpoints(origin, destination);
               }}>
               
