@@ -146,18 +146,21 @@ class Location_Entity {
 
     async queryAttributes_Name(Name: string): Promise<Location_Data> {
       return new Promise((resolve, reject) => {
-        let Location_Data: Location_Data;
+        let Location_Data: Location_Data[] = [];
 
         this.DB.transaction(
           (tx) => {
             const sqlCommand: string =
-            'select * ' +
-            'from Location ' +
-            'where Upper(Name) = Upper("?");';
-            
+            // 'select * ' +
+            // 'from Location ' +
+            // 'where UPPER(Name) = UPPER("Keplinger Hall");';
+            'select L.Name, L.Description, L.Latitude, L.Longitude ' +
+            'from Location as L ' +
+            'where upper(L.Name) = upper(?);';
+
             tx.executeSql(sqlCommand, [Name],
               (tx, results) => {
-                Location_Data = results.rows._array[0];
+                Location_Data = results.rows._array;
               }
             );
           },
@@ -165,7 +168,7 @@ class Location_Entity {
             reject(error.message);
           },
           () => {
-            resolve(Location_Data);
+            resolve(Location_Data[0]);
           }
         );
       });

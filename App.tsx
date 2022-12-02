@@ -162,12 +162,9 @@ const MapPane = () => {
             longitudeDelta: 0.0125,}} 
           style = {{height: '100%', width: '100%'}}>
 
-          <DirectionButton 
+          {/* <DirectionButton 
            selectingRoute={direction} 
            setSelectingRoute={showDirection}></DirectionButton>
-
-           {/* <RoutingPopup 
-           updateEndpoints = {updateDirectionEndpoints}></RoutingPopup> */}
 
           {!direction && <MapViewDirections
             origin={{latitude: origin.Latitude, longitude: origin.Longitude}}
@@ -175,7 +172,20 @@ const MapPane = () => {
             apikey={GOOGLE_MAPS_API_KEY}
             mode={"WALKING"}
             strokeColor={TU_LIGHT_BLUE}
-            strokeWidth={3}/>}
+            strokeWidth={3}/>} */}
+
+            <RoutingPopup 
+            updateEndpoints = {updateDirectionEndpoints}></RoutingPopup>
+
+            <MapViewDirections
+              origin={{latitude: origin.Latitude, longitude: origin.Longitude}}
+              destination={{latitude: destination.Latitude, longitude: destination.Longitude}}
+              apikey={GOOGLE_MAPS_API_KEY}
+              mode={"WALKING"}
+              strokeColor={TU_LIGHT_BLUE}
+              strokeWidth={3}/>
+
+          
           {markerData.map((item: Location_Data, index:number) => (
             <Marker
             key={index}

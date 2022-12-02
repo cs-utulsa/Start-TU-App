@@ -24,7 +24,7 @@ const Rayzor_Hall: Location_Data = {
 };
 
 const Stephenson_Hall: Location_Data = {
-    Name: "Stephenson_Hall",
+    Name: "Stephenson Hall",
     Description: "Building of Mechanical Engineering & Petroleum Engineering",
     Latitude: 36.15312927984461,
     Longitude: -95.94206106343141,

@@ -23,8 +23,8 @@ const Chapman_Hall: Location_Data = {
 
 export const RoutingPopup: FC<RoutingPopupProps> = ({updateEndpoints}) => {
     const [viewPopup, toggleViewPopup] = useState<boolean>(false)
-    const [tempOrigin, setTempOrigin] = useState<string>("Mcfarlin Library");
-    const [tempDestination, setTempDestination] = useState<string>("Keplinger Hall");
+    const [origin, setOrigin] = useState<Location_Data>(Lorton_Hall);
+    const [destination, setDestination] = useState<Location_Data>(Chapman_Hall);
     return(
         <Pressable disabled = {false} onPress = {() => {
           toggleViewPopup(!viewPopup);
@@ -36,22 +36,25 @@ export const RoutingPopup: FC<RoutingPopupProps> = ({updateEndpoints}) => {
               transparent={true}
               visible={viewPopup}
               onDismiss ={() => {
-                console.log(tempOrigin);
-                console.log(tempDestination);
-                console.log('Modal closed');
-                updateEndpoints(Lorton_Hall, Chapman_Hall);
+                console.log(origin);
+                console.log(destination);
+                updateEndpoints(origin, destination);
               }}>
               
               <View style={styles.popupView}>
                 <View style={styles.textInputViewTo}>
-                  <TextInput placeholder="To:" style={styles.textInput} onSubmitEditing = {(e) => {
-                    setTempOrigin(e.nativeEvent.text);
+                  <TextInput placeholder="Origin:" style={styles.textInput} onSubmitEditing = {(e) => {
+                    Location.queryAttributes_Name(e.nativeEvent.text).then((value: Location_Data) => {
+                      setOrigin(value);
+                    })
                   }}></TextInput>
                 </View>
 
                 <View style={styles.textInputViewFrom}>
-                  <TextInput placeholder="From: " style={styles.textInput} onSubmitEditing = {(e) => {
-                    setTempDestination(e.nativeEvent.text)
+                  <TextInput placeholder="Destination: " style={styles.textInput} onSubmitEditing = {(e) => {
+                    Location.queryAttributes_Name(e.nativeEvent.text).then((value: Location_Data) => {
+                      setDestination(value);
+                    })
                   }}></TextInput>
                 </View>
 
