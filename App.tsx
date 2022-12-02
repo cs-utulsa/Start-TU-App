@@ -112,7 +112,7 @@ const ClassesPane = () => (
 );
 
 const MapPane = () => {
-  const[direction, showDirection] = useState(false)
+  const [direction, showDirection] = useState<boolean>(false);
   const [markerData, setMarkerData] = useState<Location_Data[]>([{
     Name: "", Description: "", Latitude: 0, Longitude: 0, Tags: [""]
   }]);
@@ -131,6 +131,11 @@ const MapPane = () => {
     setMarkerData(value);
   });
   
+  const updateDirectionEndpoints = (newOrigin: Location_Data, newDestination: Location_Data) => {
+    setOrigin(newOrigin);
+    setDestination(newDestination);
+  };
+
   
   return(
     <View style={styles.mapPane}>
@@ -161,16 +166,16 @@ const MapPane = () => {
            selectingRoute={direction} 
            setSelectingRoute={showDirection}></DirectionButton>
 
-           {/* <RoutingPopup></RoutingPopup> */}
+           {/* <RoutingPopup 
+           updateEndpoints = {updateDirectionEndpoints}></RoutingPopup> */}
 
-          {direction && <MapViewDirections
+          {!direction && <MapViewDirections
             origin={{latitude: origin.Latitude, longitude: origin.Longitude}}
             destination={{latitude: destination.Latitude, longitude: destination.Longitude}}
             apikey={GOOGLE_MAPS_API_KEY}
             mode={"WALKING"}
             strokeColor={TU_LIGHT_BLUE}
-            strokeWidth={3}/>
-          }
+            strokeWidth={3}/>}
           {markerData.map((item: Location_Data, index:number) => (
             <Marker
             key={index}

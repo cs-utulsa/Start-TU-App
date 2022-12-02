@@ -1,33 +1,36 @@
 import React, { useState, useEffect, FC } from 'react';
-import {StyleSheet, TouchableOpacity, Image, Modal, Text, View, TextInput, Button, ImageBackground} from 'react-native'
+import {StyleSheet, TouchableOpacity, Image, Modal, Text, View, TextInput, Button, Pressable, ImageBackground} from 'react-native'
 import {Location, Location_Data} from '../../Database/Location';
 
 type RoutingPopupProps = {
-    popupVisible: boolean;
-    // test: React.Dispatch<React.SetStateAction<Location_Data[]>>
+    updateEndpoints: (newOrigin: Location_Data, newDestination: Location_Data) => void,
 }
+const Lorton_Hall: Location_Data = {
+  Name: "Lorton Hall",
+  Description: "Building of the Department of Psychology",
+  Latitude: 36.15142254421786,
+  Longitude: -95.94796814388067,
+  Tags: ["all", "a&s"]
+};
 
-export const RoutingPopup = () => {
+const Chapman_Hall: Location_Data = {
+  Name: "Chapman Hall",
+  Description: "Building of the Kendall College of Arts & Science",
+  Latitude: 36.15308684418934,
+  Longitude: -95.94790750389673,
+  Tags: ["all", "a&s"]
+};
+
+export const RoutingPopup: FC<RoutingPopupProps> = ({updateEndpoints}) => {
     const [viewPopup, toggleViewPopup] = useState<boolean>(false)
     const [tempOrigin, setTempOrigin] = useState<string>("Mcfarlin Library");
     const [tempDestination, setTempDestination] = useState<string>("Keplinger Hall");
-
-    const [top, setTop] = useState<number>(10);
-    const [left, setLeft] = useState<number>(3);
-
     return(
-        <TouchableOpacity disabled = {false} onPress = {() => {
+        <Pressable disabled = {false} onPress = {() => {
           toggleViewPopup(!viewPopup);
-        }} activeOpacity = {1} style = {styles.button} >
-          <Image style={{position: 'absolute',
-            top: top,
-            left: left,
-            width: 54,
-            height: 55,
-            justifyContent: 'center',
-            alignItems: 'center',
-            padding: 5}} source={require('../../assets/Directions.png')}></Image>
-          
+        }} style = {styles.button} >
+
+            <Image source={require('../../assets/Directions.png')} style={styles.icon}></Image>
             <Modal
               animationType="slide"
               transparent={true}
@@ -36,10 +39,9 @@ export const RoutingPopup = () => {
                 console.log(tempOrigin);
                 console.log(tempDestination);
                 console.log('Modal closed');
-              }}
-              onShow = {() => {setTop(-7.5); setLeft(-5)}}>
-
-            
+                updateEndpoints(Lorton_Hall, Chapman_Hall);
+              }}>
+              
             <View style={styles.popupView}>
               <View style={styles.textInputViewTo}>
                 <TextInput placeholder="To:" style={styles.textInput} onSubmitEditing = {(e) => {
@@ -53,24 +55,32 @@ export const RoutingPopup = () => {
                 }}></TextInput>
               </View>
 
-              <Button title={"Close"} onPress = {() => {toggleViewPopup(!viewPopup)}}></Button>
+              <Pressable onPress={() => {toggleViewPopup(!viewPopup)}} style={styles.onPressRoute}>
+                <Text>Route</Text>
+              </Pressable>
             </View>
           </Modal>
           
-          </TouchableOpacity>
+          </Pressable>
     
         
     )
 }
 
 const styles = StyleSheet.create({
+    test: {
+      height: 50,
+      width: 50,
+    },
     onPressRoute: {
-      backgroundColor: 'black'
+      alignSelf: 'flex-start',
+      left: 77,
+      //backgroundColor: 'black'
     },
     textInputViewTo: {
       position: "relative",
       alignContent: "flex-start",
-      top: -5,
+      top: 5,
       paddingTop: 10,
       paddingBottom: 10,
       paddingRight: 195,
@@ -78,7 +88,7 @@ const styles = StyleSheet.create({
     textInputViewFrom: {
       position: "relative",
       alignContent: "flex-start",
-      top: -15,
+      top: -5,
       paddingTop: 10,
       paddingBottom: 10,
       paddingRight: 195,
@@ -113,20 +123,14 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       padding: 5,
       //transform: [{ rotate: "45deg" }],
-      //backgroundColor: 'black'
+      //backgroundColor: 'grey'
     },
   
     icon:{
-      position: 'absolute',
-      top: 8,
-      left: 3,
-      width: 54,
-      height: 55,
-      justifyContent: 'center',
-      alignItems: 'center',
-      padding: 5,
-      // transform: [{ rotate: "45deg" }],
-      // borderRadius: 100,
-      //backgroundColor: 'white'
+      alignSelf: 'flex-start',
+      height: 50,
+      width: 50,
+      top: 10,
+      left: 10,
     }
 });
