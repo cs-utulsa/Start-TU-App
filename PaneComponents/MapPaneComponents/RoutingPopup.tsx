@@ -45,7 +45,9 @@ export const RoutingPopup: FC<RoutingPopupProps> = ({updateEndpoints}) => {
                 <View style={styles.textInputViewTo}>
                   <TextInput placeholder="Origin:" style={styles.textInput} onSubmitEditing = {(e) => {
                     Location.queryAttributes_Name(e.nativeEvent.text).then((value: Location_Data) => {
-                      setOrigin(value);
+                      if (value != undefined) {
+                        setOrigin(value);
+                      }
                     })
                   }}></TextInput>
                 </View>
@@ -53,7 +55,9 @@ export const RoutingPopup: FC<RoutingPopupProps> = ({updateEndpoints}) => {
                 <View style={styles.textInputViewFrom}>
                   <TextInput placeholder="Destination: " style={styles.textInput} onSubmitEditing = {(e) => {
                     Location.queryAttributes_Name(e.nativeEvent.text).then((value: Location_Data) => {
-                      setDestination(value);
+                      if (value != undefined) {
+                        setDestination(value);
+                      }
                     })
                   }}></TextInput>
                 </View>
