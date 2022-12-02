@@ -21,22 +21,31 @@ const Chapman_Hall: Location_Data = {
   Tags: ["all", "a&s"]
 };
 
+const loadEmptyEndpoints = () => {
+
+}
+
 export const RoutingPopup: FC<RoutingPopupProps> = ({updateEndpoints}) => {
     const [viewPopup, toggleViewPopup] = useState<boolean>(false)
     const [origin, setOrigin] = useState<Location_Data>(Lorton_Hall);
-    const [destination, setDestination] = useState<Location_Data>(Chapman_Hall);
+    const [destination, setDestination] = useState<Location_Data>(Chapman_Hall);  
+    const [viewButton, toggleViewButton] = useState<boolean>(true);
+
     return(
         <Pressable disabled = {false} onPress = {() => {
           toggleViewPopup(!viewPopup);
+          toggleViewButton(!viewButton);
         }} style = {styles.button} >
 
-            <Image source={require('../../assets/Directions.png')} style={styles.icon}></Image>
+        <Image source={require('../../assets/Directions.png')} style={styles.icon}></Image>
             <Modal
               animationType="slide"
               transparent={true}
               visible={viewPopup}
               onDismiss ={() => {
+                
                 updateEndpoints(origin, destination);
+                toggleViewButton(!viewButton);
               }}>
               
               <View style={styles.popupView}>
@@ -73,10 +82,6 @@ export const RoutingPopup: FC<RoutingPopupProps> = ({updateEndpoints}) => {
 }
 
 const styles = StyleSheet.create({
-    test: {
-      height: 50,
-      width: 50,
-    },
     onPressRoute: {
       alignSelf: 'flex-start',
       left: 77,
@@ -120,22 +125,20 @@ const styles = StyleSheet.create({
 
     button: {
       position: 'relative',
-      top: 20,
-      left: 12,
-      width: 35,
-      height: 35,
+      width: 50,
+      height: 50,
       justifyContent: 'center',
       alignItems: 'center',
       padding: 5,
-      //transform: [{ rotate: "45deg" }],
+      transform: [{ rotate: "360deg" }],
       //backgroundColor: 'grey'
     },
   
     icon:{
       alignSelf: 'flex-start',
-      height: 50,
-      width: 50,
-      top: 10,
-      left: 10,
+      height: 60,
+      width: 60,
+      top: 4,
+      left: -5
     }
 });

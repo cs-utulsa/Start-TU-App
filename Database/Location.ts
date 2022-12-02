@@ -151,9 +151,6 @@ class Location_Entity {
         this.DB.transaction(
           (tx) => {
             const sqlCommand: string =
-            // 'select * ' +
-            // 'from Location ' +
-            // 'where UPPER(Name) = UPPER("Keplinger Hall");';
             'select L.Name, L.Description, L.Latitude, L.Longitude ' +
             'from Location as L ' +
             'where upper(L.Name) = upper(?);';
@@ -175,7 +172,7 @@ class Location_Entity {
     }
 }
 
-export interface Location_Data {
+export type Location_Data = {
     Name: string,
     Description: string,
     Latitude: number,
