@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
 
     popupView: {
       position: "absolute",
-      top: 380,
+      top: 280,
       justifyContent: "center",
       alignSelf: "center",
       width: 200,
