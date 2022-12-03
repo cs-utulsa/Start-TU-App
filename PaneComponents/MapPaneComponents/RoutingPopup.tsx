@@ -43,7 +43,7 @@ export const RoutingPopup: FC<RoutingPopupProps> = ({updateEndpoints}) => {
               
               <View style={styles.popupView}>
                 <View style={styles.textInputViewTo}>
-                  <TextInput placeholder="Origin:" style={styles.textInput} onSubmitEditing = {(e) => {
+                  <TextInput placeholder={"Origin: " + origin.Name} style={styles.textInput} onSubmitEditing = {(e) => {
                     Location.queryAttributes_Name(e.nativeEvent.text).then((value: Location_Data) => {
                       if (value != undefined) {
                         setOrigin(value);
@@ -53,7 +53,8 @@ export const RoutingPopup: FC<RoutingPopupProps> = ({updateEndpoints}) => {
                 </View>
 
                 <View style={styles.textInputViewFrom}>
-                  <TextInput placeholder="Destination: " style={styles.textInput} onSubmitEditing = {(e) => {
+                  <TextInput placeholder={"Destination: " + destination.Name} 
+                             style={styles.textInput} onSubmitEditing = {(e) => {
                     Location.queryAttributes_Name(e.nativeEvent.text).then((value: Location_Data) => {
                       if (value != undefined) {
                         setDestination(value);
@@ -77,28 +78,30 @@ export const RoutingPopup: FC<RoutingPopupProps> = ({updateEndpoints}) => {
 const styles = StyleSheet.create({
     onPressRoute: {
       alignSelf: 'flex-start',
-      left: 77,
+      top: -10,
+      left: 100,
       //backgroundColor: 'black'
     },
     textInputViewTo: {
       position: "relative",
       alignContent: "flex-start",
       top: 5,
-      paddingTop: 10,
-      paddingBottom: 10,
+      paddingTop: 15,
+      paddingBottom: 15,
       paddingRight: 195,
     },
     textInputViewFrom: {
       position: "relative",
       alignContent: "flex-start",
       top: -5,
-      paddingTop: 10,
-      paddingBottom: 10,
+      paddingTop: 15,
+      paddingBottom: 15,
       paddingRight: 195,
     },
     textInput: {
       alignSelf: 'flex-start',
-      width: 195,
+      height: 25,
+      width: 245,
       backgroundColor: "#DADADA",
     },
 
@@ -107,8 +110,8 @@ const styles = StyleSheet.create({
       top: 280,
       justifyContent: "center",
       alignSelf: "center",
-      width: 200,
-      height: 100,
+      width: 250,
+      height: 125,
       backgroundColor: 'white',
       borderRadius: 20,
       borderColor: "black",
