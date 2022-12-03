@@ -40,7 +40,7 @@ import { RoutingPopup } from './PaneComponents/MapPaneComponents/RoutingPopup';
 export default function App() {
   const[paneState, setPaneState] = useState(MAP_STATE);
 
-  
+
   useEffect(() => {
     Person.dropPersonTable();
     Location.dropLocationTable();
@@ -115,12 +115,9 @@ const ClassesPane = () => (
 );
 
 const MapPane = () => {
-  const [direction, showDirection] = useState<boolean>(false);
   const [markerData, setMarkerData] = useState<Location_Data[]>([{
     Name: "", Description: "", Latitude: 0, Longitude: 0, Tags: [""]
   }]);
-
-  
   
   const [origin, setOrigin] = useState<Location_Data>(
     { Name: "Mcfarlin Library", Description: "Main Academic Library",
