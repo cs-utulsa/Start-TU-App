@@ -70,8 +70,6 @@ export const RoutingPopup: FC<RoutingPopupProps> = ({updateEndpoints}) => {
             </Modal>
           
           </Pressable>
-    
-        
     )
 }
 

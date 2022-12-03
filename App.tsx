@@ -115,23 +115,30 @@ const ClassesPane = () => (
 );
 
 const MapPane = () => {
+
+  //State for all of the data(titles, latitude/longitude, description) for all markers on map
   const [markerData, setMarkerData] = useState<Location_Data[]>([{
     Name: "", Description: "", Latitude: 0, Longitude: 0, Tags: [""]
   }]);
   
+  //State for the origin marker.
   const [origin, setOrigin] = useState<Location_Data>(
     { Name: "Mcfarlin Library", Description: "Main Academic Library",
       Latitude: 36.15232374393028, Longitude: -95.94599221560202, Tags: ["all", "Library"] });
 
+  //State for the destination marker
   const [destination, setDestination] = useState<Location_Data>(
     { Name: "Keplinger Hall", Description: "Main Building for the College of Engineering & Natural Science",
       Latitude: 36.153979761758876, Longitude: -95.94205412959185, Tags: ["ens", "all"] });
 
   const [currentTag, setCurrentTag] = useState<string>("all");
 
-  Location.queryAttributes_Tag(currentTag).then((value:Location_Data[]) => {
-    setMarkerData(value);
-  });
+  
+  useEffect(() => {
+    Location.queryAttributes_Tag(currentTag).then((value:Location_Data[]) => {
+      setMarkerData(value);
+    });
+  }, [currentTag]);
   
   const updateDirectionEndpoints = (newOrigin: Location_Data, newDestination: Location_Data) => {
     setOrigin(newOrigin);
@@ -146,10 +153,6 @@ const MapPane = () => {
           (e) => {
             const tagInput: string = e.nativeEvent.text.toLowerCase();
             setCurrentTag(tagInput);
-            Location.queryAttributes_Tag(currentTag).then((value:Location_Data[]) => {
-              setMarkerData(value);
-            }
-            );
           }}
           autoCorrect={false}
         style={{fontSize: 25, height: 30, backgroundColor: DARK_BLUE, flex: 1}}>
