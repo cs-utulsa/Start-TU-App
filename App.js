@@ -8,12 +8,31 @@ function App() {
       <expo_status_bar_1.StatusBar style="auto"/>
     </react_native_1.View>);
 }
-exports["default"] = App;
-var styles = react_native_1.StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center'
-    }
-});
+
+// This will contain the map components
+function MapView() {
+    return (
+        <MapView
+        initialRegion={{
+          latitude: 37.78825,
+          longitude: -122.4324,
+          latitudeDelta: 0.0922,
+          longitudeDelta: 0.0421,
+        }}
+      />
+    );
+  }
+
+const Tab = createBottomTabNavigator();
+
+export default function App() {
+  return (
+    <NavigationContainer>
+      <Tab.Navigator>
+        <Tab.Screen name="Home" component={HomeScreen} />
+        <Tab.Screen name="Settings" component={SettingsScreen} />
+        <Tab.Screen name="Map" component={MapView} />
+      </Tab.Navigator>
+    </NavigationContainer>
+  );
+}
