@@ -18,7 +18,9 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.example.ProjectName",
+      "config": {"googleMapsApiKey": "TOKEN GOES HERE"}
     },
     "android": {
       "adaptiveIcon": {
@@ -28,6 +30,8 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
-  }
+    },
+    "sdkVersion": "46.0.0"
+  },
+  "name": "start-tu-app"
 }

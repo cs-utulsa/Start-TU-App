@@ -3,27 +3,37 @@
   "version": "1.0.0",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
-    "start": "expo start",
+    "start": "expo start --port 19001",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web"
   },
   "dependencies": {
-    "@expo/webpack-config": "^0.16.19",
+    "@expo/webpack-config": "^0.17.0",
+    "@types/react": "~18.0.0",
     "@types/react-native": "~0.69.1",
     "expo": "~46.0.13",
+    "expo-asset": "~8.6.1",
+    "expo-file-system": "~14.1.0",
+    "expo-sharing": "~10.3.0",
+    "expo-sqlite": "~10.3.0",
     "expo-status-bar": "~1.4.0",
+    "mapview": "^1.0.0",
+    "pod": "^0.9.0",
     "react": "18.0.0",
     "react-dom": "18.0.0",
     "react-native": "^0.69.6",
+    "react-native-elements": "^3.4.2",
+    "react-native-maps": "^0.31.1",
+    "react-native-maps-directions": "^1.9.0",
+    "react-native-permissions": "^3.6.1",
     "react-native-web": "~0.18.7",
     "res": "^0.4.0",
-    "typescript": "^4.8.4"
+    "typescript": "^4.8.4",
+    "usehooks-ts": "^2.9.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.9",
-    "@types/react": "^18.0.21",
-    "@types/react-dom": "^18.0.6"
+    "@babel/core": "^7.12.9"
   },
   "private": true
 }
