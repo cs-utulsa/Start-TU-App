@@ -16,7 +16,7 @@ class Event_Entity {
             "Create Table IF NOT EXISTS Event( " +
             "    Name Varchar(500) Primary key NOT NULL, " +
             "    Description VARCHAR(5000) NOT NULL, "
-            "    Datetime_Event Datetime, "
+            "    Datetime_Event Datetime NOT NULL, "
             "    Category Varchar(100), "
             "    Location_Name Varchar(100), "
             "    Foreign key(Location_Name) References Location(Name)ON DELETE CASCADE ON UPDATE CASCADE "
@@ -31,7 +31,7 @@ class Event_Entity {
           },
           //Console is logged if the transaction succeeds.
           () => {
-            console.log('Successfully created the person table');
+            console.log('Successfully created the event table');
           }
              
         );
