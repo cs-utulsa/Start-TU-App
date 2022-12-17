@@ -12,7 +12,7 @@ import {Person, Person_Data} from './Database/Person';
 import {Location, Location_Data} from './Database/Location';
 import { populate } from './Database/Populate_DB';
 
-import { Agenda } from 'react-native-calendars';
+import { Agenda, AgendaEntry} from 'react-native-calendars';
 // import logo from './assets/icon.png';
 
 const DARK_BLACK = '#171D28'
@@ -192,24 +192,31 @@ const MapPane = () => {
   );
 }
 
-const CalenderPane = () => (
+const CalenderPane = () => {
+
+  const date: string = '2022-12-16';
+  const dates: string[] = ['2022-12-16', '2022-12-17'];
+  const entries: AgendaEntry[] = [{name: 'test', height: 5, day: '2022-12-16'}];
+  
+  return (
   <View style={styles.calenderPane}>
     <Agenda
-      items={{
-        '2022-12-16': [],
+      items={{}}
+
+      // Callback that gets called when items for a certain month should be loaded (month became visible)
+      loadItemsForMonth={month => {
+        console.log(month.dateString);
       }}
 
       // Initially selected day
       selected={'2022-12-16'}
 
-      markedDates={{
-        '2022-12-16': {marked: true}
-      }}
-
       style={{height: '100%', width: '100%'}}
+
+      onRefresh={() => console.log('refreshing...')}
     ></Agenda>
-  </View>
-);
+  </View>)
+};
 
 const UserPane = () => (
   <View style={styles.userPane}>
