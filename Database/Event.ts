@@ -36,13 +36,36 @@ class Event_Entity {
              
         );
     }
+
+    dropEventTable() {
+      this.DB.transaction(
+        (tx) => {
+          const sqlCommand = 
+          "Drop Table Event;";
+
+          tx.executeSql(sqlCommand);
+        },
+        (error) => {
+          console.log(error.message);
+        }, 
+        () => {
+          console.log('Successfully dropped the event table.');
+        }
+      );
+    }
+
+    insertIntoEventTable(Event: Event_Data) {
+      
+    }
 }
-export type Location_Data = {
+
+export type Event_Data = {
     Name: string,
     Description: string,
     Datetime_Event: Date,
     Category: string,
     Location: string
 }
+
 
 export const Event: Event_Entity = new Event_Entity(db_name);
