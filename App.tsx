@@ -12,6 +12,7 @@ import {Person, Person_Data} from './Database/Person';
 import {Location, Location_Data} from './Database/Location';
 import { populate } from './Database/Populate_DB';
 
+import { Agenda } from 'react-native-calendars';
 // import logo from './assets/icon.png';
 
 const DARK_BLACK = '#171D28'
@@ -39,7 +40,6 @@ import { RoutingPopup } from './PaneComponents/MapPaneComponents/RoutingPopup';
 
 export default function App() {
   const[paneState, setPaneState] = useState(MAP_STATE);
-
 
   useEffect(() => {
     Person.dropPersonTable();
@@ -194,7 +194,20 @@ const MapPane = () => {
 
 const CalenderPane = () => (
   <View style={styles.calenderPane}>
-    <Image style={{aspectRatio: 0.85, height: 435}} source={require('./assets/Calendar.png')} />
+    <Agenda
+      items={{
+        '2022-12-16': [],
+      }}
+
+      // Initially selected day
+      selected={'2022-12-16'}
+
+      markedDates={{
+        '2022-12-16': {marked: true}
+      }}
+
+      style={{height: '100%', width: '100%'}}
+    ></Agenda>
   </View>
 );
 
