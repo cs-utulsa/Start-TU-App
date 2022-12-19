@@ -6,14 +6,13 @@ import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 
 import MapViewDirections from 'react-native-maps-directions';
 
-import {MapOrEntries, useMap} from 'usehooks-ts';
-
 import {Person, Person_Data} from './Database/Person';
 import {Location, Location_Data} from './Database/Location';
 import { populate } from './Database/Populate_DB';
 
+import { RoutingPopup } from './PaneComponents/MapPaneComponents/RoutingPopup';
+
 import { Agenda, AgendaEntry} from 'react-native-calendars';
-// import logo from './assets/icon.png';
 
 const DARK_BLACK = '#171D28'
 const LIGHT_BLUE = '#C0E2F6'
@@ -35,7 +34,6 @@ const images = {
 
 //A VALID API KEY IS NEEDED
 import {GOOGLE_MAPS_API_KEY} from './creds';
-import { RoutingPopup } from './PaneComponents/MapPaneComponents/RoutingPopup';
 
 
 export default function App() {

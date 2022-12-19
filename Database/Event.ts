@@ -15,11 +15,12 @@ class Event_Entity {
             
             "Create Table IF NOT EXISTS Event( " +
             "    Name Varchar(500) Primary key NOT NULL, " +
-            "    Description VARCHAR(5000) NOT NULL, "
-            "    Datetime_Event Datetime NOT NULL, "
-            "    Category Varchar(100), "
-            "    Location_Name Varchar(100), "
-            "    Foreign key(Location_Name) References Location(Name)ON DELETE CASCADE ON UPDATE CASCADE "
+            "    Description VARCHAR(10000) NOT NULL, " +
+            "    Date_Start Datetime NOT NULL, " +
+            "    Date_End Datetime NOT NULL, " +
+            "    Category Varchar(100), " +
+            "    Location_Name Varchar(100), " +
+            "    Foreign key(Location_Name) References Location(Name)ON DELETE CASCADE ON UPDATE CASCADE " +
             ");";
     
             tx.executeSql(sqlCommand);
@@ -55,14 +56,25 @@ class Event_Entity {
     }
 
     insertIntoEventTable(Event: Event_Data) {
-      
+      this.DB.transaction(
+        (tx) => {
+
+        },
+        (error) => {
+          console.log(error.message);
+        },
+        () => {
+          console.log('Succesfully inserted a event instance into the event table.');
+        }
+      ); 
     }
 }
 
 export type Event_Data = {
     Name: string,
     Description: string,
-    Datetime_Event: Date,
+    Date_Start: Date,
+    Date_End: Date,
     Category: string,
     Location: string
 }
