@@ -58,7 +58,12 @@ class Event_Entity {
     insertIntoEventTable(Event: Event_Data) {
       this.DB.transaction(
         (tx) => {
+          const sqlCommand = 
+          "Insert into Event(Name, Description, Date_Start, Date_End, Category, Location_Name) values " +
+          "(?, ?, ?, ?, ?, ?)";
 
+          tx.executeSql(sqlCommand, [Event.Name, Event.Description, Event.Date_Start.toISOString(), 
+                                     Event.Date_End.toISOString(), Event.Category, Event.Location]);
         },
         (error) => {
           console.log(error.message);
