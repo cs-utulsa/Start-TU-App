@@ -199,11 +199,29 @@ const LaFortune_House: Location_Data = {
     Tags: ["all", "housing"]
 };
 
-const Generic_Event: Event_Data = {
-    Name: "Generic Event",
+const First_Generic_Event: Event_Data = {
+    Name: "First Generic Event",
     Description: "Testing Event",
     Date_Start: new Date('2022-08-26'),
     Date_End: new Date('2022-08-26'),
+    Category: "Meeting",
+    Location: "TU Campus"
+}
+
+const Second_Generic_Event: Event_Data = {
+    Name: "Second Generic Event",
+    Description: "Testing Event",
+    Date_Start: new Date('2022-08-30'),
+    Date_End: new Date('2022-08-30'),
+    Category: "Meeting",
+    Location: "TU Campus"
+}
+
+const Third_Generic_Event: Event_Data = {
+    Name: "Third Generic Event",
+    Description: "Testing Event",
+    Date_Start: new Date('2022-09-30'),
+    Date_End: new Date('2022-09-30'),
     Category: "Meeting",
     Location: "TU Campus"
 }
@@ -243,5 +261,7 @@ export function populate() {
     Location.insertIntoLocationTable(Lorton_Village_Apartments);
     Location.insertIntoLocationTable(LaFortune_House);
 
-    Event.insertIntoEventTable(Generic_Event);
+    Event.insertIntoEventTable(First_Generic_Event);
+    Event.insertIntoEventTable(Second_Generic_Event);
+    Event.insertIntoEventTable(Third_Generic_Event);
 }

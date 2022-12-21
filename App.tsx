@@ -8,11 +8,13 @@ import MapViewDirections from 'react-native-maps-directions';
 
 import {Person, Person_Data} from './Database/Person';
 import {Location, Location_Data} from './Database/Location';
+import { Event, Event_Data} from './Database/Event';
+import { downloadDatabase_Expo_To_Machine } from './Database/Utilities'
 import { populate } from './Database/Populate_DB';
 
 import { RoutingPopup } from './PaneComponents/MapPaneComponents/RoutingPopup';
 
-import { Agenda, AgendaEntry} from 'react-native-calendars';
+import { Agenda, AgendaEntry, AgendaSchedule} from 'react-native-calendars';
 
 const DARK_BLACK = '#171D28'
 const LIGHT_BLUE = '#C0E2F6'
@@ -43,6 +45,8 @@ export default function App() {
     Person.dropPersonTable();
     Location.dropLocationTable();
     populate();
+
+    downloadDatabase_Expo_To_Machine();
   }, []);
   
 
@@ -192,18 +196,23 @@ const MapPane = () => {
 
 const CalenderPane = () => {
 
-  const date: string = '2022-12-16';
-  const dates: string[] = ['2022-12-16', '2022-12-17'];
-  const entries: AgendaEntry[] = [{name: 'test', height: 5, day: '2022-12-16'}];
   
+  const [agendaItems, setItems] = useState<AgendaSchedule>(
+    {'2022': [{name: 'test', height: 5, day: '2022-12-16'}]}
+  );
+  agendaItems['2021'] = [{name: '2021Test', height: 5, day: '2024-12-30'}];
+
   return (
   <View style={styles.calenderPane}>
     <Agenda
-      items={{}}
+      items={agendaItems}
 
+      
       // Callback that gets called when items for a certain month should be loaded (month became visible)
       loadItemsForMonth={month => {
-        console.log(month.dateString);
+        const currMonth = month.month;
+        const currYear = month.year;
+        console.log(agendaItems);
       }}
 
       // Initially selected day
@@ -211,10 +220,14 @@ const CalenderPane = () => {
 
       style={{height: '100%', width: '100%'}}
 
-      onRefresh={() => console.log('refreshing...')}
+      onRefresh={() => {
+        console.log('refreshing...')
+      }}
     ></Agenda>
   </View>)
 };
+
+
 
 const UserPane = () => (
   <View style={styles.userPane}>

@@ -20,7 +20,7 @@ class Event_Entity {
             "    Date_End Datetime NOT NULL, " +
             "    Category Varchar(100), " +
             "    Location_Name Varchar(100), " +
-            "    Foreign key(Location_Name) References Location(Name)ON DELETE CASCADE ON UPDATE CASCADE " +
+            "    Foreign key(Location_Name) References Location(Name) ON DELETE CASCADE ON UPDATE CASCADE " +
             ");";
     
             tx.executeSql(sqlCommand);
@@ -69,9 +69,15 @@ class Event_Entity {
           console.log(error.message);
         },
         () => {
-          console.log('Succesfully inserted a event instance into the event table.');
+          console.log('Succesfully inserted an event instance into the event table.');
         }
       ); 
+    }
+
+    async queryAttributes_MonthYear(month: number, year: number): Promise<Event_Data> {
+      return new Promise((resolve, reject) => {
+        let event_data: Event_Data[] = [];
+      });
     }
 }
 
@@ -83,6 +89,5 @@ export type Event_Data = {
     Category: string,
     Location: string
 }
-
 
 export const Event: Event_Entity = new Event_Entity(db_name);
