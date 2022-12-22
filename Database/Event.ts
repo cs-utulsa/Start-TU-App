@@ -74,9 +74,33 @@ class Event_Entity {
       ); 
     }
 
-    async queryAttributes_MonthYear(month: number, year: number): Promise<Event_Data> {
+    async queryAttributes_MonthYear(startMonth: number, startYear: number): Promise<Event_Data[]> {
+
       return new Promise((resolve, reject) => {
         let event_data: Event_Data[] = [];
+
+        this.DB.transaction(
+          (tx) => {
+            const initialSQLCommand = 
+            "SELECT * " +
+            "FROM Event as E " +
+            "WHERE strftime('%m', E.Date_Start) LIKE '%{startMonth}' AND strftime('%Y', E.Date_Start) LIKE '%{startYear}';";
+
+            const sqlCommand = initialSQLCommand.replace('{startMonth}', startMonth.toString())
+                                                .replace('{startYear}', startYear.toString());
+
+            tx.executeSql(sqlCommand, [],
+              (tx, results) => {
+                event_data = results.rows._array;
+              });
+          },
+          (error) => {
+            reject(error.message);
+          },
+          () => {
+            resolve(event_data);
+          } 
+        );
       });
     }
 }

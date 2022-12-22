@@ -46,7 +46,7 @@ export default function App() {
     Location.dropLocationTable();
     populate();
 
-    downloadDatabase_Expo_To_Machine();
+    //downloadDatabase_Expo_To_Machine();
   }, []);
   
 
@@ -206,13 +206,15 @@ const CalenderPane = () => {
   <View style={styles.calenderPane}>
     <Agenda
       items={agendaItems}
-
-      
       // Callback that gets called when items for a certain month should be loaded (month became visible)
       loadItemsForMonth={month => {
         const currMonth = month.month;
         const currYear = month.year;
-        console.log(agendaItems);
+
+        Event.queryAttributes_MonthYear(currMonth, currYear).then((value: Event_Data[]) => {
+          console.log(value);
+        });
+        //console.log(Event.queryAttributes_MonthYear(currMonth, currYear, currMonth, currYear));
       }}
 
       // Initially selected day
