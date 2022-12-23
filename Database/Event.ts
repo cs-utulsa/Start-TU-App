@@ -119,7 +119,6 @@ class Event_Entity {
 
             tx.executeSql(sqlCommand, [], 
               (tx, results) => {
-                //console.log(results.rows._array);
                 event_data = results.rows._array[0];
               }
             );

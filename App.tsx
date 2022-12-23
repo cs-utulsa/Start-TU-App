@@ -123,19 +123,17 @@ const ClassesPane = () => (
 const MapPane = () => {
 
   //State for all of the data(titles, latitude/longitude, description) for all markers on map
-  const [markerData, setMarkerData] = useState<Location_Data[]>([{
-    Name: "", Description: "", Latitude: 0, Longitude: 0, Tags: [""]
-  }]);
+  const [markerData, setMarkerData] = useState<Location_Data[]>([]);
   
   //State for the origin marker.
   const [origin, setOrigin] = useState<Location_Data>(
-    { Name: "Mcfarlin Library", Description: "Main Academic Library",
-      Latitude: 36.15232374393028, Longitude: -95.94599221560202, Tags: ["all", "Library"] });
+    {Latitude: 36.15236, Longitude: -95.94575} as Location_Data
+  );
 
   //State for the destination marker
   const [destination, setDestination] = useState<Location_Data>(
-    { Name: "Keplinger Hall", Description: "Main Building for the College of Engineering & Natural Science",
-      Latitude: 36.153979761758876, Longitude: -95.94205412959185, Tags: ["ens", "all"] });
+    {Latitude: 36.15236, Longitude: -95.94575} as Location_Data
+  );
 
   const [currentTag, setCurrentTag] = useState<string>("all");
 
@@ -201,7 +199,6 @@ const MapPane = () => {
 const CalenderPane = () => {
 
   const [agendaItems, setItems] = useState<AgendaSchedule>(
-    //{'2022-12-16': [{name: 'test', height: 5, day: '2022-12-16'}]}
     {} as AgendaSchedule
   );
 
@@ -223,9 +220,6 @@ const CalenderPane = () => {
         return <EventView 
                 Name={item.name} Height={item.height} Day={item.day}></EventView>
       }}
-
-      // Initially selected day
-      selected={'2022-12-16'}
 
       style={{height: '100%', width: '100%'}}
 

@@ -27,7 +27,8 @@ export const RoutingPopup: FC<RoutingPopupProps> = ({updateEndpoints}) => {
               
               <View style={styles.popupView}>
                 <View style={styles.textInputViewTo}>
-                  <TextInput placeholder={"Origin: " + origin.Name} style={styles.textInput} onSubmitEditing = {(e) => {
+                  <TextInput placeholder={"Origin: " + origin.Name} autoCorrect={false}
+                             style={styles.textInput} onSubmitEditing = {(e) => {
                     Location.queryAttributes_Name(e.nativeEvent.text).then((value: Location_Data) => {
                       if (value != undefined) {
                         setOrigin(value);
@@ -37,9 +38,10 @@ export const RoutingPopup: FC<RoutingPopupProps> = ({updateEndpoints}) => {
                 </View>
 
                 <View style={styles.textInputViewFrom}>
-                  <TextInput placeholder={"Destination: " + destination.Name} 
+                  <TextInput placeholder={"Destination: " + destination.Name} autoCorrect={false}
                              style={styles.textInput} onSubmitEditing = {(e) => {
-                    Location.queryAttributes_Name(e.nativeEvent.text).then((value: Location_Data) => {
+
+                      Location.queryAttributes_Name(e.nativeEvent.text).then((value: Location_Data) => {
                       if (value != undefined) {
                         setDestination(value);
                       }

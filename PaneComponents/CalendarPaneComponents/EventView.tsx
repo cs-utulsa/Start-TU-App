@@ -1,5 +1,5 @@
-import React, { useState, useEffect, FC } from 'react';
-import {StyleSheet, Image, Modal, Text, View, TextInput, Button, Pressable, ImageBackground} from 'react-native'
+import React, { useState, useEffect, FC, useLayoutEffect, useMemo } from 'react';
+import {StyleSheet, Image, Modal, Text, View, TextInput, Button, Pressable, ImageBackground, Animated} from 'react-native'
 import { Event, Event_Data } from '../../Database/Event';
 
 type EventViewProps = {
@@ -10,7 +10,8 @@ type EventViewProps = {
 
 export const EventView: FC<EventViewProps> = ({Name, Height, Day}) => {
 
-    const [EventData, setEventData] = useState<Event_Data>({} as Event_Data);
+    const [EventData, setEventData] = useState<Event_Data>();
+    const [expanded, setExpanded] = useState<boolean>(false);
 
     useEffect(() => {
         Event.queryAttributes_Name(Name).then((value:Event_Data) => {
@@ -18,22 +19,33 @@ export const EventView: FC<EventViewProps> = ({Name, Height, Day}) => {
         });
     }, [Name]);
 
-    return (
-    <View>
-        <Text>
-            {EventData.Name}
-        </Text>
-        <Text>
-            {EventData.Description}
-        </Text>
-        <Text>
-            {EventData.Category}
-        </Text>
-        <Text>
-            {EventData.Location}
-        </Text>
-    </View>
-    );
+    if (EventData == undefined) {
+        return (<View></View>);
+    }
+    else {
+        return (
+            <View>
+                <Text>
+                    {EventData.Name}
+                </Text>
+                <Text>
+                    {EventData.Description}
+                </Text>
+                <Text>
+                    {EventData.Date_Start.toString()}
+                </Text>
+                <Text>
+                    {EventData.Date_End.toString()}
+                </Text>
+                <Text>
+                    {EventData.Category}
+                </Text>
+                <Text>
+                    {EventData.Location}
+                </Text>
+            </View>
+        );
+    }    
 }
 
 const styles = StyleSheet.create({
@@ -42,5 +54,10 @@ const styles = StyleSheet.create({
       top: -10,
       left: 100,
       //backgroundColor: 'black'
+    },
+
+    eventViewContainer: {
+        alignSelf: 'center',
+        backgroundColor: 'white'
     }
 });
