@@ -6,6 +6,7 @@ import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 
 import MapViewDirections from 'react-native-maps-directions';
 
+//Dependencies that interface with SQLite database
 import {Person, Person_Data} from './Database/Person';
 import {Location, Location_Data} from './Database/Location';
 import { Event, Event_Data} from './Database/Event';
@@ -15,6 +16,8 @@ import { populate } from './Database/Populate_DB';
 import { RoutingPopup } from './PaneComponents/MapPaneComponents/RoutingPopup';
 
 import { Agenda, AgendaEntry, AgendaSchedule} from 'react-native-calendars';
+
+import {formatAgendaSchedule} from './utilities/formatAgendaSchedule'
 
 const DARK_BLACK = '#171D28'
 const LIGHT_BLUE = '#C0E2F6'
@@ -198,9 +201,9 @@ const CalenderPane = () => {
 
   
   const [agendaItems, setItems] = useState<AgendaSchedule>(
-    {'2022': [{name: 'test', height: 5, day: '2022-12-16'}]}
+    {'2022-12-16': [{name: 'test', height: 5, day: '2022-12-16'}]}
   );
-  agendaItems['2021'] = [{name: '2021Test', height: 5, day: '2024-12-30'}];
+  agendaItems['2022-12-17'] = [{name: '2021Test', height: 5, day: '2024-12-30'}];
 
   return (
   <View style={styles.calenderPane}>
@@ -212,9 +215,8 @@ const CalenderPane = () => {
         const currYear = month.year;
 
         Event.queryAttributes_MonthYear(currMonth, currYear).then((value: Event_Data[]) => {
-          console.log(value);
+          setItems(formatAgendaSchedule(value)); 
         });
-        //console.log(Event.queryAttributes_MonthYear(currMonth, currYear, currMonth, currYear));
       }}
 
       // Initially selected day
