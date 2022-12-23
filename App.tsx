@@ -2,9 +2,6 @@ import React, { useState, useEffect, Dispatch } from 'react';
 import { Text, View, StyleSheet, Button, Alert, Image, TouchableOpacity, Switch, TextInput} from 'react-native';
 import {StatusBar} from 'expo-status-bar';
 import { getTokenSourceMapRange, isPropertySignature, setTextRange } from 'typescript';
-import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
-
-import MapViewDirections from 'react-native-maps-directions';
 
 //Dependencies that interface with SQLite database
 import {Person, Person_Data} from './Database/Person';
@@ -13,11 +10,15 @@ import { Event, Event_Data} from './Database/Event';
 import { downloadDatabase_Expo_To_Machine } from './Database/Utilities'
 import { populate } from './Database/Populate_DB';
 
+//Dependencies for the Map Pane
 import { RoutingPopup } from './PaneComponents/MapPaneComponents/RoutingPopup';
+import MapViewDirections from 'react-native-maps-directions';
+import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 
+//Dependencies for the Calendar Pane.
 import { Agenda, AgendaEntry, AgendaSchedule} from 'react-native-calendars';
-
-import {formatAgendaSchedule} from './utilities/formatAgendaSchedule'
+import { EventView } from './PaneComponents/CalendarPaneComponents/EventView';
+import { formatAgendaSchedule } from './utilities/formatAgendaSchedule'
 
 const DARK_BLACK = '#171D28'
 const LIGHT_BLUE = '#C0E2F6'
@@ -218,14 +219,16 @@ const CalenderPane = () => {
         });
       }}
 
+      renderItem = { (item) => {
+        return <EventView 
+                Name={item.name} Height={item.height} Day={item.day}></EventView>
+      }}
+
       // Initially selected day
       selected={'2022-12-16'}
 
       style={{height: '100%', width: '100%'}}
 
-      onRefresh={() => {
-        console.log('refreshing...')
-      }}
     ></Agenda>
   </View>)
 };

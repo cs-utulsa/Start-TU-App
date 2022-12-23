@@ -103,6 +103,12 @@ class Event_Entity {
         );
       });
     }
+
+    async queryAttributes_Name(Name: string): Promise<Event_Data> {
+      return new Promise((resolve, reject) => {
+        let event_data: Event_Data = {} as Event_Data;
+      });
+    }
 }
 
 export type Event_Data = {
