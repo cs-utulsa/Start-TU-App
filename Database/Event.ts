@@ -92,7 +92,7 @@ class Event_Entity {
             tx.executeSql(sqlCommand, [],
               (tx, results) => {
                 event_data = results.rows._array;
-              });
+            });
           },
           (error) => {
             reject(error.message);
@@ -107,6 +107,30 @@ class Event_Entity {
     async queryAttributes_Name(Name: string): Promise<Event_Data> {
       return new Promise((resolve, reject) => {
         let event_data: Event_Data = {} as Event_Data;
+
+        this.DB.transaction(
+          (tx) => {
+            const initialSqlCommand = 
+            "SELECT * " + 
+            "FROM Event as E " +
+            "WHERE E.Name LIKE '%{?}%';";
+
+            const sqlCommand = initialSqlCommand.replace('{?}', Name);
+
+            tx.executeSql(sqlCommand, [], 
+              (tx, results) => {
+                //console.log(results.rows._array);
+                event_data = results.rows._array[0];
+              }
+            );
+          },
+          (error) => {
+            reject(error.message);
+          },
+          () => {
+            resolve(event_data);
+          }
+        );
       });
     }
 }

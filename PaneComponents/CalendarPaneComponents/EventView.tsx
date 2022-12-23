@@ -11,10 +11,26 @@ type EventViewProps = {
 export const EventView: FC<EventViewProps> = ({Name, Height, Day}) => {
 
     const [EventData, setEventData] = useState<Event_Data>({} as Event_Data);
+
+    useEffect(() => {
+        Event.queryAttributes_Name(Name).then((value:Event_Data) => {
+            setEventData(value);
+        });
+    }, [Name]);
+
     return (
     <View>
         <Text>
-            {Name}
+            {EventData.Name}
+        </Text>
+        <Text>
+            {EventData.Description}
+        </Text>
+        <Text>
+            {EventData.Category}
+        </Text>
+        <Text>
+            {EventData.Location}
         </Text>
     </View>
     );
