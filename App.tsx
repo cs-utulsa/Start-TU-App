@@ -199,11 +199,10 @@ const MapPane = () => {
 
 const CalenderPane = () => {
 
-  
   const [agendaItems, setItems] = useState<AgendaSchedule>(
-    {'2022-12-16': [{name: 'test', height: 5, day: '2022-12-16'}]}
+    //{'2022-12-16': [{name: 'test', height: 5, day: '2022-12-16'}]}
+    {} as AgendaSchedule
   );
-  agendaItems['2022-12-17'] = [{name: '2021Test', height: 5, day: '2024-12-30'}];
 
   return (
   <View style={styles.calenderPane}>
