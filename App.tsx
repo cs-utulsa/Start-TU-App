@@ -16,7 +16,7 @@ import MapViewDirections from 'react-native-maps-directions';
 import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 
 //Dependencies for the Calendar Pane.
-import { Agenda, AgendaEntry, AgendaSchedule} from 'react-native-calendars';
+import { Agenda, AgendaSchedule} from 'react-native-calendars';
 import { EventView } from './PaneComponents/CalendarPaneComponents/EventView';
 import { formatAgendaSchedule } from './utilities/formatAgendaSchedule'
 
@@ -46,10 +46,7 @@ export default function App() {
   const[paneState, setPaneState] = useState(MAP_STATE);
 
   useEffect(() => {
-    Person.dropPersonTable();
-    Location.dropLocationTable();
     populate();
-
     //downloadDatabase_Expo_To_Machine();
   }, []);
   

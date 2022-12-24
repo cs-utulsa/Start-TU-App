@@ -30,8 +30,6 @@ export const EventView: FC<EventViewProps> = ({Name, Height, Day}) => {
 
             <EventViewBody isExpanded={expanded} EventData={EventData}></EventViewBody>
         </View>
-
-        
     ); 
 }
 
@@ -43,10 +41,5 @@ const styles = StyleSheet.create({
         width: '100%',
         justifyContent: 'flex-start',
         alignItems: 'stretch'
-    },
-
-    eventViewBody: {
-        backgroundColor: 'powderblue',
-        paddingBottom: 0
     }
 });
