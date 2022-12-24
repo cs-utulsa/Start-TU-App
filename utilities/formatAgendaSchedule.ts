@@ -1,5 +1,5 @@
-import { Event, Event_Data} from '../Database/Event';
-import { AgendaSchedule, AgendaEntry} from 'react-native-calendars';
+import { Event_Data } from '../Database/Event';
+import { AgendaSchedule } from 'react-native-calendars';
 
 const initialViewHeight: number = 10;
 

@@ -12,7 +12,7 @@ export const EventViewBody:FC<EventViewBodyProps> = ({isExpanded, EventData}) =>
     
     useEffect(() => {
         Animated.timing(bodyHeight, {
-            toValue: !isExpanded ? 75 : 0,
+            toValue: !isExpanded ? 0 : 75,
             duration: 150,
             useNativeDriver: false
         }).start();
@@ -20,11 +20,12 @@ export const EventViewBody:FC<EventViewBodyProps> = ({isExpanded, EventData}) =>
 
     return(
         <Animated.ScrollView style = {{
-            //backgroundColor: 'powderblue',
-            paddingBottom: bodyHeight
+            backgroundColor: 'white',
+            paddingBottom: bodyHeight,
+            width: '100%'
         }}>
             <Text>
-                {EventData.Description}
+                {'About this event:\n' + EventData.Description + '\n'}
             </Text>
             <Text>
                 {EventData.Date_Start.toString()}
@@ -33,10 +34,10 @@ export const EventViewBody:FC<EventViewBodyProps> = ({isExpanded, EventData}) =>
                 {EventData.Date_End.toString()}
             </Text>
             <Text>
-                {EventData.Category}
+                {'Category:\n' + (EventData.Category == undefined ? '' : EventData.Category) + '\n'}
             </Text>
             <Text>
-                {EventData.Location}
+                {'Location:\n' + (EventData.Location == undefined ? '' : EventData.Location) + '\n'}
             </Text>
         </Animated.ScrollView>
     );
