@@ -226,6 +226,22 @@ const Third_Generic_Event: Event_Data = {
     Location: "TU Campus"
 }
 
+const Fourth_Generic_Event: Event_Data = {
+    Name: "Fourth Generic Event",
+    Description: "Testing Event",
+    Date_Start: new Date('2022-09-30'),
+    Date_End: new Date('2022-09-30'),
+    Category: "Meeting",
+    Location: "TU Campus"
+}
+const Fifth_Generic_Event: Event_Data = {
+    Name: "Fifth Generic Event",
+    Description: "Testing Event",
+    Date_Start: new Date('2022-09-30'),
+    Date_End: new Date('2022-09-30'),
+    Category: "Meeting",
+    Location: "TU Campus"
+}
 export function populate() {
     Person.dropPersonTable();
     Location.dropLocationTable();
@@ -264,4 +280,6 @@ export function populate() {
     Event.insertIntoEventTable(First_Generic_Event);
     Event.insertIntoEventTable(Second_Generic_Event);
     Event.insertIntoEventTable(Third_Generic_Event);
+    Event.insertIntoEventTable(Fourth_Generic_Event);
+    Event.insertIntoEventTable(Fifth_Generic_Event);
 }

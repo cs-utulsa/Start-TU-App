@@ -14,6 +14,7 @@ export const EventViewHeader: FC<EventViewHeaderProps> = ({Name, isExpanded, set
         <View style = {styles.eventViewHeader}>
             <Pressable style = {styles.eventViewHeaderPressable} onPress = {
                 () => {
+                    console.log(Name);
                     setIsExpanded(!isExpanded);
                 }
             }>
@@ -33,7 +34,7 @@ const styles = StyleSheet.create({
     eventViewHeader: {
         alignSelf: 'flex-start',
         width: '100%',
-        height: '30%',
+        height: 30,
         backgroundColor: 'white',
         justifyContent: 'flex-start',
         flexDirection: 'row'
@@ -44,7 +45,7 @@ const styles = StyleSheet.create({
         width: '7.5%',
         height: '80%',
         justifyContents: 'center',
-        //backgroundColor: 'white'
+        //backgroundColor: 'black'
     },
 
     eventViewHeaderIcon: {

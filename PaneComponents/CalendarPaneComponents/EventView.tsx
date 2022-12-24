@@ -1,7 +1,8 @@
 import React, { useState, useEffect, FC} from 'react';
-import {StyleSheet, Image, Text, View, Pressable, Animated} from 'react-native'
+import {StyleSheet, Image, Text, View, Pressable, Animated, ScrollView} from 'react-native'
 import { Event, Event_Data } from '../../Database/Event';
 import { EventViewHeader } from './EventViewHeader';
+import { EventViewBody } from './EventViewBody';
 
 type EventViewProps = {
     Name: string,
@@ -27,37 +28,25 @@ export const EventView: FC<EventViewProps> = ({Name, Height, Day}) => {
                    isExpanded = {expanded} 
                    setIsExpanded = {setExpanded}></EventViewHeader>
 
-            <View style = {styles.eventViewBody}>
-                <Text>
-                    {EventData.Description}
-                </Text>
-                <Text>
-                    {EventData.Date_Start.toString()}
-                </Text>
-                <Text>
-                    {EventData.Date_End.toString()}
-                </Text>
-                <Text>
-                    {EventData.Category}
-                </Text>
-                <Text>
-                    {EventData.Location}
-                </Text>
-            </View>
-            
+            <EventViewBody isExpanded={expanded} EventData={EventData}></EventViewBody>
         </View>
+
+        
     ); 
 }
 
 const styles = StyleSheet.create({
     eventViewContainer: {
-        backgroundColor: 'white',
-        justifyContents: 'columns',
-        height: '100%',
-        width: '100%'
+        //backgroundColor: 'white',
+        flexDirection: 'column',
+        height: '25%',
+        width: '100%',
+        justifyContent: 'flex-start',
+        alignItems: 'stretch'
     },
 
     eventViewBody: {
-        backgroundColor: 'powderblue'
+        backgroundColor: 'powderblue',
+        paddingBottom: 0
     }
 });
