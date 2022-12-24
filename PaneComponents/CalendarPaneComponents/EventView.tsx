@@ -11,7 +11,7 @@ type EventViewProps = {
 
 export const EventView: FC<EventViewProps> = ({Name, Height, Day}) => {
 
-    const [EventData, setEventData] = useState<Event_Data>();
+    const [EventData, setEventData] = useState<Event_Data>({Date_Start: new Date(''), Date_End: new Date('')} as Event_Data);
     const [expanded, setExpanded] = useState<boolean>(false);
 
     useEffect(() => {
@@ -20,38 +20,33 @@ export const EventView: FC<EventViewProps> = ({Name, Height, Day}) => {
         });
     }, [Name]);
 
-    if (EventData == undefined) {
-        return (<View></View>);
-    }
-    else {
-        return (
-            <View style = {styles.eventViewContainer}>
-                <EventViewHeader 
-                       Name = {EventData.Name} 
-                       isExpanded = {expanded} 
-                       setIsExpanded = {setExpanded}></EventViewHeader>
+    return (
+        <View style = {styles.eventViewContainer}>
+            <EventViewHeader 
+                   Name = {EventData.Name} 
+                   isExpanded = {expanded} 
+                   setIsExpanded = {setExpanded}></EventViewHeader>
 
-                <View>
-                    <Text>
-                        {EventData.Description}
-                    </Text>
-                    <Text>
-                        {EventData.Date_Start.toString()}
-                    </Text>
-                    <Text>
-                        {EventData.Date_End.toString()}
-                    </Text>
-                    <Text>
-                        {EventData.Category}
-                    </Text>
-                    <Text>
-                        {EventData.Location}
-                    </Text>
-                </View>
-                
+            <View style = {styles.eventViewBody}>
+                <Text>
+                    {EventData.Description}
+                </Text>
+                <Text>
+                    {EventData.Date_Start.toString()}
+                </Text>
+                <Text>
+                    {EventData.Date_End.toString()}
+                </Text>
+                <Text>
+                    {EventData.Category}
+                </Text>
+                <Text>
+                    {EventData.Location}
+                </Text>
             </View>
-        );
-    }    
+            
+        </View>
+    ); 
 }
 
 const styles = StyleSheet.create({
@@ -60,5 +55,9 @@ const styles = StyleSheet.create({
         justifyContents: 'columns',
         height: '100%',
         width: '100%'
+    },
+
+    eventViewBody: {
+        backgroundColor: 'powderblue'
     }
 });
