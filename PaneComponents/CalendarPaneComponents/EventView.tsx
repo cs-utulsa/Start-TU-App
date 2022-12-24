@@ -1,6 +1,7 @@
-import React, { useState, useEffect, FC, useLayoutEffect, useMemo } from 'react';
-import {StyleSheet, Image, Modal, Text, View, TextInput, Button, Pressable, ImageBackground, Animated} from 'react-native'
+import React, { useState, useEffect, FC} from 'react';
+import {StyleSheet, Image, Text, View, Pressable, Animated} from 'react-native'
 import { Event, Event_Data } from '../../Database/Event';
+import { EventViewHeader } from './EventViewHeader';
 
 type EventViewProps = {
     Name: string,
@@ -24,40 +25,40 @@ export const EventView: FC<EventViewProps> = ({Name, Height, Day}) => {
     }
     else {
         return (
-            <View>
-                <Text>
-                    {EventData.Name}
-                </Text>
-                <Text>
-                    {EventData.Description}
-                </Text>
-                <Text>
-                    {EventData.Date_Start.toString()}
-                </Text>
-                <Text>
-                    {EventData.Date_End.toString()}
-                </Text>
-                <Text>
-                    {EventData.Category}
-                </Text>
-                <Text>
-                    {EventData.Location}
-                </Text>
+            <View style = {styles.eventViewContainer}>
+                <EventViewHeader 
+                       Name = {EventData.Name} 
+                       isExpanded = {expanded} 
+                       setIsExpanded = {setExpanded}></EventViewHeader>
+
+                <View>
+                    <Text>
+                        {EventData.Description}
+                    </Text>
+                    <Text>
+                        {EventData.Date_Start.toString()}
+                    </Text>
+                    <Text>
+                        {EventData.Date_End.toString()}
+                    </Text>
+                    <Text>
+                        {EventData.Category}
+                    </Text>
+                    <Text>
+                        {EventData.Location}
+                    </Text>
+                </View>
+                
             </View>
         );
     }    
 }
 
 const styles = StyleSheet.create({
-    onPressRoute: {
-      alignSelf: 'flex-start',
-      top: -10,
-      left: 100,
-      //backgroundColor: 'black'
-    },
-
     eventViewContainer: {
-        alignSelf: 'center',
-        backgroundColor: 'white'
+        backgroundColor: 'white',
+        justifyContents: 'columns',
+        height: '100%',
+        width: '100%'
     }
 });
