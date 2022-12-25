@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     eventViewContainer: {
         //backgroundColor: 'white',
         flexDirection: 'column',
-        height: '25%',
+        height: '15%',
         width: '100%',
         justifyContent: 'flex-start',
         alignItems: 'stretch'
