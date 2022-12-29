@@ -15,7 +15,7 @@ class Email_Entity {
                  "Create Table Email( " +
                  "	Id varchar(250) PRIMARY KEY, " +
                  "	Sender_Email varchar(50) NOT NULL, " +
-                 "  Folder varchar(25), " +
+                 "  Folder varchar(5), " +
                  "	Subject varchar(10000), " +
                  "	Body varchar(10000000), " +
                  "	ReceivedTime datetime, " +
@@ -32,5 +32,34 @@ class Email_Entity {
             }
         );
     }
+
+    insertIntoEmailTable(Email: Email_Data) {
+        this.DB.transaction(
+            (tx) => {
+                const sqlCommand: string = 
+                "Insert into Email(Id, Sender_Email, Folder, Subject, Body, ReceivedTime)" +
+                "values (?, ?, ?, ?, ?, ?)";
+
+                tx.executeSql(sqlCommand, [Email.Id, Email.Sender_Email, Email.Folder, 
+                                           Email.Subject, Email.Body, Email.ReceivedTime.toISOString()]);
+            },
+            (error) => {
+                console.log(error.message);
+            },
+            () => {
+                console.log('Succesfully inserted an email into the email table.');
+            }
+        );
+    }
 }
 
+export type Email_Data = {
+    Id: string,
+    Sender_Email: string,
+    Folder: string,
+    Subject: string,
+    Body: string,
+    ReceivedTime: Date
+}
+
+export const Email: Email_Entity = new Email_Entity(db_name);
