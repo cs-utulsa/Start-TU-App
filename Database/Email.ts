@@ -15,9 +15,11 @@ class Email_Entity {
                  "Create Table Email( " +
                  "	Id varchar(250) PRIMARY KEY, " +
                  "	Sender_Email varchar(50) NOT NULL, " +
-                 "  Folder varchar(5), " +
+                 "	Receiver_Email varchar(50) NOT NULL, " +
+                 "  Folder varchar(10) NOT NULL, " +
                  "	Subject varchar(10000), " +
                  "	Body varchar(10000000), " +
+                 "	SentTime datetime, " +
                  "	ReceivedTime datetime, " +
                  "  CONSTRAINT CHK_Folder CHECK(Folder='Inbox') " +
                  ");";
@@ -37,11 +39,12 @@ class Email_Entity {
         this.DB.transaction(
             (tx) => {
                 const sqlCommand: string = 
-                "Insert into Email(Id, Sender_Email, Folder, Subject, Body, ReceivedTime)" +
-                "values (?, ?, ?, ?, ?, ?)";
+                "Insert into Email(Id, Sender_Email, Receiver_Email, Folder, Subject, Body, SentTime, ReceivedTime)" +
+                "values (?, ?, ?, ?, ?, ?, ?)";
 
-                tx.executeSql(sqlCommand, [Email.Id, Email.Sender_Email, Email.Folder, 
-                                           Email.Subject, Email.Body, Email.ReceivedTime.toISOString()]);
+                tx.executeSql(sqlCommand, [Email.Id, Email.Sender_Email, Email.Receiver_Email, 
+                                           Email.Folder, Email.Subject, Email.Body, 
+                                           Email.SentTime.toISOString(), Email.ReceivedTime.toISOString()]);
             },
             (error) => {
                 console.log(error.message);
@@ -51,14 +54,20 @@ class Email_Entity {
             }
         );
     }
+
+    queryAttributes_MonthYear(month: number, year: number) {
+
+    }
 }
 
 export type Email_Data = {
     Id: string,
     Sender_Email: string,
+    Receiver_Email: string,
     Folder: string,
     Subject: string,
     Body: string,
+    SentTime: Date,
     ReceivedTime: Date
 }
 

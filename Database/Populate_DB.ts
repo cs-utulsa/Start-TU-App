@@ -1,6 +1,7 @@
 import {Person, Person_Data} from './Person';
 import {Location, Location_Data} from './Location';
 import {Event, Event_Data} from './Event'
+import {Email, Email_Data} from './Email'
 
 const Keplinger_Hall: Location_Data = {
     Name: "Keplinger Hall",
@@ -242,6 +243,18 @@ const Fifth_Generic_Event: Event_Data = {
     Category: "Meeting",
     Location: "TU Campus"
 }
+
+const First_Generic_Email: Email_Data = {
+    Id: '1',
+    Sender_Email: 'sender@email',
+    Receiver_Email: 'receiver@email',
+    Folder: 'Inbox',
+    Subject: 'Subject 1',
+    Body: 'lifdsalfjdsafjklasdjfdjslak;',
+    SentTime: new Date('2022-12-01'),
+    ReceivedTime: new Date('2022-12-01')
+}
+
 export function populate() {
     Person.dropPersonTable();
     Location.dropLocationTable();
