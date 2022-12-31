@@ -40,7 +40,7 @@ class Email_Entity {
             (tx) => {
                 const sqlCommand: string = 
                 "Insert into Email(Id, Sender_Email, Receiver_Email, Folder, Subject, Body, SentTime, ReceivedTime)" +
-                "values (?, ?, ?, ?, ?, ?, ?)";
+                "values (?, ?, ?, ?, ?, ?, ?, ?)";
 
                 tx.executeSql(sqlCommand, [Email.Id, Email.Sender_Email, Email.Receiver_Email, 
                                            Email.Folder, Email.Subject, Email.Body, 
@@ -55,7 +55,7 @@ class Email_Entity {
         );
     }
 
-    queryAttributes_MonthYear(month: number, year: number) {
+    queryAttributes_MonthYear_Inbox(month: number, year: number) {
 
     }
 }
