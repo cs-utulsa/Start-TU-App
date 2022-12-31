@@ -254,6 +254,57 @@ const First_Generic_Email: Email_Data = {
     SentTime: new Date('2022-12-01'),
     ReceivedTime: new Date('2022-12-01')
 }
+const Second_Generic_Email: Email_Data = {
+    Id: '2',
+    Sender_Email: 'sender@email',
+    Receiver_Email: 'receiver@email',
+    Folder: 'Inbox',
+    Subject: 'Subject 2',
+    Body: 'fdsafdefqfdv;',
+    SentTime: new Date('2022-12-02'),
+    ReceivedTime: new Date('2022-12-02')
+}
+const Third_Generic_Email: Email_Data = {
+    Id: '3',
+    Sender_Email: 'sender@email',
+    Receiver_Email: 'receiver@email',
+    Folder: 'Inbox',
+    Subject: 'Subject 3',
+    Body: 'l53215322',
+    SentTime: new Date('2022-12-03'),
+    ReceivedTime: new Date('2022-12-03')
+}
+const Fourth_Generic_Email: Email_Data = {
+    Id: '4',
+    Sender_Email: 'sender@email',
+    Receiver_Email: 'receiver@email',
+    Folder: 'Inbox',
+    Subject: 'Subject 4',
+    Body: '$&#*(&$*@(&(',
+    SentTime: new Date('2022-12-04'),
+    ReceivedTime: new Date('2022-12-04')
+}
+const Fifth_Generic_Email: Email_Data = {
+    Id: '5',
+    Sender_Email: 'sender@email',
+    Receiver_Email: 'receiver@email',
+    Folder: 'Inbox',
+    Subject: 'Subject 5',
+    Body: 'lllllllllll',
+    SentTime: new Date('2022-12-04'),
+    ReceivedTime: new Date('2022-12-04')
+}
+const Sixth_Generic_Email: Email_Data = {
+    Id: '6',
+    Sender_Email: 'sender@email',
+    Receiver_Email: 'receiver@email',
+    Folder: 'Inbox',
+    Subject: 'Subject 6',
+    Body: 'sssssss',
+    SentTime: new Date('2022-12-04'),
+    ReceivedTime: new Date('2022-12-04')
+}
+
 
 export function populate() {
     Person.dropPersonTable();
@@ -263,6 +314,7 @@ export function populate() {
     Person.createPersonTable();
     Location.createLocationTable();
     Event.createEventTable();
+    Email.createEmailTable();
 
     Location.insertIntoLocationTable(Keplinger_Hall);
     Location.insertIntoLocationTable(Rayzor_Hall);
@@ -295,4 +347,6 @@ export function populate() {
     Event.insertIntoEventTable(Third_Generic_Event);
     Event.insertIntoEventTable(Fourth_Generic_Event);
     Event.insertIntoEventTable(Fifth_Generic_Event);
+
+    
 }

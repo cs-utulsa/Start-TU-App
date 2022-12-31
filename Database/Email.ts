@@ -35,6 +35,22 @@ class Email_Entity {
         );
     }
 
+    dropLocationTable() {
+        this.DB.transaction(
+            (tx) => {
+                const sqlCommand:string = "DROP TABLE Email";
+                tx.executeSql(sqlCommand);
+            },
+  
+            (error) => {
+                console.log(error.message);
+              },
+              () => {
+                console.log('Successfully dropped the email table');
+              }
+        );
+      }
+
     insertIntoEmailTable(Email: Email_Data) {
         this.DB.transaction(
             (tx) => {
