@@ -44,10 +44,10 @@ class Email_Entity {
   
             (error) => {
                 console.log(error.message);
-              },
-              () => {
+            },
+            () => {
                 console.log('Successfully dropped the email table');
-              }
+            }
         );
       }
 
@@ -71,8 +71,37 @@ class Email_Entity {
         );
     }
 
-    queryAttributes_MonthYear_Inbox(month: number, year: number) {
+    queryAttributes_MonthYear_Folder(month: number, year: number, folder: string = 'Inbox'): Promise<Email_Data[]> {
+        return new Promise((resolve, reject) => {
+            let email_data: Email_Data[] = [];
 
+            this.DB.transaction(
+                (tx) => {
+                    const initialSQLCommand = 
+                        "SELECT * " +
+                        "FROM Email as E " +
+                        "WHERE strftime('%m', E.ReceivedTime) LIKE '%{month}' " +
+                        "  and strftime('%Y', E.ReceivedTime) LIKE '%{year}' " +
+                        "  and E.Folder = '{folder}';";
+                    
+                    const sqlCommand = initialSQLCommand.replace('{month}', month.toString())
+                                                        .replace('{year}', year.toString())
+                                                        .replace('{folder}', folder);
+
+                    tx.executeSql(sqlCommand, [], 
+                        (tx, results) => {
+                            email_data = results.rows._array;
+                        }
+                    );
+                },
+                (error) => {
+                    reject(error.message);
+                },
+                () => {
+                    resolve(email_data);
+                }
+            );
+        });
     }
 }
 

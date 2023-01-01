@@ -310,12 +310,14 @@ export function populate() {
     Person.dropPersonTable();
     Location.dropLocationTable();
     Event.dropEventTable();
+    Email.dropLocationTable();
 
     Person.createPersonTable();
     Location.createLocationTable();
     Event.createEventTable();
     Email.createEmailTable();
 
+    //Inserting Academic Buildings
     Location.insertIntoLocationTable(Keplinger_Hall);
     Location.insertIntoLocationTable(Rayzor_Hall);
     Location.insertIntoLocationTable(Stephenson_Hall);
@@ -332,6 +334,7 @@ export function populate() {
     Location.insertIntoLocationTable(College_Of_Law);
     Location.insertIntoLocationTable(Oliphant_Hall);
 
+    //Inserting Housing Buildings
     Location.insertIntoLocationTable(John_Mabee);
     Location.insertIntoLocationTable(Lottie_John_Mabee);
     Location.insertIntoLocationTable(Mayo_Village_Apartments);
@@ -348,5 +351,10 @@ export function populate() {
     Event.insertIntoEventTable(Fourth_Generic_Event);
     Event.insertIntoEventTable(Fifth_Generic_Event);
 
-    
+    Email.insertIntoEmailTable(First_Generic_Email);
+    Email.insertIntoEmailTable(Second_Generic_Email);
+    Email.insertIntoEmailTable(Third_Generic_Email);
+    Email.insertIntoEmailTable(Fourth_Generic_Email);
+    Email.insertIntoEmailTable(Fifth_Generic_Email);
+    Email.insertIntoEmailTable(Sixth_Generic_Email);
 }
