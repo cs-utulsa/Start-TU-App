@@ -7,6 +7,7 @@ import { getTokenSourceMapRange, isPropertySignature, setTextRange } from 'types
 import {Person, Person_Data} from './Database/Person';
 import {Location, Location_Data} from './Database/Location';
 import { Event, Event_Data} from './Database/Event';
+import { Email, Email_Data} from './Database/Email'
 import { downloadDatabase_Expo_To_Machine } from './Database/Utilities'
 import { populate } from './Database/Populate_DB';
 
@@ -19,6 +20,14 @@ import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import { Agenda, AgendaSchedule} from 'react-native-calendars';
 import { EventView } from './PaneComponents/CalendarPaneComponents/EventView';
 import { formatAgendaSchedule } from './utilities/formatAgendaSchedule'
+
+//Dependencies for the EmailPane.
+import { EmailNavStack } from './Navigation/EmailStackNav';
+import { EmailView } from './PaneComponents/EmailPaneComponents/EmailView';
+import { EmailListView } from './PaneComponents/EmailPaneComponents/EmailListView';
+import { EmailNavigation } from './Navigation/EmailNavigation';
+import { NavigationContainer } from '@react-navigation/native';
+
 
 const DARK_BLACK = '#171D28'
 const LIGHT_BLUE = '#C0E2F6'
@@ -52,30 +61,32 @@ export default function App() {
   
 
   return (
-    <View style={{flex: 1, backgroundColor: TU_BLUE}}>
-      <View style={{padding: 0}}>
-      </View>
-      <View style={{flex: 1}}>
-        <StatusBar style="light"/>
-      <View style={{paddingTop:20}}>
-        <Image
-          style={{width: 50, height: 50}}
-          source={require('./assets/TUlogonormal.png')}
-        />
-      </View>
-      <View style={{flex: 1}}>
-        <StatusBar style="light"/>
-        {paneState == USER_STATE && <UserPane></UserPane>}
-        {paneState == CLASSES_STATE && <ClassesPane></ClassesPane>}
+    <NavigationContainer>
+      <View style={{flex: 1, backgroundColor: TU_BLUE}}>
+        <View style={{padding: 0}}>
+        </View>
 
-        {paneState == MAP_STATE && <MapPane></MapPane>}
+        <View style={{flex: 1}}>
+          <StatusBar style="light"/>
+          <View style={{paddingTop:20}}>
+            <Image
+              style={{width: 50, height: 50}}
+              source={require('./assets/TUlogonormal.png')}/>
+          </View>
+          <View style={{flex: 1}}>
+            <StatusBar style="light"/>
+            {paneState == USER_STATE && <UserPane></UserPane>}
+            {paneState == CLASSES_STATE && <ClassesPane></ClassesPane>}
 
-        {paneState == CALENDER_STATE && <CalenderPane></CalenderPane>}
-        {paneState == EMAIL_STATE && <EmailPane></EmailPane>}
-        <BottomButtons state={paneState} changeState={setPaneState}></BottomButtons>
+            {paneState == MAP_STATE && <MapPane></MapPane>}
+
+            {paneState == CALENDER_STATE && <CalenderPane></CalenderPane>}
+            {paneState == EMAIL_STATE && <EmailPane></EmailPane>}
+            <BottomButtons state={paneState} changeState={setPaneState}></BottomButtons>
+          </View>
+        </View>
       </View>
-    </View>
-    </View>
+    </NavigationContainer>
   );
 }
 
@@ -105,11 +116,27 @@ const BottomButtons = ({state, changeState}: any) => (
   </View>
 );
 
-const EmailPane = () => (
-  <View style={styles.emailPane}>
-    <Image style={{aspectRatio: 0.63, height: 595}} source={require('./assets/Outlook.png')} />
-  </View>
-);
+const EmailPane = () => {
+  const [latestDate, setLatestDate] = useState<Date>();
+
+  // useEffect(()=>{
+  //   const month = 12;
+  //   const year = 2022;
+  //   Email.queryAttributes_MonthYear_Folder(month, year).then((value: Email_Data[]) => {
+  //     for (let i = 0; i < value.length; i++) {
+  //       console.log(value[i]);
+  //     }
+  //   });
+  // }, []);
+
+  return(
+    <View style={styles.emailPane}>
+        <EmailNavigation></EmailNavigation>
+    </View>
+  );
+}
+  
+
 
 const ClassesPane = () => (
   <View style={styles.classesPane}>
