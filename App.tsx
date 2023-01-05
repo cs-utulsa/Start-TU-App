@@ -22,9 +22,6 @@ import { EventView } from './PaneComponents/CalendarPaneComponents/EventView';
 import { formatAgendaSchedule } from './utilities/formatAgendaSchedule'
 
 //Dependencies for the EmailPane.
-import { EmailNavStack } from './Navigation/EmailStackNav';
-import { EmailView } from './PaneComponents/EmailPaneComponents/EmailView';
-import { EmailListView } from './PaneComponents/EmailPaneComponents/EmailListView';
 import { EmailNavigation } from './Navigation/EmailNavigation';
 import { NavigationContainer } from '@react-navigation/native';
 

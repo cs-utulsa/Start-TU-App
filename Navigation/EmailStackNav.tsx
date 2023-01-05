@@ -3,7 +3,7 @@ import { EmailView } from '../PaneComponents/EmailPaneComponents/EmailView';
 import { EmailListView } from '../PaneComponents/EmailPaneComponents/EmailListView';
 import { Email_Data } from '../Database/Email';
 
-type EmailStackParamList = {
+export type EmailStackParamList = {
     EmailListView: undefined;
     EmailView: Email_Data | undefined;
 }

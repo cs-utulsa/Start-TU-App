@@ -3,12 +3,11 @@ import {StyleSheet, Image, Text, View, Pressable, Animated, ScrollView, Button} 
 import { useNavigation } from '@react-navigation/native';
 
 
-export const EmailListView = () => {
-    const navigate = useNavigation();
+export const EmailListView = ({navigation}: any) => {
 
     return(
         <View>
-            <Button onPress={() => console.log('Test')} title = 'Go to EmailView'></Button>
+            <Button onPress={() => navigation.push('EmailView')} title = 'Go to EmailView'></Button>
         </View>
     );
 }
