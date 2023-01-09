@@ -4,8 +4,8 @@ import { useNavigation } from '@react-navigation/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { EmailNavStack, EmailStackParamList } from '../../Navigation/EmailStackNav';
 
-
-export const EmailView = ({navigation}: any) => {
+type Props = NativeStackScreenProps<EmailStackParamList, 'EmailView'>
+export const EmailView = ({navigation, route }: Props) => {
 
     
     return(

@@ -14,7 +14,6 @@ export const EventViewHeader: FC<EventViewHeaderProps> = ({Name, isExpanded, set
         <View style = {styles.eventViewHeader}>
             <Pressable style = {styles.eventViewHeaderPressable} onPress = {
                 () => {
-                    console.log(Name);
                     setIsExpanded(!isExpanded);
                 }
             }>
