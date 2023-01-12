@@ -8,6 +8,7 @@ npm-debug.*
 *.key
 *.mobileprovision
 *.orig.*
+creds.ts
 web-build/
 creds.ts
 
