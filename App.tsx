@@ -13,7 +13,7 @@ import { populate } from './Database/Populate_DB';
 //Dependencies for the Map Pane
 import { RoutingPopup } from './PaneComponents/MapPaneComponents/RoutingPopup';
 import MapViewDirections from 'react-native-maps-directions';
-import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
+import MapView, { Marker, PROVIDER_GOOGLE, LatLng } from 'react-native-maps';
 
 //Dependencies for the Calendar Pane.
 import { Agenda, AgendaSchedule} from 'react-native-calendars';
@@ -124,12 +124,12 @@ const MapPane = () => {
   
   //State for the origin marker.
   const [origin, setOrigin] = useState<Location_Data>(
-    {Latitude: 36.15236, Longitude: -95.94575} as Location_Data
+    {} as Location_Data
   );
 
   //State for the destination marker
   const [destination, setDestination] = useState<Location_Data>(
-    {Latitude: 36.15236, Longitude: -95.94575} as Location_Data
+    {} as Location_Data
   );
 
   const [currentTag, setCurrentTag] = useState<string>("all");
@@ -166,28 +166,50 @@ const MapPane = () => {
             longitude: -95.94575,
             latitudeDelta: 0.01,
             longitudeDelta: 0.0125,}} 
-          style = {{height: '100%', width: '100%'}}>
+          style = {{height: '100%', width: '100%'}}
+          onLongPress = {(e) => {
+            const location: LatLng = e.nativeEvent.coordinate
+            setDestination(origin)
+            setOrigin({
+              Latitude: location.latitude, 
+              Longitude: location.longitude
+            } as Location_Data)
+          }}>
             
             <RoutingPopup 
             updateEndpoints = {updateDirectionEndpoints}></RoutingPopup>
 
-            <MapViewDirections
+            { 
+              JSON.stringify(origin) != '{}' && 
+              JSON.stringify(destination) != '{}' &&
+
+              <MapViewDirections
               origin={{latitude: origin.Latitude, longitude: origin.Longitude}}
               destination={{latitude: destination.Latitude, longitude: destination.Longitude}}
               apikey={GOOGLE_MAPS_API_KEY}
               mode={"WALKING"}
               strokeColor={TU_LIGHT_BLUE}
               strokeWidth={3}/>
+            }
 
+            {
+              JSON.stringify(origin) != '{}' &&
+              <Marker coordinate={{latitude: origin.Latitude, longitude: origin.Longitude}}></Marker>
+            }
+              
+            {
+              JSON.stringify(destination) != '{}' &&
+              <Marker coordinate={{latitude: destination.Latitude, longitude: destination.Longitude}}></Marker>
+            }
           
-          {markerData.map((item: Location_Data, index:number) => (
-            <Marker
-            key={index}
-            coordinate={{latitude: item.Latitude, longitude: item.Longitude}}
-            title={item.Name}
-            description={item.Description}>
-            </Marker>
-          ))}
+            {markerData.map((item: Location_Data, index:number) => (
+              <Marker
+              key={index}
+              coordinate={{latitude: item.Latitude, longitude: item.Longitude}}
+              title={item.Name}
+              description={item.Description}>
+              </Marker>
+            ))}
       </MapView> 
     </View>
   );
