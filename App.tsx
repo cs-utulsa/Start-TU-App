@@ -169,8 +169,8 @@ const MapPane = () => {
           style = {{height: '100%', width: '100%'}}
           onLongPress = {(e) => {
             const location: LatLng = e.nativeEvent.coordinate
-            setDestination(origin)
-            setOrigin({
+            setOrigin(destination)
+            setDestination({
               Latitude: location.latitude, 
               Longitude: location.longitude
             } as Location_Data)
@@ -194,12 +194,12 @@ const MapPane = () => {
 
             {
               JSON.stringify(origin) != '{}' &&
-              <Marker coordinate={{latitude: origin.Latitude, longitude: origin.Longitude}}></Marker>
+              <Marker coordinate={{latitude: origin.Latitude, longitude: origin.Longitude}} pinColor={'blue'}></Marker>
             }
               
             {
               JSON.stringify(destination) != '{}' &&
-              <Marker coordinate={{latitude: destination.Latitude, longitude: destination.Longitude}}></Marker>
+              <Marker coordinate={{latitude: destination.Latitude, longitude: destination.Longitude}} pinColor={'green'}></Marker>
             }
           
             {markerData.map((item: Location_Data, index:number) => (
