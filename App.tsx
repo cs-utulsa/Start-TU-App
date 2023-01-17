@@ -175,9 +175,6 @@ const MapPane = () => {
               Longitude: location.longitude
             } as Location_Data)
           }}>
-            
-            <RoutingPopup 
-            updateEndpoints = {updateDirectionEndpoints}></RoutingPopup>
 
             { 
               JSON.stringify(origin) != '{}' && 
