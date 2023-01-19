@@ -13,7 +13,7 @@ import { populate } from './Database/Populate_DB';
 //Dependencies for the Map Pane
 import { RoutingPopup } from './PaneComponents/MapPaneComponents/RoutingPopup';
 import MapViewDirections from 'react-native-maps-directions';
-import MapView, { Marker, PROVIDER_GOOGLE, LatLng } from 'react-native-maps';
+import MapView, { Polygon, Marker, Overlay, PROVIDER_GOOGLE, LatLng } from 'react-native-maps';
 
 //Dependencies for the Calendar Pane.
 import { Agenda, AgendaSchedule} from 'react-native-calendars';
@@ -40,7 +40,6 @@ const images = {
 
 //A VALID API KEY IS NEEDED
 import {GOOGLE_MAPS_API_KEY} from './creds';
-
 
 export default function App() {
   const[paneState, setPaneState] = useState(MAP_STATE);
@@ -161,6 +160,8 @@ const MapPane = () => {
       </View>
 
       <MapView 
+          showsBuildings={false}
+          showsPointsOfInterest={false}
           initialRegion={{
             latitude: 36.15236,
             longitude: -95.94575,
@@ -175,7 +176,30 @@ const MapPane = () => {
               Longitude: location.longitude
             } as Location_Data)
           }}>
-
+            {/* <Overlay bounds={[[36.15346419599191, -95.94231100530232], [36.154378406934384, -95.94173811852323]]} image={require('./assets/Kep.png')} opacity={1} tappable={true} onPress={() => console.log("hello")}/> */}
+            <Polygon fillColor={TU_LIGHT_BLUE} coordinates={[{latitude: 36.154399370636966, longitude: -95.94231245481298},{latitude: 36.154399370636966, longitude: -95.94184588923831},{latitude: 36.1537623145845, longitude: -95.94185726888648},
+              {latitude: 36.153658179929934, longitude: -95.94173209275668},{latitude: 36.15346216138149, longitude: -95.94173209275668},{latitude: 36.15345909858778, longitude: -95.94219107189925},{latitude: 36.15367043107294, longitude: -95.94220624476347},
+              {latitude: 36.15377150292973, longitude: -95.94231245481298}]}/>
+            <Polygon fillColor={TU_LIGHT_BLUE} coordinates={[{latitude: 36.153297704044455, longitude: -95.94231961606665}, {latitude: 36.15329588289261, longitude: -95.94222263129699}, {latitude: 36.153281313676366, longitude: -95.94222263129699}, 
+              {latitude: 36.153281313676366, longitude: -95.94178845529312}, {latitude: 36.153253996388656, longitude: -95.94178845529312}, {latitude: 36.15325217523579, longitude: -95.94177492253456 }, {latitude: 36.15318934543643, longitude: -95.94177492253456}, 
+              {latitude: 36.15317659735504, longitude: -95.94178732756325}, {latitude: 36.15304911642732, longitude: -95.94178507210349}, {latitude: 36.15304911642732, longitude: -95.94180762670109}, {latitude: 36.152961700814224, longitude: -95.94191250557994}, 
+              {latitude: 36.15293620457538, longitude: -95.94191250557994}, {latitude: 36.152937115155495, longitude: -95.94220120442925}, {latitude: 36.15292527761334, longitude: -95.9421989489695}, {latitude: 36.15292800935401, longitude: -95.94226886822204}, 
+              {latitude: 36.15293620457538, longitude: -95.94226886822204}, {latitude: 36.15293529399528, longitude: -95.94231736060689}, {latitude: 36.15320937813155, longitude: -95.94231848833678}, {latitude: 36.15320937813155, longitude: -95.94233540428499}, 
+              {latitude: 36.15328313482854, longitude: -95.94233653201488}, {latitude: 36.153284955980695, longitude: -95.94231961606665}]}/>
+            <Polygon strokeWidth={0.1} fillColor='red' coordinates={[{latitude: 36.153546719983936, longitude: -95.94900305303992}, {latitude: 36.15354518858874, longitude: -95.94890063620645}, {latitude: 36.15353446882159, longitude: -95.94889873959843}, 
+              {latitude: 36.153532937426164, longitude: -95.94869959575558}, {latitude: 36.153546719983936, longitude: -95.94869959575558}, {latitude: 36.15354518858874, longitude: -95.94860097213818}, {latitude: 36.153520686261686, longitude: -95.94860286874619}, 
+              {latitude: 36.153519154865975, longitude: -95.94856303997763}, {latitude: 36.153428802467005, longitude: -95.9485611433696}, {latitude: 36.15342573967201, longitude: -95.94860097213818}, {latitude: 36.153229720542534, longitude: -95.94859717892213}, 
+              {latitude: 36.15322665773975, longitude: -95.94862562804252}, {latitude: 36.15318224708592, longitude: -95.94862562804252}, {latitude: 36.15318224708592, longitude: -95.94860476535422}, {latitude: 36.153090362894694, longitude: -95.94860286874619}, 
+              {latitude: 36.15308883149059, longitude: -95.9485611433696}, {latitude: 36.153049780675985, longitude: -95.94856168227074}, {latitude: 36.153050546378424, longitude: -95.94853323315034}, {latitude: 36.15316157315231, longitude: -95.94853418145435}, 
+              {latitude: 36.15316157315231, longitude: -95.94840900532455}, {latitude: 36.153049780675985, longitude: -95.94840426380449}, {latitude: 36.153047483568635, longitude: -95.94838624602825}, {latitude: 36.152935690929674, longitude: -95.94838529772424}, 
+              {latitude: 36.1529310967081, longitude: -95.94897893607212}, {latitude: 36.1529456450751, longitude: -95.94897988437614}, {latitude: 36.15294411366817, longitude: -95.94902824788083}, {latitude: 36.1530122612474, longitude: -95.94902824788083}, 
+              {latitude: 36.1530122612474, longitude: -95.94899410893635}, {latitude: 36.15319449830318, longitude: -95.94899410893635}, {latitude: 36.15319373260214, longitude: -95.9490329894009}, {latitude: 36.15327413116939, longitude: -95.94903014448884}, 
+              {latitude: 36.15327477376571, longitude: -95.94899430231948}, {latitude: 36.153423508656935, longitude: -95.94899589717153}, {latitude: 36.153422220910194, longitude: -95.94903098389113}, {latitude: 36.15352008960253, longitude: -95.94903018646569}, 
+              {latitude: 36.153520733475084, longitude: -95.94899988429876}]} 
+              holes={[[{latitude: 36.153411918932846, longitude: -95.94884518374039}, {latitude: 36.153412562806324, longitude: -95.94872716477444}, 
+                {latitude: 36.15321360565575, longitude: -95.94872397507265}, {latitude: 36.15321231790557, longitude: -95.94868490122583}, {latitude: 36.15315758850287, longitude: -95.94868809092762}, {latitude: 36.153155656876194, longitude: -95.94865380163345},
+                {latitude: 36.15308740603646, longitude: -95.948653004208}, {latitude: 36.1530861182842, longitude: -95.94869925488385}, {latitude: 36.153053280594335, longitude: -95.9486984574584}, {latitude: 36.153053280594335, longitude: -95.9488435888895}]]}
+            />
             { 
               JSON.stringify(origin) != '{}' && 
               JSON.stringify(destination) != '{}' &&
