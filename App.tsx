@@ -205,6 +205,7 @@ const MapPane = () => {
               coordinate={{latitude: item.Latitude, longitude: item.Longitude}}
               title={item.Name}
               description={item.Description}>
+              <Image source={require('./Location-Marker.png')} style={{height: 35, width:35 }} />
               </Marker>
             ))}
       </MapView> 
