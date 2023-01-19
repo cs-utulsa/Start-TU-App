@@ -225,6 +225,9 @@ const MapPane = () => {
               //   {latitude: 36.15321360565575, longitude: -95.94872397507265}, {latitude: 36.15321231790557, longitude: -95.94868490122583}, {latitude: 36.15315758850287, longitude: -95.94868809092762}, {latitude: 36.153155656876194, longitude: -95.94865380163345},
               //   {latitude: 36.15308740603646, longitude: -95.948653004208}, {latitude: 36.1530861182842, longitude: -95.94869925488385}, {latitude: 36.153053280594335, longitude: -95.9486984574584}, {latitude: 36.153053280594335, longitude: -95.9488435888895}
               // ]]}
+                holes={[[
+                  {latitude: 36.153411918932846, longitude: -95.94884518374039}, {latitude: 36.153411918932846, longitude: -95.94884518374038}
+                ]]}
             />
 
             {/* Champman Hall */}
@@ -246,6 +249,9 @@ const MapPane = () => {
                 {latitude: 36.15329840007175, longitude: -95.94782802692778}, {latitude: 36.153295151481665, longitude: -95.94792592755029}, 
                 {latitude: 36.15333034453379, longitude: -95.9479265981025}, {latitude: 36.15333088596521, longitude: -95.94782802692778}
               ]}
+              holes={[[
+                {latitude: 36.153411918932846, longitude: -95.94884518374039}, {latitude: 36.153411918932846, longitude: -95.94884518374038}
+              ]]}
             />
 
             {/* Mary K. Chapman Center */}
