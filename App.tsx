@@ -2,17 +2,23 @@ import React, { useState, useEffect, Dispatch } from 'react';
 import { Text, View, StyleSheet, Button, Alert, Image, TouchableOpacity, Switch, TextInput} from 'react-native';
 import {StatusBar} from 'expo-status-bar';
 import { getTokenSourceMapRange, isPropertySignature, setTextRange } from 'typescript';
-import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 
-import MapViewDirections from 'react-native-maps-directions';
-
-import {MapOrEntries, useMap} from 'usehooks-ts';
-
+//Dependencies that interface with SQLite database
 import {Person, Person_Data} from './Database/Person';
 import {Location, Location_Data} from './Database/Location';
+import { Event, Event_Data} from './Database/Event';
+import { downloadDatabase_Expo_To_Machine } from './Database/Utilities'
 import { populate } from './Database/Populate_DB';
 
-// import logo from './assets/icon.png';
+//Dependencies for the Map Pane
+import { RoutingPopup } from './PaneComponents/MapPaneComponents/RoutingPopup';
+import MapViewDirections from 'react-native-maps-directions';
+import MapView, { Marker, PROVIDER_GOOGLE, LatLng } from 'react-native-maps';
+
+//Dependencies for the Calendar Pane.
+import { Agenda, AgendaSchedule} from 'react-native-calendars';
+import { EventView } from './PaneComponents/CalendarPaneComponents/EventView';
+import { formatAgendaSchedule } from './utilities/formatAgendaSchedule'
 
 const DARK_BLACK = '#171D28'
 const LIGHT_BLUE = '#C0E2F6'
@@ -34,17 +40,14 @@ const images = {
 
 //A VALID API KEY IS NEEDED
 import {GOOGLE_MAPS_API_KEY} from './creds';
-import { RoutingPopup } from './PaneComponents/MapPaneComponents/RoutingPopup';
 
 
 export default function App() {
   const[paneState, setPaneState] = useState(MAP_STATE);
 
-
   useEffect(() => {
-    Person.dropPersonTable();
-    Location.dropLocationTable();
     populate();
+    //downloadDatabase_Expo_To_Machine();
   }, []);
   
 
@@ -117,19 +120,17 @@ const ClassesPane = () => (
 const MapPane = () => {
 
   //State for all of the data(titles, latitude/longitude, description) for all markers on map
-  const [markerData, setMarkerData] = useState<Location_Data[]>([{
-    Name: "", Description: "", Latitude: 0, Longitude: 0, Tags: [""]
-  }]);
+  const [markerData, setMarkerData] = useState<Location_Data[]>([]);
   
   //State for the origin marker.
   const [origin, setOrigin] = useState<Location_Data>(
-    { Name: "Mcfarlin Library", Description: "Main Academic Library",
-      Latitude: 36.15232374393028, Longitude: -95.94599221560202, Tags: ["all", "Library"] });
+    {} as Location_Data
+  );
 
   //State for the destination marker
   const [destination, setDestination] = useState<Location_Data>(
-    { Name: "Keplinger Hall", Description: "Main Building for the College of Engineering & Natural Science",
-      Latitude: 36.153979761758876, Longitude: -95.94205412959185, Tags: ["ens", "all"] });
+    {} as Location_Data
+  );
 
   const [currentTag, setCurrentTag] = useState<string>("all");
 
@@ -165,38 +166,84 @@ const MapPane = () => {
             longitude: -95.94575,
             latitudeDelta: 0.01,
             longitudeDelta: 0.0125,}} 
-          style = {{height: '100%', width: '100%'}}>
-            
-            <RoutingPopup 
-            updateEndpoints = {updateDirectionEndpoints}></RoutingPopup>
+          style = {{height: '100%', width: '100%'}}
+          onLongPress = {(e) => {
+            const location: LatLng = e.nativeEvent.coordinate
+            setOrigin(destination)
+            setDestination({
+              Latitude: location.latitude, 
+              Longitude: location.longitude
+            } as Location_Data)
+          }}>
 
-            <MapViewDirections
+            { 
+              JSON.stringify(origin) != '{}' && 
+              JSON.stringify(destination) != '{}' &&
+
+              <MapViewDirections
               origin={{latitude: origin.Latitude, longitude: origin.Longitude}}
               destination={{latitude: destination.Latitude, longitude: destination.Longitude}}
               apikey={GOOGLE_MAPS_API_KEY}
               mode={"WALKING"}
               strokeColor={TU_LIGHT_BLUE}
               strokeWidth={3}/>
+            }
 
+            {
+              JSON.stringify(origin) != '{}' &&
+              <Marker coordinate={{latitude: origin.Latitude, longitude: origin.Longitude}} pinColor={'blue'}></Marker>
+            }
+              
+            {
+              JSON.stringify(destination) != '{}' &&
+              <Marker coordinate={{latitude: destination.Latitude, longitude: destination.Longitude}} pinColor={'green'}></Marker>
+            }
           
-          {markerData.map((item: Location_Data, index:number) => (
-            <Marker
-            key={index}
-            coordinate={{latitude: item.Latitude, longitude: item.Longitude}}
-            title={item.Name}
-            description={item.Description}>
-            </Marker>
-          ))}
+            {markerData.map((item: Location_Data, index:number) => (
+              <Marker
+              key={index}
+              coordinate={{latitude: item.Latitude, longitude: item.Longitude}}
+              title={item.Name}
+              description={item.Description}>
+              </Marker>
+            ))}
       </MapView> 
     </View>
   );
 }
 
-const CalenderPane = () => (
+const CalenderPane = () => {
+
+  const [agendaItems, setItems] = useState<AgendaSchedule>(
+    {} as AgendaSchedule
+  );
+
+  return (
   <View style={styles.calenderPane}>
-    <Image style={{aspectRatio: 0.85, height: 435}} source={require('./assets/Calendar.png')} />
-  </View>
-);
+    <Agenda
+      items={agendaItems}
+      // Callback that gets called when items for a certain month should be loaded (month became visible)
+      loadItemsForMonth={month => {
+        const currMonth = month.month;
+        const currYear = month.year;
+
+        Event.queryAttributes_MonthYear(currMonth, currYear).then((value: Event_Data[]) => {
+          setItems(formatAgendaSchedule(value)); 
+        });
+      }}
+
+      renderItem = { (item) => {
+        return <EventView 
+                Name={item.name} Height={item.height} Day={item.day}></EventView>
+      }}
+
+      style={{height: '100%', width: '100%'}}
+
+    ></Agenda>
+  </View>)
+};
+
+
 
 const UserPane = () => (
   <View style={styles.userPane}>

@@ -1,5 +1,6 @@
 import {Person, Person_Data} from './Person';
 import {Location, Location_Data} from './Location';
+import {Event, Event_Data} from './Event'
 
 const Keplinger_Hall: Location_Data = {
     Name: "Keplinger Hall",
@@ -198,9 +199,57 @@ const LaFortune_House: Location_Data = {
     Tags: ["all", "housing"]
 };
 
+const First_Generic_Event: Event_Data = {
+    Name: "First Generic Event",
+    Description: "Testing Event",
+    Date_Start: new Date('2022-08-26'),
+    Date_End: new Date('2022-08-26'),
+    Category: "Meeting",
+    Location: "TU Campus"
+}
+
+const Second_Generic_Event: Event_Data = {
+    Name: "Second Generic Event",
+    Description: "Testing Event",
+    Date_Start: new Date('2022-08-30'),
+    Date_End: new Date('2022-08-30'),
+    Category: "Meeting",
+    Location: "TU Campus"
+}
+
+const Third_Generic_Event: Event_Data = {
+    Name: "Third Generic Event",
+    Description: "Testing Event",
+    Date_Start: new Date('2022-09-30'),
+    Date_End: new Date('2022-09-30'),
+    Category: "Meeting",
+    Location: "TU Campus"
+}
+
+const Fourth_Generic_Event: Event_Data = {
+    Name: "Fourth Generic Event",
+    Description: "Testing Event",
+    Date_Start: new Date('2022-09-30'),
+    Date_End: new Date('2022-09-30'),
+    Category: "Meeting",
+    Location: "TU Campus"
+}
+const Fifth_Generic_Event: Event_Data = {
+    Name: "Fifth Generic Event",
+    Description: "Testing Event",
+    Date_Start: new Date('2022-09-30'),
+    Date_End: new Date('2022-09-30'),
+    Category: "Meeting",
+    Location: "TU Campus"
+}
 export function populate() {
-    //Person.createPersonTable();
+    Person.dropPersonTable();
+    Location.dropLocationTable();
+    Event.dropEventTable();
+
+    Person.createPersonTable();
     Location.createLocationTable();
+    Event.createEventTable();
 
     Location.insertIntoLocationTable(Keplinger_Hall);
     Location.insertIntoLocationTable(Rayzor_Hall);
@@ -227,4 +276,10 @@ export function populate() {
     Location.insertIntoLocationTable(Brown_Village_Apartments);
     Location.insertIntoLocationTable(Lorton_Village_Apartments);
     Location.insertIntoLocationTable(LaFortune_House);
+
+    Event.insertIntoEventTable(First_Generic_Event);
+    Event.insertIntoEventTable(Second_Generic_Event);
+    Event.insertIntoEventTable(Third_Generic_Event);
+    Event.insertIntoEventTable(Fourth_Generic_Event);
+    Event.insertIntoEventTable(Fifth_Generic_Event);
 }

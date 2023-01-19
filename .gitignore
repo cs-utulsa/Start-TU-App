@@ -10,6 +10,7 @@ npm-debug.*
 *.orig.*
 creds.ts
 web-build/
+creds.ts
 
 # macOS
 .DS_Store
