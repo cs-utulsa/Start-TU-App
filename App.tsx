@@ -362,7 +362,27 @@ const MapPane = () => {
             strokeWidth={0.1}
             fillColor={PRAY_COLOR}
             coordinates={[
-              
+
+            ]}
+            holes={[[
+              {latitude: 36.153411918932846, longitude: -95.94884518374039}, {latitude: 36.153411918932846, longitude: -95.94884518374038}
+            ]]}
+            />
+
+            {/* Hardesty Hall */}
+            <Polygon 
+            strokeWidth={0.1}
+            fillColor={DORM_COLOR}
+            coordinates={[
+              {latitude: 36.153655046182635, longitude: -95.94479439947533}, {latitude: 36.153655046182635, longitude: -95.9442177245923}, 
+              {latitude: 36.15339082828421, longitude: -95.94422308900982}, {latitude: 36.153386496835815, longitude: -95.94441352583165}, 
+              {latitude: 36.153493832710474, longitude: -95.94441233453934}, {latitude: 36.153492628885665, longitude: -95.94455248068232}, 
+              {latitude: 36.15310018101423, longitude: -95.94455546251514}, {latitude: 36.15309980541543, longitude: -95.94439414747659}, 
+              {latitude: 36.15308770162368, longitude: -95.94439664585369}, {latitude: 36.15308568432489, longitude: -95.94431045184417}, 
+              {latitude: 36.153100814064636, longitude: -95.94429296320455}, {latitude: 36.153100814064636, longitude: -95.94425423835969}, 
+              {latitude: 36.153083667026024, longitude: -95.94425423835969}, {latitude: 36.153083667026024, longitude: -95.94411557843134}, 
+              {latitude: 36.152842599439, longitude: -95.9441168276199}, {latitude: 36.15284461674407, longitude: -95.94464273599678}, 
+              {latitude: 36.15293136081248, longitude: -95.94464273599678}, {latitude: 36.152932369463876, longitude: -95.94480263213039}
             ]}
             holes={[[
               {latitude: 36.153411918932846, longitude: -95.94884518374039}, {latitude: 36.153411918932846, longitude: -95.94884518374038}
