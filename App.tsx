@@ -186,7 +186,7 @@ const MapPane = () => {
             } as Location_Data)
           }}>           
 
-            <BuildingList/>
+            <BuildingList></BuildingList>
             { 
               JSON.stringify(origin) != '{}' && 
               JSON.stringify(destination) != '{}' &&
