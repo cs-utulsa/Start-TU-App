@@ -211,6 +211,103 @@ export const BuildingList = () => {
             ]]}
             />
 
+            {/* West Village 3 */}
+            <Polygon 
+            strokeWidth={0.1}
+            fillColor={APT_COLOR}
+            coordinates={[
+              {latitude: 36.15453684958365, longitude: -95.94837863896831}, {latitude: 36.15453684958365, longitude: -95.94830018436109}, {latitude: 36.154541722391556, longitude: -95.94830018436109}, {latitude: 36.154541722391556, longitude: -95.94825190460278}, 
+              {latitude: 36.154534142467995, longitude: -95.94825190460278}, {latitude: 36.154535766737396, longitude: -95.94817143833896}, {latitude: 36.1545233140045, longitude: -95.94817143833896}, {latitude: 36.154522772581274, longitude: -95.94813254631141}, 
+              {latitude: 36.15453468389114, longitude: -95.94813254631141}, {latitude: 36.15453468389114, longitude: -95.94808292544873}, {latitude: 36.154529811082774, longitude: -95.94808426655314}, {latitude: 36.154530893929106, longitude: -95.94805811501739}, 
+              {latitude: 36.15454118096848, longitude: -95.94805744446518}, {latitude: 36.154540639545374, longitude: -95.9480051413937}, {latitude: 36.15453468389114, longitude: -95.94800581194589}, {latitude: 36.15453522531427, longitude: -95.94792936899525}, 
+              {latitude: 36.15452006546515, longitude: -95.94792869844305}, {latitude: 36.15452060688838, longitude: -95.94790724077271}, {latitude: 36.15441123931939, longitude: -95.9479058996683}, {latitude: 36.15440907362343, longitude: -95.94792869844305}, 
+              {latitude: 36.15439228947758, longitude: -95.94792936899525}, {latitude: 36.1543906652052, longitude: -95.94800581194589}, {latitude: 36.15437442247968, longitude: -95.9480051413937}, {latitude: 36.15437388105543, longitude: -95.9480554328086}, 
+              {latitude: 36.15439932799077, longitude: -95.9480540917042}, {latitude: 36.15439824514263, longitude: -95.94824922239398}, {latitude: 36.15437388105543, longitude: -95.94825056349839}, {latitude: 36.154373339631185, longitude: -95.94830018436109}, 
+              {latitude: 36.154395538022214, longitude: -95.94830018436109}, {latitude: 36.1543960794463, longitude: -95.94833572362761}, {latitude: 36.15438633381207, longitude: -95.94833572362761}, {latitude: 36.15438633381207, longitude: -95.94837595675953}, 
+              {latitude: 36.15440907362343, longitude: -95.94837662731173}, {latitude: 36.15440961504741, longitude: -95.94840143774309}, {latitude: 36.15452223115806, longitude: -95.94840277884747}, {latitude: 36.15452223115806, longitude: -95.94837863896831}
+            ]}
+            holes={[[
+              {latitude: 36.153411918932846, longitude: -95.94884518374039}, {latitude: 36.153411918932846, longitude: -95.94884518374038}
+            ]]}
+            />
+
+            {/* Helmerich Hall */}
+            <Polygon 
+            strokeWidth={0.1}
+            fillColor={EDUC_COLOR}
+            coordinates={[
+              {latitude: 36.15336869951875, longitude: -95.94748017613777}, {latitude: 36.153369610093826, longitude: -95.94727154610996}, {latitude: 36.15338235814382, longitude: -95.94727041838009}, {latitude: 36.153381447568904, longitude: -95.94723771421356}, 
+              {latitude: 36.15339237446738, longitude: -95.94723658648367}, {latitude: 36.15339419561696, longitude: -95.9470820874901}, {latitude: 36.153334097657904, longitude: -95.9470820874901}, {latitude: 36.153334097657904, longitude: -95.9469749531515}, 
+              {latitude: 36.153249414091945, longitude: -95.94697382542161}, {latitude: 36.153249414091945, longitude: -95.9468610524336}, {latitude: 36.15290885775284, longitude: -95.94686218016348}, {latitude: 36.15290885775284, longitude: -95.94707193792118}, 
+              {latitude: 36.15303542832963, longitude: -95.94707306565105}, {latitude: 36.15303542832963, longitude: -95.94705051105346}, {latitude: 36.15315926696964, longitude: -95.94705163878334}, {latitude: 36.153158356392126, longitude: -95.94728958978806}, 
+              {latitude: 36.15295529734072, longitude: -95.94728846205815}, {latitude: 36.15295438676083, longitude: -95.94750273073538}, {latitude: 36.15308459957776, longitude: -95.9475016030055}, {latitude: 36.15308551015614, longitude: -95.94747679294814}
+            ]}
+            holes={[[
+              {latitude: 36.153411918932846, longitude: -95.94884518374039}, {latitude: 36.153411918932846, longitude: -95.94884518374038}
+            ]]}
+            />
+
+            {/* Phillips Hall */}
+            <Polygon 
+            strokeWidth={0.1}
+            fillColor={EDUC_COLOR}
+            coordinates={[
+              {latitude: 36.15325578812487, longitude: -95.94659378040738}, {latitude: 36.15325396697206, longitude: -95.94634229664413}, {latitude: 36.15321116986878, longitude: -95.94634229664413}, {latitude: 36.15321025929188, longitude: -95.94628591015011}, 
+              {latitude: 36.15302268022114, longitude: -95.94628478242024}, {latitude: 36.153021769642024, longitude: -95.94624080095493}, {latitude: 36.152867881620935, longitude: -95.9462419286848}, {latitude: 36.152867881620935, longitude: -95.94665580555079}, 
+              {latitude: 36.15294437037923, longitude: -95.94667046603922}, {latitude: 36.153021769642024, longitude: -95.94665580555079}, {latitude: 36.15302359080023, longitude: -95.94656897035003}, {latitude: 36.15298079357123, longitude: -95.94656897035003}, 
+              {latitude: 36.15298170415081, longitude: -95.94652611661459}, {latitude: 36.15309006304577, longitude: -95.9465249888847}, {latitude: 36.15309097362407, longitude: -95.94649905109745}, {latitude: 36.15310463229753, longitude: -95.94649792336757}, 
+              {latitude: 36.1531064534538, longitude: -95.9464516864425}, {latitude: 36.15312921790375, longitude: -95.9464516864425}, {latitude: 36.15312830732587, longitude: -95.94659378040738}, {latitude: 36.15312011212457, longitude: -95.94659490813727}, 
+              {latitude: 36.15312193328048, longitude: -95.94667046603922}, {latitude: 36.15324395063084, longitude: -95.94666821057947}, {latitude: 36.15324395063084, longitude: -95.94659265267751}
+            ]}
+            holes={[[
+              {latitude: 36.153411918932846, longitude: -95.94884518374039}, {latitude: 36.153411918932846, longitude: -95.94884518374038}
+            ]]}
+            />
+
+            {/* McFarlin Library */}
+            <Polygon 
+            strokeWidth={0.1}
+            fillColor={EDUC_COLOR}
+            coordinates={[
+              {latitude: 36.152543609995014, longitude: -95.94600479389928}, {latitude: 36.152543068558124, longitude: -95.94596389021518}, {latitude: 36.152533322693586, longitude: -95.94595047917122}, {latitude: 36.15253386413053, longitude: -95.9459276803965}, 
+              {latitude: 36.152519245331554, longitude: -95.94592700984431}, {latitude: 36.152519245331554, longitude: -95.94589214113}, {latitude: 36.152532781256625, longitude: -95.94589214113}, {latitude: 36.152532781256625, longitude: -95.94586867180305}, 
+              {latitude: 36.15254198568434, longitude: -95.9458592840723}, {latitude: 36.15254198568434, longitude: -95.94581905094041}, {latitude: 36.152532781256625, longitude: -95.94580631044866}, {latitude: 36.15253223981968, longitude: -95.94578284112173}, 
+              {latitude: 36.15247701323033, longitude: -95.94578217056953}, {latitude: 36.15247647179298, longitude: -95.9457607128992}, {latitude: 36.152392548959625, longitude: -95.9457613834514}, {latitude: 36.152392548959625, longitude: -95.94575534848161}, 
+              {latitude: 36.15209746473221, longitude: -95.94575668958618}, {latitude: 36.15209854761212, longitude: -95.94589348223457}, {latitude: 36.152151067270076, longitude: -95.94589214113017}, {latitude: 36.152152691588846, longitude: -95.94598400678129}, 
+              {latitude: 36.15220358689287, longitude: -95.94598199512471}, {latitude: 36.152204669771336, longitude: -95.94607453132804}, {latitude: 36.152054181659054, longitude: -95.94607509174578}, {latitude: 36.15205201589798, longitude: -95.94610258438591}, 
+              {latitude: 36.15203577268805, longitude: -95.94610258438591}, {latitude: 36.152035231247645, longitude: -95.94611800708645}, {latitude: 36.15203577268805, longitude: -95.94611800708645}, {latitude: 36.15202548532001, longitude: -95.94612739481722}, 
+              {latitude: 36.15202602676046, longitude: -95.94615153469637}, {latitude: 36.15203577268805, longitude: -95.94615824021835}, {latitude: 36.152035231247645, longitude: -95.94617701567988}, {latitude: 36.15205309877853, longitude: -95.94617701567988}, 
+              {latitude: 36.15205309877853, longitude: -95.9462058494244}, {latitude: 36.152209033420625, longitude: -95.9462038377678}, {latitude: 36.15220957485984, longitude: -95.94626821077883}, {latitude: 36.15230649241452, longitude: -95.94626821077883}, 
+              {latitude: 36.15230649241452, longitude: -95.94621456660296}, {latitude: 36.15232111125314, longitude: -95.94621523715519}, {latitude: 36.152321652691555, longitude: -95.94620115555901}, {latitude: 36.15246567518053, longitude: -95.94620115555799}, 
+              {latitude: 36.15246675805536, longitude: -95.94617299236567}, {latitude: 36.152481918301405, longitude: -95.94617433347007}, {latitude: 36.15248245973873, longitude: -95.9461568991129}, {latitude: 36.15249112273511, longitude: -95.94615086414314}, 
+              {latitude: 36.15249112273511, longitude: -95.94612471260741}, {latitude: 36.152481918301405, longitude: -95.94611800708542}, {latitude: 36.15248300117603, longitude: -95.94609923162389}, {latitude: 36.15246513374311, longitude: -95.9460985610717}, 
+              {latitude: 36.15246459230568, longitude: -95.94607173898376}, {latitude: 36.152452680681385, longitude: -95.94607173898376}, {latitude: 36.152454304993896, longitude: -95.94603821137386}, {latitude: 36.15253443770263, longitude: -95.94603687026948}, 
+              {latitude: 36.15253389626568, longitude: -95.94601340094253}
+            ]}
+            holes={[[
+              {latitude: 36.153411918932846, longitude: -95.94884518374039}, {latitude: 36.153411918932846, longitude: -95.94884518374038}
+            ]]}
+            />
+
+            {/* Lottie Jane Mabee Hall */}
+            <Polygon 
+            strokeWidth={0.1}
+            fillColor={DORM_COLOR}
+            coordinates={[
+              {latitude: 36.151556952252335, longitude: -95.94868758558678}, {latitude: 36.151556410808645, longitude: -95.94859102607025}, {latitude: 36.15155099637149, longitude: -95.94859169662244}, 
+              {latitude: 36.15154991348401, longitude: -95.94839924814161}, {latitude: 36.150998180365, longitude: -95.94839589538027}, {latitude: 36.150997638917445, longitude: -95.94854475796824}, 
+              {latitude: 36.15143133721366, longitude: -95.94854609907595}, {latitude: 36.15143133721366, longitude: -95.94885924695242}, {latitude: 36.151108635588685, longitude: -95.9488565647423}, 
+              {latitude: 36.15110755269508, longitude: -95.94872983037688}, {latitude: 36.151013340896, longitude: -95.94872848927247}, {latitude: 36.151012258001096, longitude: -95.94886930523407}, 
+              {latitude: 36.151000887603736, longitude: -95.94886930523407}, {latitude: 36.1510003461562, longitude: -95.94898262855553}, {latitude: 36.1510312086597, longitude: -95.94898329910771}, 
+              {latitude: 36.1510312086597, longitude: -95.94901883837422}, {latitude: 36.15110971848224, longitude: -95.94901950892641}, {latitude: 36.15110971848224, longitude: -95.94900274512146}, 
+              {latitude: 36.151469238324125, longitude: -95.94900542733193}, {latitude: 36.15146869687983, longitude: -95.94903761383743}, {latitude: 36.151538001719956, longitude: -95.94903761383743}, 
+              {latitude: 36.151538001719956, longitude: -95.94899201628796}, {latitude: 36.15154720626442, longitude: -95.94899134573575}, {latitude: 36.15154828915191, longitude: -95.94868758559006}
+            ]}
+            holes={[[
+              {latitude: 36.153411918932846, longitude: -95.94884518374039}, {latitude: 36.153411918932846, longitude: -95.94884518374038}
+            ]]}
+            />
+
             {/* Hardesty Hall */}
             <Polygon 
             strokeWidth={0.1}
