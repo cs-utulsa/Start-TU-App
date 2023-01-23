@@ -53,13 +53,6 @@ export default function App() {
 
   return (
     <View style={{flex: 1, backgroundColor: TU_BLUE}}>
-      <View style={{padding: 0}}></View>
-      <View style={{flex: 1}}>
-        {/* <View style={{paddingTop:20}}>
-          <Image
-            style={{width: 50, height: 50}}
-            source={require('./assets/TUlogonormal.png')}/>
-        </View> */}
         <Header></Header>
         <View style={{flex: 1}}>
           {paneState == USER_STATE && <UserPane></UserPane>}
@@ -70,8 +63,7 @@ export default function App() {
           {paneState == CALENDER_STATE && <CalenderPane></CalenderPane>}
           {paneState == EMAIL_STATE && <EmailPane></EmailPane>}
           <BottomButtons state={paneState} changeState={setPaneState}></BottomButtons>
-        </View>
-      </View>
+        </View> 
     </View>
   );
 }
