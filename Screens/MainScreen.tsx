@@ -4,13 +4,13 @@ import {StatusBar} from 'expo-status-bar';
 import { getTokenSourceMapRange, isPropertySignature, setTextRange } from 'typescript';
 import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 
-import CalendarPane from './panes/CalendarPane';
-import ClassesPane from './panes/ClassesPane';
-import EmailPane from './panes/EmailPane';
-import MapPane from './panes/MapPane';
-import UserPane from './panes/UserPane';
+import CalendarPane from '../Panes/CalendarPane';
+import ClassesPane from '../Panes/ClassesPane';
+import EmailPane from '../Panes/EmailPane';
+import MapPane from '../Panes/MapPane';
+import UserPane from '../Panes/UserPane';
 
-import styles from './panes/PaneStyles';
+import styles from '../Panes/PaneStyles';
 
 
 const DARK_BLACK = '#171D28'

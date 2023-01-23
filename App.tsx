@@ -5,8 +5,8 @@ import { populate } from './Database/Populate_DB';
 
 import { createStackNavigator} from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
-import LoginPage from './tsx-files/LoginScreen';
-import MainPage from './tsx-files/MainScreen';
+import LoginPage from './Screens/LoginScreen';
+import MainPage from './Screens/MainScreen';
 
 
 const { Navigator, Screen } = createStackNavigator()

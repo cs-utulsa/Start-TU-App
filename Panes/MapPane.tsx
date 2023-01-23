@@ -1,9 +1,9 @@
 import React, { useState, useEffect} from 'react';
-import {Location, Location_Data} from '../../Database/Location'
+import {Location, Location_Data} from '../Database/Location'
 import {View, TextInput, StyleSheet} from 'react-native';
 import MapView, { Marker, LatLng } from 'react-native-maps';
 import MapViewDirections from 'react-native-maps-directions';
-import {GOOGLE_MAPS_API_KEY} from '../../creds';
+import {GOOGLE_MAPS_API_KEY} from '../creds';
 import {DARK_BLUE, TU_LIGHT_BLUE, styles} from './PaneStyles';
 
 

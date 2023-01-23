@@ -1,10 +1,10 @@
 import React, { useState} from 'react';
 import {View, StyleSheet} from 'react-native';
 import { Agenda, AgendaSchedule} from 'react-native-calendars';
-import { EventView } from '../../PaneComponents/CalendarPaneComponents/EventView';
-import { formatAgendaSchedule } from '../../utilities/formatAgendaSchedule'
+import { EventView } from '../PaneComponents/CalendarPaneComponents/EventView';
+import { formatAgendaSchedule } from '../utilities/formatAgendaSchedule'
 
-import { Event, Event_Data} from '../../Database/Event';
+import { Event, Event_Data} from '../Database/Event';
 import styles from './PaneStyles';
 
 const CalendarPane = () => {
