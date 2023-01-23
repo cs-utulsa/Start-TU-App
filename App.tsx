@@ -14,6 +14,10 @@ import { populate } from './Database/Populate_DB';
 import { RoutingPopup } from './PaneComponents/MapPaneComponents/RoutingPopup';
 import MapViewDirections from 'react-native-maps-directions';
 import MapView, { Marker, PROVIDER_GOOGLE, LatLng } from 'react-native-maps';
+import { createStackNavigator} from '@react-navigation/stack';
+import { NavigationContainer } from '@react-navigation/native';
+import LoginPage from './tsx-files/LoginScreen';
+import MainPage from './tsx-files/LoginScreen';
 
 //Dependencies for the Calendar Pane.
 import { Agenda, AgendaSchedule} from 'react-native-calendars';
@@ -38,6 +42,7 @@ const images = {
   },
 };
 
+const { Navigator, Screen } = createStackNavigator()
 //A VALID API KEY IS NEEDED
 import {GOOGLE_MAPS_API_KEY} from './creds';
 import { Header } from './Components/Header';
@@ -52,19 +57,12 @@ export default function App() {
   
 
   return (
-    <View style={{flex: 1, backgroundColor: TU_BLUE}}>
-        <Header></Header>
-        <View style={{flex: 1}}>
-          {paneState == USER_STATE && <UserPane></UserPane>}
-          {paneState == CLASSES_STATE && <ClassesPane></ClassesPane>}
-
-          {paneState == MAP_STATE && <MapPane></MapPane>}
-
-          {paneState == CALENDER_STATE && <CalenderPane></CalenderPane>}
-          {paneState == EMAIL_STATE && <EmailPane></EmailPane>}
-          <BottomButtons state={paneState} changeState={setPaneState}></BottomButtons>
-        </View> 
-    </View>
+    <NavigationContainer>
+        <Navigator initialRouteName = "login">
+            <Screen name = "login" component = {LoginPage}></Screen>
+            <Screen name = "main" component = {MainPage}></Screen>
+        </Navigator>
+    </NavigationContainer>
   );
 }
 
