@@ -40,7 +40,7 @@ const images = {
 
 //A VALID API KEY IS NEEDED
 import {GOOGLE_MAPS_API_KEY} from './creds';
-
+import { Header } from './Components/header';
 
 export default function App() {
   const[paneState, setPaneState] = useState(MAP_STATE);
@@ -55,14 +55,13 @@ export default function App() {
     <View style={{flex: 1, backgroundColor: TU_BLUE}}>
       <View style={{padding: 0}}></View>
       <View style={{flex: 1}}>
-        <StatusBar style="light"/>
-        <View style={{paddingTop:20}}>
+        {/* <View style={{paddingTop:20}}>
           <Image
             style={{width: 50, height: 50}}
             source={require('./assets/TUlogonormal.png')}/>
-        </View>
+        </View> */}
+        <Header></Header>
         <View style={{flex: 1}}>
-          <StatusBar style="light"/>
           {paneState == USER_STATE && <UserPane></UserPane>}
           {paneState == CLASSES_STATE && <ClassesPane></ClassesPane>}
 
