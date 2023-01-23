@@ -4,15 +4,16 @@ import {StatusBar} from 'expo-status-bar';
 import { getTokenSourceMapRange, isPropertySignature, setTextRange } from 'typescript';
 import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 
-const DARK_BLACK = '#171D28'
-const LIGHT_BLUE = '#C0E2F6'
-const DARK_BLUE = '#315796'
-const PANK = '#C490EB'
-const TU_GOLD = '#C2A01E'
-const TU_BLUE = '#102240'
+export const DARK_BLACK = '#171D28'
+export const LIGHT_BLUE = '#C0E2F6'
+export const DARK_BLUE = '#315796'
+export const PANK = '#C490EB'
+export const TU_GOLD = '#C2A01E'
+export const TU_BLUE = '#102240'
+export const TU_LIGHT_BLUE = '#004B8D'
 
 
-const styles = StyleSheet.create({
+export const styles = StyleSheet.create({
     loginPage: {
       padding: 10,
       flex: 1,
@@ -67,6 +68,6 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       padding: 5
     },
-  });
+});
 
-  export default styles;
+export default styles
