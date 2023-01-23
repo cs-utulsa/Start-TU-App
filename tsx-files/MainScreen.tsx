@@ -35,7 +35,6 @@ const images = {
     map: require('./assets/TUmap.png'),
   },
 };
-const invert = () => mapImageType = 1;
 
 
 interface MainScreenInterface {
@@ -47,14 +46,6 @@ const MainPage = (screenInterface: MainScreenInterface) => {
 
     const[invImage, setInvImage] = useState(true);
     const[paneState, setPaneState] = useState(MAP_STATE);
-    
-    const changeState = (state: any) => {
-      setPaneState(CLASSES_STATE);
-    }
-  
-    const filterPins = (props: any) => {
-  
-    }
     
     return (
         <View style={{flex: 1, backgroundColor: TU_BLUE}}>
