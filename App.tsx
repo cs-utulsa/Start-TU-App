@@ -40,7 +40,7 @@ const images = {
 
 //A VALID API KEY IS NEEDED
 import {GOOGLE_MAPS_API_KEY} from './creds';
-import { Header } from './Components/header';
+import { Header } from './Components/Header';
 
 export default function App() {
   const[paneState, setPaneState] = useState(MAP_STATE);
