@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
-import { Text, View, StyleSheet, Button, Alert, Image, TouchableOpacity, Switch, TextInput } from 'react-native';
+import {View, Image, TouchableOpacity} from 'react-native';
 import {StatusBar} from 'expo-status-bar';
-import { getTokenSourceMapRange, isPropertySignature, setTextRange } from 'typescript';
-import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 
 import CalendarPane from '../Panes/CalendarPane';
 import ClassesPane from '../Panes/ClassesPane';
@@ -10,15 +8,8 @@ import EmailPane from '../Panes/EmailPane';
 import MapPane from '../Panes/MapPane';
 import UserPane from '../Panes/UserPane';
 
-import styles from '../Panes/PaneStyles';
+import {styles, TU_BLUE} from '../Panes/PaneStyles';
 
-
-const DARK_BLACK = '#171D28'
-const LIGHT_BLUE = '#C0E2F6'
-const DARK_BLUE = '#315796'
-const PANK = '#C490EB'
-const TU_GOLD = '#C2A01E'
-const TU_BLUE = '#102240'
 
 const USER_STATE = 0
 const CLASSES_STATE = 1
