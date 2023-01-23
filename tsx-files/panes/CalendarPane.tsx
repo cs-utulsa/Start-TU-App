@@ -1,15 +1,40 @@
-import React, { useState } from 'react';
-import { Text, View, StyleSheet, Button, Alert, Image, TouchableOpacity, Switch, TextInput } from 'react-native';
-import {StatusBar} from 'expo-status-bar';
-import { getTokenSourceMapRange, isPropertySignature, setTextRange } from 'typescript';
-import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
+import React, { useState} from 'react';
+import {View, StyleSheet} from 'react-native';
+import { Agenda, AgendaSchedule} from 'react-native-calendars';
+import { EventView } from '../../PaneComponents/CalendarPaneComponents/EventView';
+import { formatAgendaSchedule } from '../../utilities/formatAgendaSchedule'
 
+import { Event, Event_Data} from '../../Database/Event';
 import styles from './PaneStyles';
 
-const CalendarPane = () => (
-    <View style={styles.classesPane}>
-      <Text> CALENDER IS NOT YET IMPLEMENTED</Text>
-    </View>
+const CalendarPane = () => {
+  const [agendaItems, setItems] = useState<AgendaSchedule>(
+    {} as AgendaSchedule
   );
+  
+  return (
+  <View style={styles.calenderPane}>
+    <Agenda
+      items={agendaItems}
+      // Callback that gets called when items for a certain month should be loaded (month became visible)
+      loadItemsForMonth={month => {
+        const currMonth = month.month;
+        const currYear = month.year;
 
-  export default CalendarPane;
+        Event.queryAttributes_MonthYear(currMonth, currYear).then((value: Event_Data[]) => {
+          setItems(formatAgendaSchedule(value)); 
+        });
+      }}
+
+      renderItem = { (item) => {
+        return <EventView 
+                Name={item.name} Height={item.height} Day={item.day}></EventView>
+      }}
+
+      style={{height: '100%', width: '100%'}}
+
+    ></Agenda>
+  </View>
+  )
+}
+export default CalendarPane;
