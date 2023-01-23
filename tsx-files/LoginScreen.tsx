@@ -12,7 +12,7 @@ interface LoginScreenInterface {
 
 const LoginPage = (screenInterface: LoginScreenInterface) =>  {
 
-    const pressLogin = () => screenInterface.navigation.naviage("main");
+    const pressLogin = () => screenInterface.navigation.navigate("main");
 
     return(
         <SafeAreaView>
