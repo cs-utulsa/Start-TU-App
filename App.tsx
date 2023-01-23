@@ -53,28 +53,26 @@ export default function App() {
 
   return (
     <View style={{flex: 1, backgroundColor: TU_BLUE}}>
-      <View style={{padding: 0}}>
-      </View>
+      <View style={{padding: 0}}></View>
       <View style={{flex: 1}}>
         <StatusBar style="light"/>
-      <View style={{paddingTop:20}}>
-        <Image
-          style={{width: 50, height: 50}}
-          source={require('./assets/TUlogonormal.png')}
-        />
-      </View>
-      <View style={{flex: 1}}>
-        <StatusBar style="light"/>
-        {paneState == USER_STATE && <UserPane></UserPane>}
-        {paneState == CLASSES_STATE && <ClassesPane></ClassesPane>}
+        <View style={{paddingTop:20}}>
+          <Image
+            style={{width: 50, height: 50}}
+            source={require('./assets/TUlogonormal.png')}/>
+        </View>
+        <View style={{flex: 1}}>
+          <StatusBar style="light"/>
+          {paneState == USER_STATE && <UserPane></UserPane>}
+          {paneState == CLASSES_STATE && <ClassesPane></ClassesPane>}
 
-        {paneState == MAP_STATE && <MapPane></MapPane>}
+          {paneState == MAP_STATE && <MapPane></MapPane>}
 
-        {paneState == CALENDER_STATE && <CalenderPane></CalenderPane>}
-        {paneState == EMAIL_STATE && <EmailPane></EmailPane>}
-        <BottomButtons state={paneState} changeState={setPaneState}></BottomButtons>
+          {paneState == CALENDER_STATE && <CalenderPane></CalenderPane>}
+          {paneState == EMAIL_STATE && <EmailPane></EmailPane>}
+          <BottomButtons state={paneState} changeState={setPaneState}></BottomButtons>
+        </View>
       </View>
-    </View>
     </View>
   );
 }
