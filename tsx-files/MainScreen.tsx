@@ -28,23 +28,13 @@ const EMAIL_STATE = 4
 const LOGIN_STATE = 5
 const USER_PASSWORD = "password"
 
-var mapImage = [require('./assets/TUmap.png'), require('./assets/TUmapinv.png')];
-var mapImageType = 0
-const images = {
-  mainButtons: {
-    map: require('./assets/TUmap.png'),
-  },
-};
-
 
 interface MainScreenInterface {
-    naviagtion: any;
+    navigation: any;
 }
 
 const MainPage = (screenInterface: MainScreenInterface) => {
 
-
-    const[invImage, setInvImage] = useState(true);
     const[paneState, setPaneState] = useState(MAP_STATE);
     
     return (
@@ -55,7 +45,7 @@ const MainPage = (screenInterface: MainScreenInterface) => {
             <View style={{paddingTop:20, padding: 5}}>
               <Image
                 style={{width: 50, height: 50}}
-                source={require('./assets/TUlogo.png')}
+                source={require('../assets/TUlogonormal.png')}
               />
             </View>
             <View style={{flex: 1}}>
@@ -76,24 +66,24 @@ const MainPage = (screenInterface: MainScreenInterface) => {
 const BottomButtons = ({state, changeState}: any) => (
     <View style={styles.bottomButtonRow}>
       <TouchableOpacity onPress={() => changeState(0)} activeOpacity = {1} style={styles.bottomButton}>
-        {state == USER_STATE && <Image style={styles.icon} source={require('./assets/TUuserinv.png')} />}
-        {state != USER_STATE && <Image style={styles.icon} source={require('./assets/TUuser.png')} />}
+        {state == USER_STATE && <Image style={styles.icon} source={require('../assets/TUuserinv.png')} />}
+        {state != USER_STATE && <Image style={styles.icon} source={require('../assets/TUuser.png')} />}
       </TouchableOpacity>
       <TouchableOpacity onPress={() => changeState(1)} activeOpacity = {1} style={styles.bottomButton}>
-        {state == CLASSES_STATE && <Image style={styles.icon} source={require('./assets/TUclassesinv.png')} />}
-        {state != CLASSES_STATE && <Image style={styles.icon} source={require('./assets/TUclasses.png')} />}
+        {state == CLASSES_STATE && <Image style={styles.icon} source={require('../assets/TUclassesinv.png')} />}
+        {state != CLASSES_STATE && <Image style={styles.icon} source={require('../assets/TUclasses.png')} />}
       </TouchableOpacity>
       <TouchableOpacity onPress={() => changeState(2)} activeOpacity = {1} style={styles.bottomButton}>
-        {state == MAP_STATE && <Image style={styles.icon} source={require('./assets/TUmapinv.png')} />}
-        {state != MAP_STATE && <Image style={styles.icon} source={require('./assets/TUmap.png')} />}
+        {state == MAP_STATE && <Image style={styles.icon} source={require('../assets/TUmapinv.png')} />}
+        {state != MAP_STATE && <Image style={styles.icon} source={require('../assets/TUmap.png')} />}
       </TouchableOpacity>
       <TouchableOpacity onPress={() => changeState(3)} activeOpacity = {1} style={styles.bottomButton}>
-        {state == CALENDER_STATE && <Image style={styles.icon} source={require('./assets/TUcalenderinv.png')} />}
-        {state != CALENDER_STATE && <Image style={styles.icon} source={require('./assets/TUcalender.png')} />}
+        {state == CALENDER_STATE && <Image style={styles.icon} source={require('../assets/TUcalenderinv.png')} />}
+        {state != CALENDER_STATE && <Image style={styles.icon} source={require('../assets/TUcalender.png')} />}
       </TouchableOpacity>
       <TouchableOpacity onPress={() => changeState(4)} activeOpacity = {1} style={styles.bottomButton}>
-        {state == EMAIL_STATE && <Image style={styles.icon} source={require('./assets/TUemailinv.png')} />}
-        {state != EMAIL_STATE && <Image style={styles.icon} source={require('./assets/TUemail.png')} />}
+        {state == EMAIL_STATE && <Image style={styles.icon} source={require('../assets/TUemailinv.png')} />}
+        {state != EMAIL_STATE && <Image style={styles.icon} source={require('../assets/TUemail.png')} />}
       </TouchableOpacity>
         
     </View>

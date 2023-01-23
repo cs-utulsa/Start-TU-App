@@ -6,7 +6,7 @@ import { populate } from './Database/Populate_DB';
 import { createStackNavigator} from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import LoginPage from './tsx-files/LoginScreen';
-import MainPage from './tsx-files/LoginScreen';
+import MainPage from './tsx-files/MainScreen';
 
 
 const { Navigator, Screen } = createStackNavigator()
@@ -22,7 +22,7 @@ export default function App() {
     <NavigationContainer>
         <Navigator initialRouteName = "login">
             <Screen name = "login" component = {LoginPage}></Screen>
-            <Screen name = "main" component = {MainPage}></Screen>
+            <Screen name = "main" component = {MainPage} options={{headerShown: false}}></Screen>
         </Navigator>
     </NavigationContainer>
   );
