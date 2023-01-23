@@ -6,10 +6,12 @@ import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 
 import styles from './PaneStyles';
 
-const EmailPane = () => (
-    <View style={styles.classesPane}>
-      <Text> EMAIL IS NOT YET IMPLEMENTED</Text>
-    </View>
-  );
+const EmailPane = () => {
+    return(
+      <View style={styles.emailPane}>
+          <Image style={{aspectRatio: 0.63, height: 595}} source={require('../../assets/Outlook.png')} />
+      </View>
+    )
+}
 
-  export default EmailPane;
+export default EmailPane;
