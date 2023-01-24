@@ -23,7 +23,7 @@ export const Building: FC<BuildingProps> = ({color, coords}) => {
             coordinates={coords}
             fillColor={color}
             strokeWidth={0.00001}
-            holes={[[{latitude: 0.0, longitude: 0.0}, {latitude: 0.00000000001, longitude: 0.00000000001}]]}
+            strokeColor={color}            // holes={[[{latitude: 0.0, longitude: 0.0}, {latitude: 0.00000000001, longitude: 0.00000000001}]]}
         />
     )
 }
