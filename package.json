@@ -28,14 +28,8 @@
     "react-dom": "18.0.0",
     "react-freeze": "^1.0.3",
     "react-native": "^0.69.6",
-<<<<<<< HEAD
     "react-native-calendars": "^1.1293.0",
     "react-native-maps": "0.31.1",
-=======
-    "react-native-calendars": "^1.1292.0",
-    "react-native-elements": "^3.4.2",
-    "react-native-maps": "^1.3.2",
->>>>>>> 8a204c2fe607b48bd363122eea91315d88955230
     "react-native-maps-directions": "^1.9.0",
     "react-native-paper": "^5.1.4",
     "react-native-web": "~0.18.7",

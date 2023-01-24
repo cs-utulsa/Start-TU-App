@@ -9,7 +9,7 @@ import styles from './PaneStyles';
 const EmailPane = () => {
     return(
       <View style={styles.emailPane}>
-          <Image style={{aspectRatio: 0.63, height: 595}} source={require('../../assets/Outlook.png')} />
+          <Image style={{aspectRatio: 0.63, height: 595}} source={require('../assets/Outlook.png')} />
       </View>
     )
 }
