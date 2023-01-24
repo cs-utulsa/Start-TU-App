@@ -16,7 +16,7 @@
     "@types/react": "~18.0.0",
     "@types/react-native": "~0.69.1",
     "expo": "~46.0.13",
-    "expo-asset": "~8.6.1",
+    "expo-asset": "~8.6.3",
     "expo-file-system": "~14.1.0",
     "expo-sharing": "~10.3.0",
     "expo-sqlite": "~10.3.0",
