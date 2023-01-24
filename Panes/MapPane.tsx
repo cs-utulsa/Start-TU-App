@@ -5,6 +5,7 @@ import MapView, { Marker, LatLng } from 'react-native-maps';
 import MapViewDirections from 'react-native-maps-directions';
 import {GOOGLE_MAPS_API_KEY} from '../creds';
 import {DARK_BLUE, TU_LIGHT_BLUE, styles} from './PaneStyles';
+import { BuildingList } from '../buildings/Polygons';
 
 
 
@@ -65,6 +66,8 @@ const MapPane= () => {
               Longitude: location.longitude
             } as Location_Data)
           }}>
+
+            <BuildingList></BuildingList>
 
             { 
               JSON.stringify(origin) != '{}' && 
