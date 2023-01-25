@@ -377,6 +377,157 @@ export const BuildingList = () => {
                     {latitude: 36.15368721918685, longitude: -95.94374045085638}
                 ]}
             />
+
+            {/*Oliphant Hall*/}
+            <Building
+                color={EDUC_COLOR}
+                coords={[
+                    {latitude: 36.15137066203855, longitude: -95.94503105769124}, {latitude: 36.151204022375424, longitude: -95.94503218542111}, 
+                    {latitude: 36.151202201174954, longitude: -95.9450434627199}, {latitude: 36.150976371990126, longitude: -95.94503895180037}, 
+                    {latitude: 36.15097910379867, longitude: -95.94578099806081}, {latitude: 36.15115484994815, longitude: -95.94577761487118}, 
+                    {latitude: 36.15115758175046, longitude: -95.94560507219967}, {latitude: 36.15123225097714, longitude: -95.94560507219967}, 
+                    {latitude: 36.1512286085775, longitude: -95.94565018139484}, {latitude: 36.15124317817507, longitude: -95.94572461156686}, 
+                    {latitude: 36.15136155605516, longitude: -95.94572573929675}, {latitude: 36.151371572636826, longitude: -95.94564792593509}, 
+                    {latitude: 36.15136155605516, longitude: -95.94556447392405}, {latitude: 36.15137248323508, longitude: -95.94542350768916}, 
+                    {latitude: 36.1513351486974, longitude: -95.94525209274752}
+                ]}
+            />
+
+            {/*John Zink Hall*/}
+            <Building
+                color={EDUC_COLOR}
+                coords={[
+                    {latitude: 36.15116668775367, longitude: -95.94486077038829}, {latitude: 36.15116577715301, longitude: -95.94438374064944}, 
+                    {latitude: 36.150942679673115, longitude: -95.94438486837932}, {latitude: 36.15094450087959, longitude: -95.94485964265841}
+                ]}
+            />
+
+            {/*Harwell Hall*/}
+            <Building
+                color={EDUC_COLOR}
+                coords={[
+                    {latitude: 36.151595579498725, longitude: -95.9448382158036}, {latitude: 36.151596490094384, longitude: -95.94470401594799}, 
+                    {latitude: 36.15155460268272, longitude: -95.94470176048823}, {latitude: 36.15155369208659, longitude: -95.94469161091932}, 
+                    {latitude: 36.1514735595836, longitude: -95.9446927386492}, {latitude: 36.15147082779228, longitude: -95.94458109339118}, 
+                    {latitude: 36.15139433759678, longitude: -95.94458222112105}, {latitude: 36.15139160580269, longitude: -95.94469499410894},
+                    {latitude: 36.15129803558016, longitude: -95.94469543590208}, {latitude: 36.15129695268918, longitude: -95.94470281197626}, 
+                    {latitude: 36.15126446595314, longitude: -95.94470281197626}, {latitude: 36.15126554884456, longitude: -95.94483960462463}, 
+                    {latitude: 36.151303450034774, longitude: -95.94483893407245}, {latitude: 36.15130453292566, longitude: -95.94486441505596}, 
+                    {latitude: 36.151554138874474, longitude: -95.94486374450376}, {latitude: 36.151554138874474, longitude: -95.94483759296804}
+                ]}
+            />
+
+            {/*Harwell Hall*/}
+            <Building
+                color={EDUC_COLOR}
+                coords={[
+                    {latitude: 36.151595579498725, longitude: -95.9448382158036}, {latitude: 36.151596490094384, longitude: -95.94470401594799}, 
+                    {latitude: 36.15155460268272, longitude: -95.94470176048823}, {latitude: 36.15155369208659, longitude: -95.94469161091932}, 
+                    {latitude: 36.1514735595836, longitude: -95.9446927386492}, {latitude: 36.15147082779228, longitude: -95.94458109339118}, 
+                    {latitude: 36.15139433759678, longitude: -95.94458222112105}, {latitude: 36.15139160580269, longitude: -95.94469499410894},
+                    {latitude: 36.15129803558016, longitude: -95.94469543590208}, {latitude: 36.15129695268918, longitude: -95.94470281197626}, 
+                    {latitude: 36.15126446595314, longitude: -95.94470281197626}, {latitude: 36.15126554884456, longitude: -95.94483960462463}, 
+                    {latitude: 36.151303450034774, longitude: -95.94483893407245}, {latitude: 36.15130453292566, longitude: -95.94486441505596}, 
+                    {latitude: 36.151554138874474, longitude: -95.94486374450376}, {latitude: 36.151554138874474, longitude: -95.94483759296804}
+                ]}
+            />
+
+            {/*Mabee Gym*/}
+            <Building
+                color={UNIV_COLOR}
+                coords={[
+                    {latitude: 36.15068958547719, longitude: -95.94443557847757}, {latitude: 36.15068958547719, longitude: -95.94397997560642}, 
+                    {latitude: 36.150672283957604, longitude: -95.9439811033363}, {latitude: 36.150672283957604, longitude: -95.94391569500331}, 
+                    {latitude: 36.15063039605233, longitude: -95.94391569500331}, {latitude: 36.15063221726605, longitude: -95.94380404974528}, 
+                    {latitude: 36.150675015776734, longitude: -95.94380404974528}, {latitude: 36.1506759263831, longitude: -95.94365067848172}, 
+                    {latitude: 36.15052749740739, longitude: -95.94364842302195}, {latitude: 36.15052567619122, longitude: -95.94371495908483}, 
+                    {latitude: 36.15048469881621, longitude: -95.94371383135497}, {latitude: 36.15048378820762, longitude: -95.9434093442876}, 
+                    {latitude: 36.15030348750111, longitude: -95.94340708882785}, {latitude: 36.150302946048754, longitude: -95.94346676797346},
+                    {latitude: 36.14990930919817, longitude: -95.94346676797286}, {latitude: 36.14990930919817, longitude: -95.94359752565148}, 
+                    {latitude: 36.14993529903714, longitude: -95.94359752565148}, {latitude: 36.14993529903714, longitude: -95.94374169437405}, 
+                    {latitude: 36.14994612813417, longitude: -95.94374236492625}, {latitude: 36.14994612813417, longitude: -95.94377321032736}, 
+                    {latitude: 36.14991526520369, longitude: -95.94377388087955}, {latitude: 36.14991364083859, longitude: -95.94397839929994}, 
+                    {latitude: 36.14986599278072, longitude: -95.94397906985213}, {latitude: 36.14986545132533, longitude: -95.94443370424239}, 
+                    {latitude: 36.14987140733408, longitude: -95.9444343748068}, {latitude: 36.14987140733408, longitude: -95.94447594904308}, 
+                    {latitude: 36.149932050307626, longitude: -95.94447661959528}, {latitude: 36.149932050307626, longitude: -95.94448533677385}, 
+                    {latitude: 36.14997211796085, longitude: -95.94448466622165}, {latitude: 36.1499715765062, longitude: -95.9445745202162}, 
+                    {latitude: 36.15005875065459, longitude: -95.94457586132057}, {latitude: 36.15005875065459, longitude: -95.94453763984531}, 
+                    {latitude: 36.15011343749324, longitude: -95.94453763984531}, {latitude: 36.15011452040056, longitude: -95.94458256684257}, 
+                    {latitude: 36.150514653637764, longitude: -95.9445825668474}, {latitude: 36.15051519508865, longitude: -95.9444813134655}, 
+                    {latitude: 36.15060615878468, longitude: -95.9444826545699}, {latitude: 36.15060615878468, longitude: -95.94443571591604}
+                ]}
+            />
+
+            {/*BCM*/}
+            <Building
+                color={PRAY_COLOR}
+                coords={[
+                    {latitude: 36.150668728008576, longitude: -95.94652298094276}, {latitude: 36.150671790911254, longitude: -95.94631435405996}, 
+                    {latitude: 36.150431352686454, longitude: -95.94631150914792}, {latitude: 36.15042905550239, longitude: -95.94634944130844}, 
+                    {latitude: 36.150298115900505, longitude: -95.94635228622047}, {latitude: 36.150298115900505, longitude: -95.94650591147052}, 
+                    {latitude: 36.150427524046336, longitude: -95.94650401486248}, {latitude: 36.15042828977436, longitude: -95.94652203263873}
+                ]}
+            />
+
+            {/*Westby Hall*/}
+            <Building
+                color={ADMIN_COLOR}
+                coords={[
+                    {latitude: 36.150680422217576, longitude: -95.9467207707458}, {latitude: 36.150679880767804, longitude: -95.9465491093831}, 
+                    {latitude: 36.150303572289715, longitude: -95.9465477682787}, {latitude: 36.15030098982796, longitude: -95.94671686621788}
+                ]}
+            />
+
+            {/*Collins Hall*/}
+            <Building
+                color={ADMIN_COLOR}
+                coords={[
+                    {latitude: 36.1502546285302, longitude: -95.94723815756743}, {latitude: 36.150255054543315, longitude: -95.94712142086452}, 
+                    {latitude: 36.15025126437444, longitude: -95.9471220914167}, {latitude: 36.15025180582716, longitude: -95.94706978834526}, 
+                    {latitude: 36.15025722035401, longitude: -95.94707045889744}, {latitude: 36.15025830325934, longitude: -95.94701748527382}, 
+                    {latitude: 36.15025234727985, longitude: -95.94701748527382}, {latitude: 36.150254513090616, longitude: -95.94686191716389}, 
+                    {latitude: 36.15018466566313, longitude: -95.94686057605949}, {latitude: 36.1501862900226, longitude: -95.94667885641383}, 
+                    {latitude: 36.150159758813466, longitude: -95.94667818586163}, {latitude: 36.15016030026679, longitude: -95.94659771959788}, 
+                    {latitude: 36.15016842206642, longitude: -95.94659906070225}, {latitude: 36.15016950497297, longitude: -95.94654675763081}, 
+                    {latitude: 36.150159217360134, longitude: -95.94654608707862}, {latitude: 36.15016030026679, longitude: -95.94637241405934}, 
+                    {latitude: 36.15014892974592, longitude: -95.94637308461154}, {latitude: 36.15014892974592, longitude: -95.94628188951262}, 
+                    {latitude: 36.14999461537056, longitude: -95.94628054840825}, {latitude: 36.149993532461586, longitude: -95.94633285147971}, 
+                    {latitude: 36.149952923364545, longitude: -95.9463321809275}, {latitude: 36.14995184045501, longitude: -95.94647903185887}, 
+                    {latitude: 36.149993532461586, longitude: -95.94647970241107}, {latitude: 36.149990825189114, longitude: -95.94668623248806}, 
+                    {latitude: 36.14996700118722, longitude: -95.94668556193585}, {latitude: 36.14996591827787, longitude: -95.94674926439468}, 
+                    {latitude: 36.14991285570152, longitude: -95.94674859384247}, {latitude: 36.149912314246485, longitude: -95.94682570734524}, 
+                    {latitude: 36.14996862555123, longitude: -95.94682637789742}, {latitude: 36.149969167005885, longitude: -95.94687599876009}, 
+                    {latitude: 36.149993532461586, longitude: -95.9468753282079}, {latitude: 36.149992449552606, longitude: -95.94705235398816}, 
+                    {latitude: 36.14995454772883, longitude: -95.94705302454037}, {latitude: 36.14995400627407, longitude: -95.94719249939754}, 
+                    {latitude: 36.14999786409737, longitude: -95.94719182884535}, {latitude: 36.149997322642896, longitude: -95.94724815522999}, 
+                    {latitude: 36.1500904527549, longitude: -95.94725016688658}, {latitude: 36.150091535662526, longitude: -95.9471710417272}, 
+                    {latitude: 36.15011698398748, longitude: -95.9471717122794}, {latitude: 36.15011590108021, longitude: -95.94725150799098}, 
+                    {latitude: 36.150211738316344, longitude: -95.94725284909536}, {latitude: 36.15021227976931, longitude: -95.94723742639482}
+                ]}
+            />
+
+            {/*Fisher South*/}
+            <Building
+                color={DORM_COLOR}
+                coords={[
+                    {latitude: 36.150314614315036, longitude: -95.94776448050031}, {latitude: 36.15031407286278, longitude: -95.94769608417613}, 
+                    {latitude: 36.15029837074525, longitude: -95.94769675472833}, {latitude: 36.15029782929286, longitude: -95.94767864981897}, 
+                    {latitude: 36.150306492530575, longitude: -95.94767730871459}, {latitude: 36.150306492530575, longitude: -95.94761628846457}, 
+                    {latitude: 36.150181958396615, longitude: -95.94761628846457}, {latitude: 36.15018141694343, longitude: -95.94760287742061}, 
+                    {latitude: 36.15011427671913, longitude: -95.9476035479728}, {latitude: 36.150115359626426, longitude: -95.94759416024202}, 
+                    {latitude: 36.149980537552686, longitude: -95.94759483079423}, {latitude: 36.149979454643535, longitude: -95.94761695901676}, 
+                    {latitude: 36.14992097752662, longitude: -95.94761695901676}, {latitude: 36.14992043607163, longitude: -95.94768937865415}, 
+                    {latitude: 36.14990744115075, longitude: -95.94769004920636}, {latitude: 36.14990798260583, longitude: -95.94769004920636}, 
+                    {latitude: 36.149906899695665, longitude: -95.94772961178602}, {latitude: 36.14989661204837, longitude: -95.94772894123383}, 
+                    {latitude: 36.149898236413826, longitude: -95.94785500504706}, {latitude: 36.14990798260583, longitude: -95.94785500504706}, 
+                    {latitude: 36.14990744115075, longitude: -95.947939494624}, {latitude: 36.14992043607163, longitude: -95.94809170997296}, 
+                    {latitude: 36.14996916700576, longitude: -95.94809170997296}, {latitude: 36.14996808409643, longitude: -95.94808098113778}, 
+                    {latitude: 36.149982161916384, longitude: -95.94808098113778}, {latitude: 36.14998270337096, longitude: -95.94810377991251}, 
+                    {latitude: 36.15003847317101, longitude: -95.94810310936032}, {latitude: 36.15003901462517, longitude: -95.947939494624}, 
+                    {latitude: 36.15007799931595, longitude: -95.9479401651762}, {latitude: 36.15007908222375, longitude: -95.94781074860198}, 
+                    {latitude: 36.150181958396615, longitude: -95.94781007804978}, {latitude: 36.15018249984981, longitude: -95.94776313939593}
+                ]}
+            />
         </MapView>
         
     ); 
