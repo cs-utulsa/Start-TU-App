@@ -337,6 +337,46 @@ export const BuildingList = () => {
                     {latitude: 36.15102113001322, longitude: -95.94163596544513}, {latitude: 36.15102492014487, longitude: -95.94192027957351}
                 ]}
             />
+
+            {/*Kendall Hall*/}
+            <Building
+                color={EDUC_COLOR}
+                coords={[
+                    {latitude: 36.152213334778864, longitude: -95.94535078439179}, {latitude: 36.152213334778864, longitude: -95.94517711397823}, 
+                    {latitude: 36.15213593471175, longitude: -95.94515343164913}, {latitude: 36.15205944515864, longitude: -95.94479594125244}, 
+                    {latitude: 36.15197020725237, longitude: -95.9449042033284}, {latitude: 36.1518409031636, longitude: -95.94480496307258}, 
+                    {latitude: 36.151741648474726, longitude: -95.94492337471819}, {latitude: 36.15176350272895, longitude: -95.94494592931736}, 
+                    {latitude: 36.151697939948036, longitude: -95.94502712587432}, {latitude: 36.151647857231254, longitude: -95.94499103851567}, 
+                    {latitude: 36.15162236056317, longitude: -95.94504516955364}, {latitude: 36.151660605562206, longitude: -95.94507223507264}, 
+                    {latitude: 36.151617807585836, longitude: -95.94512749384059}, {latitude: 36.151659694967215, longitude: -95.94532146339337}, 
+                    {latitude: 36.15158485385023, longitude: -95.94548544141507}, {latitude: 36.15158756106769, longitude: -95.94549214693697}, 
+                    {latitude: 36.15164982704339, longitude: -95.94549214693697}, {latitude: 36.15166173878961, longitude: -95.94556590767783}, 
+                    {latitude: 36.151712634412284, longitude: -95.94556590767783}, {latitude: 36.15172779480413, longitude: -95.94563028068802}, 
+                    {latitude: 36.15180197239517, longitude: -95.94562826903548}, {latitude: 36.151801430953164, longitude: -95.94550220522386}, 
+                    {latitude: 36.15182687872328, longitude: -95.94550354632823}, {latitude: 36.15183662467562, longitude: -95.94558133038221}, 
+                    {latitude: 36.151847453510115, longitude: -95.94557998927785}, {latitude: 36.151849619276824, longitude: -95.94559407087382}, 
+                    {latitude: 36.151881022890194, longitude: -95.94558602424972}, {latitude: 36.151884271538876, longitude: -95.94559742363694}, 
+                    {latitude: 36.15192000666535, longitude: -95.94559943529353}, {latitude: 36.15195195168885, longitude: -95.94558937701068}, 
+                    {latitude: 36.15195086880692, longitude: -95.94556791934062}, {latitude: 36.152015300256316, longitude: -95.94555987271433}, 
+                    {latitude: 36.152015300256316, longitude: -95.94557730707128}, {latitude: 36.15209110189715, longitude: -95.94556858989056}, 
+                    {latitude: 36.15208839469707, longitude: -95.94555048498145}, {latitude: 36.152184229522796, longitude: -95.94553908559423}, 
+                    {latitude: 36.15215607467089, longitude: -95.94548275921032}, {latitude: 36.15215715754999, longitude: -95.94537278865121}
+                ]}
+            />
+
+            {/*Alan Chapman Student Union*/}
+            <Building
+                color={UNIV_COLOR}
+                coords={[
+                    {latitude: 36.153721193745774, longitude: -95.94369644200562}, {latitude: 36.15368622620406, longitude: -95.94365559478364}, 
+                    {latitude: 36.15368523321894, longitude: -95.94316367554875}, {latitude: 36.15340223194781, longitude: -95.94316490534683}, 
+                    {latitude: 36.15336747733541, longitude: -95.94312186241379}, {latitude: 36.15333272270763, longitude: -95.94316613514493}, 
+                    {latitude: 36.15320264096406, longitude: -95.94316490534683}, {latitude: 36.15320164797133, longitude: -95.94399009986809}, 
+                    {latitude: 36.15339925298012, longitude: -95.94399009986809}, {latitude: 36.153442944472644, longitude: -95.94404175138773}, 
+                    {latitude: 36.15348564295318, longitude: -95.94399009986809}, {latitude: 36.15368523321662, longitude: -95.94399009986809}, 
+                    {latitude: 36.15368721918685, longitude: -95.94374045085638}
+                ]}
+            />
         </MapView>
         
     ); 
