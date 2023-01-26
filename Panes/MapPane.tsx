@@ -96,10 +96,12 @@ const MapPane= () => {
           
             {markerData.map((item: Location_Data, index:number) => (
               <Marker
-              key={index}
-              coordinate={{latitude: item.Latitude, longitude: item.Longitude}}
-              title={item.Name}
-              description={item.Description}>
+                key={index}
+                coordinate={{latitude: item.Latitude, longitude: item.Longitude}}
+                title={item.Name}
+                description={item.Description}
+                image={require('./../assets/Location-Marker.png')} style={{height: 5, width:5 }}
+              >
               </Marker>
             ))}
       </MapView> 
