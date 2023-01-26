@@ -200,19 +200,19 @@ const LaFortune_House: Location_Data = {
 };
 
 const First_Generic_Event: Event_Data = {
-    Name: "First Generic Event",
-    Description: "Testing Event",
-    Date_Start: new Date('2022-08-26'),
-    Date_End: new Date('2022-08-26'),
-    Category: "Meeting",
+    Name: "Sprint 4 Presentations",
+    Description: "Event Description",
+    Date_Start: new Date('2023-01-26'),
+    Date_End: new Date('2022-01-26'),
+    Category: "Presentation",
     Location: "TU Campus"
 }
 
 const Second_Generic_Event: Event_Data = {
-    Name: "Second Generic Event",
-    Description: "Testing Event",
-    Date_Start: new Date('2022-08-30'),
-    Date_End: new Date('2022-08-30'),
+    Name: "Next Scrum Meeting",
+    Description: "Event Description",
+    Date_Start: new Date('2023-01-31'),
+    Date_End: new Date('2023-01-31'),
     Category: "Meeting",
     Location: "TU Campus"
 }
@@ -220,8 +220,8 @@ const Second_Generic_Event: Event_Data = {
 const Third_Generic_Event: Event_Data = {
     Name: "Third Generic Event",
     Description: "Testing Event",
-    Date_Start: new Date('2022-09-30'),
-    Date_End: new Date('2022-09-30'),
+    Date_Start: new Date('2023-01-30'),
+    Date_End: new Date('2023-01-30'),
     Category: "Meeting",
     Location: "TU Campus"
 }
@@ -279,7 +279,7 @@ export function populate() {
 
     Event.insertIntoEventTable(First_Generic_Event);
     Event.insertIntoEventTable(Second_Generic_Event);
-    Event.insertIntoEventTable(Third_Generic_Event);
-    Event.insertIntoEventTable(Fourth_Generic_Event);
-    Event.insertIntoEventTable(Fifth_Generic_Event);
+    //Event.insertIntoEventTable(Third_Generic_Event);
+    // Event.insertIntoEventTable(Fourth_Generic_Event);
+    // Event.insertIntoEventTable(Fifth_Generic_Event);
 }
