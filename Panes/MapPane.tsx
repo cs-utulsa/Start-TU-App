@@ -6,7 +6,7 @@ import MapViewDirections from 'react-native-maps-directions';
 import {GOOGLE_MAPS_API_KEY} from '../creds';
 import {DARK_BLUE, TU_LIGHT_BLUE, styles} from './PaneStyles';
 import { BuildingList } from '../buildings/Polygons';
-
+import {Image} from 'react-native' ; 
 
 
 const MapPane= () => {
