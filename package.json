@@ -29,7 +29,6 @@
     "react-freeze": "^1.0.3",
     "react-native": "^0.69.6",
     "react-native-calendars": "^1.1293.0",
-    "react-native-maps": "0.31.1",
     "react-native-maps-directions": "^1.9.0",
     "react-native-paper": "^5.1.4",
     "react-native-web": "~0.18.7",

@@ -5,7 +5,8 @@ import MapView, { Marker, LatLng } from 'react-native-maps';
 import MapViewDirections from 'react-native-maps-directions';
 import {GOOGLE_MAPS_API_KEY} from '../creds';
 import {DARK_BLUE, TU_LIGHT_BLUE, styles} from './PaneStyles';
-
+import { BuildingList } from '../buildings/Polygons';
+import {Image} from 'react-native' ; 
 
 
 const MapPane= () => {
@@ -51,6 +52,8 @@ const MapPane= () => {
       </View>
 
       <MapView 
+          showsBuildings={false}
+          showsPointsOfInterest={false}
           initialRegion={{
             latitude: 36.15236,
             longitude: -95.94575,
@@ -65,6 +68,8 @@ const MapPane= () => {
               Longitude: location.longitude
             } as Location_Data)
           }}>
+
+            <BuildingList></BuildingList>
 
             { 
               JSON.stringify(origin) != '{}' && 
@@ -95,6 +100,7 @@ const MapPane= () => {
               coordinate={{latitude: item.Latitude, longitude: item.Longitude}}
               title={item.Name}
               description={item.Description}>
+              <Image source={require('../assets/Location-Marker.png')} style={{height: 35, width:35 }} />
               </Marker>
             ))}
       </MapView> 
