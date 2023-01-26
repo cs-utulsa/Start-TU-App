@@ -6,7 +6,7 @@ import MapViewDirections from 'react-native-maps-directions';
 import {GOOGLE_MAPS_API_KEY} from '../creds';
 import {DARK_BLUE, TU_LIGHT_BLUE, styles} from './PaneStyles';
 import { BuildingList } from '../buildings/Polygons';
-
+import {Image} from 'react-native' ; 
 
 
 const MapPane= () => {
@@ -100,6 +100,7 @@ const MapPane= () => {
               coordinate={{latitude: item.Latitude, longitude: item.Longitude}}
               title={item.Name}
               description={item.Description}>
+              <Image source={require('../assets/Location-Marker.png')} style={{height: 35, width:35 }} />
               </Marker>
             ))}
       </MapView> 
