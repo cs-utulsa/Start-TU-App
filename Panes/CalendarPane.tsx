@@ -14,6 +14,8 @@ const CalendarPane = () => {
   
   return (
   <View style={styles.calenderPane}>
+
+    
     <Agenda
       items={agendaItems}
       // Callback that gets called when items for a certain month should be loaded (month became visible)
