@@ -16,7 +16,7 @@ export const RoutingPopup: FC<RoutingPopupProps> = ({updateEndpoints}) => {
           toggleViewPopup(!viewPopup);
         }} style = {styles.button} >
 
-        <Image source={require('../../assets/Directions.png')} style={styles.icon}></Image>
+            <Image source={require('../../assets/Directions.png')} style={styles.icon}></Image>
             <Modal
               animationType="slide"
               transparent={true}
