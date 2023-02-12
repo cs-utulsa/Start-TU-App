@@ -16,11 +16,7 @@ export const EventForm = () => {
               visible={formVisible}
               onDismiss ={() => {
 
-              }}
-              style={{justifyContent: 'center',
-              alignItems: 'center',
-              margin: 0}}>
-
+              }}>
                 <View style={styles.formContainer}>
                     <View style={styles.buttonRow}>
                         <View style={styles.button}>
@@ -40,8 +36,7 @@ export const EventForm = () => {
                         </View>
                     </View>
                 </View>
-
-              </Modal>
+            </Modal>
         </Pressable>    
     )
 }
