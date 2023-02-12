@@ -33,7 +33,7 @@ export const styles = StyleSheet.create({
     },
     calenderPane: {
       flex: 9,
-      backgroundColor: DARK_BLUE,
+      backgroundColor: 'white',
     },
     emailPane: {
       flex: 9,

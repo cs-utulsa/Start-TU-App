@@ -7,36 +7,48 @@ import { formatAgendaSchedule } from '../utilities/formatAgendaSchedule'
 import { Event, Event_Data} from '../Database/Event';
 import styles from './PaneStyles';
 
+import { EventForm } from '../PaneComponents/CalendarPaneComponents/EventForm';
+
 const CalendarPane = () => {
   const [agendaItems, setItems] = useState<AgendaSchedule>(
     {} as AgendaSchedule
   );
   
   return (
-  <View style={styles.calenderPane}>
-
+    <View style={styles.calenderPane}>
+  
+    <EventForm></EventForm>
     
     <Agenda
-      items={agendaItems}
-      // Callback that gets called when items for a certain month should be loaded (month became visible)
-      loadItemsForMonth={month => {
-        const currMonth = month.month;
-        const currYear = month.year;
+        items={agendaItems}
+        // Callback that gets called when items for a certain month should be loaded (month became visible)
+        loadItemsForMonth={month => {
+          const currMonth = month.month;
+          const currYear = month.year;
 
-        Event.queryAttributes_MonthYear(currMonth, currYear).then((value: Event_Data[]) => {
-          setItems(formatAgendaSchedule(value)); 
-        });
-      }}
+          Event.queryAttributes_MonthYear(currMonth, currYear).then((value: Event_Data[]) => {
+            setItems(formatAgendaSchedule(value)); 
+          });
+        }}
 
-      renderItem = { (item) => {
-        return <EventView 
-                Name={item.name} Height={item.height} Day={item.day}></EventView>
-      }}
+        renderItem = { (item) => {
+          return <EventView 
+                  Name={item.name} Height={item.height} Day={item.day}></EventView>
+        }}
 
-      style={{height: '100%', width: '100%'}}
-
-    ></Agenda>
+        style={calendar_styles.agenda}>
+      </Agenda>
+  
   </View>
   )
 }
+
+const calendar_styles = StyleSheet.create({
+  agenda: {
+    height: '100%', 
+    width: '100%', 
+    position: 'relative'
+  }
+});
+
 export default CalendarPane;
