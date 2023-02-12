@@ -1,10 +1,31 @@
-import React, { useState, useEffect, FC } from 'react';
+import React, { useState, useEffect, FC, useRef } from 'react';
 import {StyleSheet, Image, Modal, Text, View, TextInput, Button, Pressable} from 'react-native'
 import { Event, Event_Data } from '../../Database/Event';
+import { Location, Location_Data } from '../../Database/Location';
+import { SelectList } from 'react-native-dropdown-select-list'
+
+
+interface select_list_interface {
+    key: number,
+    value: string
+}
 
 export const EventForm = () => {
+    //State variable to toggle the visibility of the form
     const [formVisible, setFormVisible] = useState<boolean>(false)
+    
+    const locations = useRef<select_list_interface[]>([])
 
+    const selectedLocation = useRef<string>("")
+
+    useEffect(() => {
+        Location.queryAttributes_Tag().then((all_locations: Location_Data[]) => {
+            for (let i = 0; i < all_locations.length; i++) {
+                const test = {key: i, value: all_locations[i].Name}
+                locations.current.push({key: i, value: all_locations[i].Name})
+            }
+        })
+    }, [])
     return(
         <Pressable disabled = {false} style = {styles.buttonPopupPressable} onPress={() => {
             setFormVisible(!formVisible)
@@ -35,6 +56,11 @@ export const EventForm = () => {
                             title={'submit'}></Button>
                         </View>
                     </View>
+
+                    <SelectList data={locations.current} save={'value'} setSelected={(location: string) => {
+                        selectedLocation.current = location
+                        console.log(selectedLocation.current)
+                    }}></SelectList>
                 </View>
             </Modal>
         </Pressable>    
@@ -50,7 +76,6 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
       alignItems: 'center',
       padding: 5,
-      //backgroundColor: 'red'
     },
     eventAddIcon: {
         position: 'relative',
