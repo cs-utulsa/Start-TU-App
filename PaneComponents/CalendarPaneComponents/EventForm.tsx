@@ -5,6 +5,8 @@ import { Location, Location_Data } from '../../Database/Location';
 import { SelectList } from 'react-native-dropdown-select-list'
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 
+import { FormTextInput } from './FormComponents/FormTextInput';
+
 
 interface select_list_interface {
     key: number,
@@ -78,32 +80,9 @@ export const EventForm = () => {
                         </View>
                     </View>
                     
-                    <View style={styles.textInputContainer}>
-                        <TextInput style={styles.textInput} autoCorrect={false} 
-                        placeholder={'Enter Name'} placeholderTextColor={'black'}
-                        onSubmitEditing={
-                            (e) => {
-                                selectedName.current = e.nativeEvent.text.toLowerCase();
-                            }}></TextInput>
-                    </View>
-
-                    <View style={styles.textInputContainer}>
-                        <TextInput style={styles.textInput} autoCorrect={false} 
-                        placeholder={'Enter Description'} placeholderTextColor={'black'}
-                        onSubmitEditing={
-                            (e) => {
-                                selectedDescription.current = e.nativeEvent.text.toLowerCase();
-                            }}></TextInput>
-                    </View>
-
-                    <View style={styles.textInputContainer}>
-                        <TextInput style={styles.textInput} autoCorrect={false} 
-                        placeholder={'Enter Category'} placeholderTextColor={'black'}
-                        onSubmitEditing={
-                            (e) => {
-                                selectedCategory.current = e.nativeEvent.text.toLowerCase();
-                            }}></TextInput>
-                    </View>
+                    <FormTextInput placeholder={'Enter Name'} selectedRef={selectedName}></FormTextInput>
+                    <FormTextInput placeholder={'Enter Description'} selectedRef={selectedDescription}></FormTextInput>
+                    <FormTextInput placeholder={'Enter Category'} selectedRef={selectedCategory}></FormTextInput>
 
                     <View style={styles.textInputContainer}>
                         <Text style={styles.dateInput} onPress={ () => {
