@@ -67,7 +67,6 @@ export const EventForm = () => {
                                 }
                                 
                                 Event.insertIntoEventTable(new_event)
-                                console.log(new_event)
                                 setFormVisible(!formVisible)
                             }} 
                             title={'Submit'}></Button>
