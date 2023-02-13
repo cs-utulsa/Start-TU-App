@@ -23,6 +23,7 @@ export const EventForm = () => {
 
     const [startDatePickVisible, setStartDatePickVisible] = useState<boolean>(false)
     const [endDatePickVisible, setEndDatePickVisible] = useState<boolean>(false)
+
     const [selectedStartTime, setStartTime] = useState<Date>(new Date())
     const [selectedEndTime, setEndTime] = useState<Date>(new Date())
 
@@ -56,7 +57,17 @@ export const EventForm = () => {
 
                         <View style={styles.button}>
                             <Button onPress={() => {
-                                console.log('test')
+                                const new_event: Event_Data = {
+                                    Name: selectedName.current,
+                                    Description: selectedDescription.current,
+                                    Date_Start: selectedStartTime,
+                                    Date_End: selectedEndTime,
+                                    Category: selectedCategory.current,
+                                    Location: selectedLocation.current
+                                }
+                                
+                                Event.insertIntoEventTable(new_event)
+                                console.log(new_event)
                                 setFormVisible(!formVisible)
                             }} 
                             title={'Submit'}></Button>
@@ -65,32 +76,35 @@ export const EventForm = () => {
                     
                     <View style={styles.textInputContainer}>
                         <TextInput style={styles.textInput} autoCorrect={false} 
-                        placeholder={'Enter Name'} placeholderTextColor={'black'}></TextInput>
+                        placeholder={'Enter Name'} placeholderTextColor={'black'}
+                        onSubmitEditing={
+                            (e) => {
+                                selectedName.current = e.nativeEvent.text.toLowerCase();
+                            }}></TextInput>
                     </View>
 
                     <View style={styles.textInputContainer}>
                         <TextInput style={styles.textInput} autoCorrect={false} 
-                        placeholder={'Enter Description'} placeholderTextColor={'black'}></TextInput>
+                        placeholder={'Enter Description'} placeholderTextColor={'black'}
+                        onSubmitEditing={
+                            (e) => {
+                                selectedDescription.current = e.nativeEvent.text.toLowerCase();
+                            }}></TextInput>
                     </View>
 
                     <View style={styles.textInputContainer}>
                         <TextInput style={styles.textInput} autoCorrect={false} 
-                        placeholder={'Enter Category'} placeholderTextColor={'black'}></TextInput>
+                        placeholder={'Enter Category'} placeholderTextColor={'black'}
+                        onSubmitEditing={
+                            (e) => {
+                                selectedCategory.current = e.nativeEvent.text.toLowerCase();
+                            }}></TextInput>
                     </View>
 
                     <View style={styles.textInputContainer}>
-                        {
-                         selectedStartTime.getFullYear() == 1096 && 
-                         <Text style={styles.dateInput} onPress={ () => {
-                            setStartDatePickVisible(!startDatePickVisible)
-                         }}>{'Select Start Time'}</Text>
-                        }
-                        {
-                         selectedStartTime.getFullYear() != 1096 && 
-                         <Text style={styles.dateInput} onPress={ () => {
+                        <Text style={styles.dateInput} onPress={ () => {
                             setStartDatePickVisible(!startDatePickVisible)
                          }}>{selectedStartTime.toUTCString()}</Text>
-                        }
                         
                         <DateTimePickerModal isVisible={startDatePickVisible}
                                              mode={'datetime'}
@@ -103,18 +117,10 @@ export const EventForm = () => {
                     </View>
 
                     <View style={styles.textInputContainer}>
-                        {
-                         selectedEndTime.getFullYear() == 1096 && 
-                         <Text style={styles.dateInput} onPress={ () => {
-                            setEndDatePickVisible(!endDatePickVisible)
-                         }}>{'Select End Time'}</Text>
-                        }
-                        {
-                         selectedStartTime.getFullYear() != 1096 && 
-                         <Text style={styles.dateInput} onPress={ () => {
+
+                        <Text style={styles.dateInput} onPress={ () => {
                             setEndDatePickVisible(!endDatePickVisible)
                          }}>{selectedEndTime.toUTCString()}</Text>
-                        }
                         
                         <DateTimePickerModal isVisible={endDatePickVisible}
                                              mode={'datetime'}
