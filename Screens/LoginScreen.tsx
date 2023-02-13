@@ -19,8 +19,8 @@ const LoginPage = (screenInterface: LoginScreenInterface) =>  {
             <Card>
                 <Card.Title title = "LOGIN PAGE"></Card.Title>
                 <Card.Content>
-                    <TextInput placeholder = "USERNAME"/>
-                    <TextInput placeholder = "PASSWORD"/>
+                    <TextInput placeholder = {"USERNAME"} placeholderTextColor={'black'}/>
+                    <TextInput placeholder = {"PASSWORD"} placeholderTextColor={'black'}/>
                     <Button
                         onPress = {pressLogin}
                         title = "LOGIN"

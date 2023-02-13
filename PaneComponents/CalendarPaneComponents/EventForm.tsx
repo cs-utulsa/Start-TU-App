@@ -1,8 +1,9 @@
 import React, { useState, useEffect, FC, useRef } from 'react';
-import {StyleSheet, Image, Modal, Text, View, TextInput, Button, Pressable} from 'react-native'
+import {StyleSheet, Image, Modal, Text, View, TextInput, Button, Pressable, ScrollView} from 'react-native'
 import { Event, Event_Data } from '../../Database/Event';
 import { Location, Location_Data } from '../../Database/Location';
 import { SelectList } from 'react-native-dropdown-select-list'
+import DateTimePickerModal from "react-native-modal-datetime-picker";
 
 
 interface select_list_interface {
@@ -13,19 +14,28 @@ interface select_list_interface {
 export const EventForm = () => {
     //State variable to toggle the visibility of the form
     const [formVisible, setFormVisible] = useState<boolean>(false)
-    
     const locations = useRef<select_list_interface[]>([])
 
+    const selectedName = useRef<string>("")
+    const selectedDescription = useRef<string>("")
+    const selectedCategory = useRef<string>("")
     const selectedLocation = useRef<string>("")
 
+    const [startDatePickVisible, setStartDatePickVisible] = useState<boolean>(false)
+    const [endDatePickVisible, setEndDatePickVisible] = useState<boolean>(false)
+    const [selectedStartTime, setStartTime] = useState<Date>(new Date())
+    const [selectedEndTime, setEndTime] = useState<Date>(new Date())
+
+
+    //This useEffect will load in all possible locations in the database for selection
     useEffect(() => {
         Location.queryAttributes_Tag().then((all_locations: Location_Data[]) => {
             for (let i = 0; i < all_locations.length; i++) {
-                const test = {key: i, value: all_locations[i].Name}
                 locations.current.push({key: i, value: all_locations[i].Name})
             }
         })
     }, [])
+
     return(
         <Pressable disabled = {false} style = {styles.buttonPopupPressable} onPress={() => {
             setFormVisible(!formVisible)
@@ -34,18 +44,14 @@ export const EventForm = () => {
             <Modal
               animationType="slide"
               transparent={true}
-              visible={formVisible}
-              onDismiss ={() => {
-
-              }}>
+              visible={formVisible}>
                 <View style={styles.formContainer}>
                     <View style={styles.buttonRow}>
                         <View style={styles.button}>
                             <Button onPress={() => {
-                                console.log('test')
                                 setFormVisible(!formVisible)
                             }} 
-                            title={'close'}></Button>
+                            title={'Close'}></Button>
                         </View>
 
                         <View style={styles.button}>
@@ -53,14 +59,78 @@ export const EventForm = () => {
                                 console.log('test')
                                 setFormVisible(!formVisible)
                             }} 
-                            title={'submit'}></Button>
+                            title={'Submit'}></Button>
                         </View>
+                    </View>
+                    
+                    <View style={styles.textInputContainer}>
+                        <TextInput style={styles.textInput} autoCorrect={false} 
+                        placeholder={'Enter Name'} placeholderTextColor={'black'}></TextInput>
+                    </View>
+
+                    <View style={styles.textInputContainer}>
+                        <TextInput style={styles.textInput} autoCorrect={false} 
+                        placeholder={'Enter Description'} placeholderTextColor={'black'}></TextInput>
+                    </View>
+
+                    <View style={styles.textInputContainer}>
+                        <TextInput style={styles.textInput} autoCorrect={false} 
+                        placeholder={'Enter Category'} placeholderTextColor={'black'}></TextInput>
+                    </View>
+
+                    <View style={styles.textInputContainer}>
+                        {
+                         selectedStartTime.getFullYear() == 1096 && 
+                         <Text style={styles.dateInput} onPress={ () => {
+                            setStartDatePickVisible(!startDatePickVisible)
+                         }}>{'Select Start Time'}</Text>
+                        }
+                        {
+                         selectedStartTime.getFullYear() != 1096 && 
+                         <Text style={styles.dateInput} onPress={ () => {
+                            setStartDatePickVisible(!startDatePickVisible)
+                         }}>{selectedStartTime.toUTCString()}</Text>
+                        }
+                        
+                        <DateTimePickerModal isVisible={startDatePickVisible}
+                                             mode={'datetime'}
+                                             onConfirm= {(newDate: Date)=>{
+                                                setStartTime(newDate) 
+                                                setStartDatePickVisible(!startDatePickVisible)
+                                            }}
+                                            onCancel={()=>{setStartDatePickVisible(!startDatePickVisible)}}
+                                            ></DateTimePickerModal>
+                    </View>
+
+                    <View style={styles.textInputContainer}>
+                        {
+                         selectedEndTime.getFullYear() == 1096 && 
+                         <Text style={styles.dateInput} onPress={ () => {
+                            setEndDatePickVisible(!endDatePickVisible)
+                         }}>{'Select End Time'}</Text>
+                        }
+                        {
+                         selectedStartTime.getFullYear() != 1096 && 
+                         <Text style={styles.dateInput} onPress={ () => {
+                            setEndDatePickVisible(!endDatePickVisible)
+                         }}>{selectedEndTime.toUTCString()}</Text>
+                        }
+                        
+                        <DateTimePickerModal isVisible={endDatePickVisible}
+                                             mode={'datetime'}
+                                             onConfirm= {(newDate: Date)=>{
+                                                setEndTime(newDate) 
+                                                setEndDatePickVisible(!endDatePickVisible)
+                                            }}
+                                            onCancel={()=>{setEndDatePickVisible(!endDatePickVisible)}}
+                                            ></DateTimePickerModal>
                     </View>
 
                     <SelectList data={locations.current} save={'value'} setSelected={(location: string) => {
                         selectedLocation.current = location
-                        console.log(selectedLocation.current)
-                    }}></SelectList>
+                    }} placeholder = {'Select Location'}></SelectList>
+
+
                 </View>
             </Modal>
         </Pressable>    
@@ -73,8 +143,6 @@ const styles = StyleSheet.create({
       position: 'relative',
       height: 50, 
       width: 50,
-      justifyContent: 'center',
-      alignItems: 'center',
       padding: 5,
     },
     eventAddIcon: {
@@ -87,14 +155,12 @@ const styles = StyleSheet.create({
         width: '100%',
         height: '100%',
         paddingTop: '15%',
-        justifyContent: 'flex-start',
         backgroundColor: 'white',
         flexDirection: 'column'
     },
 
     buttonRow: {
         flexDirection: 'row',
-        //backgroundColor: 'grey',
         width: '100%',
         height: '5%',
     },
@@ -104,4 +170,30 @@ const styles = StyleSheet.create({
         width: '20%',
         height: '100%',
     },
+
+    textInputContainer: {
+        width: '100%',
+        height: '5.5%',
+        marginBottom: '5%'
+    },
+
+    textInput: {
+        height: '100%', 
+        width: '100%',
+        backgroundColor: 'white',
+        borderRadius: 10,
+        borderColor: 'grey',
+        borderWidth: 1,    
+        paddingLeft: '5%'
+    },
+    dateInput: {
+        height: '100%', 
+        width: '100%',
+        backgroundColor: 'white',
+        borderRadius: 10,
+        borderColor: 'grey',
+        borderWidth: 1,    
+        paddingLeft: '5%',
+        paddingTop: '3%'
+    }
 });
