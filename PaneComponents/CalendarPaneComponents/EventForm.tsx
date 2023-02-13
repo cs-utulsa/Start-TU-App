@@ -14,16 +14,21 @@ interface select_list_interface {
 export const EventForm = () => {
     //State variable to toggle the visibility of the form
     const [formVisible, setFormVisible] = useState<boolean>(false)
+
+    //Reference variable for formatting the location names for the select list
     const locations = useRef<select_list_interface[]>([])
 
+    //Reference variables for keeping tracking of the name, description, category, and location
     const selectedName = useRef<string>("")
     const selectedDescription = useRef<string>("")
     const selectedCategory = useRef<string>("")
     const selectedLocation = useRef<string>("")
 
+    //These two states toggle the visibility of the datetime modal
     const [startDatePickVisible, setStartDatePickVisible] = useState<boolean>(false)
     const [endDatePickVisible, setEndDatePickVisible] = useState<boolean>(false)
 
+    //These two states keep track of the start and end time.
     const [selectedStartTime, setStartTime] = useState<Date>(new Date())
     const [selectedEndTime, setEndTime] = useState<Date>(new Date())
 
