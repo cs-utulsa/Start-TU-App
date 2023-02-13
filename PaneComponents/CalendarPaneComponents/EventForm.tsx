@@ -6,7 +6,7 @@ import { SelectList } from 'react-native-dropdown-select-list'
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 
 import { FormTextInput } from './FormComponents/FormTextInput';
-
+import { FormDateInput } from './FormComponents/FormDateInput';
 
 interface select_list_interface {
     key: number,
@@ -27,8 +27,8 @@ export const EventForm = () => {
     const selectedLocation = useRef<string>("")
 
     //These two states toggle the visibility of the datetime modal
-    const [startDatePickVisible, setStartDatePickVisible] = useState<boolean>(false)
-    const [endDatePickVisible, setEndDatePickVisible] = useState<boolean>(false)
+    const [startDateModalVisible, setStartDateModalVisible] = useState<boolean>(false)
+    const [endDateModalVisible, setEndDateModalVisible] = useState<boolean>(false)
 
     //These two states keep track of the start and end time.
     const [selectedStartTime, setStartTime] = useState<Date>(new Date())
@@ -55,6 +55,7 @@ export const EventForm = () => {
               visible={formVisible}>
                 <View style={styles.formContainer}>
                     <View style={styles.buttonRow}>
+
                         <View style={styles.button}>
                             <Button onPress={() => {
                                 setFormVisible(!formVisible)
@@ -84,42 +85,19 @@ export const EventForm = () => {
                     <FormTextInput placeholder={'Enter Description'} selectedRef={selectedDescription}></FormTextInput>
                     <FormTextInput placeholder={'Enter Category'} selectedRef={selectedCategory}></FormTextInput>
 
-                    <View style={styles.textInputContainer}>
-                        <Text style={styles.dateInput} onPress={ () => {
-                            setStartDatePickVisible(!startDatePickVisible)
-                         }}>{selectedStartTime.toUTCString()}</Text>
-                        
-                        <DateTimePickerModal isVisible={startDatePickVisible}
-                                             mode={'datetime'}
-                                             onConfirm= {(newDate: Date)=>{
-                                                setStartTime(newDate) 
-                                                setStartDatePickVisible(!startDatePickVisible)
-                                            }}
-                                            onCancel={()=>{setStartDatePickVisible(!startDatePickVisible)}}
-                                            ></DateTimePickerModal>
-                    </View>
+                    <FormDateInput modalVisible={startDateModalVisible}
+                                   setModalVisible={setStartDateModalVisible}
+                                   date={selectedStartTime}
+                                   setDate={setStartTime}></FormDateInput>
 
-                    <View style={styles.textInputContainer}>
-
-                        <Text style={styles.dateInput} onPress={ () => {
-                            setEndDatePickVisible(!endDatePickVisible)
-                         }}>{selectedEndTime.toUTCString()}</Text>
-                        
-                        <DateTimePickerModal isVisible={endDatePickVisible}
-                                             mode={'datetime'}
-                                             onConfirm= {(newDate: Date)=>{
-                                                setEndTime(newDate) 
-                                                setEndDatePickVisible(!endDatePickVisible)
-                                            }}
-                                            onCancel={()=>{setEndDatePickVisible(!endDatePickVisible)}}
-                                            ></DateTimePickerModal>
-                    </View>
+                    <FormDateInput modalVisible={endDateModalVisible}
+                                   setModalVisible={setEndDateModalVisible}
+                                   date={selectedEndTime}
+                                   setDate={setEndTime}></FormDateInput>
 
                     <SelectList data={locations.current} save={'value'} setSelected={(location: string) => {
                         selectedLocation.current = location
                     }} placeholder = {'Select Location'}></SelectList>
-
-
                 </View>
             </Modal>
         </Pressable>    
@@ -158,31 +136,5 @@ const styles = StyleSheet.create({
         marginRight: '60%',
         width: '20%',
         height: '100%',
-    },
-
-    textInputContainer: {
-        width: '100%',
-        height: '5.5%',
-        marginBottom: '5%'
-    },
-
-    textInput: {
-        height: '100%', 
-        width: '100%',
-        backgroundColor: 'white',
-        borderRadius: 10,
-        borderColor: 'grey',
-        borderWidth: 1,    
-        paddingLeft: '5%'
-    },
-    dateInput: {
-        height: '100%', 
-        width: '100%',
-        backgroundColor: 'white',
-        borderRadius: 10,
-        borderColor: 'grey',
-        borderWidth: 1,    
-        paddingLeft: '5%',
-        paddingTop: '3%'
     }
 });
