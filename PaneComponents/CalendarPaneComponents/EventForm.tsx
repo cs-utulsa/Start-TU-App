@@ -133,7 +133,6 @@ export const EventForm = () => {
                     </View>
 
                     <SelectList data={locations.current} save={'value'} setSelected={(location: string) => {
-                        console.log(location)
                         selectedLocation.current = location
                     }} placeholder = {'Select Location'}></SelectList>
 

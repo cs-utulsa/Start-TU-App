@@ -11,7 +11,6 @@ export const EventViewBody:FC<EventViewBodyProps> = ({isExpanded, EventData}) =>
     const [bodyHeight] = useState<Animated.Value>(new Animated.Value(0));
     
     useEffect(() => {
-        console.log(EventData)
         Animated.timing(bodyHeight, {
             toValue: !isExpanded ? 0 : 75,
             duration: 150,
