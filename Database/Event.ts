@@ -19,8 +19,8 @@ class Event_Entity {
             "    Date_Start Datetime NOT NULL, " +
             "    Date_End Datetime NOT NULL, " +
             "    Category Varchar(100), " +
-            "    Location_Name Varchar(100), " +
-            "    Foreign key(Location_Name) References Location(Name) ON DELETE CASCADE ON UPDATE CASCADE " +
+            "    Location Varchar(100), " +
+            "    Foreign key(Location) References Location(Name) ON DELETE CASCADE ON UPDATE CASCADE " +
             ");";
     
             tx.executeSql(sqlCommand);
@@ -59,7 +59,7 @@ class Event_Entity {
       this.DB.transaction(
         (tx) => {
           const sqlCommand = 
-          "Insert into Event(Name, Description, Date_Start, Date_End, Category, Location_Name) values " +
+          "Insert into Event(Name, Description, Date_Start, Date_End, Category, Location) values " +
           "(?, ?, ?, ?, ?, ?)";
 
           tx.executeSql(sqlCommand, [Event.Name, Event.Description, Event.Date_Start.toISOString(), 

@@ -11,13 +11,14 @@ export const EventViewBody:FC<EventViewBodyProps> = ({isExpanded, EventData}) =>
     const [bodyHeight] = useState<Animated.Value>(new Animated.Value(0));
     
     useEffect(() => {
+        console.log(EventData)
         Animated.timing(bodyHeight, {
             toValue: !isExpanded ? 0 : 75,
             duration: 150,
             useNativeDriver: false
         }).start();
     },[isExpanded, bodyHeight]);
-
+    
     return(
         <Animated.ScrollView style = {{
             backgroundColor: 'white',
@@ -34,10 +35,10 @@ export const EventViewBody:FC<EventViewBodyProps> = ({isExpanded, EventData}) =>
                 {EventData.Date_End.toString()}
             </Text>
             <Text>
-                {'Category:\n' + (EventData.Category == undefined ? '' : EventData.Category) + '\n'}
+                {'Category:\n' + EventData.Category + '\n'}
             </Text>
             <Text>
-                {'Location:\n' + (EventData.Location == undefined ? '' : EventData.Location) + '\n'}
+                {'Location:\n' + EventData.Location + '\n'}
             </Text>
         </Animated.ScrollView>
     );
