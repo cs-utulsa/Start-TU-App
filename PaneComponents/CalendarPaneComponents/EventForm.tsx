@@ -3,7 +3,6 @@ import {StyleSheet, Image, Modal, Text, View, TextInput, Button, Pressable, Scro
 import { Event, Event_Data } from '../../Database/Event';
 import { Location, Location_Data } from '../../Database/Location';
 import { SelectList } from 'react-native-dropdown-select-list'
-import DateTimePickerModal from "react-native-modal-datetime-picker";
 
 import { FormTextInput } from './FormComponents/FormTextInput';
 import { FormDateInput } from './FormComponents/FormDateInput';
@@ -26,7 +25,7 @@ export const EventForm = () => {
     const selectedCategory = useRef<string>("")
     const selectedLocation = useRef<string>("")
 
-    //These two states toggle the visibility of the datetime modal
+    //These two states toggle the visibility of the datetime modals
     const [startDateModalVisible, setStartDateModalVisible] = useState<boolean>(false)
     const [endDateModalVisible, setEndDateModalVisible] = useState<boolean>(false)
 
@@ -35,7 +34,7 @@ export const EventForm = () => {
     const [selectedEndTime, setEndTime] = useState<Date>(new Date())
 
 
-    //This useEffect will load in all possible locations in the database for selection
+    //This useEffect will load in all possible locations in the database for the selection list
     useEffect(() => {
         Location.queryAttributes_Tag().then((all_locations: Location_Data[]) => {
             for (let i = 0; i < all_locations.length; i++) {

@@ -19,7 +19,7 @@ export const FormDateInput: FC<FormDateInputProps> = ({modalVisible, setModalVis
             <DateTimePickerModal isVisible={modalVisible}
                                  mode={'datetime'}
                                  onConfirm= {(newDate: Date)=>{
-                                 newDate.setDate(newDate.getDate())
+                                    newDate.setDate(newDate.getDate())
                                     setDate(newDate) 
                                     setModalVisible(!modalVisible)
                                  }}

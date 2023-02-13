@@ -7,6 +7,7 @@ type EventViewBodyProps = {
     EventData: Event_Data
 }
 
+//This component is an expandable view that displays all of the data associated with a particular event.
 export const EventViewBody:FC<EventViewBodyProps> = ({isExpanded, EventData}) => {
     const [bodyHeight] = useState<Animated.Value>(new Animated.Value(0));
     

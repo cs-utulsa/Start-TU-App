@@ -1,6 +1,6 @@
 import React, { useState} from 'react';
 import {View, StyleSheet} from 'react-native';
-import { Agenda, AgendaSchedule} from 'react-native-calendars';
+import { Agenda, AgendaSchedule, AgendaEntry} from 'react-native-calendars';
 import { EventView } from '../PaneComponents/CalendarPaneComponents/EventView';
 import { formatAgendaSchedule } from '../utilities/formatAgendaSchedule'
 
@@ -10,6 +10,9 @@ import styles from './PaneStyles';
 import { EventForm } from '../PaneComponents/CalendarPaneComponents/EventForm';
 
 const CalendarPane = () => {
+
+  //This state keeps track of key-value pairs between dates and AgendaEntries
+  //AgendaEntries are objects with a name, height, and day
   const [agendaItems, setItems] = useState<AgendaSchedule>(
     {} as AgendaSchedule
   );
@@ -23,15 +26,20 @@ const CalendarPane = () => {
         items={agendaItems}
         // Callback that gets called when items for a certain month should be loaded (month became visible)
         loadItemsForMonth={month => {
+
+          //Getting the current month and year that is selected
           const currMonth = month.month;
           const currYear = month.year;
-
+          
+          //Query the Event database based on the month and year and format the results as
+          //[date: string]: [{Name: string, Height: number, Day: string}]
           Event.queryAttributes_MonthYear(currMonth, currYear).then((value: Event_Data[]) => {
             setItems(formatAgendaSchedule(value)); 
           });
         }}
 
-        renderItem = { (item) => {
+        //Function for rendering all of the agenda entries in the current month
+        renderItem = { (item: AgendaEntry) => {
           return <EventView 
                   Name={item.name} Height={item.height} Day={item.day}></EventView>
         }}
