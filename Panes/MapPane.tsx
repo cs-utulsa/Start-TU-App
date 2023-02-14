@@ -6,10 +6,11 @@ import MapViewDirections from 'react-native-maps-directions';
 import {GOOGLE_MAPS_API_KEY} from '../creds';
 import {DARK_BLUE, TU_LIGHT_BLUE, styles} from './PaneStyles';
 import { BuildingList } from '../buildings/Polygons';
+import { BuildingInfo } from '../PaneComponents/MapPaneComponents/BuildingInfo';
 import {Image} from 'react-native' ; 
 
 
-const MapPane= () => {
+const MapPane = () => {
   //State for all of the data(titles, latitude/longitude, description) for all markers on map
   const [markerData, setMarkerData] = useState<Location_Data[]>([]);
     
@@ -24,6 +25,9 @@ const MapPane= () => {
   );
 
   const [currentTag, setCurrentTag] = useState<string>("all");
+
+  //State variable to toggle the visibility of the building info
+  // const [infoVisible, setInfoVisible] = useState<boolean>(false)
 
   
   useEffect(() => {
@@ -49,6 +53,7 @@ const MapPane= () => {
           autoCorrect={false}
         style={{fontSize: 25, height: 30, backgroundColor: DARK_BLUE, flex: 1}}>
         </TextInput>
+        {/* <BuildingInfo></BuildingInfo> */}
       </View>
 
       <MapView 
@@ -60,6 +65,7 @@ const MapPane= () => {
             latitudeDelta: 0.01,
             longitudeDelta: 0.0125,}} 
           style = {{height: '100%', width: '100%'}}
+          userInterfaceStyle='light'
           onLongPress = {(e) => {
             const location: LatLng = e.nativeEvent.coordinate
             setOrigin(destination)
@@ -94,7 +100,7 @@ const MapPane= () => {
               <Marker coordinate={{latitude: destination.Latitude, longitude: destination.Longitude}} pinColor={'green'}></Marker>
             }
           
-            {markerData.map((item: Location_Data, index:number) => (
+            {/* {markerData.map((item: Location_Data, index:number) => (
               <Marker
                 key={index}
                 coordinate={{latitude: item.Latitude, longitude: item.Longitude}}
@@ -106,7 +112,7 @@ const MapPane= () => {
                   style={{width: 26, height: 28}}
                 />
               </Marker>
-            ))}
+            ))} */}
             <Marker
               coordinate={{latitude: 36.153627613433635, longitude: -95.94216178640234}}
             >
