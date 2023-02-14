@@ -8,7 +8,7 @@ const event: Location_Data = {
     Description: "Description",
     Latitude: 0,
     Longitude: 0,
-    Tags: ['tag']
+    Tags: ['tag', 'validTag']
 }
 
 function createTest() {
@@ -32,22 +32,53 @@ function insertTest() {
 }
 
 function queryTagTest_Valid() {
-    const validTag = 'tag'
+    const validTag1 = 'tag'
+    const validTag2 = 'validTag'
     console.log('Beginning valid tag table test for the location table')
     Location_Test.createLocationTable()
     Location_Test.insertIntoLocationTable(event)
-    Location_Test.queryAttributes_Tag(validTag).then((value: Location_Data[]) => {
+    Location_Test.queryAttributes_Tag(validTag1).then((value: Location_Data[]) => {
+        console.log(value)
+    }) 
+
+    Location_Test.queryAttributes_Tag(validTag2).then((value: Location_Data[]) => {
         console.log(value)
     }) 
     console.log('Ending valid tag table test for the location table')
 }
 
-function queryTagTest_Invalid() {
-    const validTag = 'invalid_tag'
+function queryTagTest_InvalidItem() {
+    const validTag1 = 'tag'
+    const validTag2 = 'validTag'
+    console.log('Beginning valid tag table test for the location table')
+    Location_Test.createLocationTable()
+    Location_Test.queryAttributes_Tag(validTag1).then((value: Location_Data[]) => {
+        console.log(value)
+    }) 
+
+    Location_Test.queryAttributes_Tag(validTag2).then((value: Location_Data[]) => {
+        console.log(value)
+    }) 
+    console.log('Ending valid tag table test for the location table')
+}
+
+function queryTagTest_InvalidTag() {
+    const inValidTag1 = 'invalid_tag'
+    const inValidTag2 = ''
+    const inValidTag3 = 'ta'
+
     console.log('Beginning invalid tag table test for the location table')
     Location_Test.createLocationTable()
     Location_Test.insertIntoLocationTable(event)
-    Location_Test.queryAttributes_Tag(validTag).then((value: Location_Data[]) => {
+    Location_Test.queryAttributes_Tag(inValidTag1).then((value: Location_Data[]) => {
+        console.log(value)
+    }) 
+
+    Location_Test.queryAttributes_Tag(inValidTag2).then((value: Location_Data[]) => {
+        console.log(value)
+    }) 
+
+    Location_Test.queryAttributes_Tag(inValidTag3).then((value: Location_Data[]) => {
         console.log(value)
     }) 
     console.log('Ending invalid tag table test for the location table')
@@ -64,11 +95,28 @@ function queryNameTest_Valid() {
     console.log('Ending valid name table test for the location table')
 }
 
-function queryNameTest_Invalid() {
-    const validName = 'Invalid_Event'
+function queryNameTest_InvalidName() {
+    const inValidName1 = 'Invalid_Event'
+    const inValidName2 = ''
+
+
     console.log('Beginning invalid name table test for the location table')
     Location_Test.createLocationTable()
     Location_Test.insertIntoLocationTable(event)
+    Location_Test.queryAttributes_Name(inValidName1).then((value: Location_Data) => {
+        console.log(value)
+    }) 
+
+    Location_Test.queryAttributes_Name(inValidName2).then((value: Location_Data) => {
+        console.log(value)
+    }) 
+    console.log('Ending invalid name table test for the location table')
+}
+
+function queryNameTest_InvalidItem() {
+    const validName = 'Event'
+    console.log('Beginning invalid name table test for the location table')
+    Location_Test.createLocationTable()
     Location_Test.queryAttributes_Name(validName).then((value: Location_Data) => {
         console.log(value)
     }) 
