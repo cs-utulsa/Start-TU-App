@@ -30,7 +30,8 @@ const MapPane = () => {
   //State variable to toggle the visibility of the building info
   // const [infoVisible, setInfoVisible] = useState<boolean>(false)
 
-  
+  //This useEffect queries the location table based on a tag that was inputted by the user.
+  //It will use the user's inputted tag and update the 'markerData' state, which all of the marker locations on the map.
   useEffect(() => {
     Location.queryAttributes_Tag(currentTag).then((value:Location_Data[]) => {
       setMarkerData(value);
