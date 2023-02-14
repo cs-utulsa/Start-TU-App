@@ -11,27 +11,27 @@ const event: Location_Data = {
     Tags: ['tag', 'validTag']
 }
 
-function createTest() {
+export function createTest() {
     console.log('Beginning create table test for the location table')
     Location_Test.createLocationTable()
     console.log('Ending create table test for the location table')
 }
 
-function dropTest() {
+export function dropTest() {
     console.log('Beginning drop table test for the location table')
     Location_Test.createLocationTable()
     Location_Test.dropLocationTable()
     console.log('Ending drop table test for the location table')
 }
 
-function insertTest() {
+export function insertTest() {
     console.log('Beginning insert table test for the location table')
     Location_Test.createLocationTable()
     Location_Test.insertIntoLocationTable(event)
     console.log('Ending insert table test for the location table')
 }
 
-function queryTagTest_Valid() {
+export function queryTagTest_Valid() {
     const validTag1 = 'tag'
     const validTag2 = 'validTag'
     console.log('Beginning valid tag table test for the location table')
@@ -47,7 +47,7 @@ function queryTagTest_Valid() {
     console.log('Ending valid tag table test for the location table')
 }
 
-function queryTagTest_InvalidItem() {
+export function queryTagTest_InvalidItem() {
     const validTag1 = 'tag'
     const validTag2 = 'validTag'
     console.log('Beginning valid tag table test for the location table')
@@ -62,7 +62,7 @@ function queryTagTest_InvalidItem() {
     console.log('Ending valid tag table test for the location table')
 }
 
-function queryTagTest_InvalidTag() {
+export function queryTagTest_InvalidTag() {
     const inValidTag1 = 'invalid_tag'
     const inValidTag2 = ''
     const inValidTag3 = 'ta'
@@ -84,7 +84,7 @@ function queryTagTest_InvalidTag() {
     console.log('Ending invalid tag table test for the location table')
 }
 
-function queryNameTest_Valid() {
+export function queryNameTest_Valid() {
     const validName = 'Event'
     console.log('Beginning valid name table test for the location table')
     Location_Test.createLocationTable()
@@ -95,7 +95,7 @@ function queryNameTest_Valid() {
     console.log('Ending valid name table test for the location table')
 }
 
-function queryNameTest_InvalidName() {
+export function queryNameTest_InvalidName() {
     const inValidName1 = 'Invalid_Event'
     const inValidName2 = ''
 
@@ -113,7 +113,7 @@ function queryNameTest_InvalidName() {
     console.log('Ending invalid name table test for the location table')
 }
 
-function queryNameTest_InvalidItem() {
+export function queryNameTest_InvalidItem() {
     const validName = 'Event'
     console.log('Beginning invalid name table test for the location table')
     Location_Test.createLocationTable()
