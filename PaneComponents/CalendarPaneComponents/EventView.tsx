@@ -12,9 +12,14 @@ type EventViewProps = {
 
 export const EventView: FC<EventViewProps> = ({Name, Height, Day}) => {
 
+    //This state keeps track of the event_type from the event database
     const [EventData, setEventData] = useState<Event_Data>({Date_Start: new Date(''), Date_End: new Date('')} as Event_Data);
+
+    //This state keeps track of the expanded view body
     const [expanded, setExpanded] = useState<boolean>(false);
 
+    //This useEffect to take in the name passed into the component,
+    //grabbed the event based on the name.
     useEffect(() => {
         Event.queryAttributes_Name(Name).then((value:Event_Data) => {
             setEventData(value);
@@ -35,7 +40,6 @@ export const EventView: FC<EventViewProps> = ({Name, Height, Day}) => {
 
 const styles = StyleSheet.create({
     eventViewContainer: {
-        //backgroundColor: 'white',
         flexDirection: 'column',
         height: '15%',
         width: '100%',

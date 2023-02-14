@@ -8,6 +8,7 @@ type EventViewHeaderProps = {
     setIsExpanded: React.Dispatch<React.SetStateAction<boolean>>
 }
 
+//This component displays the event name with a button that can expand the event body
 export const EventViewHeader: FC<EventViewHeaderProps> = ({Name, isExpanded, setIsExpanded}) => {
 
     return(
