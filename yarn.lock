@@ -5646,6 +5646,11 @@ expo-keep-awake@~10.2.0:
   resolved "https://registry.npmjs.org/expo-keep-awake/-/expo-keep-awake-10.2.1.tgz"
   integrity sha512-UBge1BwzDPhUFX0gKu9eDLwEFj4LGiqrOogNoEYxcosM1SwhkbWwPrd3zZtl53LLz02TxEi/CI/MUGJJsrVQLw==
 
+expo-location@^15.0.1:
+  version "15.0.1"
+  resolved "https://registry.npmjs.org/expo-location/-/expo-location-15.0.1.tgz"
+  integrity sha512-GOAP24m8fMahFcBT75H07f2+IQAOCOdNTzb8Ci/19NZ+Y/CY2lIvb55V8zu7Gn0+76FKPb7XC3ebQaq4ctn1QA==
+
 expo-modules-autolinking@>=0.8.1, expo-modules-autolinking@0.10.3:
   version "0.10.3"
   resolved "https://registry.npmjs.org/expo-modules-autolinking/-/expo-modules-autolinking-0.10.3.tgz"

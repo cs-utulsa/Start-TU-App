@@ -54,6 +54,7 @@ const MapPane= () => {
       <MapView 
           showsBuildings={false}
           showsPointsOfInterest={false}
+          showsUserLocation={true}
           initialRegion={{
             latitude: 36.15236,
             longitude: -95.94575,
