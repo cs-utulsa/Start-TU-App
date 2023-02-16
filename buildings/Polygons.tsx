@@ -1,6 +1,8 @@
 import React, { useState, useEffect, FC} from 'react';
-import {StyleSheet, Image, Text, View, Pressable, Animated, ScrollView} from 'react-native'
+import {StyleSheet, Image, Text, View, Pressable, Animated, ScrollView, Button} from 'react-native'
 import MapView, { Polygon, Marker, Overlay, PROVIDER_GOOGLE, LatLng } from 'react-native-maps';
+import { State } from 'react-native-paper/lib/typescript/components/TextInput/types';
+import Modal from 'react-native-modal';
 
 const DORM_COLOR = '#103cab'
 const APT_COLOR = '#4D81F0'
@@ -12,37 +14,108 @@ const FRAT_COLOR = '#89CFF0'
 const SORO_COLOR = '#F4C2C2'
 const UNIV_COLOR = 'purple'
 
-type BuildingProps = {
-    color: string,
-    coords: LatLng[]
+export type BuildingData = {
+    name?: string,
+    code?: string,
+    hours?: string,
+    tags?: [string]
 }
 
-export const Building: FC<BuildingProps> = ({color, coords}) => {
+type BuildingProps = {
+    color: string
+    coords: LatLng[]
+    name: string
+    setName?: any
+    setVisible: (event: React.SetStateAction<boolean>) => void
+    setData: (event: React.SetStateAction<BuildingData>) => void
+    visible?: boolean
+    data?: BuildingData
+}
+
+const onClick = () => {
+    console.log("Hello")
+}
+
+
+export const Building: FC<BuildingProps> = ({color, coords, name, setName, visible, setData, setVisible, data}) => {
     return (
         <Polygon 
             coordinates={coords}
             fillColor={color}
             strokeWidth={0.00001}
-            strokeColor={color}            // holes={[[{latitude: 0.0, longitude: 0.0}, {latitude: 0.00000000001, longitude: 0.00000000001}]]}
+            strokeColor={color}
+            onPress={() => {
+                setData({name: data?.name, code: data?.code})
+                setVisible(true)
+            }}
+            // holes={[[{latitude: 0.0, longitude: 0.0}, {latitude: 0.00000000001, longitude: 0.00000000001}]]}
         />
-    )
-}
+        )
+    }
+    
+    type BuildingListProps = {
+    }
+    
+export const BuildingList: FC<BuildingListProps> = () => {
+    const [formVisible, setFormVisible] = useState<boolean>(false)
+    const [dataState, setDataState] = useState<BuildingData>({})
 
-export const BuildingList = () => {
     return (
+        <View>
+        <Modal
+            animationIn={'slideInLeft'}
+            animationOut={'slideOutLeft'}
+            onBackdropPress={() => setFormVisible(false)}
+            backdropOpacity={0}
+            isVisible={formVisible}
+        >
+            <View style={styles.infoView}>
+                <View style={styles.buttonRow}>
+
+                    <View style={styles.button}>
+                        <Button onPress={() => {
+                            setFormVisible(!formVisible)
+                        }} 
+                        title={'Close'}></Button>
+                        <Text 
+                            numberOfLines={1}
+                            adjustsFontSizeToFit={true}
+                            style={{fontSize: 50}}
+                        >
+                            {dataState.name}
+                        </Text>
+                        <Text 
+                            numberOfLines={1}
+                            adjustsFontSizeToFit={true}
+                            style={{fontSize: 15}}
+                        >
+                            {dataState.code}
+                        </Text>
+                    </View>
+
+                    <View style={styles.button}>
+                        
+                    </View>
+                </View>
+            </View>
+        </Modal>
         <MapView>
-            {/* Keplinger Hall */}
             <Building 
+                name={"Keplinger Hall"}
                 color={EDUC_COLOR} 
                 coords={[
                     {latitude: 36.154399370636966, longitude: -95.94231245481298},{latitude: 36.154399370636966, longitude: -95.94184588923831},{latitude: 36.1537623145845, longitude: -95.94185726888648},
                     {latitude: 36.153658179929934, longitude: -95.94173209275668},{latitude: 36.15346216138149, longitude: -95.94173209275668},{latitude: 36.15345909858778, longitude: -95.94219107189925},{latitude: 36.15367043107294, longitude: -95.94220624476347},
                     {latitude: 36.15377150292973, longitude: -95.94231245481298}
                 ]}
+                
+                setVisible={setFormVisible}
+                setData={setDataState}
+                data={{name: 'Keplinger Hall', code: 'KEP'}}
             />
 
-            {/* Rayzor Hall */}
-            <Building 
+             <Building 
+                name={"Rayzor Hall"}
                 color={EDUC_COLOR} 
                 coords={[
                     {latitude: 36.15329457039517, longitude: -95.94296104403304}, {latitude: 36.153294028963465, longitude: -95.94292349310994}, 
@@ -63,10 +136,14 @@ export const BuildingList = () => {
                     {latitude: 36.15319711262925, longitude: -95.94296104403304}, {latitude: 36.15319711262925, longitude: -95.94297445507699}, 
                     {latitude: 36.1532610016228, longitude: -95.9429731139726}, {latitude: 36.1532610016228, longitude: -95.94296171458524}
                 ]}
+                setData={setDataState}
+                
+                setVisible={setFormVisible}
+                data={{name: 'Rayzor Hall', code: 'RZR'}}
             />
 
-            {/* Stephenson Hall */}
             <Building 
+                name={"Stephenson Hall"}
                 color={EDUC_COLOR} 
                 coords={[
                     {latitude: 36.153297704044455, longitude: -95.94231961606665}, {latitude: 36.15329588289261, longitude: -95.94222263129699}, {latitude: 36.153281313676366, longitude: -95.94222263129699}, 
@@ -76,10 +153,15 @@ export const BuildingList = () => {
                     {latitude: 36.15293620457538, longitude: -95.94226886822204}, {latitude: 36.15293529399528, longitude: -95.94231736060689}, {latitude: 36.15320937813155, longitude: -95.94231848833678}, {latitude: 36.15320937813155, longitude: -95.94233540428499}, 
                     {latitude: 36.15328313482854, longitude: -95.94233653201488}, {latitude: 36.153284955980695, longitude: -95.94231961606665}
                 ]}
+                
+                setVisible={setFormVisible}
+                setData={setDataState}
+                data={{name: 'Stephenson Hall', code: 'STPH'}}
             />
       
-            {/* John Mabee Hall */}
+            
             <Building 
+                name={"John Mabee Hall"}
                 color={DORM_COLOR} 
                 coords={[
                     {latitude: 36.153546719983936, longitude: -95.94900305303992}, {latitude: 36.15354518858874, longitude: -95.94890063620645}, {latitude: 36.15353446882159, longitude: -95.94889873959843}, 
@@ -93,10 +175,15 @@ export const BuildingList = () => {
                     {latitude: 36.15327477376571, longitude: -95.94899430231948}, {latitude: 36.153423508656935, longitude: -95.94899589717153}, {latitude: 36.153422220910194, longitude: -95.94903098389113}, {latitude: 36.15352008960253, longitude: -95.94903018646569}, 
                     {latitude: 36.153520733475084, longitude: -95.94899988429876}
                 ]}
+                
+                setVisible={setFormVisible}
+                setData={setDataState}
+                data={{name: 'John Mabee Hall', code: 'JM'}}
             />
 
-            {/* Champman Hall */}
+            
             <Building 
+                name={"Champman Hall"}
                 color={EDUC_COLOR} 
                 coords={[
                     {latitude: 36.15336590133616, longitude: -95.9478298788146}, 
@@ -113,10 +200,15 @@ export const BuildingList = () => {
                     {latitude: 36.15329840007175, longitude: -95.94782802692778}, {latitude: 36.153295151481665, longitude: -95.94792592755029}, 
                     {latitude: 36.15333034453379, longitude: -95.9479265981025}, {latitude: 36.15333088596521, longitude: -95.94782802692778}
                 ]}
+                
+                setVisible={setFormVisible}
+                setData={setDataState}
+                data={{name: 'Chapman Hall', code: 'CHP'}}
             />
 
-            {/* Mary K. Chapman Center */}
+            
             <Building 
+                name={"Mary K. Chapman Center"}
                 color={UNIV_COLOR}
                 coords={[
                     {latitude: 36.15352176536669, longitude: -95.94844568202697}, 
@@ -129,10 +221,15 @@ export const BuildingList = () => {
                     {latitude: 36.15332850546095, longitude: -95.94842159660281}, {latitude: 36.15335281490924, longitude: -95.94842159660281}, 
                     {latitude: 36.15335646132582, longitude: -95.94844417668796}
                 ]}
+                
+                setVisible={setFormVisible}
+                setData={setDataState}
+                data={{name: 'Mary K. Chapman Center', code: 'MKC'}}
             />
 
-            {/* Pike */}
+            
             <Building 
+                name={"Pike"}
                 color={FRAT_COLOR}
                 coords={[
                     {latitude: 36.15116685117342, longitude: -95.94423022653353}, {latitude: 36.151170564386845, longitude: -95.94372207952603}, 
@@ -140,10 +237,15 @@ export const BuildingList = () => {
                     {latitude: 36.15101089605051, longitude: -95.94392211929821}, {latitude: 36.15101182435575, longitude: -95.94403248606906}, 
                     {latitude: 36.151051741469814, longitude: -95.94403248606906}, {latitude: 36.151051741469814, longitude: -95.9442279272258}
                 ]}
+                
+                setVisible={setFormVisible}
+                setData={setDataState}
+                data={{name: 'PI Kappa Alpha', code: 'PKA'}}
             />
 
-            {/* McClure */}
+            
             <Building 
+                name={"McClure"}
                 color={ADMIN_COLOR}
                 coords={[
                     {latitude: 36.151336598493224, longitude: -95.94743438829745}, {latitude: 36.15133730404892, longitude: -95.94715826916898}, 
@@ -153,10 +255,15 @@ export const BuildingList = () => {
                     {latitude: 36.151137631534766, longitude: -95.94758555478221}, {latitude: 36.15113833709225, longitude: -95.9475584671462}, 
                     {latitude: 36.151158798257, longitude: -95.94755759335142}, {latitude: 36.151159503814284, longitude: -95.94743176691314}
               ]}
+              
+              setVisible={setFormVisible}
+              setData={setDataState}
+              data={{name: 'McClure Hall', code: 'MCH'}}
             />
 
-            {/* United Methodist Church */}
+            
             <Building 
+                name={"United Methodist Church"}
                 color={PRAY_COLOR}
                 coords={[
                     {latitude: 36.15416877898395, longitude: -95.94673030798657}, {latitude: 36.15417202387157, longitude: -95.9462781960352}, 
@@ -169,10 +276,15 @@ export const BuildingList = () => {
                     {latitude: 36.15405196294031, longitude: -95.94647913468025}, {latitude: 36.15405358538654, longitude: -95.94659768848084}, 
                     {latitude: 36.15377939149503, longitude: -95.94659567909437}, {latitude: 36.15378101394692, longitude: -95.94672628921367}
                 ]}
+                
+                setVisible={setFormVisible}
+                setData={setDataState}
+                data={{name: 'United Methodist Church', code: 'UMC'}}
             />
 
-            {/* West Village 1 */}
+            
             <Building
+                name={"West Village"}
                 color={APT_COLOR}
                 coords={[
                     {latitude: 36.154548880526676, longitude: -95.94881518718397}, {latitude: 36.15454647290945, longitude: -95.94869144110841}, 
@@ -194,10 +306,15 @@ export const BuildingList = () => {
                     {latitude: 36.15449591293044, longitude: -95.94884053276571}, {latitude: 36.15449591293044, longitude: -95.94885842376459}, 
                     {latitude: 36.154532027204475, longitude: -95.948856932848}, {latitude: 36.15453323101333, longitude: -95.94881518718397}
                 ]}
+                
+                setVisible={setFormVisible}
+                setData={setDataState}
+                data={{name: 'West Village', code: 'WV'}}
             />
 
-            {/* West Village 2 */}
+            
             <Building 
+                name={"West Village"}
                 color={APT_COLOR}
                 coords={[
                     {latitude: 36.15398622032713, longitude: -95.9487682298253}, {latitude: 36.15398622032713, longitude: -95.94871123288843}, {latitude: 36.153968894663755, longitude: -95.948709891784}, {latitude: 36.15397214322592, longitude: -95.9485268310338}, 
@@ -212,10 +329,15 @@ export const BuildingList = () => {
                     {latitude: 36.15387089630817, longitude: -95.94878767583907}, {latitude: 36.15387035488044, longitude: -95.94882254455338}, {latitude: 36.15393370189821, longitude: -95.94882187400118}, {latitude: 36.15393424332549, longitude: -95.94879639301763}, 
                     {latitude: 36.15395265185084, longitude: -95.94879572246545}, {latitude: 36.15395265185084, longitude: -95.9487695709297}
                 ]}
+                
+                setVisible={setFormVisible}
+                setData={setDataState}
+                data={{name: 'West Village', code: 'WV'}}
             />
 
-            {/* West Village 3 */}
+            
             <Building 
+                name={"West Village"}
                 color={APT_COLOR}
                 coords={[
                     {latitude: 36.15453684958365, longitude: -95.94837863896831}, {latitude: 36.15453684958365, longitude: -95.94830018436109}, {latitude: 36.154541722391556, longitude: -95.94830018436109}, {latitude: 36.154541722391556, longitude: -95.94825190460278}, 
@@ -228,10 +350,15 @@ export const BuildingList = () => {
                     {latitude: 36.154395538022214, longitude: -95.94830018436109}, {latitude: 36.1543960794463, longitude: -95.94833572362761}, {latitude: 36.15438633381207, longitude: -95.94833572362761}, {latitude: 36.15438633381207, longitude: -95.94837595675953}, 
                     {latitude: 36.15440907362343, longitude: -95.94837662731173}, {latitude: 36.15440961504741, longitude: -95.94840143774309}, {latitude: 36.15452223115806, longitude: -95.94840277884747}, {latitude: 36.15452223115806, longitude: -95.94837863896831}
                 ]}
+                
+                setVisible={setFormVisible}
+                setData={setDataState}
+                data={{name: 'West Village', code: 'WV'}}
             />
 
-            {/* Helmerich Hall */}
+            
             <Building 
+                name={"Helmerich Hall"}
                 color={EDUC_COLOR}
                 coords={[
                     {latitude: 36.15336869951875, longitude: -95.94748017613777}, {latitude: 36.153369610093826, longitude: -95.94727154610996}, {latitude: 36.15338235814382, longitude: -95.94727041838009}, {latitude: 36.153381447568904, longitude: -95.94723771421356}, 
@@ -240,10 +367,15 @@ export const BuildingList = () => {
                     {latitude: 36.15303542832963, longitude: -95.94707306565105}, {latitude: 36.15303542832963, longitude: -95.94705051105346}, {latitude: 36.15315926696964, longitude: -95.94705163878334}, {latitude: 36.153158356392126, longitude: -95.94728958978806}, 
                     {latitude: 36.15295529734072, longitude: -95.94728846205815}, {latitude: 36.15295438676083, longitude: -95.94750273073538}, {latitude: 36.15308459957776, longitude: -95.9475016030055}, {latitude: 36.15308551015614, longitude: -95.94747679294814}
                 ]}
+                
+                setVisible={setFormVisible}
+                setData={setDataState}
+                data={{name: 'Helmerich Hall', code: 'HELM'}}
             />
 
-            {/* Phillips Hall */}
+            
             <Building 
+                name={"Phillips Hall"}
                 color={EDUC_COLOR}
                 coords={[
                     {latitude: 36.15325578812487, longitude: -95.94659378040738}, {latitude: 36.15325396697206, longitude: -95.94634229664413}, {latitude: 36.15321116986878, longitude: -95.94634229664413}, {latitude: 36.15321025929188, longitude: -95.94628591015011}, 
@@ -253,10 +385,15 @@ export const BuildingList = () => {
                     {latitude: 36.1531064534538, longitude: -95.9464516864425}, {latitude: 36.15312921790375, longitude: -95.9464516864425}, {latitude: 36.15312830732587, longitude: -95.94659378040738}, {latitude: 36.15312011212457, longitude: -95.94659490813727}, 
                     {latitude: 36.15312193328048, longitude: -95.94667046603922}, {latitude: 36.15324395063084, longitude: -95.94666821057947}, {latitude: 36.15324395063084, longitude: -95.94659265267751}
                 ]}
+                
+                setVisible={setFormVisible}
+                setData={setDataState}
+                data={{name: 'Phillips Hall', code: 'PHL'}}
             />
 
-            {/* McFarlin Library */}
+            
             <Building 
+                name={"McFarlin Library"}
                 color={UNIV_COLOR}
                 coords={[
                     {latitude: 36.152543609995014, longitude: -95.94600479389928}, {latitude: 36.152543068558124, longitude: -95.94596389021518}, {latitude: 36.152533322693586, longitude: -95.94595047917122}, {latitude: 36.15253386413053, longitude: -95.9459276803965}, 
@@ -274,10 +411,15 @@ export const BuildingList = () => {
                     {latitude: 36.15246459230568, longitude: -95.94607173898376}, {latitude: 36.152452680681385, longitude: -95.94607173898376}, {latitude: 36.152454304993896, longitude: -95.94603821137386}, {latitude: 36.15253443770263, longitude: -95.94603687026948}, 
                     {latitude: 36.15253389626568, longitude: -95.94601340094253}
                 ]}
+                
+                setVisible={setFormVisible}
+                setData={setDataState}
+                data={{name: 'McFarlin Library', code: 'MCF'}}
             />
 
-            {/* Lottie Jane Mabee Hall */}
+            
             <Building 
+                name={"Lottie Jane Mabee Hall"}
                 color={DORM_COLOR}
                 coords={[
                     {latitude: 36.151556952252335, longitude: -95.94868758558678}, {latitude: 36.151556410808645, longitude: -95.94859102607025}, {latitude: 36.15155099637149, longitude: -95.94859169662244}, 
@@ -289,10 +431,14 @@ export const BuildingList = () => {
                     {latitude: 36.151469238324125, longitude: -95.94900542733193}, {latitude: 36.15146869687983, longitude: -95.94903761383743}, {latitude: 36.151538001719956, longitude: -95.94903761383743}, 
                     {latitude: 36.151538001719956, longitude: -95.94899201628796}, {latitude: 36.15154720626442, longitude: -95.94899134573575}, {latitude: 36.15154828915191, longitude: -95.94868758559006}
                 ]}
+                
+                setVisible={setFormVisible}
+                setData={setDataState}
+                data={{name: 'Lottie Jane Mabee Hall', code: 'LJM'}}
             />
 
-            {/* Hardesty Hall */}
             <Building 
+                name={"Hardesty Hall"}
                 color={DORM_COLOR}
                 coords={[
                     {latitude: 36.153655046182635, longitude: -95.94479439947533}, {latitude: 36.153655046182635, longitude: -95.9442177245923}, 
@@ -305,19 +451,27 @@ export const BuildingList = () => {
                     {latitude: 36.152842599439, longitude: -95.9441168276199}, {latitude: 36.15284461674407, longitude: -95.94464273599678}, 
                     {latitude: 36.15293136081248, longitude: -95.94464273599678}, {latitude: 36.152932369463876, longitude: -95.94480263213039}
                 ]}
+                
+                setVisible={setFormVisible}
+                setData={setDataState}
+                data={{name: 'Hardesty Hall', code: 'HAR'}}
             />
 
-            {/* K Sig */}
             <Building 
+                name={"K Sig"}
                 color={FRAT_COLOR}
                 coords={[
                     {latitude: 36.15119060500146, longitude: -95.94359437479582}, {latitude: 36.15119051541939, longitude: -95.943293528552}, 
                     {latitude: 36.15106643152878, longitude: -95.94329259721178}, {latitude: 36.151061919383594, longitude: -95.9435934201113}
                 ]}
+                
+                setVisible={setFormVisible}
+                setData={setDataState}
+                data={{name: 'Kappa Sigma Fraternity', code: 'KS'}}
             />
 
-            {/* KA */}
             <Building 
+                name={"KA"}
                 color={FRAT_COLOR}
                 coords={[
                     {latitude: 36.15120029171758, longitude: -95.94294613860745}, {latitude: 36.15120029171758, longitude: -95.94277570334239}, 
@@ -328,31 +482,43 @@ export const BuildingList = () => {
                     {latitude: 36.151113809037454, longitude: -95.94307466356143}, {latitude: 36.151113809037454, longitude: -95.94300574438321}, 
                     {latitude: 36.151181491143035, longitude: -95.94300667572347}, {latitude: 36.151181491143035, longitude: -95.94294427592696}
                 ]}
+                
+                setVisible={setFormVisible}
+                setData={setDataState}
+                data={{name: 'Kappa Alpha', code: 'KA'}}
             />
 
-            {/* Lambda */}
             <Building 
+                name={"Lambda"}
                 color={FRAT_COLOR}
                 coords={[
                     {latitude: 36.15123789285342, longitude: -95.94250188927067}, {latitude: 36.15123864487596, longitude: -95.94238174637893}, 
                     {latitude: 36.151052143068505, longitude: -95.94237895235818}, {latitude: 36.1510491349712, longitude: -95.94271237216631}, 
                     {latitude: 36.15117171484286, longitude: -95.94271423484682}, {latitude: 36.151173218889156, longitude: -95.94249909524994}
                 ]}
+                
+                setVisible={setFormVisible}
+                setData={setDataState}
+                data={{name: 'Lambda Chi Alpha', code: 'LXA'}}
             />
 
-            {/* Sig Nu */}
             <Building 
+                name={"Sig Nu"}
                 color={FRAT_COLOR}
                 coords={[
-                {latitude: 36.1512221003785, longitude: -95.94226998548794}, {latitude: 36.15122059633312, longitude: -95.94199337743481}, 
-                {latitude: 36.15113336165186, longitude: -95.94199430877507}, {latitude: 36.15113336165186, longitude: -95.94201386692023}, 
-                {latitude: 36.15103259043374, longitude: -95.94201293558}, {latitude: 36.15103334245824, longitude: -95.94225880940499}, 
-                {latitude: 36.15113336165186, longitude: -95.94225880940499}, {latitude: 36.15113260962833, longitude: -95.94226998548794}
+                    {latitude: 36.1512221003785, longitude: -95.94226998548794}, {latitude: 36.15122059633312, longitude: -95.94199337743481}, 
+                    {latitude: 36.15113336165186, longitude: -95.94199430877507}, {latitude: 36.15113336165186, longitude: -95.94201386692023}, 
+                    {latitude: 36.15103259043374, longitude: -95.94201293558}, {latitude: 36.15103334245824, longitude: -95.94225880940499}, 
+                    {latitude: 36.15113336165186, longitude: -95.94225880940499}, {latitude: 36.15113260962833, longitude: -95.94226998548794}
                 ]}
+                
+                setVisible={setFormVisible}
+                setData={setDataState}
+                data={{name: 'Sigma Nu', code: 'SN'}}
             />
 
-            {/* Sigma Chi */}
             <Building 
+                name={"Sigma Chi"}
                 color={FRAT_COLOR}
                 coords={[
                     {latitude: 36.15119126744248, longitude: -95.94192259557609}, {latitude: 36.15119201946545, longitude: -95.94179220794162}, 
@@ -360,10 +526,14 @@ export const BuildingList = () => {
                     {latitude: 36.15103033461836, longitude: -95.94157695685246}, {latitude: 36.15103087606569, longitude: -95.94163596544513}, 
                     {latitude: 36.15102113001322, longitude: -95.94163596544513}, {latitude: 36.15102492014487, longitude: -95.94192027957351}
                 ]}
+                
+                setVisible={setFormVisible}
+                setData={setDataState}
+                data={{name: 'Sigma Chi', code: 'SX'}}
             />
 
-            {/*Kendall Hall*/}
             <Building
+                name={"Kendall Hall"}
                 color={EDUC_COLOR}
                 coords={[
                     {latitude: 36.152213334778864, longitude: -95.94535078439179}, {latitude: 36.152213334778864, longitude: -95.94517711397823}, 
@@ -386,10 +556,14 @@ export const BuildingList = () => {
                     {latitude: 36.15208839469707, longitude: -95.94555048498145}, {latitude: 36.152184229522796, longitude: -95.94553908559423}, 
                     {latitude: 36.15215607467089, longitude: -95.94548275921032}, {latitude: 36.15215715754999, longitude: -95.94537278865121}
                 ]}
+                
+                setVisible={setFormVisible}
+                setData={setDataState}
+                data={{name: 'Kendall Hall', code: 'KEN'}}
             />
 
-            {/*Alan Chapman Student Union*/}
             <Building
+                name={"Alan Chapman Student Union"}
                 color={UNIV_COLOR}
                 coords={[
                     {latitude: 36.153721193745774, longitude: -95.94369644200562}, {latitude: 36.15368622620406, longitude: -95.94365559478364}, 
@@ -400,10 +574,14 @@ export const BuildingList = () => {
                     {latitude: 36.15348564295318, longitude: -95.94399009986809}, {latitude: 36.15368523321662, longitude: -95.94399009986809}, 
                     {latitude: 36.15368721918685, longitude: -95.94374045085638}
                 ]}
+                
+                setVisible={setFormVisible}
+                setData={setDataState}
+                data={{name: 'Alan Chapman Student Union', code: 'ACSU'}}
             />
 
-            {/*Oliphant Hall*/}
             <Building
+                name={"Oliphant Hall"}
                 color={EDUC_COLOR}
                 coords={[
                     {latitude: 36.15137066203855, longitude: -95.94503105769124}, {latitude: 36.151204022375424, longitude: -95.94503218542111}, 
@@ -415,19 +593,27 @@ export const BuildingList = () => {
                     {latitude: 36.15136155605516, longitude: -95.94556447392405}, {latitude: 36.15137248323508, longitude: -95.94542350768916}, 
                     {latitude: 36.1513351486974, longitude: -95.94525209274752}
                 ]}
+                
+                setVisible={setFormVisible}
+                setData={setDataState}
+                data={{name: 'Oliphant Hall', code: 'OLI'}}
             />
 
-            {/*John Zink Hall*/}
             <Building
+                name={"John Zink Hall"}
                 color={EDUC_COLOR}
                 coords={[
                     {latitude: 36.15116668775367, longitude: -95.94486077038829}, {latitude: 36.15116577715301, longitude: -95.94438374064944}, 
                     {latitude: 36.150942679673115, longitude: -95.94438486837932}, {latitude: 36.15094450087959, longitude: -95.94485964265841}
                 ]}
+                
+                setVisible={setFormVisible}
+                setData={setDataState}
+                data={{name: 'John Zink Hall', code: 'ZNK'}}
             />
 
-            {/*Harwell Hall*/}
             <Building
+                name={"Harwell Hall"}
                 color={EDUC_COLOR}
                 coords={[
                     {latitude: 36.151595579498725, longitude: -95.9448382158036}, {latitude: 36.151596490094384, longitude: -95.94470401594799}, 
@@ -439,25 +625,14 @@ export const BuildingList = () => {
                     {latitude: 36.151303450034774, longitude: -95.94483893407245}, {latitude: 36.15130453292566, longitude: -95.94486441505596}, 
                     {latitude: 36.151554138874474, longitude: -95.94486374450376}, {latitude: 36.151554138874474, longitude: -95.94483759296804}
                 ]}
+                
+                setVisible={setFormVisible}
+                setData={setDataState}
+                data={{name: 'Harwell Hall', code: 'HWL'}}
             />
 
-            {/*Harwell Hall*/}
             <Building
-                color={EDUC_COLOR}
-                coords={[
-                    {latitude: 36.151595579498725, longitude: -95.9448382158036}, {latitude: 36.151596490094384, longitude: -95.94470401594799}, 
-                    {latitude: 36.15155460268272, longitude: -95.94470176048823}, {latitude: 36.15155369208659, longitude: -95.94469161091932}, 
-                    {latitude: 36.1514735595836, longitude: -95.9446927386492}, {latitude: 36.15147082779228, longitude: -95.94458109339118}, 
-                    {latitude: 36.15139433759678, longitude: -95.94458222112105}, {latitude: 36.15139160580269, longitude: -95.94469499410894},
-                    {latitude: 36.15129803558016, longitude: -95.94469543590208}, {latitude: 36.15129695268918, longitude: -95.94470281197626}, 
-                    {latitude: 36.15126446595314, longitude: -95.94470281197626}, {latitude: 36.15126554884456, longitude: -95.94483960462463}, 
-                    {latitude: 36.151303450034774, longitude: -95.94483893407245}, {latitude: 36.15130453292566, longitude: -95.94486441505596}, 
-                    {latitude: 36.151554138874474, longitude: -95.94486374450376}, {latitude: 36.151554138874474, longitude: -95.94483759296804}
-                ]}
-            />
-
-            {/*Mabee Gym*/}
-            <Building
+                name={"Mabee Gym"}
                 color={UNIV_COLOR}
                 coords={[
                     {latitude: 36.15068958547719, longitude: -95.94443557847757}, {latitude: 36.15068958547719, longitude: -95.94397997560642}, 
@@ -480,10 +655,14 @@ export const BuildingList = () => {
                     {latitude: 36.150514653637764, longitude: -95.9445825668474}, {latitude: 36.15051519508865, longitude: -95.9444813134655}, 
                     {latitude: 36.15060615878468, longitude: -95.9444826545699}, {latitude: 36.15060615878468, longitude: -95.94443571591604}
                 ]}
+                
+                setVisible={setFormVisible}
+                setData={setDataState}
+                data={{name: 'Mabee Gym', code: 'MBG'}}
             />
 
-            {/*BCM*/}
             <Building
+                name={"BCM"}
                 color={PRAY_COLOR}
                 coords={[
                     {latitude: 36.150668728008576, longitude: -95.94652298094276}, {latitude: 36.150671790911254, longitude: -95.94631435405996}, 
@@ -491,19 +670,27 @@ export const BuildingList = () => {
                     {latitude: 36.150298115900505, longitude: -95.94635228622047}, {latitude: 36.150298115900505, longitude: -95.94650591147052}, 
                     {latitude: 36.150427524046336, longitude: -95.94650401486248}, {latitude: 36.15042828977436, longitude: -95.94652203263873}
                 ]}
+                
+                setVisible={setFormVisible}
+                setData={setDataState}
+                data={{name: 'Baptist Collegiate Ministries', code: 'BCM'}}
             />
 
-            {/*Westby Hall*/}
             <Building
+                name={"Westby Hall"}
                 color={ADMIN_COLOR}
                 coords={[
                     {latitude: 36.150680422217576, longitude: -95.9467207707458}, {latitude: 36.150679880767804, longitude: -95.9465491093831}, 
                     {latitude: 36.150303572289715, longitude: -95.9465477682787}, {latitude: 36.15030098982796, longitude: -95.94671686621788}
                 ]}
+                
+                setVisible={setFormVisible}
+                setData={setDataState}
+                data={{name: 'Westby Hall', code: 'WES'}}
             />
 
-            {/*Collins Hall*/}
             <Building
+                name={"Collins Hall"}
                 color={ADMIN_COLOR}
                 coords={[
                     {latitude: 36.1502546285302, longitude: -95.94723815756743}, {latitude: 36.150255054543315, longitude: -95.94712142086452}, 
@@ -528,10 +715,14 @@ export const BuildingList = () => {
                     {latitude: 36.15011698398748, longitude: -95.9471717122794}, {latitude: 36.15011590108021, longitude: -95.94725150799098}, 
                     {latitude: 36.150211738316344, longitude: -95.94725284909536}, {latitude: 36.15021227976931, longitude: -95.94723742639482}
                 ]}
+                
+                setVisible={setFormVisible}
+                setData={setDataState}
+                data={{name: 'Collins Hall', code: 'COL'}}
             />
 
-            {/*Fisher South*/}
             <Building
+                name={"Fisher South"}
                 color={DORM_COLOR}
                 coords={[
                     {latitude: 36.150314614315036, longitude: -95.94776448050031}, {latitude: 36.15031407286278, longitude: -95.94769608417613}, 
@@ -551,10 +742,14 @@ export const BuildingList = () => {
                     {latitude: 36.15007799931595, longitude: -95.9479401651762}, {latitude: 36.15007908222375, longitude: -95.94781074860198}, 
                     {latitude: 36.150181958396615, longitude: -95.94781007804978}, {latitude: 36.15018249984981, longitude: -95.94776313939593}
                 ]}
+                
+                setVisible={setFormVisible}
+                setData={setDataState}
+                data={{name: 'Fisher South', code: 'SOU'}}
             />
 
-            {/*Fisher West*/}
             <Building
+                name={"Fisher West"}
                 color={DORM_COLOR}
                 coords={[
                     {latitude: 36.150601446240245, longitude: -95.94908446744611}, {latitude: 36.15060015844716, longitude: -95.94901269915609}, 
@@ -573,10 +768,14 @@ export const BuildingList = () => {
                     {latitude: 36.15041214042977, longitude: -95.94896006907673}, {latitude: 36.15041085263357, longitude: -95.94900313005076}, 
                     {latitude: 36.15037221873793, longitude: -95.94900472490164}, {latitude: 36.15037093094106, longitude: -95.94908606229701}
                 ]}
+                
+                setVisible={setFormVisible}
+                setData={setDataState}
+                data={{name: 'Fisher West', code: 'WES'}}
             />
 
-            {/*Fisher East*/}
             <Building
+                name={"Fisher East"}
                 color={ADMIN_COLOR}
                 coords={[
                     {latitude: 36.150609172998315, longitude: -95.94816742818456}, {latitude: 36.15060788520536, longitude: -95.94807811653473}, 
@@ -598,10 +797,14 @@ export const BuildingList = () => {
                     {latitude: 36.1504247994331, longitude: -95.94804229809044}, {latitude: 36.1504247994331, longitude: -95.94807783735693}, 
                     {latitude: 36.15038906362532, longitude: -95.94807783735693}, {latitude: 36.15038906362532, longitude: -95.94816702079927}
                 ]}
+                
+                setVisible={setFormVisible}
+                setData={setDataState}
+                data={{name: 'Fisher East', code: 'EAS'}}
             />
 
-            {/*Pat Case*/}
             <Building
+                name={"Pat Case"}
                 color={UNIV_COLOR}
                 coords={[
                     {latitude: 36.150601685536095, longitude: -95.94863231337524}, {latitude: 36.15060245126245, longitude: -95.94851282706965}, 
@@ -615,27 +818,14 @@ export const BuildingList = () => {
                     {latitude: 36.15002757353214, longitude: -95.94851900219868}, {latitude: 36.15037843510266, longitude: -95.94851967275088}, 
                     {latitude: 36.150378976559374, longitude: -95.94863634883822}
                 ]}
+                
+                setVisible={setFormVisible}
+                setData={setDataState}
+                data={{name: 'Pat Case Dining Center', code: 'PAT'}}
             />
 
-            {/*Pat Case*/}
             <Building
-                color={UNIV_COLOR}
-                coords={[
-                    {latitude: 36.150601685536095, longitude: -95.94863231337524}, {latitude: 36.15060245126245, longitude: -95.94851282706965}, 
-                    {latitude: 36.15061470288281, longitude: -95.94843411783658}, {latitude: 36.15069969844656, longitude: -95.94843411783658}, 
-                    {latitude: 36.15069969844656, longitude: -95.94827290615444}, {latitude: 36.15067859124557, longitude: -95.94827133016338}, 
-                    {latitude: 36.150679132695345, longitude: -95.94824517862764}, {latitude: 36.15064989440319, longitude: -95.94824651973205}, 
-                    {latitude: 36.15065043585313, longitude: -95.94823780255346}, {latitude: 36.150617407399096, longitude: -95.94823780255346}, 
-                    {latitude: 36.15061686594892, longitude: -95.94816873567707}, {latitude: 36.15038439107587, longitude: -95.94816830339822},
-                    {latitude: 36.15038439107587, longitude: -95.94819914879933}, {latitude: 36.15026473013929, longitude: -95.94819914879933},
-                    {latitude: 36.15026310577811, longitude: -95.94816025677274}, {latitude: 36.15002703207787, longitude: -95.94815958622053}, 
-                    {latitude: 36.15002757353214, longitude: -95.94851900219868}, {latitude: 36.15037843510266, longitude: -95.94851967275088}, 
-                    {latitude: 36.150378976559374, longitude: -95.94863634883822}
-                ]}
-            />
-
-            {/*Physical Plant*/}
-            <Building
+                name={"Physical Plant"}
                 color={ADMIN_COLOR}
                 coords={[
                     {latitude: 36.15067754035221, longitude: -95.94601184617325}, {latitude: 36.15067699890245, longitude: -95.94588108849463}, 
@@ -653,10 +843,14 @@ export const BuildingList = () => {
                     {latitude: 36.14989968486902, longitude: -95.94563351375321}, {latitude: 36.149898601958725, longitude: -95.94580651622032}, 
                     {latitude: 36.15048445424295, longitude: -95.94580785734001}, {latitude: 36.15048445424295, longitude: -95.94601103465601}
                 ]}
+                
+                setVisible={setFormVisible}
+                setData={setDataState}
+                data={{name: 'Physcial Plant', code: 'PHY'}}
             />
 
-            {/*Lorton Hall*/}
             <Building
+                name={"Lorton Hall"}
                 color={EDUC_COLOR}
                 coords={[
                     {latitude: 36.15154936926564, longitude: -95.94817893140035}, {latitude: 36.151552617928054, longitude: -95.94804347985635}, 
@@ -667,10 +861,14 @@ export const BuildingList = () => {
                     {latitude: 36.15133667486467, longitude: -95.947686746087}, {latitude: 36.151331260412356, longitude: -95.94826476208168}, 
                     {latitude: 36.15146283149811, longitude: -95.94826811484268}, {latitude: 36.15146337294245, longitude: -95.94817759029593}
                 ]}
+                
+                setVisible={setFormVisible}
+                setData={setDataState}
+                data={{name: 'Lorton Hall', code: 'LOR'}}
             />
 
-            {/*Alexander Health Center*/}
             <Building
+                name={"Alexander Health Center"}
                 color={UNIV_COLOR}
                 coords={[
                     {latitude: 36.15355404616125, longitude: -95.94638872785532}, {latitude: 36.153551749068676, longitude: -95.946066304491}, 
@@ -679,17 +877,69 @@ export const BuildingList = () => {
                     {latitude: 36.15341086059529, longitude: -95.94612699594782}, {latitude: 36.15341086059529, longitude: -95.9461488069401}, 
                     {latitude: 36.1533855925271, longitude: -95.94614691033209}, {latitude: 36.153384826827924, longitude: -95.94638872785532}
                 ]}
+                
+                setVisible={setFormVisible}
+                setData={setDataState}
+                data={{name: 'Alexander Health Center', code: 'AHC'}}
             />
 
-            {/*Tyrell hall*/}
             <Building
+                name={"Tyrell hall"}
                 color={EDUC_COLOR}
                 coords={[
                     {latitude: 36.151609969946094, longitude: -95.94716634730229}, {latitude: 36.151609969946094, longitude: -95.94661381229115}, 
                     {latitude: 36.15149734965314, longitude: -95.94661381229115}, {latitude: 36.15149734965314, longitude: -95.94716634730229}
                 ]}
+                
+                setVisible={setFormVisible}
+                setData={setDataState}
+                data={{name: 'Tyrell Hall', code: 'TYR'}}
             />
         </MapView>
+        </View>
         
     ); 
 }
+
+const styles = StyleSheet.create({
+    buttonPopupPressable: {
+      position: 'relative',
+      height: 50, 
+      width: 50,
+      padding: 5,
+    },
+    eventAddIcon: {
+        position: 'relative',
+        height: '110%',
+        width: '110%'
+    },
+
+    infoView: {
+        marginTop: 'auto',
+        backgroundColor: 'white',
+        borderRadius: 20,
+        padding: 5,
+        height: '50%',
+        alignItems: 'center',
+        shadowColor: '#000',
+        shadowOffset: {
+          width: 2,
+          height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 4,
+        elevation: 5,
+      },
+
+    buttonRow: {
+        flexDirection: 'row',
+        width: '100%',
+        height: '100%',
+    },
+
+    button: {
+        marginRight: '60%',
+        width: '100%',
+        height: '100%',
+    }
+});
