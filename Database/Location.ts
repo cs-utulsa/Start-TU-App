@@ -5,7 +5,7 @@ import {Location_Tag_Entity} from './Location_Tag'
 /**
  * This class serves as a wrapper for all queries that return 'Location' attributes.
  */
-class Location_Entity {
+export class Location_Entity {
     DB: SQLite.WebSQLDatabase;
 
     //The 'Location_Tag' table serves as a dependent of the 'Location' table.

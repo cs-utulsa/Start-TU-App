@@ -1,7 +1,7 @@
 import * as SQLite from 'expo-sqlite'
 import {db_name} from './DB_Name';
 
-class Event_Entity {
+export class Event_Entity {
     DB: SQLite.WebSQLDatabase;
 
     constructor(database_name: string) {

@@ -2,6 +2,7 @@ import React, {useEffect} from 'react';
 
 //Dependencies that interface with SQLite database
 import { populate } from './Database/Populate_DB';
+import { runLocationTests } from './unit_tests/Location_DB_tests';
 
 import { createStackNavigator} from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
