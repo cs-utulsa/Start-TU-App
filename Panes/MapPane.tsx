@@ -60,6 +60,7 @@ const MapPane= () => {
             latitudeDelta: 0.01,
             longitudeDelta: 0.0125,}} 
           style = {{height: '100%', width: '100%'}}
+          userInterfaceStyle={'light'}
           onLongPress = {(e) => {
             const location: LatLng = e.nativeEvent.coordinate
             setOrigin(destination)
@@ -94,7 +95,8 @@ const MapPane= () => {
               <Marker coordinate={{latitude: destination.Latitude, longitude: destination.Longitude}} pinColor={'green'}></Marker>
             }
           
-            {markerData.map((item: Location_Data, index:number) => (
+          {/* OG Markers */}
+            {/* {markerData.map((item: Location_Data, index:number) => (
               <Marker
                 key={index}
                 coordinate={{latitude: item.Latitude, longitude: item.Longitude}}
@@ -106,15 +108,17 @@ const MapPane= () => {
                   style={{width: 26, height: 28}}
                 />
               </Marker>
-            ))}
-            <Marker
+            ))} */}
+
+            {/* Event Marker */}
+            {/* <Marker
               coordinate={{latitude: 36.153627613433635, longitude: -95.94216178640234}}
             >
               <Image
                 source={require('./../assets/EventPinBlueLow.png')}
                 style={{width: 100, height: 50}}
               />
-            </Marker>
+            </Marker> */}
       </MapView> 
     </View>
   );
