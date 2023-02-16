@@ -32,12 +32,6 @@ const MapPane= () => {
     });
   }, [currentTag]);
   
-  const updateDirectionEndpoints = (newOrigin: Location_Data, newDestination: Location_Data) => {
-    setOrigin(newOrigin);
-    setDestination(newDestination);
-  };
-
-  
   return(
     <View style={styles.mapPane}>
       <View style={{padding:5, paddingBottom:10, height: 50}}>
