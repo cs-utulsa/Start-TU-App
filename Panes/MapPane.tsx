@@ -55,13 +55,18 @@ const MapPane = () => {
       <MapView 
           showsBuildings={false}
           showsPointsOfInterest={false}
+          showsUserLocation={true}
           initialRegion={{
             latitude: 36.15236,
             longitude: -95.94575,
             latitudeDelta: 0.01,
             longitudeDelta: 0.0125,}} 
           style = {{height: '100%', width: '100%'}}
+<<<<<<< HEAD
           userInterfaceStyle='light'
+=======
+          userInterfaceStyle={'light'}
+>>>>>>> Event-Add
           onLongPress = {(e) => {
             const location: LatLng = e.nativeEvent.coordinate
             setOrigin(destination)
@@ -98,6 +103,10 @@ const MapPane = () => {
               <Marker coordinate={{latitude: destination.Latitude, longitude: destination.Longitude}} pinColor={'green'}></Marker>
             }
           
+<<<<<<< HEAD
+=======
+          {/* OG Markers */}
+>>>>>>> Event-Add
             {/* {markerData.map((item: Location_Data, index:number) => (
               <Marker
                 key={index}
@@ -111,12 +120,42 @@ const MapPane = () => {
                 />
               </Marker>
             ))} */}
+<<<<<<< HEAD
             <Marker
+=======
+
+            {/* Event Marker */}
+            {/* <Marker
+>>>>>>> Event-Add
               coordinate={{latitude: 36.153627613433635, longitude: -95.94216178640234}}
             >
               <Image
                 source={require('./../assets/EventPinBlueLow.png')}
                 style={{width: 100, height: 50}}
+              />
+            </Marker> */}
+            <Marker
+              coordinate={{latitude: 36.15026436953065, longitude: -95.9498320731494}}
+            >
+              <Image
+                source={require('./../assets/tennisicon.png')}
+                style={{width: 50, height: 50}}
+              />
+            </Marker>
+            <Marker
+              coordinate={{latitude: 36.15021577749672, longitude: -95.94836774410652}}
+            >
+              <Image
+                source={require('./../assets/foodicon.png')}
+                style={{width: 50, height: 50}}
+              />
+            </Marker>
+            <Marker
+              coordinate={{latitude: 36.14893617641329, longitude: -95.9421894788685}}
+            >
+              <Image
+                source={require('./../assets/basketballicon.png')}
+                style={{width: 50, height: 50}}
               />
             </Marker>
       </MapView> 

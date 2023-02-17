@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import {View, Image, TouchableOpacity} from 'react-native';
+import {useRoute} from '@react-navigation/native';
 import {StatusBar} from 'expo-status-bar';
 
 import CalendarPane from '../Panes/CalendarPane';
@@ -7,9 +8,9 @@ import ClassesPane from '../Panes/ClassesPane';
 import EmailPane from '../Panes/EmailPane';
 import MapPane from '../Panes/MapPane';
 import UserPane from '../Panes/UserPane';
+import GuestPane from '../Panes/GuestPane';
 
 import {styles, TU_BLUE} from '../Panes/PaneStyles';
-
 
 const USER_STATE = 0
 const CLASSES_STATE = 1
@@ -24,9 +25,12 @@ interface MainScreenInterface {
     navigation: any;
 }
 
-const MainPage = (screenInterface: MainScreenInterface) => {
+const MainPage = (screenInterface: MainScreenInterface, route: any) => {
 
     const[paneState, setPaneState] = useState(MAP_STATE);
+  
+    route = useRoute();
+    const loginState = route.params.paramKey;
     
     return (
         <View style={{flex: 1, backgroundColor: TU_BLUE}}>
@@ -41,11 +45,14 @@ const MainPage = (screenInterface: MainScreenInterface) => {
             </View>
             <View style={{flex: 1}}>
               <StatusBar style="light"/>
-              {paneState == USER_STATE && <UserPane></UserPane>}
-              {paneState == CLASSES_STATE && <ClassesPane></ClassesPane>}
+              {loginState == 0 && paneState == USER_STATE && <UserPane></UserPane>}
+              {loginState == 1 && paneState == USER_STATE && <GuestPane></GuestPane>}
+              {loginState == 0 && paneState == CLASSES_STATE && <ClassesPane></ClassesPane>}
+              {loginState == 1 && paneState == CLASSES_STATE && <GuestPane></GuestPane>}
               {paneState == MAP_STATE && <MapPane></MapPane>}
               {paneState == CALENDER_STATE && <CalendarPane></CalendarPane>}
-              {paneState == EMAIL_STATE && <EmailPane></EmailPane>}
+              {loginState == 0 && paneState == EMAIL_STATE && <EmailPane></EmailPane>}
+              {loginState == 1 && paneState == EMAIL_STATE && <GuestPane></GuestPane>}
               <BottomButtons state={paneState} changeState={setPaneState}></BottomButtons>
             </View>
           </View>
