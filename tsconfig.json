@@ -7,10 +7,5 @@
     "strict": true,
     "skipLibCheck": true,
   },
-  "extends": "expo/tsconfig.base",
-  "exclude": [
-    "node_modules",
-    "public_html",
-    "test",
- ]
+  "extends": "expo/tsconfig.base"
 }

@@ -6,11 +6,10 @@ import MapViewDirections from 'react-native-maps-directions';
 import {GOOGLE_MAPS_API_KEY} from '../creds';
 import {DARK_BLUE, TU_LIGHT_BLUE, styles} from './PaneStyles';
 import { BuildingList } from '../buildings/Polygons';
-import { BuildingInfo } from '../PaneComponents/MapPaneComponents/BuildingInfo';
 import {Image} from 'react-native' ; 
 
 
-const MapPane = () => {
+const MapPane= () => {
   //State for all of the data(titles, latitude/longitude, description) for all markers on map
   const [markerData, setMarkerData] = useState<Location_Data[]>([]);
     
@@ -24,14 +23,9 @@ const MapPane = () => {
     {} as Location_Data
   );
 
-  //State for the tag system
   const [currentTag, setCurrentTag] = useState<string>("all");
 
-  //State variable to toggle the visibility of the building info
-  // const [infoVisible, setInfoVisible] = useState<boolean>(false)
-
-  //This useEffect queries the location table based on a tag that was inputted by the user.
-  //It will use the user's inputted tag and update the 'markerData' state, which all of the marker locations on the map.
+  
   useEffect(() => {
     Location.queryAttributes_Tag(currentTag).then((value:Location_Data[]) => {
       setMarkerData(value);
@@ -39,8 +33,8 @@ const MapPane = () => {
   }, [currentTag]);
   
   return(
-    <View style={styles.mapPane}> {/* Start main view */}
-      <View style={{padding:5, paddingBottom:10, height: 50}}> {/* Start search bar view */}
+    <View style={styles.mapPane}>
+      <View style={{padding:5, paddingBottom:10, height: 50}}>
         <TextInput onSubmitEditing={
           (e) => {
             const tagInput: string = e.nativeEvent.text.toLowerCase();
@@ -49,7 +43,6 @@ const MapPane = () => {
           autoCorrect={false}
         style={{fontSize: 25, height: 30, backgroundColor: DARK_BLUE, flex: 1}}>
         </TextInput>
-        {/* <BuildingInfo></BuildingInfo> */}
       </View>
 
       <MapView 
@@ -62,11 +55,7 @@ const MapPane = () => {
             latitudeDelta: 0.01,
             longitudeDelta: 0.0125,}} 
           style = {{height: '100%', width: '100%'}}
-<<<<<<< HEAD
-          userInterfaceStyle='light'
-=======
           userInterfaceStyle={'light'}
->>>>>>> Event-Add
           onLongPress = {(e) => {
             const location: LatLng = e.nativeEvent.coordinate
             setOrigin(destination)
@@ -76,22 +65,20 @@ const MapPane = () => {
             } as Location_Data)
           }}>
 
-      <BuildingList></BuildingList>
+            <BuildingList></BuildingList>
 
-      {/* Check for both endpoints of directions 
-          If both are there, display directions */}
-      { JSON.stringify(origin) != '{}' && 
-        JSON.stringify(destination) != '{}' &&
+            { 
+              JSON.stringify(origin) != '{}' && 
+              JSON.stringify(destination) != '{}' &&
 
-        <MapViewDirections
-          origin={{latitude: origin.Latitude, longitude: origin.Longitude}}
-          destination={{latitude: destination.Latitude, longitude: destination.Longitude}}
-          apikey={GOOGLE_MAPS_API_KEY}
-          mode={"WALKING"}
-          strokeColor={TU_LIGHT_BLUE}
-          strokeWidth={3}
-        />
-      }
+              <MapViewDirections
+              origin={{latitude: origin.Latitude, longitude: origin.Longitude}}
+              destination={{latitude: destination.Latitude, longitude: destination.Longitude}}
+              apikey={GOOGLE_MAPS_API_KEY}
+              mode={"WALKING"}
+              strokeColor={TU_LIGHT_BLUE}
+              strokeWidth={3}/>
+            }
 
             {
               JSON.stringify(origin) != '{}' &&
@@ -103,10 +90,7 @@ const MapPane = () => {
               <Marker coordinate={{latitude: destination.Latitude, longitude: destination.Longitude}} pinColor={'green'}></Marker>
             }
           
-<<<<<<< HEAD
-=======
           {/* OG Markers */}
->>>>>>> Event-Add
             {/* {markerData.map((item: Location_Data, index:number) => (
               <Marker
                 key={index}
@@ -120,13 +104,9 @@ const MapPane = () => {
                 />
               </Marker>
             ))} */}
-<<<<<<< HEAD
-            <Marker
-=======
 
             {/* Event Marker */}
             {/* <Marker
->>>>>>> Event-Add
               coordinate={{latitude: 36.153627613433635, longitude: -95.94216178640234}}
             >
               <Image
