@@ -18,7 +18,7 @@ class Email_Entity {
                 "    Receiver_Email VARCHAR(50) NOT NULL, " +
                 "    Subject VARCHAR(10000), " +
                 "    Body VARCHAR(10000000), " +
-                "    sentDataTime datetime, " +
+                "    sentDateTime datetime, " +
                 "    receivedDateTime datetime " +
                 ");";
 
@@ -51,15 +51,35 @@ class Email_Entity {
           }
         );
     }
+
+    insertIntoEmailTable(Email: Email_Data) {
+        this.DB.transaction(
+            (tx) => {
+                const sqlCommand: string = 
+                "Insert into Email(Id, Sender_Email, Receiver_Email, Subject, Body, sentDateTime, receivedDateTime) values " +
+                "(?, ?, ?, ?, ?, ?, ?)";
+
+                tx.executeSql(sqlCommand, [Email.Id, Email.Sender_Email, Email.Receiver_Email,
+                                           Email.Subject, Email.Body, 
+                                           Email.sentDateTime.toISOString(), Email.receivedDateTime.toISOString()])
+            },
+            (error) => {
+                console.log(error.message);
+            },
+            () => {
+                console.log('Succesfully inserted an email instance into the email table.');
+            }
+        )
+    }
 }
 
-export type Event_Data = {
+export type Email_Data = {
     Id: string
     Sender_Email: string
     Receiver_Email: string
     Subject: string
     Body: string
-    sentDataTime: Date
+    sentDateTime: Date
     receivedDateTime: Date
 }
 
