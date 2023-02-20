@@ -1,6 +1,7 @@
 import {Person, Person_Data} from './Person';
 import {Location, Location_Data} from './Location';
 import {Event, Event_Data} from './Event'
+import {Email, Email_Data} from './Email'
 
 const Keplinger_Hall: Location_Data = {
     Name: "Keplinger Hall",
@@ -242,14 +243,37 @@ const Fifth_Generic_Event: Event_Data = {
     Category: "Meeting",
     Location: "TU Campus"
 }
+
+const email1: Email_Data = {
+    Id: '1',
+    Sender_Email: 'john-doe@utulsa',
+    Receiver_Email: 'jane-doe@utulsa',
+    Subject: 'subject1',
+    Body: 'body1',
+    sentDateTime: new Date('2023-02-19'),
+    receivedDateTime: new Date('2023-02-20')
+}
+
+const email2: Email_Data = {
+    Id: '2',
+    Sender_Email: 'jane-doe@utulsa',
+    Receiver_Email: 'john-doe@utulsa',
+    Subject: 'subject2',
+    Body: 'body2',
+    sentDateTime: new Date('2023-02-18'),
+    receivedDateTime: new Date('2023-02-19')
+}
+
 export function populate() {
     Person.dropPersonTable();
     Location.dropLocationTable();
     Event.dropEventTable();
+    Email.dropEventTable();
 
     Person.createPersonTable();
     Location.createLocationTable();
     Event.createEventTable();
+    Email.createEmailTable();
 
     Location.insertIntoLocationTable(Keplinger_Hall);
     Location.insertIntoLocationTable(Rayzor_Hall);
@@ -282,4 +306,9 @@ export function populate() {
     //Event.insertIntoEventTable(Third_Generic_Event);
     // Event.insertIntoEventTable(Fourth_Generic_Event);
     // Event.insertIntoEventTable(Fifth_Generic_Event);
+
+    Email.insertIntoEmailTable(email1);
+    Email.insertIntoEmailTable(email2);
+
+    
 }

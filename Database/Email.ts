@@ -83,4 +83,4 @@ export type Email_Data = {
     receivedDateTime: Date
 }
 
-export const Event: Email_Entity = new Email_Entity(db_name);
+export const Email: Email_Entity = new Email_Entity(db_name);
