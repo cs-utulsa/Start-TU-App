@@ -12,14 +12,14 @@ class Email_Entity {
         this.DB.transaction(
             (tx) => {
                 const sqlCommand: string = 
-                "Create Table IF NOT EXISTS Event( " +
+                "Create Table IF NOT EXISTS Email( " +
                 "    Id Varchar(250) Primary key NOT NULL, " +
                 "    Sender_Email VARCHAR(50) NOT NULL, " +
                 "    Receiver_Email VARCHAR(50) NOT NULL, " +
                 "    Subject VARCHAR(10000), " +
                 "    Body VARCHAR(10000000), " +
                 "    sentDataTime datetime, " +
-                "    receivedDateTime datetime, " +
+                "    receivedDateTime datetime " +
                 ");";
 
                 tx.executeSql(sqlCommand);
@@ -50,7 +50,7 @@ class Email_Entity {
             console.log('Successfully dropped the email table.');
           }
         );
-      }
+    }
 }
 
 export type Event_Data = {
