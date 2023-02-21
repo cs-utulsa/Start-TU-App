@@ -36,7 +36,6 @@ export default function App() {
 
       setLocation(loc)
 
-
     })();
     //downloadDatabase_Expo_To_Machine();
   }, []);

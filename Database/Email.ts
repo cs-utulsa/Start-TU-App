@@ -71,6 +71,36 @@ class Email_Entity {
             }
         )
     }
+
+    queryAttributes_MonthYear_ReceivedDate(month: number, year: number): Promise<Email_Data[]> {
+        return new Promise((resolve, reject) => {
+            let email_data: Email_Data[] = []
+
+            this.DB.transaction(
+                (tx) => {
+                    const initialSQLCommand: string =
+                    "SELECT * "+
+                    "FROM Email as E "+
+                    "WHERE strftime('%m', E.receivedDateTime) LIKE '%{month}' AND strftime('%Y', E.receivedDateTime) LIKE '%{year}';";
+
+                    const sqlCommand: string = initialSQLCommand.replace('{month}', month.toString())
+                                                                .replace('{year}', year.toString());
+
+                    tx.executeSql(sqlCommand, [], 
+                        (tx, result) => {
+                            email_data = result.rows._array
+                        }
+                    )
+                },
+                (error) => {
+                    reject(error.message)
+                },
+                () => {
+                    resolve(email_data)
+                }
+            )
+        })
+    }
 }
 
 export type Email_Data = {
