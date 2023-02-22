@@ -12,28 +12,21 @@ type emailListData = {
   data: Email_Data[]
 }
 
-const test: emailListData[] = [{
-    monthYear: new Date(),
-    data: [{Body: "body1", 
-      Id: "1", 
-      Receiver_Email: "jane-doe@utulsa", 
-      Sender_Email: "john-doe@utulsa", 
-      Subject: "subject1",
-      receivedDateTime: new Date("2023-02-20T00:00:00.000Z"), 
-      sentDateTime: new Date('2023-02-19T00:00:00.000Z')}
-    ]
-}]
-
-
 const EmailPane = () => {
 
     const [earliestDate, setEarliestDate] = useState<Date>(new Date());
     const [emailData, setEmailData] = useState<emailListData[]>([] as emailListData[])
 
+    //This useEffect will execute a query to the email table everytime 'earliestDate' gets updated.
+    //It will use 'earliestDate' to query all email instances that belong and append them to the 
+    //global list state.
     useEffect(() => {
         Email.queryAttributes_MonthYear_ReceivedDate(earliestDate.getMonth()+1, earliestDate.getFullYear())
         .then(
             (result: Email_Data[]) => {
+
+                //Getting all of the email instances from the earliest month/year pair,
+                //and append them to the global list state.
                 const previousEmailData: emailListData[] = emailData
                 previousEmailData.push({
                   monthYear: earliestDate,
