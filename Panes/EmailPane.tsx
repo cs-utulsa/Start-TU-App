@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, StyleSheet, Button, Alert, Image, TouchableOpacity, Switch, TextInput, SectionList } from 'react-native';
+import { Text, View, StyleSheet, Button, Alert, Image, SectionList, SectionListData, SectionListRenderItem } from 'react-native';
 import {StatusBar} from 'expo-status-bar';
 import { getTokenSourceMapRange, isPropertySignature, setTextRange } from 'typescript';
 import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
@@ -23,13 +23,15 @@ const test: emailListData[] = [{
       sentDateTime: new Date('2023-02-19T00:00:00.000Z')}
     ]
 }]
+
+
 const EmailPane = () => {
 
     const [earliestDate, setEarliestDate] = useState<Date>(new Date());
     const [emailData, setEmailData] = useState<emailListData[]>([] as emailListData[])
 
     useEffect(() => {
-        Email.queryAttributes_MonthYear_ReceivedDate(earliestDate.getMonth(), earliestDate.getFullYear())
+        Email.queryAttributes_MonthYear_ReceivedDate(earliestDate.getMonth()+1, earliestDate.getFullYear())
         .then(
             (result: Email_Data[]) => {
                 const previousEmailData: emailListData[] = emailData
@@ -37,8 +39,7 @@ const EmailPane = () => {
                   monthYear: earliestDate,
                   data: result
                 })
-                console.log(previousEmailData)
-                
+
                 setEmailData(previousEmailData)
             }
         )
@@ -46,10 +47,26 @@ const EmailPane = () => {
     
     return(
       <View style={styles.emailPane}>
-          {/* <View style={email_styles.pane}></View> */}
-          {/* <SectionList>
-
-          </SectionList> */}
+          <SectionList 
+           sections={emailData}
+           renderItem={({item}) => (
+              <View style={{width: '100%', height: 80, backgroundColor: 'grey'}}>
+                <Text>{item.Id}</Text>
+              </View>
+           )}
+           style={email_styles.pane}
+           onRefresh = {() => {
+              //Getting the previous month's date
+              setEarliestDate(new Date(earliestDate.setMonth(earliestDate.getMonth() - 1)));
+           }}
+           refreshing={false}
+           onEndReached = {
+              () => {
+                  //Getting the previous month's date
+                  setEarliestDate(new Date(earliestDate.setMonth(earliestDate.getMonth() - 1)));
+              }
+           }
+           onEndReachedThreshold={1}></SectionList>
       </View>
     )
 }
