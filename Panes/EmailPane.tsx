@@ -5,6 +5,7 @@ import {StatusBar} from 'expo-status-bar';
 import styles from './PaneStyles';
 import { Email, Email_Data } from '../Database/Email';
 import { Header } from '../PaneComponents/EmailPaneComponents/Header';
+import { Preview } from '../PaneComponents/EmailPaneComponents/Preview';
 
 //This type specifies the format of the data of the section list for this component.
 //monthYear: This acts as a 'key' to identify Email_Data instances
@@ -26,7 +27,6 @@ const EmailPane = () => {
         Email.queryAttributes_MonthYear_ReceivedDate(earliestDate.getMonth()+1, earliestDate.getFullYear())
         .then(
             (result: Email_Data[]) => {
-                console.log('Run')
                 //Only run an update to the list data if any results were fetched
                 if (result.length != 0) {
 
@@ -48,11 +48,12 @@ const EmailPane = () => {
       <View style={styles.emailPane}>
           <SectionList 
            sections={emailData}
-           renderItem={({item}) => (
-              <View style={{width: '100%', height: 80, backgroundColor: 'grey'}}>
-                <Text>{item.Id}</Text>
-              </View>
-           )}
+           
+           renderItem={({item}) => {
+              return(
+                  <Preview item={item}></Preview>
+              )
+           }}
 
            renderSectionHeader={({section: {monthYear}}) => {
               return(

@@ -35,6 +35,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignContent: 'flex-start',
         backgroundColor: 'white',
+        borderBottomColor: '#D3D3D3',
+        borderBottomWidth: 2
     },
     text: {
         fontSize: 25
