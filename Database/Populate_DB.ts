@@ -264,6 +264,26 @@ const email2: Email_Data = {
     receivedDateTime: new Date('2023-02-19')
 }
 
+const email3: Email_Data = {
+    Id: '3',
+    Sender_Email: 'jane-doe@utulsa',
+    Receiver_Email: 'john-doe@utulsa',
+    Subject: 'subject3',
+    Body: 'body3',
+    sentDateTime: new Date('2023-01-18'),
+    receivedDateTime: new Date('2023-01-19')
+}
+
+const email4: Email_Data = {
+    Id: '4',
+    Sender_Email: 'jane-doe@utulsa',
+    Receiver_Email: 'john-doe@utulsa',
+    Subject: 'subject4',
+    Body: 'body4',
+    sentDateTime: new Date('2022-12-18'),
+    receivedDateTime: new Date('2022-12-19')
+}
+
 export function populate() {
     Person.dropPersonTable();
     Location.dropLocationTable();
@@ -309,6 +329,8 @@ export function populate() {
 
     Email.insertIntoEmailTable(email1);
     Email.insertIntoEmailTable(email2);
+    Email.insertIntoEmailTable(email3);
+    Email.insertIntoEmailTable(email4);
 
     
 }
