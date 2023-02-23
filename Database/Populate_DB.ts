@@ -285,10 +285,10 @@ const email4: Email_Data = {
 }
 
 export function populate() {
-    Person.dropPersonTable();
-    Location.dropLocationTable();
-    Event.dropEventTable();
-    Email.dropEventTable();
+    // Person.dropPersonTable();
+    // Location.dropLocationTable();
+    // Event.dropEventTable();
+    // Email.dropEventTable();
 
     Person.createPersonTable();
     Location.createLocationTable();
