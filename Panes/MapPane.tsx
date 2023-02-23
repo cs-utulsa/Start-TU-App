@@ -5,14 +5,16 @@ import MapView, { Marker, LatLng } from 'react-native-maps';
 import MapViewDirections from 'react-native-maps-directions';
 import {GOOGLE_MAPS_API_KEY} from '../creds';
 import {DARK_BLUE, TU_LIGHT_BLUE, styles} from './PaneStyles';
-import { BuildingList } from '../buildings/Polygons';
+import { BuildingList , BuildingData} from '../buildings/Polygons';
 import {Image} from 'react-native' ; 
 
 
 const MapPane= () => {
   //State for all of the data(titles, latitude/longitude, description) for all markers on map
   const [markerData, setMarkerData] = useState<Location_Data[]>([]);
-    
+  
+  const [buildingData, setbuildingData] = useState<BuildingData[]>([]);  
+
   //State for the origin marker.
   const [origin, setOrigin] = useState<Location_Data>(
     {} as Location_Data
@@ -66,6 +68,16 @@ const MapPane= () => {
           }}>
 
             <BuildingList></BuildingList>
+
+            {buildingData.map((item: BuildingData, index:number) => (
+              <Marker
+                key={index}
+                coordinate={{latitude: item.Latitude, longitude: item.Longitude}}
+                title={item.Name}
+                description={item.Description}
+              >
+              </Marker>
+            ))}
 
             { 
               JSON.stringify(origin) != '{}' && 
