@@ -37,7 +37,7 @@ export const styles = StyleSheet.create({
     },
     emailPane: {
       flex: 9,
-      // backgroundColor: DARK_BLUE,
+      backgroundColor: 'white',
     },
     bottomButtonRow: {
       flex: 1,

@@ -1,6 +1,5 @@
 import React, { useState, useEffect, FC } from 'react';
-import { Text, View, StyleSheet, Button, Alert, Image, SectionList, SectionListData, SectionListRenderItem } from 'react-native';
-import {StatusBar} from 'expo-status-bar';
+import { Text, View, StyleSheet} from 'react-native';
 import { Email_Data } from '../../Database/Email';
 
 type PreviewProps = {
@@ -14,8 +13,6 @@ export const Preview: FC<PreviewProps> = ({item}) => {
                 <Text style={{alignSelf:'stretch', fontSize: 20}}>{item.Sender_Email}</Text>
             </View>
             <Text style={styles.subjectText}>{item.Subject}</Text>
-            {/* <View style={styles.topTextContainer}></View>
-            <Text style={styles.topTextContainer}>{item.Id}</Text> */}
             <Text style={styles.bodyText}>{item.Body}</Text>
         </View>
     )

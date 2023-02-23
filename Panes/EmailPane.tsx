@@ -8,10 +8,13 @@ import { Header } from '../PaneComponents/EmailPaneComponents/Header';
 import { Preview } from '../PaneComponents/EmailPaneComponents/Preview';
 
 //This type specifies the format of the data of the section list for this component.
-//monthYear: This acts as a 'key' to identify Email_Data instances
-//data: The actual data to display
 type emailListData = {
+
+  //This acts as a 'key' to identify Email_Data instances. Email instances will be queried based on the 
+  //month and year that they were received
   monthYear: Date,
+
+  //The actual data to display
   data: Email_Data[]
 }
 
@@ -51,7 +54,7 @@ const EmailPane = () => {
            
            renderItem={({item}) => {
               return(
-                  <Preview item={item}></Preview>
+                <Preview item={item}></Preview>
               )
            }}
 
