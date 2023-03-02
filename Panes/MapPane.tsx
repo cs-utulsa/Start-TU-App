@@ -7,6 +7,14 @@ import {GOOGLE_MAPS_API_KEY} from '../creds';
 import {DARK_BLUE, TU_LIGHT_BLUE, styles} from './PaneStyles';
 import { BuildingList , BuildingData} from '../buildings/Polygons';
 import {Image} from 'react-native' ; 
+import buildingInfo from '../CONFIGS.json';
+
+console.log(buildingInfo.JOHN.tags);
+
+const build = buildingInfo.KEPLINGER
+if (build.isDorm == false) {
+  console.log(buildingInfo.KEPLINGER.openHour)
+}
 
 
 const MapPane= () => {
@@ -69,7 +77,7 @@ const MapPane= () => {
 
             <BuildingList></BuildingList>
 
-            {buildingData.map((item: BuildingData, index:number) => (
+            {/* {buildingData.map((item: BuildingData, index:number) => (
               <Marker
                 key={index}
                 coordinate={{latitude: item.Latitude, longitude: item.Longitude}}
@@ -77,7 +85,7 @@ const MapPane= () => {
                 description={item.Description}
               >
               </Marker>
-            ))}
+            ))} */}
 
             { 
               JSON.stringify(origin) != '{}' && 

@@ -3,6 +3,7 @@ import {StyleSheet, Image, Text, View, Pressable, Animated, ScrollView, Button} 
 import MapView, { Polygon, Marker, Overlay, PROVIDER_GOOGLE, LatLng } from 'react-native-maps';
 import { State } from 'react-native-paper/lib/typescript/components/TextInput/types';
 import Modal from 'react-native-modal';
+import buildingInfo from '../CONFIGS.json';
 
 const DORM_COLOR = '#103cab'
 const APT_COLOR = '#4D81F0'
@@ -18,7 +19,8 @@ export type BuildingData = {
     name?: string,
     code?: string,
     hours?: string,
-    tags?: [string]
+    tags?: [string],
+    data?: any
 }
 
 type BuildingProps = {
@@ -32,10 +34,6 @@ type BuildingProps = {
     data?: BuildingData
 }
 
-const onClick = () => {
-    console.log("Hello")
-}
-
 
 export const Building: FC<BuildingProps> = ({color, coords, name, setName, visible, setData, setVisible, data}) => {
     return (
@@ -45,7 +43,7 @@ export const Building: FC<BuildingProps> = ({color, coords, name, setName, visib
             strokeWidth={0.00001}
             strokeColor={color}
             onPress={() => {
-                setData({name: data?.name, code: data?.code})
+                setData({name: data?.data.name, code: data?.code, data: data?.data})
                 setVisible(true)
             }}
             // holes={[[{latitude: 0.0, longitude: 0.0}, {latitude: 0.00000000001, longitude: 0.00000000001}]]}
@@ -82,7 +80,7 @@ export const BuildingList: FC<BuildingListProps> = () => {
                             adjustsFontSizeToFit={true}
                             style={{fontSize: 50}}
                         >
-                            {dataState.name}
+                            {dataState.data.name}
                         </Text>
                         <Text 
                             numberOfLines={1}
@@ -139,7 +137,7 @@ export const BuildingList: FC<BuildingListProps> = () => {
                 setData={setDataState}
                 
                 setVisible={setFormVisible}
-                data={{name: 'Rayzor Hall', code: 'RZR'}}
+                data={{name: 'Rayzor Hall', code: 'RZR', data: buildingInfo.RAYZOR}}
             />
 
             <Building 
