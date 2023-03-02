@@ -183,7 +183,7 @@ export const BuildingList: FC<BuildingListProps> = () => {
 
             
             <Building 
-                name={"Champman Hall"}
+                name={"Chapman Hall"}
                 color={EDUC_COLOR} 
                 coords={[
                     {latitude: 36.15336590133616, longitude: -95.9478298788146}, 
