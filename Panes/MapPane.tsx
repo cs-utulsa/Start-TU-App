@@ -17,28 +17,40 @@ if (build.isDorm == false) {
 }
 
 
+
 const MapPane=() => {
   //State for all of the data(titles, latitude/longitude, description) for all markers on map
   const [markerData, setMarkerData] = useState<Location_Data[]>([]);
   
-  const [buildingData, setbuildingData] = useState<BuildingData[]>([]);  
-
+  const [buildingData, setbuildingData] = useState<BuildingData[]>(buildingMap);
+  
+  const [formVisible, setFormVisible] = useState<boolean>(false)
+  
   //State for the origin marker.
   const [origin, setOrigin] = useState<Location_Data>(
     {} as Location_Data
-  );
-
-  //State for the destination marker
-  const [destination, setDestination] = useState<Location_Data>(
-    {} as Location_Data
-  );
-
-  const [currentTag, setCurrentTag] = useState<string>("all");
-
-  
-  useEffect(() => {
-    Location.queryAttributes_Tag(currentTag).then((value:Location_Data[]) => {
-      setMarkerData(value);
+    );
+    
+    //State for the destination marker
+    const [destination, setDestination] = useState<Location_Data>(
+      {} as Location_Data
+      );
+      
+      const [currentTag, setCurrentTag] = useState<string>("all");
+      
+      function tag(input: string) {
+        const buildingsWithTag: BuildingData[] = []
+        buildingMap.forEach( (building) => {
+          if (building.tags.find(element => element == input)) {
+            buildingsWithTag.push(building);
+          }
+        })
+        setbuildingData(buildingsWithTag);
+      }
+      
+      useEffect(() => {
+        Location.queryAttributes_Tag(currentTag).then((value:Location_Data[]) => {
+          setMarkerData(value);
     });
   }, [currentTag]);
   
@@ -49,6 +61,7 @@ const MapPane=() => {
           (e) => {
             const tagInput: string = e.nativeEvent.text.toLowerCase();
             setCurrentTag(tagInput);
+            tag(tagInput);
           }}
           autoCorrect={false}
         style={{fontSize: 25, height: 30, backgroundColor: DARK_BLUE, flex: 1}}>
@@ -83,14 +96,19 @@ const MapPane=() => {
                     {latitude: 36.15377150292973, longitude: -95.94231245481298}
                 ]}
               /> */}
-            {/* <BuildingList></BuildingList> */}
+            <BuildingList
+              visible={formVisible}
+              setVisible={setFormVisible}
+            />
 
-            {buildingMap.map((item: BuildingData, index:number) => (
+            {buildingData.map((item: BuildingData, index:number) => (
               <Building
                 key={index}
                 name={item.name}
                 color={item.color}
                 coords={item.coords}
+                visible={formVisible}
+                setVisible={setFormVisible}
               />
               )
             )}
