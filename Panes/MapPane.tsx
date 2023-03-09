@@ -5,7 +5,7 @@ import MapView, { Marker, LatLng } from 'react-native-maps';
 import MapViewDirections from 'react-native-maps-directions';
 import {GOOGLE_MAPS_API_KEY} from '../creds';
 import {DARK_BLUE, TU_LIGHT_BLUE, styles} from './PaneStyles';
-import { BuildingList , BuildingData} from '../buildings/Polygons';
+import { buildingMap, Building, BuildingList , BuildingData} from '../buildings/Polygons';
 import {Image} from 'react-native' ; 
 import buildingInfo from '../CONFIGS.json';
 
@@ -17,7 +17,7 @@ if (build.isDorm == false) {
 }
 
 
-const MapPane= () => {
+const MapPane=() => {
   //State for all of the data(titles, latitude/longitude, description) for all markers on map
   const [markerData, setMarkerData] = useState<Location_Data[]>([]);
   
@@ -74,16 +74,38 @@ const MapPane= () => {
               Longitude: location.longitude
             } as Location_Data)
           }}>
+            {/* <Building 
+                name={"Keplinger Hall"}
+                color={'green'} 
+                coords={[
+                    {latitude: 36.154399370636966, longitude: -95.94231245481298},{latitude: 36.154399370636966, longitude: -95.94184588923831},{latitude: 36.1537623145845, longitude: -95.94185726888648},
+                    {latitude: 36.153658179929934, longitude: -95.94173209275668},{latitude: 36.15346216138149, longitude: -95.94173209275668},{latitude: 36.15345909858778, longitude: -95.94219107189925},{latitude: 36.15367043107294, longitude: -95.94220624476347},
+                    {latitude: 36.15377150292973, longitude: -95.94231245481298}
+                ]}
+              /> */}
+            {/* <BuildingList></BuildingList> */}
 
-            <BuildingList></BuildingList>
+            {buildingMap.map((item: BuildingData, index:number) => (
+              <Building
+                key={index}
+                name={item.name}
+                color={item.color}
+                coords={item.coords}
+              />
+              )
+            )}
 
-            {/* {buildingData.map((item: BuildingData, index:number) => (
+            {/* {markerMap.map((item: Location_Data, index:number) => (
               <Marker
                 key={index}
                 coordinate={{latitude: item.Latitude, longitude: item.Longitude}}
                 title={item.Name}
                 description={item.Description}
               >
+                <Image
+                  source={require('./../assets/Location-Marker.png')}
+                  style={{width: 26, height: 28}}
+                />
               </Marker>
             ))} */}
 

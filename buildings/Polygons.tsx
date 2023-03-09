@@ -16,20 +16,95 @@ const SORO_COLOR = '#F4C2C2'
 const UNIV_COLOR = 'purple'
 
 export type BuildingData = {
-    name?: string,
+    name: string,
     code?: string,
     hours?: string,
     tags?: [string],
-    data?: any
+    data?: any,
+    coords: LatLng[]
+    color: string
 }
+
+export const buildingMap: BuildingData[] = [
+    {
+        name: "Keplinger Hall", 
+        color: EDUC_COLOR,
+        coords: [
+            {latitude: 36.154399370636966, longitude: -95.94231245481298},{latitude: 36.154399370636966, longitude: -95.94184588923831},{latitude: 36.1537623145845, longitude: -95.94185726888648},
+            {latitude: 36.153658179929934, longitude: -95.94173209275668},{latitude: 36.15346216138149, longitude: -95.94173209275668},{latitude: 36.15345909858778, longitude: -95.94219107189925},{latitude: 36.15367043107294, longitude: -95.94220624476347},
+            {latitude: 36.15377150292973, longitude: -95.94231245481298}]
+    },
+    {
+        name:"Rayzor Hall",
+        color: EDUC_COLOR ,
+        coords: [
+            {latitude: 36.15329457039517, longitude: -95.94296104403304}, {latitude: 36.153294028963465, longitude: -95.94292349310994}, 
+            {latitude: 36.1533026918702, longitude: -95.94292483421435}, {latitude: 36.1533016090069, longitude: -95.942842356294}, 
+            {latitude: 36.15329511182687, longitude: -95.94284369739839}, {latitude: 36.15329240466836, longitude: -95.94265191946977}, 
+            {latitude: 36.15336279075925, longitude: -95.94265191946977}, {latitude: 36.153362249328005, longitude: -95.94257949983236}, 
+            {latitude: 36.15329186323664, longitude: -95.94258084093677}, {latitude: 36.153291321804936, longitude: -95.94250506853838}, 
+            {latitude: 36.15323988577479, longitude: -95.9425057390906}, {latitude: 36.15323988577479, longitude: -95.94247489368948}, 
+            {latitude: 36.153022229778976, longitude: -95.94247824645046}, {latitude: 36.15302331264612, longitude: -95.94246550595871}, 
+            {latitude: 36.152962130628914, longitude: -95.94246684706312}, {latitude: 36.152962130628914, longitude: -95.94247824645046}, 
+            {latitude: 36.15294642904157, longitude: -95.94247757589828}, {latitude: 36.15294751190976, longitude: -95.94258084093677}, 
+            {latitude: 36.152938848963814, longitude: -95.94258017038459}, {latitude: 36.15293830752967, longitude: -95.94265594278295}, 
+            {latitude: 36.15294805334385, longitude: -95.94265795443954}, {latitude: 36.15294805334385, longitude: -95.9428711900385}, 
+            {latitude: 36.1529334346221, longitude: -95.9428711900385}, {latitude: 36.15293451749048, longitude: -95.94296439679403}, 
+            {latitude: 36.152948594777946, longitude: -95.94296372624184}, {latitude: 36.152950219080196, longitude: -95.94298183115119}, 
+            {latitude: 36.153022771212534, longitude: -95.94298116059899}, {latitude: 36.15302331264612, longitude: -95.94297445507699}, 
+            {latitude: 36.153068251619494, longitude: -95.94297378452481}, {latitude: 36.153068793052746, longitude: -95.94296238513742}, 
+            {latitude: 36.15319711262925, longitude: -95.94296104403304}, {latitude: 36.15319711262925, longitude: -95.94297445507699}, 
+            {latitude: 36.1532610016228, longitude: -95.9429731139726}, {latitude: 36.1532610016228, longitude: -95.94296171458524}]
+                
+    }
+];
+
+let markerMap: LatLng[] = [
+    {latitude: 36.15329457039517, longitude: -95.94296104403304}, 
+    {latitude: 36.1533026918702, longitude: -95.94292483421435}
+];
+
+([
+    ["KEP", {
+        name: "Keplinger Hall", 
+        color: EDUC_COLOR,
+        coords: [
+            {latitude: 36.154399370636966, longitude: -95.94231245481298},{latitude: 36.154399370636966, longitude: -95.94184588923831},{latitude: 36.1537623145845, longitude: -95.94185726888648},
+            {latitude: 36.153658179929934, longitude: -95.94173209275668},{latitude: 36.15346216138149, longitude: -95.94173209275668},{latitude: 36.15345909858778, longitude: -95.94219107189925},{latitude: 36.15367043107294, longitude: -95.94220624476347},
+            {latitude: 36.15377150292973, longitude: -95.94231245481298}]
+    }],
+    ["RAY", {
+        name:"Rayzor Hall",
+        color: EDUC_COLOR ,
+        coords: [
+            {latitude: 36.15329457039517, longitude: -95.94296104403304}, {latitude: 36.153294028963465, longitude: -95.94292349310994}, 
+            {latitude: 36.1533026918702, longitude: -95.94292483421435}, {latitude: 36.1533016090069, longitude: -95.942842356294}, 
+            {latitude: 36.15329511182687, longitude: -95.94284369739839}, {latitude: 36.15329240466836, longitude: -95.94265191946977}, 
+            {latitude: 36.15336279075925, longitude: -95.94265191946977}, {latitude: 36.153362249328005, longitude: -95.94257949983236}, 
+            {latitude: 36.15329186323664, longitude: -95.94258084093677}, {latitude: 36.153291321804936, longitude: -95.94250506853838}, 
+            {latitude: 36.15323988577479, longitude: -95.9425057390906}, {latitude: 36.15323988577479, longitude: -95.94247489368948}, 
+            {latitude: 36.153022229778976, longitude: -95.94247824645046}, {latitude: 36.15302331264612, longitude: -95.94246550595871}, 
+            {latitude: 36.152962130628914, longitude: -95.94246684706312}, {latitude: 36.152962130628914, longitude: -95.94247824645046}, 
+            {latitude: 36.15294642904157, longitude: -95.94247757589828}, {latitude: 36.15294751190976, longitude: -95.94258084093677}, 
+            {latitude: 36.152938848963814, longitude: -95.94258017038459}, {latitude: 36.15293830752967, longitude: -95.94265594278295}, 
+            {latitude: 36.15294805334385, longitude: -95.94265795443954}, {latitude: 36.15294805334385, longitude: -95.9428711900385}, 
+            {latitude: 36.1529334346221, longitude: -95.9428711900385}, {latitude: 36.15293451749048, longitude: -95.94296439679403}, 
+            {latitude: 36.152948594777946, longitude: -95.94296372624184}, {latitude: 36.152950219080196, longitude: -95.94298183115119}, 
+            {latitude: 36.153022771212534, longitude: -95.94298116059899}, {latitude: 36.15302331264612, longitude: -95.94297445507699}, 
+            {latitude: 36.153068251619494, longitude: -95.94297378452481}, {latitude: 36.153068793052746, longitude: -95.94296238513742}, 
+            {latitude: 36.15319711262925, longitude: -95.94296104403304}, {latitude: 36.15319711262925, longitude: -95.94297445507699}, 
+            {latitude: 36.1532610016228, longitude: -95.9429731139726}, {latitude: 36.1532610016228, longitude: -95.94296171458524}]
+                
+    }]
+]);
 
 type BuildingProps = {
     color: string
     coords: LatLng[]
     name: string
     setName?: any
-    setVisible: (event: React.SetStateAction<boolean>) => void
-    setData: (event: React.SetStateAction<BuildingData>) => void
+    setVisible?: (event: React.SetStateAction<boolean>) => void
+    setData?: (event: React.SetStateAction<BuildingData>) => void
     visible?: boolean
     data?: BuildingData
 }
@@ -42,10 +117,10 @@ export const Building: FC<BuildingProps> = ({color, coords, name, setName, visib
             fillColor={color}
             strokeWidth={0.00001}
             strokeColor={color}
-            onPress={() => {
-                setData({name: data?.data.name, code: data?.code, data: data?.data})
-                setVisible(true)
-            }}
+            // onPress={() => {
+            //     setData({name: data?.data.name, code: data?.code, data: data?.data})
+            //     setVisible(true)
+            // }}
             // holes={[[{latitude: 0.0, longitude: 0.0}, {latitude: 0.00000000001, longitude: 0.00000000001}]]}
         />
         )
@@ -56,7 +131,7 @@ export const Building: FC<BuildingProps> = ({color, coords, name, setName, visib
     
 export const BuildingList: FC<BuildingListProps> = () => {
     const [formVisible, setFormVisible] = useState<boolean>(false)
-    const [dataState, setDataState] = useState<BuildingData>({})
+    const [dataState, setDataState] = useState<BuildingData>({name: "", color: 'black', coords: []})
 
     return (
         <View>
@@ -109,7 +184,6 @@ export const BuildingList: FC<BuildingListProps> = () => {
                 
                 setVisible={setFormVisible}
                 setData={setDataState}
-                data={{name: 'Keplinger Hall', code: 'KEP'}}
             />
 
              <Building 
@@ -137,10 +211,9 @@ export const BuildingList: FC<BuildingListProps> = () => {
                 setData={setDataState}
                 
                 setVisible={setFormVisible}
-                data={{name: 'Rayzor Hall', code: 'RZR', data: buildingInfo.RAYZOR}}
             />
 
-            <Building 
+            {/* <Building 
                 name={"Stephenson Hall"}
                 color={EDUC_COLOR} 
                 coords={[
@@ -892,7 +965,7 @@ export const BuildingList: FC<BuildingListProps> = () => {
                 setVisible={setFormVisible}
                 setData={setDataState}
                 data={{name: 'Tyrell Hall', code: 'TYR'}}
-            />
+            /> */}
         </MapView>
         </View>
         
