@@ -1,19 +1,34 @@
 import React, { useState, useEffect, FC } from 'react';
 import { Text, View, StyleSheet} from 'react-native';
 import { Email_Data } from '../../Database/Email';
+import { Modal, Pressable, Button } from 'react-native';
 
+import { Expanded } from './Expanded';
 type PreviewProps = {
     item: Email_Data
 }
 
 export const Preview: FC<PreviewProps> = ({item}) => {
+    const [visible, setVisible] = useState<boolean>(false)
+
     return(
         <View style={styles.container}>
-            <View style={styles.topTextContainer}>
-                <Text style={{alignSelf:'stretch', fontSize: 20}}>{item.Sender_Email}</Text>
-            </View>
-            <Text style={styles.subjectText}>{item.Subject}</Text>
-            <Text style={styles.bodyText}>{item.Body}</Text>
+            <Pressable onPress = {() => {
+                console.log(item.Subject)
+                setVisible(!visible)
+            }}>
+                <View style={styles.topTextContainer}>
+                    <Text style={{alignSelf:'stretch', fontSize: 20}}>{item.Sender_Email}</Text>
+                </View>
+                <Text style={styles.subjectText}>{item.Subject}</Text>
+                <Text style={styles.bodyText}>{item.Body}</Text>
+            </Pressable>    
+            <Modal
+                visible = {visible}
+                animationType="slide">
+
+                <Expanded item ={item} visible={visible} setVisible = {setVisible}></Expanded>
+            </Modal>
         </View>
     )
 }
