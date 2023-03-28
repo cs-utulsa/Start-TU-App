@@ -1,6 +1,6 @@
 import React, { useState, useEffect} from 'react';
 import {Location, Location_Data} from '../Database/Location'
-import {View, TextInput, StyleSheet} from 'react-native';
+import {View, TextInput, StyleSheet, Button} from 'react-native';
 import MapView, { Marker, LatLng, Polygon} from 'react-native-maps';
 import MapViewDirections from 'react-native-maps-directions';
 import {GOOGLE_MAPS_API_KEY} from '../creds';
@@ -58,6 +58,10 @@ const MapPane=() => {
         style={{fontSize: 25, height: 30, backgroundColor: DARK_BLUE, flex: 1}}>
         </TextInput>
       </View>
+      <Button 
+        onPress={()=> {setFormVisible(!formVisible)}}
+        title={"modal"}
+      />
 
       <MapView 
           showsBuildings={false}
@@ -87,10 +91,10 @@ const MapPane=() => {
                     {latitude: 36.15377150292973, longitude: -95.94231245481298}
                 ]}
               /> */}
-            {/* <BuildingList
+            <BuildingList
               visible={formVisible}
               setVisible={setFormVisible}
-            /> */}
+            />
 
             {buildingData.map((item: BuildingData, index:number) => (
               <Building
@@ -98,8 +102,8 @@ const MapPane=() => {
                 name={item.name}
                 color={item.color}
                 coords={item.coords}
-                // visible={formVisible}
-                // setVisible={setFormVisible}
+                visible={formVisible}
+                setVisible={setFormVisible}
               />
               )
             )}

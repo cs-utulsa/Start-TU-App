@@ -82,13 +82,13 @@ type BuildingProps = {
     coords: LatLng[]
     name: string
     setName?: any
-    // setVisible: (event: React.SetStateAction<boolean>) => void
+    setVisible: (event: React.SetStateAction<boolean>) => void
     // setData?: (event: React.SetStateAction<BuildingData>) => void
     visible?: boolean
     data?: BuildingData
 }
 
-export const Building: FC<BuildingProps> = ({color, coords, name, setName, data}) => {
+export const Building: FC<BuildingProps> = ({color, coords, name, visible, setName, data, setVisible}) => {
     return (
         <Polygon 
             coordinates={coords}
@@ -96,8 +96,7 @@ export const Building: FC<BuildingProps> = ({color, coords, name, setName, data}
             strokeWidth={0.00001}
             strokeColor={color}
             onPress={() => {
-                // setData({name: data?.data.name, code: data?.code, data: data?.data})
-                // setVisible.setVisible(true)
+                setVisible(!visible)
             }}
             // holes={[[{latitude: 0.0, longitude: 0.0}, {latitude: 0.00000000001, longitude: 0.00000000001}]]}
         />
@@ -109,7 +108,7 @@ type BuildingListProps = {
     visible: boolean
 }
     
-export const BuildingList: FC<BuildingListProps> = (setVisible, visible) => {
+export const BuildingList: FC<BuildingListProps> = ({setVisible, visible}) => {
     
     const [dataState, setDataState] = useState<BuildingData>({name: "", color: 'black', coords: [], tags: ['']})
 
@@ -118,7 +117,7 @@ export const BuildingList: FC<BuildingListProps> = (setVisible, visible) => {
         <Modal
             animationIn={'slideInLeft'}
             animationOut={'slideOutLeft'}
-            onBackdropPress={() => setVisible.setVisible(false)}
+            // onBackdropPress={() => setVisible(false)}
             backdropOpacity={0}
             isVisible={visible}
         >
@@ -126,23 +125,31 @@ export const BuildingList: FC<BuildingListProps> = (setVisible, visible) => {
                 <View style={styles.buttonRow}>
 
                     <View style={styles.button}>
-                        <Button onPress={() => {
-                            setVisible.setVisible(!visible)
-                        }} 
-                        title={'Close'}></Button>
+                        <Button 
+                            onPress={() => {
+                                setVisible(!visible)
+                                console.log("pog")
+                            }} 
+                            title={'Close'}
+                        />
                         <Text 
                             numberOfLines={1}
                             adjustsFontSizeToFit={true}
                             style={{fontSize: 50}}
                         >
-                            {dataState.data.name}
+                            {
+                                dataState.data.name
+                            }
                         </Text>
                         <Text 
                             numberOfLines={1}
                             adjustsFontSizeToFit={true}
                             style={{fontSize: 15}}
                         >
-                            {dataState.code}
+                            {
+                                // dataState.code
+                                10
+                            }
                         </Text>
                     </View>
 
