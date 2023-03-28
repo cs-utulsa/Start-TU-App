@@ -1,32 +1,29 @@
-import { harveyData } from "./Database";
-import {StyleSheet} from 'react-native'
+const harveyData = require('./Database/HarveyData.json');
+import {StyleSheet, View, Text} from 'react-native'
 
-const styles = StyleSheet.create({
-    App: {
-        text-align: center;
-    },
-    harvey-class-container: {
-        padding-left: 3em;
-        padding-right: 3em;
-        margin-top: 3em;
-    }
-})
+const calendar_styles = StyleSheet.create({
+  agenda: {
+    height: '100%', 
+    width: '100%', 
+    position: 'relative'
+  }
+});
 
 export const Stocks = () => {
   return (
-    <>
+    <View 
       <div className="harvey-class-container">
         {harveyData.map((data, key) => {
           return (
             <div key={key}> {
               data.className +
                 " , " + data.building +
-                " ," + data.time 
+                " ," + data.time
               }
             </div>
           );
         })}
       </div>
-    </>
+    </View>
   );
 };
