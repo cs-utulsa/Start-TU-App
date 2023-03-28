@@ -17,6 +17,7 @@ const UNIV_COLOR = 'purple'
 
 export type BuildingData = {
     name: string,
+    hasCode: boolean,
     code?: string,
     hours?: string,
     tags: string[],
@@ -33,7 +34,9 @@ export const buildingMap: BuildingData[] = [
             {latitude: 36.154399370636966, longitude: -95.94231245481298},{latitude: 36.154399370636966, longitude: -95.94184588923831},{latitude: 36.1537623145845, longitude: -95.94185726888648},
             {latitude: 36.153658179929934, longitude: -95.94173209275668},{latitude: 36.15346216138149, longitude: -95.94173209275668},{latitude: 36.15345909858778, longitude: -95.94219107189925},{latitude: 36.15367043107294, longitude: -95.94220624476347},
             {latitude: 36.15377150292973, longitude: -95.94231245481298}],
-        tags: ['all', 'ens', 'keplinger']
+        tags: ['all', 'ens', 'keplinger'],
+        hasCode: true,
+        code: "KEP"
     },
     {
         name:"Rayzor Hall",
@@ -56,7 +59,8 @@ export const buildingMap: BuildingData[] = [
             {latitude: 36.153068251619494, longitude: -95.94297378452481}, {latitude: 36.153068793052746, longitude: -95.94296238513742}, 
             {latitude: 36.15319711262925, longitude: -95.94296104403304}, {latitude: 36.15319711262925, longitude: -95.94297445507699}, 
             {latitude: 36.1532610016228, longitude: -95.9429731139726}, {latitude: 36.1532610016228, longitude: -95.94296171458524}],
-        tags: ['all', 'ens', 'rayzor']
+        tags: ['all', 'ens', 'rayzor'],
+        hasCode: false
     },
     {
         name: "John Mabee Hall",
@@ -73,7 +77,8 @@ export const buildingMap: BuildingData[] = [
             {latitude: 36.15327477376571, longitude: -95.94899430231948}, {latitude: 36.153423508656935, longitude: -95.94899589717153}, {latitude: 36.153422220910194, longitude: -95.94903098389113}, {latitude: 36.15352008960253, longitude: -95.94903018646569}, 
             {latitude: 36.153520733475084, longitude: -95.94899988429876}
         ],
-        tags: ['all', 'dorm', 'john']
+        tags: ['all', 'dorm', 'john'],
+        hasCode: false
     }
 ];
 
@@ -81,14 +86,12 @@ type BuildingProps = {
     color: string
     coords: LatLng[]
     name: string
-    setName?: any
     setVisible: (event: React.SetStateAction<boolean>) => void
-    // setData?: (event: React.SetStateAction<BuildingData>) => void
+    setData: (event: React.SetStateAction<BuildingData>) => void
     visible?: boolean
-    data?: BuildingData
 }
 
-export const Building: FC<BuildingProps> = ({color, coords, name, visible, setName, data, setVisible}) => {
+export const Building: FC<BuildingProps> = ({color, coords, name, visible, setData, setVisible}) => {
     return (
         <Polygon 
             coordinates={coords}
@@ -96,7 +99,13 @@ export const Building: FC<BuildingProps> = ({color, coords, name, visible, setNa
             strokeWidth={0.00001}
             strokeColor={color}
             onPress={() => {
-                setVisible(!visible)
+                for (var val of buildingMap) {
+                    if (val.name == name) {
+                        setData(val);
+                    }
+                }
+                // setData({name: name, tags: [""], coords: coords, color: color})
+                setVisible(!visible);
             }}
             // holes={[[{latitude: 0.0, longitude: 0.0}, {latitude: 0.00000000001, longitude: 0.00000000001}]]}
         />
@@ -106,18 +115,19 @@ export const Building: FC<BuildingProps> = ({color, coords, name, visible, setNa
 type BuildingListProps = {
     setVisible: (event: React.SetStateAction<boolean>) => void
     visible: boolean
+    buildingData: BuildingData
 }
     
-export const BuildingList: FC<BuildingListProps> = ({setVisible, visible}) => {
+export const BuildingList: FC<BuildingListProps> = ({setVisible, visible, buildingData}) => {
     
-    const [dataState, setDataState] = useState<BuildingData>({name: "", color: 'black', coords: [], tags: ['']})
+    const [dataState, setDataState] = useState<BuildingData>({name: "", color: 'black', coords: [], tags: [''], hasCode: false})
 
     return (
         <View>
         <Modal
             animationIn={'slideInLeft'}
             animationOut={'slideOutLeft'}
-            // onBackdropPress={() => setVisible(false)}
+            onBackdropPress={() => setVisible(false)}
             backdropOpacity={0}
             isVisible={visible}
         >
@@ -128,7 +138,6 @@ export const BuildingList: FC<BuildingListProps> = ({setVisible, visible}) => {
                         <Button 
                             onPress={() => {
                                 setVisible(!visible)
-                                console.log("pog")
                             }} 
                             title={'Close'}
                         />
@@ -138,7 +147,7 @@ export const BuildingList: FC<BuildingListProps> = ({setVisible, visible}) => {
                             style={{fontSize: 50}}
                         >
                             {
-                                dataState.data.name
+                                buildingData.name
                             }
                         </Text>
                         <Text 
@@ -147,8 +156,7 @@ export const BuildingList: FC<BuildingListProps> = ({setVisible, visible}) => {
                             style={{fontSize: 15}}
                         >
                             {
-                                // dataState.code
-                                10
+                                buildingData.hasCode && buildingData.code
                             }
                         </Text>
                     </View>

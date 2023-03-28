@@ -13,9 +13,10 @@ const MapPane=() => {
   //State for all of the data(titles, latitude/longitude, description) for all markers on map
   const [markerData, setMarkerData] = useState<Location_Data[]>([]);
   
-  const [buildingData, setbuildingData] = useState<BuildingData[]>(buildingMap);
+  const [buildings, setBuildings] = useState<BuildingData[]>(buildingMap);
+  const [buildingData, setBuildingData] = useState<BuildingData>({name: "", color: 'black', coords: [], tags: [''], hasCode: false});
   
-  const [formVisible, setFormVisible] = useState<boolean>(false)
+  const [formVisible, setFormVisible] = useState<boolean>(false);
   
   //State for the origin marker.
   const [origin, setOrigin] = useState<Location_Data>(
@@ -36,7 +37,7 @@ const MapPane=() => {
             buildingsWithTag.push(building);
           }
         })
-        setbuildingData(buildingsWithTag);
+        setBuildings(buildingsWithTag);
       }
       
       useEffect(() => {
@@ -58,10 +59,6 @@ const MapPane=() => {
         style={{fontSize: 25, height: 30, backgroundColor: DARK_BLUE, flex: 1}}>
         </TextInput>
       </View>
-      <Button 
-        onPress={()=> {setFormVisible(!formVisible)}}
-        title={"modal"}
-      />
 
       <MapView 
           showsBuildings={false}
@@ -94,9 +91,10 @@ const MapPane=() => {
             <BuildingList
               visible={formVisible}
               setVisible={setFormVisible}
+              buildingData={buildingData}
             />
 
-            {buildingData.map((item: BuildingData, index:number) => (
+            {buildings.map((item: BuildingData, index:number) => (
               <Building
                 key={index}
                 name={item.name}
@@ -104,6 +102,7 @@ const MapPane=() => {
                 coords={item.coords}
                 visible={formVisible}
                 setVisible={setFormVisible}
+                setData={setBuildingData}
               />
               )
             )}
