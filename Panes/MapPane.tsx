@@ -14,7 +14,7 @@ const MapPane=() => {
   const [markerData, setMarkerData] = useState<Location_Data[]>([]);
   
   const [buildings, setBuildings] = useState<BuildingData[]>(buildingMap);
-  const [buildingData, setBuildingData] = useState<BuildingData>({name: "", color: 'black', coords: [], tags: [''], hasCode: false});
+  const [buildingData, setBuildingData] = useState<BuildingData>({name: "", color: 'black', coords: [], tags: ['']});
   
   const [formVisible, setFormVisible] = useState<boolean>(false);
   
@@ -33,9 +33,14 @@ const MapPane=() => {
       function tag(input: string) {
         const buildingsWithTag: BuildingData[] = []
         buildingMap.forEach( (building) => {
-          if (building.tags.find(element => element == input)) {
-            buildingsWithTag.push(building);
+          for (var val of building.tags) {
+            if (val.startsWith(input)) {
+              buildingsWithTag.push(building);
+            }
           }
+          // if (building.tags.find(element => element == input)) {
+          //   buildingsWithTag.push(building);
+          // }
         })
         setBuildings(buildingsWithTag);
       }
