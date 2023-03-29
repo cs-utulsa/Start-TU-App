@@ -1,5 +1,7 @@
-const harveyData = require('./Database/HarveyData.json');
+import harveyData from '../Database/HarveyData';
 import {StyleSheet, View, Text} from 'react-native'
+import { useWindowDimensions } from 'react-native';
+import RenderHtml from 'react-native-render-html';
 
 const calendar_styles = StyleSheet.create({
   agenda: {
@@ -9,21 +11,16 @@ const calendar_styles = StyleSheet.create({
   }
 });
 
-export const Stocks = () => {
-  return (
-    <View 
-      <div className="harvey-class-container">
-        {harveyData.map((data, key) => {
-          return (
-            <div key={key}> {
-              data.className +
-                " , " + data.building +
-                " ," + data.time
-              }
-            </div>
-          );
-        })}
-      </div>
-    </View>
-  );
+const jsonSource = {
+  html: "<p style='text-align:center;'>Placeholder for json data</p>"
 };
+
+export default function App() {
+  const { width } = useWindowDimensions();
+  return (
+    <RenderHtml
+      contentWidth={width}
+      source={jsonSource}
+    />
+  );
+}
