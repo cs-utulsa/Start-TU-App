@@ -173,7 +173,7 @@ const MapPane=() => {
                 style={{width: 100, height: 50}}
               />
             </Marker> */}
-            <Marker
+            {/* <Marker
               coordinate={{latitude: 36.15026436953065, longitude: -95.9498320731494}}
             >
               <Image
@@ -196,7 +196,7 @@ const MapPane=() => {
                 source={require('./../assets/basketballicon.png')}
                 style={{width: 50, height: 50}}
               />
-            </Marker>
+            </Marker> */}
       </MapView> 
     </View>
   );

@@ -37,6 +37,22 @@ export const buildingMap: BuildingData[] = [
         code: "KEP",
     },
     {
+        name: "Lafortune House",
+        color: DORM_COLOR,
+        coords: [
+            {latitude: 36.150684500133345, longitude: -95.94245776855728}, {latitude: 36.15068578792504, longitude: -95.9422552224941}, {latitude: 36.15060079362744, longitude: -95.94225362764321}, 
+            {latitude: 36.15060079362744, longitude: -95.94198888239526}, {latitude: 36.15062011052135, longitude: -95.94198888239526}, {latitude: 36.15062011052135, longitude: -95.94182142305172}, 
+            {latitude: 36.150595642454924, longitude: -95.94182142305172}, {latitude: 36.150596930248085, longitude: -95.941787931183}, {latitude: 36.15043724373503, longitude: -95.9417863363321}, 
+            {latitude: 36.15043595593925, longitude: -95.94181823334993}, {latitude: 36.150414063407716, longitude: -95.94181982820082}, {latitude: 36.15041277561156, longitude: -95.94198888239526}, 
+            {latitude: 36.15043080475591, longitude: -95.94198888239526}, {latitude: 36.15043209255177, longitude: -95.94203832277292}, {latitude: 36.15041277561156, longitude: -95.94203832277292},
+            {latitude: 36.15041277561156, longitude: -95.94218664390579}, {latitude: 36.150363839341715, longitude: -95.94218504905488}, {latitude: 36.150362551544745, longitude: -95.94220737696736}, 
+            {latitude: 36.15031232744575, longitude: -95.94220897181826}, {latitude: 36.1503110396479, longitude: -95.94241789728498}, {latitude: 36.15032134202999, longitude: -95.94241630243411}, 
+            {latitude: 36.15032005423231, longitude: -95.9424561737064}
+        ],
+        tags: ['lafortune house', 'all', 'dorm', 'housing'],
+        code: "LAFO"
+    },
+    {
         name:"Rayzor Hall",
         color: EDUC_COLOR ,
         coords: [
