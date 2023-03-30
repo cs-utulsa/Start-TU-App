@@ -1,0 +1,29 @@
+{
+    "KEPLINGER":{
+        "name": "Keplinger Hall",
+        "shortDesc": "Engineering Building",
+        "address": "430 S Gary Pl, Tulsa, OK 74104",
+        "longDesc": "One of the busiest and largest buildings on campus, containing both clasrooms and labs, as well as multiple departments in the ENS college",
+        "college": "Engineering Natural Sciences",
+        "openHour": 7,
+        "closeHour": 18,
+        "isDorm": false,
+        "isEduc": true,
+        "isAdmin": false,
+        "tags": ["all", "ENS", "classrooms"]
+    },
+    "RAYZOR":{
+        "name":"Rayzor Hall",
+        "openHour":7,
+        "closeHour":18
+    },
+    "MCCLURE":{
+        "NAME":"McClure Hall",
+        "VALUE":500
+    },
+    "JOHN":{
+        "name": "John Mabee Hall",
+        "tags": ["dorm"],
+        "livingStyle": "All male, community style bathrooms"
+    }
+}
