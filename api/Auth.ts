@@ -9,12 +9,12 @@ import * as Application from 'expo-application';
 export const auth_request = async (): Promise<string> => {
 
     return new Promise((resolve, reject) => {
-        const callback_url = AuthSession.makeRedirectUri({ scheme: 'com.example.StartTU', path: 'auth' })
-
+        const callback_url = 'com.example.StartTU://auth'
+        
         let url = 'https://login.microsoftonline.com/{tenant}/oauth2/v2.0/authorize?' + 
                 'client_id={client}' + 
                 '&response_type=code' + 
-                '&redirect_uri={callback}/code' +
+                '&redirect_uri={callback}' +
                 '&response_mode=query' + 
                 '&scope=user.read%20mail.readwrite'
 
