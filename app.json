@@ -21,7 +21,7 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.example.StartTU",
-      "config": {"googleMapsApiKey": "AIzaSyAk8jFnz8QvwmW0kQxCtbC-NXzZj3gmy80"}
+      "config": {"googleMapsApiKey": "{Key}"}
     },
     "android": {
       "adaptiveIcon": {

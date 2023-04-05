@@ -5,6 +5,7 @@ import {Client_Id, Tenant_Id, StartTU_Secret_Value} from '../creds'
 import * as Application from 'expo-application';
 
 
+
 export const auth_request = async (): Promise<string> => {
 
     return new Promise((resolve, reject) => {
@@ -36,7 +37,6 @@ export const auth_request = async (): Promise<string> => {
             else {
                 //If authentication is successful, get the authorization code from the token
                 resolve(authResponse.params.code);
-                //console.log(authResponse.params.code)
             }
 
           }
@@ -50,6 +50,12 @@ export const auth_request = async (): Promise<string> => {
             }
         );
     })
-    
-
 };
+
+export const retrieve_token = async (auth_code: string) => {
+    console.log('CALLING INSIDE retrieve_token')
+    console.log(auth_code)
+    const callback_url = AuthSession.makeRedirectUri({ scheme: 'com.example.StartTU', path: 'auth' })
+
+    let url = 'https://login.microsoftonline.com/{tenant}/oauth2/v2.0/token?' + 
+}
