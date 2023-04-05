@@ -3,7 +3,7 @@ import {Alert, Button, SafeAreaView, TextInput } from 'react-native';
 import { Card } from 'react-native-paper'
 import {useRoute} from '@react-navigation/native';
 import { isPropertySignature } from 'typescript';
-
+import { auth_request } from '../api/Auth';
 
 //npm install react-native-paper@5.0.0-rc.9
 
@@ -20,15 +20,15 @@ const LoginPage = (screenInterface: LoginScreenInterface) =>  {
 
     const studentLogin = () => {
         setLoginType(STUDLOG_STATE);
-        console.log(loginType);
-        screenInterface.navigation.navigate("main", {paramKey: 0});
+        auth_request().then((code: string) => {
+            console.log(code)
+            screenInterface.navigation.navigate("main", {paramKey: 0});
+        });
     }
 
     const guestLogin = () => {
         setLoginType(GUESTLOG_STATE);
-        console.log(loginType);
         screenInterface.navigation.navigate("main", {paramKey: 1});
-
     }
 
     return(

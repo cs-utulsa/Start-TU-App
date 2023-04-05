@@ -11,6 +11,7 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
+    "scheme": "StartTU",
     "updates": {
       "fallbackToCacheTimeout": 0
     },
@@ -19,8 +20,8 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.example.ProjectName",
-      "config": {"googleMapsApiKey": "TOKEN GOES HERE"}
+      "bundleIdentifier": "com.example.StartTU",
+      "config": {"googleMapsApiKey": "AIzaSyAk8jFnz8QvwmW0kQxCtbC-NXzZj3gmy80"}
     },
     "android": {
       "adaptiveIcon": {
