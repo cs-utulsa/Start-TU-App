@@ -57,5 +57,5 @@ export const retrieve_token = async (auth_code: string) => {
     console.log(auth_code)
     const callback_url = AuthSession.makeRedirectUri({ scheme: 'com.example.StartTU', path: 'auth' })
 
-    let url = 'https://login.microsoftonline.com/{tenant}/oauth2/v2.0/token?' + 
+    let url = 'https://login.microsoftonline.com/{tenant}/oauth2/v2.0/token?';
 }
