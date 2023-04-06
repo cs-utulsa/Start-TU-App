@@ -1,9 +1,7 @@
 import axios, { AxiosRequestConfig } from 'axios';
 import * as AuthSession from 'expo-auth-session';
 
-import {Client_Id, Tenant_Id, StartTU_Secret_Value} from '../creds'
-import * as Application from 'expo-application';
-import { makeRedirectUri, useAuthRequest, useAutoDiscovery } from 'expo-auth-session';
+import {Client_Id, Tenant_Id} from '../creds'
 
 
 export const auth_request = async (): Promise<string> => {
@@ -55,8 +53,34 @@ export const auth_request = async (): Promise<string> => {
     })
 };
 
-export const retrieve_token = async (auth_code: string) => {
+export const retrieve_token = async (auth_code: string): Promise<string> => {
+    return new Promise((resolve, reject) => {
+        const callback_url = 'msauth.com.example.StartTU://auth'
 
+        let url = 'https://login.microsoftonline.com/{tenant}/oauth2/v2.0/token'
+
+        url = url.replace('{tenant}', Tenant_Id)
+
+        const requestBody = new URLSearchParams();
+        requestBody.append('grant_type', 'authorization_code');
+        requestBody.append('code', auth_code);
+        requestBody.append('client_id', Client_Id)
+        requestBody.append('redirect_uri', callback_url)
+
+        const config: AxiosRequestConfig = {
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        };
+
+        axios.post(url, requestBody.toString(), config)
+        .then(response => {
+            resolve(response.data.access_token)
+        })
+        .catch(error => {
+            reject(error.response.data.error_description)
+        });
+    })
     const callback_url = 'msauth.com.example.StartTU://auth'
 
     let url = 'https://login.microsoftonline.com/{tenant}/oauth2/v2.0/token'

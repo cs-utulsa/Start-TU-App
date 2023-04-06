@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {View, Image, TouchableOpacity} from 'react-native';
 import {useRoute} from '@react-navigation/native';
 import {StatusBar} from 'expo-status-bar';
@@ -30,7 +30,8 @@ const MainPage = (screenInterface: MainScreenInterface, route: any) => {
     const[paneState, setPaneState] = useState(MAP_STATE);
   
     route = useRoute();
-    const loginState = route.params.paramKey;
+    const loginState: number = route.params.paramKey[0];
+    const access_token: string = route.params.paramKey[1];
     
     return (
         <View style={{flex: 1, backgroundColor: TU_BLUE}}>

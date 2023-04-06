@@ -21,15 +21,16 @@ const LoginPage = (screenInterface: LoginScreenInterface) =>  {
     const studentLogin = () => {
         setLoginType(STUDLOG_STATE);
         auth_request().then((code: string) => {
-            retrieve_token(code)
+            retrieve_token(code).then((access_token: string) => {
+                screenInterface.navigation.navigate("main", {paramKey: [STUDLOG_STATE, access_token]});
+            })
             
         });
-        screenInterface.navigation.navigate("main", {paramKey: 0});
     }
 
     const guestLogin = () => {
         setLoginType(GUESTLOG_STATE);
-        screenInterface.navigation.navigate("main", {paramKey: 1});
+        screenInterface.navigation.navigate("main", {paramKey: [GUESTLOG_STATE]});
     }
 
     return(
