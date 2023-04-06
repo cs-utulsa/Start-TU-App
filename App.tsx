@@ -20,6 +20,7 @@ export default function App() {
 
   useEffect(() => {
     populate();
+    
     (async () => {
 
       let { status } = await Location.requestForegroundPermissionsAsync();

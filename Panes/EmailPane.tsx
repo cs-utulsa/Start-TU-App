@@ -78,7 +78,6 @@ const EmailPane = () => {
     )
 }
 
-
 const email_styles = StyleSheet.create({
     pane: {
       height: '100%',
