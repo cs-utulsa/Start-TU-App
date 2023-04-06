@@ -20,7 +20,13 @@ const LoginPage = (screenInterface: LoginScreenInterface) =>  {
 
     const studentLogin = () => {
         setLoginType(STUDLOG_STATE);
+
+        //Making the an authentication request to get an authentication code.
+        //The user will enter their username and password in this request
         auth_request().then((code: string) => {
+
+            //Use the authentication code to again call the azure server to obtain
+            //an access code to use throughout the whole app.
             retrieve_token(code).then((access_token: string) => {
                 screenInterface.navigation.navigate("main", {paramKey: [STUDLOG_STATE, access_token]});
             })
@@ -30,7 +36,7 @@ const LoginPage = (screenInterface: LoginScreenInterface) =>  {
 
     const guestLogin = () => {
         setLoginType(GUESTLOG_STATE);
-        screenInterface.navigation.navigate("main", {paramKey: [GUESTLOG_STATE]});
+        screenInterface.navigation.navigate("main", {paramKey: [GUESTLOG_STATE, null]});
     }
 
     return(
@@ -38,8 +44,6 @@ const LoginPage = (screenInterface: LoginScreenInterface) =>  {
             <Card>
                 <Card.Title title = "LOGIN PAGE"></Card.Title>
                 <Card.Content>
-                    <TextInput placeholder = {"USERNAME"} placeholderTextColor={'black'}/>
-                    <TextInput placeholder = {"PASSWORD"} placeholderTextColor={'black'}/>
                     <Button
                         onPress = {studentLogin}
                         title = "STUDENT LOGIN"
