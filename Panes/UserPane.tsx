@@ -1,22 +1,37 @@
-import React, { useState } from 'react';
-import { Text, View, StyleSheet, Button, Alert, Image, TouchableOpacity, Switch, TextInput } from 'react-native';
-import {StatusBar} from 'expo-status-bar';
-import { getTokenSourceMapRange, isPropertySignature, setTextRange } from 'typescript';
-import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
+import React, { useState, useEffect, FC } from 'react';
+import { Text, View,  } from 'react-native';
 
 import styles from './PaneStyles';
 
-const UserPane = () => {
+import {get_profile_data} from '../api/User'
+
+type UserPaneProps = {
+    access_token: string
+}
+
+export type UserPaneData = {
+    name: string
+    email: string
+}
+
+const UserPane:FC<UserPaneProps>  = ({access_token}) => {
+  
+  const [userPaneData, setUserPaneData] = useState<UserPaneData>({} as UserPaneData)
+  
+  //Upon first rendering this pane, executing this useEffect
+  useEffect(() => {
+
+      //Use the access token to get the user profile(fullname, email) from Azure.
+      get_profile_data(access_token).then((retrievedData: UserPaneData) => {
+        setUserPaneData(retrievedData);
+      })
+  }, [access_token])
+
+
   return(
     <View style={styles.userPane}>
-        <Text style={{fontSize: 50}}> Ben</Text>
-        <Text style={{fontSize: 20}}> Benjamin Hughes </Text>
-        <Text style={{fontSize: 5}}> {"\n"} </Text>
-        <Text style={{fontSize: 20}}> bmh7113@utulsa.edu</Text>
-        <Text style={{fontSize: 10}}> {"\n"} </Text>
-        <Text style={{fontSize: 30}}> Bachelor of Science</Text>
-        <Text style={{fontSize: 20}}> Major in Computer Science</Text>
-        <Text style={{fontSize: 20}}> Minor in Spanish</Text>
+        <Text style={{fontSize: 50}}>{userPaneData.name}</Text>
+        <Text style={{fontSize: 20}}>{userPaneData.email}</Text>
     </View>
   )
 }

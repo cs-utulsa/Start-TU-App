@@ -20,8 +20,7 @@ export const auth_request = async (): Promise<string> => {
                  .replace('{client}', Client_Id)
                  .replace('{callback}', callback_url)
 
-        console.log(url)
-        let authResponse = AuthSession.startAsync({
+        AuthSession.startAsync({
             authUrl:    url,
             returnUrl:   callback_url
         })
@@ -36,7 +35,6 @@ export const auth_request = async (): Promise<string> => {
             } 
             else {
                 //If authentication is successful, get the authorization code from the token
-                console.log(authResponse.params)
                 resolve(authResponse.params.code);
             }
 
@@ -46,7 +44,8 @@ export const auth_request = async (): Promise<string> => {
             reject('User declining further continuing');
           } 
 
-        }).catch((error) => {
+        })
+        .catch((error) => {
                 reject(error);
             }
         );

@@ -30,7 +30,6 @@ const LoginPage = (screenInterface: LoginScreenInterface) =>  {
             retrieve_token(code).then((access_token: string) => {
                 screenInterface.navigation.navigate("main", {paramKey: [STUDLOG_STATE, access_token]});
             })
-            
         });
     }
 

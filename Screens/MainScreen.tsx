@@ -27,11 +27,21 @@ interface MainScreenInterface {
 
 const MainPage = (screenInterface: MainScreenInterface, route: any) => {
 
-    const[paneState, setPaneState] = useState(MAP_STATE);
-  
     route = useRoute();
-    const loginState: number = route.params.paramKey[0];
-    const access_token: string = route.params.paramKey[1];
+
+    const[paneState, setPaneState] = useState(MAP_STATE);
+
+    //State for telling if the user is logged on as a guest or as a student
+    const[loginState, setLoginState] = useState<number>(0);
+
+    //If the user is logged on as a student, keep track of the access token 
+    const[access_token, setAccess_Token] = useState<string>('')
+    
+    //Upon initially rendering this page, set the login state and access token
+    useEffect(() => {
+      setLoginState(route.params.paramKey[0])
+      setAccess_Token(route.params.paramKey[1])
+    }, [])
     
     return (
         <View style={{flex: 1, backgroundColor: TU_BLUE}}>
@@ -46,7 +56,7 @@ const MainPage = (screenInterface: MainScreenInterface, route: any) => {
             </View>
             <View style={{flex: 1}}>
               <StatusBar style="light"/>
-              {loginState == 0 && paneState == USER_STATE && <UserPane></UserPane>}
+              {loginState == 0 && paneState == USER_STATE && <UserPane access_token={access_token}></UserPane>}
               {loginState == 1 && paneState == USER_STATE && <GuestPane></GuestPane>}
               {loginState == 0 && paneState == CLASSES_STATE && <ClassesPane></ClassesPane>}
               {loginState == 1 && paneState == CLASSES_STATE && <GuestPane></GuestPane>}
