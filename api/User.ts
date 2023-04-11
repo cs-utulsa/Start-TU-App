@@ -1,5 +1,10 @@
 import axios, { AxiosRequestConfig } from 'axios';
-import { UserPaneData } from '../Panes/UserPane';
+
+
+type UserPaneData = {
+    name: string
+    email: string
+}
 
 export const get_profile_data = async (access_token: string): Promise<UserPaneData> => {
     return new Promise((resolve, reject) => {
