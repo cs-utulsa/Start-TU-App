@@ -14,7 +14,7 @@ const MapPane=() => {
   const [markerData, setMarkerData] = useState<Location_Data[]>([]);
   
   const [buildings, setBuildings] = useState<BuildingData[]>(buildingMap);
-  const [buildingData, setBuildingData] = useState<BuildingData>({name: "", color: 'black', coords: [], tags: ['']});
+  const [buildingData, setBuildingData] = useState<BuildingData>({name: "", color: 'black', coords: [], tags: [''], hasImages:false, images: []});
   
   const [formVisible, setFormVisible] = useState<boolean>(false);
   
