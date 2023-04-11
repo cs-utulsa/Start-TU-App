@@ -246,40 +246,44 @@ const Fifth_Generic_Event: Event_Data = {
 
 const email1: Email_Data = {
     Id: '1',
-    Sender_Email: 'john-doe@utulsa',
-    Receiver_Email: 'jane-doe@utulsa',
-    Subject: 'subject1',
-    Body: 'body1',
+    Sender_Email: 'michael-futch@utulsa',
+    Receiver_Email: 'bmh7113@utulsa',
+    Subject: 'PHIL-1063-01(23/SP): Ethics and Prob Society: Readings Redux',
+    Body: 
+        'Students,\n\nDisregard the last email and the attached article.  We will cover the two chapters on drugs in our book (Chapters 41 and 42), beginning with 41 on Friday.  ' +
+        'The syllabus has been filled out for the remainder of the semester with the two topics the class selected today.  That can be accessed on Harvey.\n\n' +
+        'See you Friday.\n\n' +
+        'Dr. Futch',
     sentDateTime: new Date('2023-02-19'),
     receivedDateTime: new Date('2023-02-20')
 }
 
 const email2: Email_Data = {
     Id: '2',
-    Sender_Email: 'jane-doe@utulsa',
-    Receiver_Email: 'john-doe@utulsa',
-    Subject: 'subject2',
-    Body: 'body2',
+    Sender_Email: 'akram-burris@utulsa',
+    Receiver_Email: 'bmh7113@utulsa',
+    Subject: 'CS 4503 - NO CLASS Sept 15',
+    Body: 'Hello All, I have some bad...',
     sentDateTime: new Date('2023-02-18'),
     receivedDateTime: new Date('2023-02-19')
 }
 
 const email3: Email_Data = {
     Id: '3',
-    Sender_Email: 'jane-doe@utulsa',
-    Receiver_Email: 'john-doe@utulsa',
-    Subject: 'subject3',
-    Body: 'body3',
+    Sender_Email: 'handshake@g.joinhandshake.com',
+    Receiver_Email: 'bmh7113@utulsa',
+    Subject: 'Benjamin, we think you\'ll like these new opportunities.',
+    Body: 'Picked for you based on yo...',
     sentDateTime: new Date('2023-01-18'),
     receivedDateTime: new Date('2023-01-19')
 }
 
 const email4: Email_Data = {
     Id: '4',
-    Sender_Email: 'jane-doe@utulsa',
-    Receiver_Email: 'john-doe@utulsa',
-    Subject: 'subject4',
-    Body: 'body4',
+    Sender_Email: 'messages-noreply@linkedin.com',
+    Receiver_Email: 'bmh7113@utulsa',
+    Subject: 'I just requested to connect!',
+    Body: 'Hi Benjamin, I\'d like to join...',
     sentDateTime: new Date('2022-12-18'),
     receivedDateTime: new Date('2022-12-19')
 }

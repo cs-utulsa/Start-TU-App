@@ -21,8 +21,10 @@ export type BuildingData = {
     hours?: string,
     tags: string[],
     data?: any,
-    coords: LatLng[]
-    color: string
+    coords: LatLng[],
+    color: string,
+    hasImages: boolean,
+    images: any[]
 }
 
 export const buildingMap: BuildingData[] = [
@@ -35,6 +37,8 @@ export const buildingMap: BuildingData[] = [
             {latitude: 36.15377150292973, longitude: -95.94231245481298}],
         tags: ['all', 'ens', 'keplinger'],
         code: "KEP",
+        hasImages: false,
+        images: [],
     },
     {
         name: "Lafortune House",
@@ -50,7 +54,9 @@ export const buildingMap: BuildingData[] = [
             {latitude: 36.15032005423231, longitude: -95.9424561737064}
         ],
         tags: ['lafortune house', 'all', 'dorm', 'housing'],
-        code: "LAFO"
+        code: "LAFO",
+        hasImages: false,
+        images: []
     },
     {
         name:"Rayzor Hall",
@@ -74,6 +80,8 @@ export const buildingMap: BuildingData[] = [
             {latitude: 36.15319711262925, longitude: -95.94296104403304}, {latitude: 36.15319711262925, longitude: -95.94297445507699}, 
             {latitude: 36.1532610016228, longitude: -95.9429731139726}, {latitude: 36.1532610016228, longitude: -95.94296171458524}],
         tags: ['all', 'ens', 'rayzor hall'],
+        hasImages: false,
+        images: []
     },
     {
         name: "John Mabee Hall",
@@ -91,6 +99,8 @@ export const buildingMap: BuildingData[] = [
             {latitude: 36.153520733475084, longitude: -95.94899988429876}
         ],
         tags: ['all', 'dorm', 'john mabee hall'],
+        hasImages: true,
+        images: [require('../building_images/John.jpg')]
     },
     {
         name: "Stephenson Hall",
@@ -104,6 +114,8 @@ export const buildingMap: BuildingData[] = [
             {latitude: 36.15328313482854, longitude: -95.94233653201488}, {latitude: 36.153284955980695, longitude: -95.94231961606665}
         ],
         tags: ['all', 'educ', 'ens', 'stephenson hall'],
+        hasImages: false,
+        images: []
     },
     {
         name: "Chapman Hall",
@@ -124,6 +136,8 @@ export const buildingMap: BuildingData[] = [
             {latitude: 36.15333034453379, longitude: -95.9479265981025}, {latitude: 36.15333088596521, longitude: -95.94782802692778}
         ],
         tags: ['all', 'chapman hall'],
+        hasImages: true,
+        images: [require('../building_images/Chapman.jpg')]
     },
     {
         name: "Mary K. Chapman Center",
@@ -140,6 +154,8 @@ export const buildingMap: BuildingData[] = [
             {latitude: 36.15335646132582, longitude: -95.94844417668796}
         ],
         tags: ['all', 'mary k chapman center', 'chapman center'],
+        hasImages: false,
+        images: []
     },
     {
         name: "Pi Kappa Alpha Fraternity",
@@ -151,6 +167,8 @@ export const buildingMap: BuildingData[] = [
             {latitude: 36.151051741469814, longitude: -95.94403248606906}, {latitude: 36.151051741469814, longitude: -95.9442279272258}
         ],
         tags: ['all', 'fraternity', 'pi kappa alpha', 'pike'],
+        hasImages: false,
+        images: []
     },
     {
         name: "McClure Hall",
@@ -164,6 +182,8 @@ export const buildingMap: BuildingData[] = [
             {latitude: 36.151158798257, longitude: -95.94755759335142}, {latitude: 36.151159503814284, longitude: -95.94743176691314}
       ],
       tags: ['all', 'mcclure hall', 'admin'],
+      hasImages: false,
+        images: []
     },
     {
         name: "United Methodist Church",
@@ -180,6 +200,8 @@ export const buildingMap: BuildingData[] = [
             {latitude: 36.15377939149503, longitude: -95.94659567909437}, {latitude: 36.15378101394692, longitude: -95.94672628921367}
         ],
         tags: ['all', 'umc', 'united methodist church', 'worship', 'church'],
+        hasImages: false,
+        images: []
     },
     {
         name: "West Village",
@@ -205,6 +227,8 @@ export const buildingMap: BuildingData[] = [
             {latitude: 36.154532027204475, longitude: -95.948856932848}, {latitude: 36.15453323101333, longitude: -95.94881518718397}
         ],
         tags: ['all', 'apt', 'apartment', 'west village'],
+        hasImages: false,
+        images: []
     },
     {
         name: "West Village",
@@ -223,6 +247,8 @@ export const buildingMap: BuildingData[] = [
             {latitude: 36.15395265185084, longitude: -95.94879572246545}, {latitude: 36.15395265185084, longitude: -95.9487695709297}
         ],
         tags: ['all', 'apt', 'apartment', 'west village'],
+        hasImages: false,
+        images: []
     },
     {
         name: "West Village",
@@ -239,6 +265,8 @@ export const buildingMap: BuildingData[] = [
             {latitude: 36.15440907362343, longitude: -95.94837662731173}, {latitude: 36.15440961504741, longitude: -95.94840143774309}, {latitude: 36.15452223115806, longitude: -95.94840277884747}, {latitude: 36.15452223115806, longitude: -95.94837863896831}
         ],
         tags: ['all', 'apt', 'apartment', 'west village'],
+        hasImages: false,
+        images: []
     },
     {
         name: "Helmerich Hall",
@@ -251,6 +279,8 @@ export const buildingMap: BuildingData[] = [
             {latitude: 36.15295529734072, longitude: -95.94728846205815}, {latitude: 36.15295438676083, longitude: -95.94750273073538}, {latitude: 36.15308459957776, longitude: -95.9475016030055}, {latitude: 36.15308551015614, longitude: -95.94747679294814}
         ],
         tags: ['all', 'helmerich hall', 'education'],
+        hasImages: true,
+        images: [require('../building_images/Helmerich.jpg')]
     },
     {
         name: "Phillips Hall",
@@ -264,6 +294,8 @@ export const buildingMap: BuildingData[] = [
             {latitude: 36.15312193328048, longitude: -95.94667046603922}, {latitude: 36.15324395063084, longitude: -95.94666821057947}, {latitude: 36.15324395063084, longitude: -95.94659265267751}
         ],
         tags: ['phillips hall', 'all', 'art', 'educ'],
+        hasImages: true,
+        images: [require('../building_images/John.jpg')]
     },
     {
         name: "McFarlin Library",
@@ -285,6 +317,8 @@ export const buildingMap: BuildingData[] = [
             {latitude: 36.15253389626568, longitude: -95.94601340094253}
         ],
         tags: ['mcfarlin library', 'library', 'all'],
+        hasImages: true,
+        images: [require('../building_images/LibraryFront.jpg'), require('../building_images/LibrarySide.jpg')]
     },
     {
         name: "Lottie Jane Mabee Hall",
@@ -300,6 +334,8 @@ export const buildingMap: BuildingData[] = [
             {latitude: 36.151538001719956, longitude: -95.94899201628796}, {latitude: 36.15154720626442, longitude: -95.94899134573575}, {latitude: 36.15154828915191, longitude: -95.94868758559006}
         ],
         tags: ['lottie jane mabee', 'dorm', 'all'],
+        hasImages: false,
+        images: []
     },
     {
         name: "Hardesty Hall",
@@ -316,6 +352,8 @@ export const buildingMap: BuildingData[] = [
             {latitude: 36.15293136081248, longitude: -95.94464273599678}, {latitude: 36.152932369463876, longitude: -95.94480263213039}
         ],
         tags: ['hardesty hall', 'dorm', 'all'],
+        hasImages: false,
+        images: []
     },
     {
         name: "Kappa Sigma Faternity",
@@ -325,6 +363,8 @@ export const buildingMap: BuildingData[] = [
             {latitude: 36.15106643152878, longitude: -95.94329259721178}, {latitude: 36.151061919383594, longitude: -95.9435934201113}
         ],
         tags: ['kappa sigma', 'k sig', 'ksig', 'fraternity', 'all'],
+        hasImages: false,
+        images: []
     },
     {
         name: "Kappa Alpha Fraternity",
@@ -339,6 +379,8 @@ export const buildingMap: BuildingData[] = [
             {latitude: 36.151181491143035, longitude: -95.94300667572347}, {latitude: 36.151181491143035, longitude: -95.94294427592696}
         ],
         tags: ['kappa alpha', 'fraternity', 'all'],
+        hasImages: false,
+        images: []
     },
     {
         name: "Lambda Chi Alpha Fraternity",
@@ -349,6 +391,8 @@ export const buildingMap: BuildingData[] = [
             {latitude: 36.15117171484286, longitude: -95.94271423484682}, {latitude: 36.151173218889156, longitude: -95.94249909524994}
         ],
         tags: ['k a', 'kappa alpha', 'fraternity', 'all'],
+        hasImages: false,
+        images: []
     },
     {
         name: "Sigma Nu Fraternity",
@@ -360,6 +404,8 @@ export const buildingMap: BuildingData[] = [
             {latitude: 36.15113336165186, longitude: -95.94225880940499}, {latitude: 36.15113260962833, longitude: -95.94226998548794}
         ],
         tags: ['sigma nu', 'sig nu', 'fraternity', 'all'],
+        hasImages: false,
+        images: []
     },
     {
         name: "Sigma Chi",
@@ -371,6 +417,8 @@ export const buildingMap: BuildingData[] = [
             {latitude: 36.15102113001322, longitude: -95.94163596544513}, {latitude: 36.15102492014487, longitude: -95.94192027957351}
         ],
         tags: ['sigma chi', 'sig chi', 'fraternity', 'all'],
+        hasImages: false,
+        images: []
     },
     {
         name: "Kendall Hall",
@@ -397,6 +445,8 @@ export const buildingMap: BuildingData[] = [
             {latitude: 36.15215607467089, longitude: -95.94548275921032}, {latitude: 36.15215715754999, longitude: -95.94537278865121}
         ],
         tags: ['kendall hall', 'music', 'drama', 'education', 'all'],
+        hasImages: true,
+        images: [require('../building_images/Kendall.jpg')]
     },
     {
         name: "Alan Chapman Student Union",
@@ -411,6 +461,8 @@ export const buildingMap: BuildingData[] = [
             {latitude: 36.15368721918685, longitude: -95.94374045085638}
         ],
         tags: ['acac', 'acsu', 'alan chapman student union', 'food', 'dining', 'all'],
+        hasImages: false,
+        images: []
     },
     {
         name: "Oliphant Hall",
@@ -426,6 +478,8 @@ export const buildingMap: BuildingData[] = [
             {latitude: 36.1513351486974, longitude: -95.94525209274752}
         ],
         tags: ['oliphant hall', 'biology', 'education', 'collegian', 'ens', 'foreign languages', 'languages', 'all'],
+        hasImages: true,
+        images: [require('../building_images/OliphantFront.jpg'), require('../building_images/OliphantCourt.jpg')]
     },
     {
         name: "John Zink Hall",
@@ -435,6 +489,8 @@ export const buildingMap: BuildingData[] = [
             {latitude: 36.150942679673115, longitude: -95.94438486837932}, {latitude: 36.15094450087959, longitude: -95.94485964265841}
         ],
         tags: ['john zink hall', 'all'],
+        hasImages: false,
+        images: []
     },
     {
         name: "Harwell Hall",
@@ -450,6 +506,8 @@ export const buildingMap: BuildingData[] = [
             {latitude: 36.151554138874474, longitude: -95.94486374450376}, {latitude: 36.151554138874474, longitude: -95.94483759296804}
         ],
         tags: ['harwell hall', 'all'],
+        hasImages: false,
+        images: []
     },
     {
         name: "Mabee Gym",
@@ -476,6 +534,8 @@ export const buildingMap: BuildingData[] = [
             {latitude: 36.15060615878468, longitude: -95.9444826545699}, {latitude: 36.15060615878468, longitude: -95.94443571591604}
         ],
         tags: ['mabee gym', 'all'],
+        hasImages: false,
+        images: []
     },
     {
         name: "Baptist Collegiate Ministries",
@@ -487,6 +547,8 @@ export const buildingMap: BuildingData[] = [
             {latitude: 36.150427524046336, longitude: -95.94650401486248}, {latitude: 36.15042828977436, longitude: -95.94652203263873}
         ],
         tags: ['bcm', 'baptist collegiate ministries', 'worship', 'church', 'all'],
+        hasImages: false,
+        images: []
     },
     {
         name: "Westby Hall",
@@ -496,6 +558,8 @@ export const buildingMap: BuildingData[] = [
             {latitude: 36.150303572289715, longitude: -95.9465477682787}, {latitude: 36.15030098982796, longitude: -95.94671686621788}
         ],
         tags: ['westby hall', 'all'],
+        hasImages: false,
+        images: []
     },
     {
         name: "Collins Hall",
@@ -524,6 +588,8 @@ export const buildingMap: BuildingData[] = [
             {latitude: 36.150211738316344, longitude: -95.94725284909536}, {latitude: 36.15021227976931, longitude: -95.94723742639482}
         ],
         tags: ['collins hall', 'administration', 'all'],
+        hasImages: false,
+        images: []
     },
     {
         name: "Fisher South",
@@ -547,6 +613,8 @@ export const buildingMap: BuildingData[] = [
             {latitude: 36.150181958396615, longitude: -95.94781007804978}, {latitude: 36.15018249984981, longitude: -95.94776313939593}
         ],
         tags: ['fisher south', 'dorm', 'all'],
+        hasImages: false,
+        images: []
     },
     {
         name: "Fisher Suites",
@@ -569,6 +637,8 @@ export const buildingMap: BuildingData[] = [
             {latitude: 36.15037221873793, longitude: -95.94900472490164}, {latitude: 36.15037093094106, longitude: -95.94908606229701}
         ],
         tags: ['fisher suites', 'fisher west', 'west', 'suites', 'dorm', 'all'],
+        hasImages: false,
+        images: []
     },
     {
         name: "Fisher East",
@@ -594,6 +664,8 @@ export const buildingMap: BuildingData[] = [
             {latitude: 36.15038906362532, longitude: -95.94807783735693}, {latitude: 36.15038906362532, longitude: -95.94816702079927}
         ],
         tags: ['fisher east', 'admin', 'all'],
+        hasImages: false,
+        images: []
     },
     {
         name: "Pat Case Dining Center",
@@ -611,6 +683,8 @@ export const buildingMap: BuildingData[] = [
             {latitude: 36.150378976559374, longitude: -95.94863634883822}
         ],
         tags: ['pat case dining center', 'pcdc', 'dining', 'food', 'all'],
+        hasImages: false,
+        images: []
     },
     {
         name: "Physical Plant",
@@ -632,6 +706,8 @@ export const buildingMap: BuildingData[] = [
             {latitude: 36.15048445424295, longitude: -95.94580785734001}, {latitude: 36.15048445424295, longitude: -95.94601103465601}
         ],
         tags: ['physical plant', 'pp', 'all'],
+        hasImages: false,
+        images: []
     },
     {
         name: "Lorton Hall",
@@ -646,6 +722,8 @@ export const buildingMap: BuildingData[] = [
             {latitude: 36.15146283149811, longitude: -95.94826811484268}, {latitude: 36.15146337294245, longitude: -95.94817759029593}
         ],
         tags: ['lorton hall', 'education', 'english', 'psychology', 'all'],
+        hasImages: false,
+        images: []
     },
     {
         name: "Alexander Health Center",
@@ -658,6 +736,8 @@ export const buildingMap: BuildingData[] = [
             {latitude: 36.1533855925271, longitude: -95.94614691033209}, {latitude: 36.153384826827924, longitude: -95.94638872785532}
         ],
         tags: ['alexander health center', 'medicine', 'all'],
+        hasImages: false,
+        images: []
     },
     {
         name: "Tyrell hall",
@@ -667,6 +747,8 @@ export const buildingMap: BuildingData[] = [
             {latitude: 36.15149734965314, longitude: -95.94661381229115}, {latitude: 36.15149734965314, longitude: -95.94716634730229}
         ],
         tags: ['tyrell hall', 'all'],
+        hasImages: false,
+        images: []
     }
 ];
 
@@ -706,7 +788,8 @@ type BuildingListProps = {
     
 export const BuildingList: FC<BuildingListProps> = ({setVisible, visible, buildingData}) => {
     
-    const [dataState, setDataState] = useState<BuildingData>({name: "", color: 'black', coords: [], tags: ['']})
+    const [dataState, setDataState] = useState<BuildingData>({name: "", color: 'black', coords: [], tags: [''], hasImages: false, images: []})
+    var test = '../building_images/' + buildingData.images[0]
 
     return (
         <View>
@@ -745,6 +828,7 @@ export const BuildingList: FC<BuildingListProps> = ({setVisible, visible, buildi
                                 buildingData.code
                             }
                         </Text>
+                        { buildingData.hasImages && <Image source={buildingData.images[0]} style={{height: 150, width: 180}}/> }
                     </View>
 
                     <View style={styles.button}>
