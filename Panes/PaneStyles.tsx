@@ -68,6 +68,14 @@ export const styles = StyleSheet.create({
       alignItems: 'center',
       padding: 5
     },
+    settingIcon: {
+      height: 50,
+      width: 50,
+      borderWidth: 1,
+      borderRadius: 5,
+      alignItems: 'center',
+      padding: 5
+    }
 });
 
 export default styles
