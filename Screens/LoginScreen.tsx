@@ -9,6 +9,7 @@ import { isPropertySignature } from 'typescript';
 
 const STUDLOG_STATE = 0;
 const GUESTLOG_STATE = 1;
+const FACILITATOR_STATE = 2;
 
 interface LoginScreenInterface {
     navigation: any;
@@ -31,6 +32,12 @@ const LoginPage = (screenInterface: LoginScreenInterface) =>  {
 
     }
 
+    const facilitatorLogin = () => {
+        setLoginType(FACILITATOR_STATE);
+        console.log(loginType);
+        screenInterface.navigation.navigate("main", {paramKey: 2});
+    }
+
     return(
         <SafeAreaView>
             <Card>
@@ -45,6 +52,10 @@ const LoginPage = (screenInterface: LoginScreenInterface) =>  {
                     <Button
                         onPress = {guestLogin}
                         title = "GUEST LOGIN"
+                    />
+                    <Button
+                        onPress = {facilitatorLogin}
+                        title = "ADMIN LOGIN"
                     />
                 </Card.Content>
             </Card>

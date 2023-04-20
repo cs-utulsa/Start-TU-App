@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import {View, Image, TouchableOpacity} from 'react-native';
 import {useRoute} from '@react-navigation/native';
+import {MenuView} from '@react-native-menu/menu';
+import { MultipleSelectList, SelectList } from 'react-native-dropdown-select-list';
 import {StatusBar} from 'expo-status-bar';
 
 import CalendarPane from '../Panes/CalendarPane';
@@ -28,9 +30,18 @@ interface MainScreenInterface {
 const MainPage = (screenInterface: MainScreenInterface, route: any) => {
 
     const[paneState, setPaneState] = useState(MAP_STATE);
-  
+
+    const dropdownData = [
+      {key: '1', value: 'loginReturn'}
+    ]
+
     route = useRoute();
     const loginState = route.params.paramKey;
+
+    const loginReturn = () => {
+      screenInterface.navigation.navigate("login");
+    }
+
     
     return (
         <View style={{flex: 1, backgroundColor: TU_BLUE}}>
@@ -38,20 +49,25 @@ const MainPage = (screenInterface: MainScreenInterface, route: any) => {
           <View style={{flex: 1}}>
             <StatusBar style="light"/>
             <View style={{paddingTop:20, padding: 5}}>
-              <Image
-                style={{width: 50, height: 50}}
-                source={require('../assets/TUlogonormal.png')}
-              />
+              <TouchableOpacity
+                style = {styles.settingIcon}
+                activeOpacity = {1}
+                onPress = {loginReturn}>
+                <Image
+                  style={{width: 50, height: 50}}
+                  source={require('../assets/TUlogonormal.png')}
+                />
+              </TouchableOpacity>
             </View>
             <View style={{flex: 1}}>
               <StatusBar style="light"/>
-              {loginState == 0 && paneState == USER_STATE && <UserPane></UserPane>}
+              {loginState != 1 && paneState == USER_STATE && <UserPane></UserPane>}
               {loginState == 1 && paneState == USER_STATE && <GuestPane></GuestPane>}
-              {loginState == 0 && paneState == CLASSES_STATE && <ClassesPane></ClassesPane>}
+              {loginState != 1&& paneState == CLASSES_STATE && <ClassesPane></ClassesPane>}
               {loginState == 1 && paneState == CLASSES_STATE && <GuestPane></GuestPane>}
               {paneState == MAP_STATE && <MapPane></MapPane>}
               {paneState == CALENDER_STATE && <CalendarPane></CalendarPane>}
-              {loginState == 0 && paneState == EMAIL_STATE && <EmailPane></EmailPane>}
+              {loginState != 0 && paneState == EMAIL_STATE && <EmailPane></EmailPane>}
               {loginState == 1 && paneState == EMAIL_STATE && <GuestPane></GuestPane>}
               <BottomButtons state={paneState} changeState={setPaneState}></BottomButtons>
             </View>
@@ -86,5 +102,22 @@ const BottomButtons = ({state, changeState}: any) => (
         
     </View>
   );
+
+const DropdownMenu = () => {
+  <View>
+    <MenuView
+      title = "Dropdown Menu"
+      actions = {[
+        {
+          id: 'settings',
+          title: 'Settings',
+        }
+        
+      ]}
+      
+    >
+    </MenuView>
+  </View>
+}
 
 export default MainPage;
