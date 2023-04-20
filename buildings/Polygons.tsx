@@ -7,7 +7,7 @@ import buildingInfo from '../CONFIGS.json';
 
 const DORM_COLOR = '#103cab'
 const APT_COLOR = '#4D81F0'
-const EDUC_COLOR = '#ff4040'
+const EDUC_COLOR = '#e63030'
 const ADMIN_COLOR = '#930700'
 const SPORTS_COLOR = '#E3c759'
 const PRAY_COLOR = '#9EAFB1'
@@ -150,7 +150,7 @@ export const buildingMap: BuildingData[] = [
             {latitude: 36.15101089605051, longitude: -95.94392211929821}, {latitude: 36.15101182435575, longitude: -95.94403248606906}, 
             {latitude: 36.151051741469814, longitude: -95.94403248606906}, {latitude: 36.151051741469814, longitude: -95.9442279272258}
         ],
-        tags: ['all', 'fraternity', 'pi kappa alpha', 'pike'],
+        tags: ['greek life', 'all', 'fraternity', 'pi kappa alpha', 'pike'],
     },
     {
         name: "McClure Hall",
@@ -324,7 +324,7 @@ export const buildingMap: BuildingData[] = [
             {latitude: 36.15119060500146, longitude: -95.94359437479582}, {latitude: 36.15119051541939, longitude: -95.943293528552}, 
             {latitude: 36.15106643152878, longitude: -95.94329259721178}, {latitude: 36.151061919383594, longitude: -95.9435934201113}
         ],
-        tags: ['kappa sigma', 'k sig', 'ksig', 'fraternity', 'all'],
+        tags: ['greek life', 'kappa sigma', 'k sig', 'ksig', 'fraternity', 'all'],
     },
     {
         name: "Kappa Alpha Fraternity",
@@ -338,7 +338,7 @@ export const buildingMap: BuildingData[] = [
             {latitude: 36.151113809037454, longitude: -95.94307466356143}, {latitude: 36.151113809037454, longitude: -95.94300574438321}, 
             {latitude: 36.151181491143035, longitude: -95.94300667572347}, {latitude: 36.151181491143035, longitude: -95.94294427592696}
         ],
-        tags: ['kappa alpha', 'fraternity', 'all'],
+        tags: ['greek life', 'kappa alpha', 'fraternity', 'all'],
     },
     {
         name: "Lambda Chi Alpha Fraternity",
@@ -348,7 +348,7 @@ export const buildingMap: BuildingData[] = [
             {latitude: 36.151052143068505, longitude: -95.94237895235818}, {latitude: 36.1510491349712, longitude: -95.94271237216631}, 
             {latitude: 36.15117171484286, longitude: -95.94271423484682}, {latitude: 36.151173218889156, longitude: -95.94249909524994}
         ],
-        tags: ['k a', 'kappa alpha', 'fraternity', 'all'],
+        tags: ['greek life', 'lambda chi alpha', 'fraternity', 'all'],
     },
     {
         name: "Sigma Nu Fraternity",
@@ -359,7 +359,7 @@ export const buildingMap: BuildingData[] = [
             {latitude: 36.15103259043374, longitude: -95.94201293558}, {latitude: 36.15103334245824, longitude: -95.94225880940499}, 
             {latitude: 36.15113336165186, longitude: -95.94225880940499}, {latitude: 36.15113260962833, longitude: -95.94226998548794}
         ],
-        tags: ['sigma nu', 'sig nu', 'fraternity', 'all'],
+        tags: ['greek life', 'sigma nu', 'sig nu', 'fraternity', 'all'],
     },
     {
         name: "Sigma Chi",
@@ -370,7 +370,7 @@ export const buildingMap: BuildingData[] = [
             {latitude: 36.15103033461836, longitude: -95.94157695685246}, {latitude: 36.15103087606569, longitude: -95.94163596544513}, 
             {latitude: 36.15102113001322, longitude: -95.94163596544513}, {latitude: 36.15102492014487, longitude: -95.94192027957351}
         ],
-        tags: ['sigma chi', 'sig chi', 'fraternity', 'all'],
+        tags: ['greek life', 'sigma chi', 'sig chi', 'fraternity', 'all'],
     },
     {
         name: "Kendall Hall",
@@ -667,7 +667,94 @@ export const buildingMap: BuildingData[] = [
             {latitude: 36.15149734965314, longitude: -95.94661381229115}, {latitude: 36.15149734965314, longitude: -95.94716634730229}
         ],
         tags: ['tyrell hall', 'all'],
-    }
+    },
+    {
+        name: "Kappa Alpha Theta Sorority",
+        color: SORO_COLOR,
+        coords: [
+            {latitude: 36.152606830457266, longitude: -95.94230925296812}, {latitude: 36.15260899620301, longitude: -95.94221537565161}, {latitude: 36.15258412421947, longitude: -95.94222916384733}, {latitude: 36.15258401193138, longitude: -95.94214414723645}, {latitude: 36.152554774349404, longitude: -95.9421414650274}, {latitude: 36.152556940096595, longitude: -95.9420113778888}, {latitude: 36.15245081841411, longitude: -95.94201003678431}, {latitude: 36.15244865266397, longitude: -95.94213878281838}, {latitude: 36.152415083529505, longitude: -95.9421414650274}, {latitude: 36.152418332156046, longitude: -95.94208379753299}, {latitude: 36.152333867822136, longitude: -95.94207977421942}, {latitude: 36.15233061919211, longitude: -95.94203015335214}, {latitude: 36.15224940339726, longitude: -95.94203015335214}, {latitude: 36.152248320519426, longitude: -95.94218303926758}, {latitude: 36.15227106095079, longitude: -95.94218438037208}, {latitude: 36.15226889519572, longitude: -95.94229703315187}, {latitude: 36.15233819932867, longitude: -95.94229837425641}, {latitude: 36.152339282205254, longitude: -95.94229032762927}, {latitude: 36.15241724928056, longitude: -95.94229300983831}, 
+            {latitude: 36.15241724928056, longitude: -95.94216962822236}, {latitude: 36.15245190128914, longitude: -95.94216828711784}, {latitude: 36.15245190128914, longitude: -95.94219510920826}, {latitude: 36.152470310162464, longitude: -95.94219376810375}, {latitude: 36.152472475911985, longitude: -95.94225948222528}, {latitude: 36.152512542267296, longitude: -95.94225545891172}, {latitude: 36.152515790889815, longitude: -95.94231178530163}   
+        ],
+        tags: ['greek life', 'kappa alpha theta sorority', 'kat', 'sorority'],
+    },
+    {
+        name: "Delta Gamma Sorority",
+        color: SORO_COLOR,
+        coords: [
+            {latitude: 36.15257210032585, longitude: -95.94270875223721}, {latitude: 
+                36.15257210032585, longitude: -95.94258671172575}, {latitude: 36.1525471942344, longitude: -95.94258537062125}, {latitude: 36.15254611136067, longitude: -95.94247137673692}, {latitude: 36.15245514991476, longitude: -95.94247405894598}, {latitude: 36.15245623278974, longitude: -95.94242980249675}, {latitude: 36.152381514381275, longitude: -95.94242712028772}, {latitude: 36.152381514381275, longitude: -95.94245126016911}, {latitude: 36.152354442476565, longitude: -95.94245126016911}, {latitude: 36.152355525352945, 
+                longitude: -95.94243516691485}, {latitude: 36.15228405548064, longitude: -95.9424391902284}, {latitude: 36.15228080684853, longitude: -95.94255988963533}, {latitude: 36.15226131505305, longitude: -95.94255854853081}, {latitude: 36.15226564656358, longitude: -95.94271411665528}, {latitude: 36.1523457794651, longitude: -95.94271411665528}, {latitude: 36.15234686234158, 
+                longitude: -95.94266181357895}, {latitude: 36.15237068562052, longitude: -95.94266181357895}, {latitude: 36.15237393424889, longitude: -95.94269668229651}, {latitude: 36.152406420525345, longitude: -95.94269668229651}, {latitude: 36.152406420525345, longitude: -95.9426658368925}, {latitude: 36.15242049790761, longitude: -95.94266717799705}, {latitude: 36.15241833215666, longitude: -95.94270338781912}
+        ],
+        tags: ['greek life', 'delta gamma sorority', 'dg', 'sorority', 'all'],
+    },
+    {
+        name: "Kappa Kappa Gamma Sorority",
+        color: SORO_COLOR,
+        coords: [
+            {latitude: 36.152566685959066, longitude: -95.94298904307776}, {latitude: 36.15256776883249, longitude: -95.94280128844477}, {latitude: 36.15255260860304, longitude: -95.9428026295493}, {latitude: 36.15255369147667, longitude: -95.94276373751818}, {latitude: 36.152388011637264, longitude: -95.94276105530913}, {latitude: 36.15238692876134, longitude: -95.94282945163971}, {latitude: 36.15235444247684, longitude: -95.94282676943068}, {latitude: 36.15235444247684, longitude: -95.94281067617642}, {latitude: 36.15227755821654, longitude: -95.94281201728094}, {latitude: 36.15227539246165, longitude: -95.94285359152111}, {latitude: 36.15230679590188, longitude: -95.94285225041658}, {latitude: 36.152304630147775, longitude: -95.94294612773308}, {latitude: 36.15229596713078, longitude: -95.94294612773308}, {latitude: 36.15229488425362, longitude: -95.94301184185464}, {latitude: 36.15228297260355, longitude: -95.94301586516819}, {latitude: 36.152281889726176, longitude: -95.9430654860355}, {latitude: 36.15231112740989, longitude: 
+            -95.94306682714002}, {latitude: 36.15230787877889, longitude: -95.94314997562032}, {latitude: 36.15238476300947, longitude: -95.94314863451581}, {latitude: 36.152383680133504, longitude: -95.94307755597617}, {latitude: 36.15246056428976, longitude: -95.94307621487167}, {latitude: 36.15246056428976, longitude: -95.94298904307776}
+        ],
+        tags: ['greek life', 'sorority', 'kappa kappa gamma sorority', 'kkg', 'all'],
+    },
+    {
+        name: "Kappa Delta Sorority",
+        color: SORO_COLOR,
+        coords: [
+            {latitude: 36.15256560308597, longitude: -95.94353084930052}, {latitude: 
+            36.1525688517063, longitude: -95.94334980019012}, {latitude: 36.15248222178533, longitude: -95.94334845908561}, {latitude: 36.152483304659924, longitude: -95.94326933391885}, {latitude: 36.15234686234222, longitude: -95.94326799281433}, {latitude: 36.15234469658923, longitude: -95.94337930448961}, {latitude: 36.15226348080896, longitude: -95.94337930448961}, {latitude: 36.15226239793134, longitude: -95.94343026646142}, {latitude: 36.15229163562232, longitude: -95.9434289253569}, {latitude: 36.15229055274507, longitude: -95.9435482836593}, {latitude: 36.152371768497304, longitude: -95.9435482836593}, {latitude: 36.15237285137341, longitude: -95.94351475604626}, {latitude: 36.15243998966416, longitude: -95.94351341494175}, {latitude: 36.15243998966416, longitude: -95.94353219040504}, {latitude: 36.152463812914775, longitude: -95.94353219040504}, {latitude: 36.1524627300399, longitude: -95.9435496247638}, {latitude: 36.15249413340511, longitude: -95.9435482836593}, {latitude: 36.15249305053067, longitude: -95.94353219040504}
+        ],
+        tags: ['greek life', 'kappa delta sorority', 'kd', 'sorority', 'all'],
+    },
+    {
+        name: "Delta Delta Delta Sorority",
+        color: SORO_COLOR,
+        coords: [
+            {latitude: 36.15257643181976, longitude: -95.94434758194475}, {latitude: 
+            36.15257859756636, longitude: -95.944268456778}, {latitude: 36.15256560308592, longitude: -95.944268456778}, {latitude: 36.15256668595937, longitude: -95.94418799050672}, {latitude: 36.152573183199785, longitude: -95.94418664940218}, {latitude: 36.15257101745303, longitude: -95.94413971074394}, 
+            {latitude: 36.15256560308592, longitude: -95.94413971074394}, {latitude: 36.152564520212465, longitude: -95.94410081871283}, {latitude: 36.152480056036005, longitude: -95.94409947760829}, {latitude: 36.15247897316136, longitude: -95.94414507516203}, {latitude: 36.152445404039874, longitude: -95.94414373405752}, {latitude: 36.152445404039874, longitude: -95.94425906904634}, {latitude: 36.1524356581632, longitude: -95.94425772794182}, {latitude: 36.1523966746444, longitude: -95.94420274265644}, {latitude: 36.15238368013381, longitude: -95.94420140155194}, {latitude: 36.15238368013381, longitude: -95.94419201382027}, {latitude: 36.15237501712557, longitude: -95.94419201382027}, {latitude: 36.15237501712557, longitude: -95.9441236174897}, {latitude: 36.15236202261142, longitude: -95.9441236174897}, {latitude: 36.15236202261142, longitude: -95.94414239295298}, {latitude: 36.15229163562227, longitude: -95.94414239295298}, {latitude: 36.15229163562227, longitude: -95.94409545429474}, {latitude: 36.15221475130039, longitude: -95.94409411319022}, {latitude: 36.15221475130039, longitude: -95.94420274265644}, {latitude: 36.152209336908705, longitude: -95.94420408376098}, {latitude: 36.15220717115189, longitude: -95.94422956474688}, {latitude: 36.152224497204514, longitude: -95.94422822364236}, {latitude: 36.15222341432636, longitude: -95.94424834021018}, {latitude: 36.15223099447327, longitude: -95.94424699910564}, {latitude: 36.15223207735136, longitude: -95.9443516052583}, {latitude: 36.15237826575377, longitude: -95.9443516052583}, {latitude: 36.15237826575377, longitude: -95.94423627026949}, {latitude: 36.15238368013381, longitude: -95.94423358806043}, {latitude: 36.15238368013381, longitude: -95.94422285922427}, {latitude: 36.15242374653451, longitude: -95.94428320892773}, {latitude: 36.15243998966408, longitude: -95.9442818678232}, {latitude: 36.152437823913665, longitude: -95.94435831078091}, {latitude: 36.152561271591985, longitude: -95.9443569696764}, {latitude: 36.152564520212465, longitude: -95.94434758194475}
+        ],
+        tags: ['greek life', 'delta delta delta sorority', 'sorority', 'ddd', 'tri delta', 'all'],
+    },
+    {
+        name: "Chi Omega Sorority",
+        color: SORO_COLOR,
+        coords: [
+            {latitude: 36.15257426607324, longitude: -95.94468285807388}, {latitude: 
+            36.15256993457975, longitude: -95.94460507401163}, {latitude: 36.15255152572981, longitude: -95.94460373290713}, {latitude: 36.15255044285615, longitude: -95.9444776690821}, {latitude: 36.152426995160816, longitude: -95.94447498687305}, {latitude: 36.152424829410045, longitude: -95.94456215866695}, {latitude: 36.15237718287785, longitude: -95.94456215866695}, {latitude: 36.15237934862994, longitude: -95.94448303350019}, {latitude: 36.15230246439407, longitude: -95.94448303350019}, {latitude: 36.15230246439407, longitude: -95.94446425803689}, {latitude: 36.15228513835868, longitude: -95.94446425803689}, {latitude: 36.152281889726616, longitude: -95.94447498687305}, {latitude: 36.15222991159529, longitude: -95.94447498687305}, {latitude: 36.15222991159529, longitude: -95.94459032186191}, {latitude: 36.152208254030434, longitude: -95.94458898075737}, {latitude: 36.15220717115202, longitude: -95.9447472310909}, {latitude: 36.1522916356224, longitude: -95.94474588998638}, {latitude: 36.15229271849961, longitude: -95.94473784335925}, {latitude: 36.152312210287285, longitude: -95.94473784335925}, {latitude: 36.152311127410314, longitude: -95.9447150445824}, {latitude: 36.15229380137683, longitude: -95.9447163856869}, {latitude: 36.15229271849961, longitude: -95.94468554028292}, {latitude: 36.152360939735246, longitude: -95.94468688138744}, {latitude: 36.152359856858965, longitude: -95.94470699795525}, {latitude: 36.15237934862994, longitude: -95.94470833905979}, 
+            {latitude: 36.15238043150597, longitude: -95.94462921389302}, {latitude: 36.152389094513616, longitude: -95.94462921389302}, {latitude: 36.152390177389485, longitude: -95.94458763965287}, {latitude: 36.15242916091154, longitude: -95.94458763965287}, {latitude: 36.15242916091154, longitude: -95.94472443231403}, {latitude: 36.15248871903279, longitude: -95.944721750105}, {latitude: 36.15248871903279, longitude: -95.94468285807388}
+        ],
+        tags: ['greek life', 'chi omega sorority', 'chi-o', 'sorority', 'all'],
+    },
+    {
+        name: "Lorton Performance Center",
+        color: UNIV_COLOR,
+        coords: [
+            {latitude: 36.15209260400753, longitude: -95.94177521213632}, {latitude: 
+                36.1520964629528, longitude: -95.94147651507804}, {latitude: 36.1520424377017, longitude: -95.94147651507804}, {latitude: 36.1520424377017, longitude: -95.94140482778404}, {latitude: 36.15201928401125, longitude: -95.94140243820758}, {latitude: 36.15201928401125, longitude: -95.94136420498413}, 
+                {latitude: 36.15196525870698, longitude: -95.94136181540765}, {latitude: 36.15196911765853, longitude: -95.94130685514894}, {latitude: 36.15152340750008, longitude: -95.94130685514894}, {latitude: 36.15151954852659, longitude: -95.94136420498413}, {latitude: 36.15146745236616, longitude: -95.94136181540765}, {latitude: 36.15146359338993, longitude: -95.94140721736052}, {latitude: 36.15144236901731, longitude: -95.94141199651344}, {latitude: 36.1514404395286, longitude: -95.94147412550156}, {latitude: 36.151374836884344, longitude: -95.94147173592509}, {latitude: 36.15137869586493, longitude: -95.94166051246594}, {latitude: 36.15145008697166, longitude: -95.94166051246594}, {latitude: 36.1514558754369, longitude: -95.94201655935942}, {latitude: 36.15190930388832, longitude: -95.94201655935942}, {latitude: 36.151911233365475, longitude: -95.94198549486536}, {latitude: 36.15197683556102, longitude: -95.94198310528888}, {latitude: 36.15197683556102, longitude: -95.94177521213632}
+        ],
+        tags: ['lorton performance center', 'lpc'],
+    },
+    {
+        name: "Center for Global Education", 
+        color: UNIV_COLOR,
+        coords: [
+            {latitude: 36.15257270365603, longitude: -95.94396978788244}, {latitude: 
+                36.15257656257768, longitude: -95.94376189472989}, {latitude: 36.1525109608838, longitude: -95.94376189472989}, {latitude: 36.15250964657963, longitude: -95.94385117310293}, {latitude: 36.152397027578694, longitude: -95.94385117310293}, {latitude: 36.152395403263924, longitude: -95.94365067797901}, {latitude: 36.1523006515734, longitude: -95.94365000742675}, {latitude: 36.152300110134824, longitude: -95.94395041483808}, {latitude: 36.152395403263924, longitude: -95.94395108539034}, {latitude: 36.152396486139715, 
+                longitude: -95.94390079397078}, {latitude: 36.15246254153534, longitude: -95.9439021350753}, {latitude: 36.15246362441022, longitude: -95.94397187251042}
+        ],
+        tags: ['center for global education', 'dei office', 'dvis']
+    },
+    {
+        name: "Sharp Chapel", 
+        color: PRAY_COLOR,
+        coords: [
+            {latitude: 36.15165062207879, longitude: -95.94636447678333}, {latitude: 
+                36.15165062207879, longitude: -95.9463262003584}, {latitude: 36.151599111028, longitude: -95.94632779520944}, {latitude: 36.151599111028, longitude: -95.94622891444506}, {latitude: 36.15160941324086, longitude: -95.94622891444506}, {latitude: 36.15160812546432, longitude: -95.94608537785155}, {latitude: 36.151583657706155, longitude: -95.94608378300052}, {latitude: 36.15158236992921, longitude: -95.94600723015067}, {latitude: 36.151541161055405, longitude: -95.94600563529963}, {latitude: 36.151541161055405, longitude: -95.94608378300052}, {latitude: 36.15127974175793, longitude: -95.94608218814948}, {latitude: 36.15127587841202, longitude: -95.94622572474297}, {latitude: 36.151470333252995, longitude: -95.94622572474297}, {latitude: 36.15147290881056, longitude: -95.94630387244388}, {latitude: 36.15127459063001, longitude: -95.94630546729492}, {latitude: 36.151273302847976, longitude: -95.946433055378}, {latitude: 36.15132610189395, longitude: -95.946433055378}, {latitude: 36.15132610189395, longitude: -95.94645059873943}, {latitude: 36.15159653547457, longitude: -95.94645219359047}, {latitude: 36.15159782325129, longitude: -95.94636288193229}
+        ],
+        tags: ['center for global education', 'dei office', 'dvis']
+    },
 ];
 
 type BuildingProps = {
