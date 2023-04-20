@@ -1,32 +1,11 @@
-import { harveyData } from "./Database";
-import {StyleSheet} from 'react-native'
+import harveyData from '../Database/HarveyData';
+import {StyleSheet, View, Text} from 'react-native';
+import { useWindowDimensions } from 'react-native';
+import RenderHtml from 'react-native-render-html';
 
-const styles = StyleSheet.create({
-    App: {
-        text-align: center;
-    },
-    harvey-class-container: {
-        padding-left: 3em;
-        padding-right: 3em;
-        margin-top: 3em;
-    }
-})
-
-export const Stocks = () => {
-  return (
-    <>
-      <div className="harvey-class-container">
-        {harveyData.map((data, key) => {
-          return (
-            <div key={key}> {
-              data.className +
-                " , " + data.building +
-                " ," + data.time 
-              }
-            </div>
-          );
-        })}
-      </div>
-    </>
+export default function List() {
+  const harveyList = harveyData.map(key =>
+    <li>{key.class + ", " + key.building + ", " + key.time}</li>
   );
-};
+  return <ul>{harveyList}</ul>;
+}
