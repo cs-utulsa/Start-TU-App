@@ -47,6 +47,9 @@ const EmailPane = () => {
         )
     }, [earliestDate])
     
+    useEffect(() => {
+      console.log('Testing 123')
+    }, [])
     return(
       <View style={styles.emailPane}>
           <SectionList 

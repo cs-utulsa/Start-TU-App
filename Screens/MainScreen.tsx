@@ -67,7 +67,7 @@ const MainPage = (screenInterface: MainScreenInterface, route: any) => {
               {loginState == 1 && paneState == CLASSES_STATE && <GuestPane></GuestPane>}
               {paneState == MAP_STATE && <MapPane></MapPane>}
               {paneState == CALENDER_STATE && <CalendarPane></CalendarPane>}
-              {loginState != 0 && paneState == EMAIL_STATE && <EmailPane></EmailPane>}
+              {loginState != 1 && paneState == EMAIL_STATE && <EmailPane></EmailPane>}
               {loginState == 1 && paneState == EMAIL_STATE && <GuestPane></GuestPane>}
               <BottomButtons state={paneState} changeState={setPaneState}></BottomButtons>
             </View>
