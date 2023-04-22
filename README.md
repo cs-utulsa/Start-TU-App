@@ -1,5 +1,6 @@
 # Start-TU-App
-The repository for the StarTU App developed by a team of software developers and designers from University of Tulsa(TU)..
+The repository for the StarTU App developed by a team of software developers and designers from University of Tulsa(TU).
+
 This app is an all-in-one platform for incoming students at TU.
 
 ## It includes integration with the following platforms
